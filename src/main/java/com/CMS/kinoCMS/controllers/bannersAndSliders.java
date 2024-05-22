@@ -2,6 +2,7 @@ package com.CMS.kinoCMS.controllers;
 
 import com.CMS.kinoCMS.models.BannersAndSliders;
 import com.CMS.kinoCMS.repositories.BannersAndSlidersRepository;
+import com.CMS.kinoCMS.services.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,10 +24,12 @@ public class bannersAndSliders {
     @Value("${upload.path}")
     private String uploadPath;
     private final BannersAndSlidersRepository bannersAndSlidersRepository;
+    private final FileUploadService fileUploadService;
 
     @Autowired
-    public bannersAndSliders(BannersAndSlidersRepository bannersAndSlidersRepository) {
+    public bannersAndSliders(BannersAndSlidersRepository bannersAndSlidersRepository, FileUploadService fileUploadService) {
         this.bannersAndSlidersRepository = bannersAndSlidersRepository;
+        this.fileUploadService = fileUploadService;
     }
 
     @GetMapping
@@ -39,16 +42,8 @@ public class bannersAndSliders {
     @PostMapping
     public String bannersAndSlidersPost(@RequestParam MultipartFile background) throws IOException {
         BannersAndSliders bannersAndSliders = new BannersAndSliders();
-        if (background != null) {
-            File uploadDir = new File(uploadPath);
-
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFilename = uuidFile + "." + background.getOriginalFilename();
-
-            background.transferTo(new File(uploadPath + "/" + resultFilename));
+        if (background != null && !background.isEmpty()) {
+            String resultFilename = fileUploadService.uploadFile(background);
 
             bannersAndSliders.setBackground(resultFilename);
             bannersAndSlidersRepository.save(bannersAndSliders);

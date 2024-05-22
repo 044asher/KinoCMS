@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @Table
 @Setter
@@ -29,7 +31,11 @@ public class Film {
     @NotEmpty(message = "Insert the link, it should not be empty")
     private String link;
 
+    @Size(max = 255, message = "Name should be less than 255 characters")
+    @NotEmpty(message = "Name shouldn't be empty")
+    private String name;
 
+    private LocalDate date;
     // ------------- SEO Block
 
     @Size(max=255, message = "Url should be less than 255 characters")
