@@ -21,8 +21,6 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/admin/banners-and-sliders")
 public class bannersAndSliders {
-    @Value("${upload.path}")
-    private String uploadPath;
     private final BannersAndSlidersRepository bannersAndSlidersRepository;
     private final FileUploadService fileUploadService;
 
@@ -50,4 +48,7 @@ public class bannersAndSliders {
         }
         return "redirect:/admin/banners-and-sliders";
     }
+
+
+
 }

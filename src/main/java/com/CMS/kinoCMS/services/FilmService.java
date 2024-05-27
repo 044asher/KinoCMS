@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FilmService {
@@ -15,11 +16,17 @@ public class FilmService {
 
     public List<Film> getCurrentFilms(){
         LocalDate today = LocalDate.now();
-        return filmRepository.findByDateBefore(today);
+        return filmRepository.findByDateBeforeOrDate(today, today);
     }
 
     public List<Film> getUpcomingFilms(){
         LocalDate today = LocalDate.now();
         return filmRepository.findByDateAfterOrDateIsNull(today);
+    }
+    public void save(Film film){
+        filmRepository.save(film);
+    }
+    public Optional<Film> findById(Long id){
+        return filmRepository.findById(id);
     }
 }

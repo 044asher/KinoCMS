@@ -36,6 +36,9 @@ public class Film {
     private String name;
 
     private LocalDate date;
+
+    private String types;
+
     // ------------- SEO Block
 
     @Size(max=255, message = "Url should be less than 255 characters")

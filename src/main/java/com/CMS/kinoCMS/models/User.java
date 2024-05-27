@@ -52,4 +52,5 @@ public class User {
     @JoinColumn(name = "city_id")
     private City city;
 
+
 }

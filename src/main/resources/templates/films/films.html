@@ -91,7 +91,7 @@
                         <div class="nav-item navbar-search-wrapper mb-0">
                             <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
                                 <i class="ti ti-search ti-md me-2"></i>
-                                <span class="d-none d-md-inline-block text-muted">Search (Ctrl+/)</span>
+                                <span class="d-none d-md-inline-block text-muted">Search </span>
                             </a>
                         </div>
                     </div>
@@ -211,7 +211,7 @@
                         <a href="/admin/films/add" class="btn btn-label-primary waves-effect">Добавить фильм</a>
                     </div>
 
-                    <div class="container mt-5">
+                    <div class="container mt-2">
                         <h1>Текущие фильмы</h1>
                         <div th:if="${currentFilms.isEmpty()}">
                             <p>Нет текущих фильмов.</p>
@@ -224,7 +224,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title" th:text="${film.name}">Название фильма</h5>
                                             <p class="card-text" th:text="${#strings.abbreviate(film.description, 40)}">Описание фильма</p>
-                                            <a th:href="@{${film.link}}" class="btn btn-primary">Смотреть трейлер</a>
+                                            <a th:href="'/admin/films/edit/' + ${film.id}" class="btn btn-primary">Редактировать</a>
                                         </div>
                                     </div>
                                 </div>
@@ -242,8 +242,9 @@
                                         <img th:src="@{/img/{imageName}(imageName = ${film.mainImage})}" class="card-img-top" alt="Film Image">
                                         <div class="card-body">
                                             <h5 class="card-title" th:text="${film.name}">Название фильма</h5>
-                                            <p class="card-text" th:text="${#temporals.format(film.date, 'dd-MM-yyyy')}">Дата релиза</p>
-                                            <a th:href="@{${film.link}}" class="btn btn-primary">Смотреть трейлер</a>
+                                            <p class="card-text" th:text="'Дата релиза: ' + ${#temporals.format(film.date, 'dd.MM.yyyy')}">Дата релиза</p>
+                                            <p class="card-text" th:text="'Описание: ' + ${#strings.abbreviate(film.description, 40)}">Описание</p>
+                                            <a th:href="'/admin/films/edit/' + ${film.id}" class="btn btn-primary">Редактировать</a>
                                         </div>
                                     </div>
                                 </div>

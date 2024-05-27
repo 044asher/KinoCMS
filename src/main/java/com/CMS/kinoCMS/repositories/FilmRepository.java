@@ -7,6 +7,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface FilmRepository extends JpaRepository<Film, Long> {
-    List<Film> findByDateBefore(LocalDate date);
+    List<Film> findByDateBeforeOrDate(LocalDate date, LocalDate now);
     List<Film> findByDateAfterOrDateIsNull(LocalDate date);
 }
