@@ -1,9 +1,11 @@
 package com.CMS.kinoCMS.controllers;
 
 import com.CMS.kinoCMS.models.User;
+import com.CMS.kinoCMS.repositories.EmailTemplateRepository;
 import com.CMS.kinoCMS.services.MailSender;
 import com.CMS.kinoCMS.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,18 +17,22 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin/email-sending")
+@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 public class email {
     private final UserService userService;
     private final MailSender mailSender;
+    private final EmailTemplateRepository emailTemplateRepository;
 
     @Autowired
-    public email(UserService userService, MailSender mailSender) {
+    public email(UserService userService, MailSender mailSender, EmailTemplateRepository emailTemplateRepository) {
         this.userService = userService;
         this.mailSender = mailSender;
+        this.emailTemplateRepository = emailTemplateRepository;
     }
 
     @GetMapping()
-    public String emailSendingMain() {
+    public String emailSendingMain(Model model) {
+        model.addAttribute("templates", emailTemplateRepository.findAll());
         return "emails/email";
     }
 
@@ -43,6 +49,7 @@ public class email {
     public String emailSendingSelect(Model model) {
         List<User> users = userService.findAllUsers();
         model.addAttribute("users", users);
+        model.addAttribute("templates", emailTemplateRepository.findAll());
         return "emails/select";
     }
 
@@ -61,4 +68,8 @@ public class email {
         }
         return "redirect:/admin/email-sending/select";
     }
+
+
+
+
 }

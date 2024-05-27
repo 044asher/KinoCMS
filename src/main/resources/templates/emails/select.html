@@ -244,37 +244,47 @@
                                     <div class="form-group">
                                         <label for="message">Письмо:</label>
                                         <div id="snow-toolbar" class="mb-2">
-                                <span class="ql-formats">
-                                    <select class="ql-font"></select>
-                                    <select class="ql-size"></select>
-                                </span>
+                        <span class="ql-formats">
+                            <select class="ql-font"></select>
+                            <select class="ql-size"></select>
+                        </span>
                                             <span class="ql-formats">
-                                    <button class="ql-bold"></button>
-                                    <button class="ql-italic"></button>
-                                    <button class="ql-underline"></button>
-                                    <button class="ql-strike"></button>
-                                </span>
+                            <button class="ql-bold"></button>
+                            <button class="ql-italic"></button>
+                            <button class="ql-underline"></button>
+                            <button class="ql-strike"></button>
+                        </span>
                                             <span class="ql-formats">
-                                    <select class="ql-color"></select>
-                                    <select class="ql-background"></select>
-                                </span>
+                            <select class="ql-color"></select>
+                            <select class="ql-background"></select>
+                        </span>
                                             <span class="ql-formats">
-                                    <button class="ql-script" value="sub"></button>
-                                    <button class="ql-script" value="super"></button>
-                                </span>
+                            <button class="ql-script" value="sub"></button>
+                            <button class="ql-script" value="super"></button>
+                        </span>
                                             <span class="ql-formats">
-                                    <button class="ql-header" value="1"></button>
-                                    <button class="ql-header" value="2"></button>
-                                    <button class="ql-blockquote"></button>
-                                    <button class="ql-code-block"></button>
-                                </span>
+                            <button class="ql-header" value="1"></button>
+                            <button class="ql-header" value="2"></button>
+                            <button class="ql-blockquote"></button>
+                            <button class="ql-code-block"></button>
+                        </span>
                                         </div>
                                         <div id="message" class="quill-editor" style="height: 300px;">
                                             <!-- Quill content -->
                                         </div>
                                     </div>
                                     <input type="hidden" name="message" id="hiddenMessage">
-
+                                    <div class="form-group mt-3">
+                                        <label for="template">Выберите шаблон:</label>
+                                        <select id="template" class="form-control">
+                                            <option value="">-- Выберите шаблон --</option>
+                                            <option th:each="template : ${templates}" th:value="${template.id}" th:data-subject="${template.subject}" th:data-content="${template.content}" th:text="${template.name}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="btn-group mb-2">
+                                        <button type="button" id="applyTemplate" class="btn btn-outline-warning waves-effect mt-2">Применить шаблон</button>
+                                        <a th:href="'/admin/email-templates'" class="btn btn-outline-info waves-effect mt-2">Шаблоны</a>
+                                    </div>
                                     <div class="table-responsive">
                                         <table class="table border-top">
                                             <thead>
@@ -305,59 +315,66 @@
                                             </tbody>
                                         </table>
                                     </div>
-
                                     <div class="action-buttons mt-3">
                                         <button type="submit" class="btn btn-primary">Отправить выбранным пользователям</button>
                                         <span class="divider">или</span>
-                                        <a th:href="@{/admin/email-sending/select}" class="btn btn-secondary">Выбрать пользователей</a>
+                                        <a th:href="@{/admin/email-sending}" class="btn btn-secondary">Написать всем пользователям</a>
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
-                </div>
-                <div class="content-backdrop fade"></div>
-            </div>
 
-            <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-            <script>
-                (function () {
-                    var quill = new Quill('#message', {
-                        theme: 'snow',
-                        modules: {
-                            toolbar: '#snow-toolbar'
+                    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+                    <script>
+                        (function () {
+                            var quill = new Quill('#message', {
+                                theme: 'snow',
+                                modules: {
+                                    toolbar: '#snow-toolbar'
+                                }
+                            });
+
+                            window.submitForm = function (event) {
+                                event.preventDefault();
+                                var messageContent = quill.root.innerHTML;
+                                document.getElementById('hiddenMessage').value = messageContent;
+                                event.target.submit();
+                            }
+
+                            document.getElementById('applyTemplate').addEventListener('click', function () {
+                                var templateSelect = document.getElementById('template');
+                                var selectedOption = templateSelect.options[templateSelect.selectedIndex];
+                                var subject = selectedOption.getAttribute('data-subject');
+                                var content = selectedOption.getAttribute('data-content');
+                                if (subject && content) {
+                                    document.getElementById('subject').value = subject;
+                                    quill.root.innerHTML = content;
+                                }
+                            });
+                        })();
+                    </script>
+                    <script>
+                        function toggleAll(source) {
+                            var checkboxes = document.getElementsByName('mailingUsers');
+                            for (var i = 0; i < checkboxes.length; i++) {
+                                checkboxes[i].checked = source.checked;
+                            }
                         }
-                    });
 
-                    window.submitForm = function (event) {
-                        event.preventDefault();
-                        var messageContent = quill.root.innerHTML;
-                        document.getElementById('hiddenMessage').value = messageContent;
-                        event.target.submit();
-                    }
-                })();
-            </script>
-            <script>
-                function toggleAll(source) {
-                    var checkboxes = document.getElementsByName('mailingUsers');
-                    for (var i = 0; i < checkboxes.length; i++) {
-                        checkboxes[i].checked = source.checked;
-                    }
-                }
-
-                function toggleSingle() {
-                    var selectAll = document.getElementById('selectAll');
-                    var checkboxes = document.getElementsByName('mailingUsers');
-                    var allChecked = true;
-                    for (var i = 0; i < checkboxes.length; i++) {
-                        if (!checkboxes[i].checked) {
-                            allChecked = false;
-                            break;
+                        function toggleSingle() {
+                            var selectAll = document.getElementById('selectAll');
+                            var checkboxes = document.getElementsByName('mailingUsers');
+                            var allChecked = true;
+                            for (var i = 0; i < checkboxes.length; i++) {
+                                if (!checkboxes[i].checked) {
+                                    allChecked = false;
+                                    break;
+                                }
+                            }
+                            selectAll.checked = allChecked;
                         }
-                    }
-                    selectAll.checked = allChecked;
-                }
-            </script>
+                    </script>
         </div>
     </div>
 

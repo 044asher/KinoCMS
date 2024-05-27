@@ -67,24 +67,6 @@
             border-radius: 5px;
             padding: 10px;
         }
-
-        .form-container {
-            max-width: 800px;
-            margin: auto;
-        }
-
-        .action-buttons {
-            display: flex;
-            align-items: center;
-        }
-
-        .action-buttons .btn-primary {
-            margin-right: 10px;
-        }
-
-        .divider {
-            margin-right: 10px;
-        }
     </style>
 </head>
 
@@ -232,66 +214,49 @@
             <div class="content-wrapper">
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <div class="col-12">
-                        <h2 class="fw-bold py-3 mb-4 text-center">Рассылка E-Mail</h2>
+                        <h2 class="fw-bold py-3 mb-4 text-center">Редактировать шаблон</h2>
                         <div class="form-container">
-                            <form th:action="@{/admin/email-sending/all}" method="post" class="w-100" onsubmit="submitForm(event)">
-                                <div class="card mb-4">
-                                    <div class="card-body">
-                                        <div class="form-group mb-3">
-                                            <label for="subject">Тема:</label>
-                                            <input type="text" class="form-control" id="subject" name="subject" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="message">Письмо:</label>
-                                            <div id="snow-toolbar" class="mb-2">
-                                <span class="ql-formats">
-                                    <select class="ql-font"></select>
-                                    <select class="ql-size"></select>
-                                </span>
-                                                <span class="ql-formats">
-                                    <button class="ql-bold"></button>
-                                    <button class="ql-italic"></button>
-                                    <button class="ql-underline"></button>
-                                    <button class="ql-strike"></button>
-                                </span>
-                                                <span class="ql-formats">
-                                    <select class="ql-color"></select>
-                                    <select class="ql-background"></select>
-                                </span>
-                                                <span class="ql-formats">
-                                    <button class="ql-script" value="sub"></button>
-                                    <button class="ql-script" value="super"></button>
-                                </span>
-                                                <span class="ql-formats">
-                                    <button class="ql-header" value="1"></button>
-                                    <button class="ql-header" value="2"></button>
-                                    <button class="ql-blockquote"></button>
-                                    <button class="ql-code-block"></button>
-                                </span>
-                                            </div>
-                                            <div id="message" class="quill-editor" style="height: 300px;">
-                                                <!-- Quill content -->
-                                            </div>
-                                        </div>
-                                        <input type="hidden" name="message" id="hiddenMessage">
-                                        <div class="form-group mt-3">
-                                            <label for="template">Выберите шаблон:</label>
-                                            <select id="template" class="form-control">
-                                                <option value="">-- Выберите шаблон --</option>
-                                                <option th:each="template : ${templates}" th:value="${template.id}" th:data-subject="${template.subject}" th:data-content="${template.content}" th:text="${template.name}"></option>
-                                            </select>
-                                        </div>
-                                        <div class="btn-group">
-                                        <button type="button" id="applyTemplate" class="btn btn-outline-warning waves-effect mt-2">Применить шаблон</button>
-                                        <a th:href="'/admin/email-templates'" class="btn btn-outline-info waves-effect mt-2">Шаблоны</a>
-                                        </div>
-                                            <div class="action-buttons mt-3">
-                                            <button type="submit" class="btn btn-primary">Отправить всем пользователям</button>
-                                            <span class="divider">или</span>
-                                            <a th:href="@{/admin/email-sending/select}" class="btn btn-secondary">Выбрать пользователей</a>
-                                        </div>
-                                    </div>
+                            <form th:action="@{/admin/email-templates/edit/{id}(id=${template.id})}" method="post" class="w-100" onsubmit="submitForm(event)">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Название шаблона:</label>
+                                    <input type="text" class="form-control" id="name" name="name" th:value="${template.name}" required>
                                 </div>
+                                <div class="mb-3">
+                                    <label for="subject" class="form-label">Тема:</label>
+                                    <input type="text" class="form-control" id="subject" name="subject" th:value="${template.subject}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="content" class="form-label">Содержимое:</label>
+                                    <div id="snow-toolbar" class="mb-2">
+                <span class="ql-formats">
+                    <select class="ql-font"></select>
+                    <select class="ql-size"></select>
+                </span>
+                                        <span class="ql-formats">
+                    <button class="ql-bold"></button>
+                    <button class="ql-italic"></button>
+                    <button class="ql-underline"></button>
+                    <button class="ql-strike"></button>
+                </span>
+                                        <span class="ql-formats">
+                    <select class="ql-color"></select>
+                    <select class="ql-background"></select>
+                </span>
+                                        <span class="ql-formats">
+                    <button class="ql-script" value="sub"></button>
+                    <button class="ql-script" value="super"></button>
+                </span>
+                                        <span class="ql-formats">
+                    <button class="ql-header" value="1"></button>
+                    <button class="ql-header" value="2"></button>
+                    <button class="ql-blockquote"></button>
+                    <button class="ql-code-block"></button>
+                </span>
+                                    </div>
+                                    <div id="content" class="quill-editor" style="height: 300px;" th:utext="${template.content}"></div>
+                                    <input type="hidden" name="content" id="hiddenContent">
+                                </div>
+                                <button type="submit" class="btn btn-success">Сохранить</button>
                             </form>
                         </div>
                     </div>
@@ -300,7 +265,7 @@
                 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
                 <script>
                     (function () {
-                        var quill = new Quill('#message', {
+                        var quill = new Quill('#content', {
                             theme: 'snow',
                             modules: {
                                 toolbar: '#snow-toolbar'
@@ -309,21 +274,10 @@
 
                         window.submitForm = function (event) {
                             event.preventDefault();
-                            var messageContent = quill.root.innerHTML;
-                            document.getElementById('hiddenMessage').value = messageContent;
+                            var content = quill.root.innerHTML;
+                            document.getElementById('hiddenContent').value = content;
                             event.target.submit();
                         }
-
-                        document.getElementById('applyTemplate').addEventListener('click', function () {
-                            var templateSelect = document.getElementById('template');
-                            var selectedOption = templateSelect.options[templateSelect.selectedIndex];
-                            var subject = selectedOption.getAttribute('data-subject');
-                            var content = selectedOption.getAttribute('data-content');
-                            if (subject && content) {
-                                document.getElementById('subject').value = subject;
-                                quill.root.innerHTML = content;
-                            }
-                        });
                     })();
                 </script>
             </div>

@@ -20,6 +20,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin/films")
+@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 public class films {
     private final FileUploadService fileUploadService;
     private final FilmService filmService;
@@ -31,7 +32,6 @@ public class films {
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String films(Model model) {
         List<Film> currentFilms = filmService.getCurrentFilms();
         List<Film> upcomingFilms = filmService.getUpcomingFilms();
@@ -41,7 +41,6 @@ public class films {
     }
 
     @GetMapping("/add")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String addFilm(Model model) {
         model.addAttribute("film", new Film());
         model.addAttribute("allFilmTypes", List.of("2D", "3D", "IMax"));

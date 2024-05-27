@@ -20,6 +20,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin/banners-and-sliders")
+@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 public class bannersAndSliders {
     private final BannersAndSlidersRepository bannersAndSlidersRepository;
     private final FileUploadService fileUploadService;
@@ -31,7 +32,6 @@ public class bannersAndSliders {
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String bannersAndSlidersPage(Model model){
         model.addAttribute("banners", bannersAndSlidersRepository.findAll());
         return "banners-and-sliders/banners-and-sliders";

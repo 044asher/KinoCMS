@@ -4,6 +4,7 @@ import com.CMS.kinoCMS.models.User;
 import com.CMS.kinoCMS.repositories.CityRepository;
 import com.CMS.kinoCMS.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin/users")
+@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 public class userController {
     private final UserRepository userRepository;
     private final CityRepository cityRepository;
