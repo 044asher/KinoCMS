@@ -1,0 +1,36 @@
+.quill-editor {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.form-container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.action-buttons .btn-primary {
+    margin-right: 10px;
+}
+
+.divider {
+    margin-right: 10px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding-top: 50px;
+}
+.progress {
+    height: 25px;
+}
+.progress-bar {
+    width: 0;
+}

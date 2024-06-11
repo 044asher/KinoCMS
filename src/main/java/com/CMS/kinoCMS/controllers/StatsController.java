@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin/stats")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-public class stats {
+public class StatsController {
     private final BannersAndSlidersRepository bannersAndSlidersRepository;
 
     @Autowired
-    public stats(BannersAndSlidersRepository bannersAndSlidersRepository) {
+    public StatsController(BannersAndSlidersRepository bannersAndSlidersRepository) {
         this.bannersAndSlidersRepository = bannersAndSlidersRepository;
     }
 

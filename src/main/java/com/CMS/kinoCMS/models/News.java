@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -35,7 +36,9 @@ public class News {
     @NotEmpty(message = "Insert the link, it should not be empty")
     private String link;
 
-    private Date date;
+    private LocalDate dateOfCreation;
+
+    private boolean notActive;
 
     // ------------- SEO Block
 

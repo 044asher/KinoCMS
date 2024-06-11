@@ -21,12 +21,12 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/admin/films")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-public class films {
+public class FilmsController {
     private final FileUploadService fileUploadService;
     private final FilmService filmService;
 
     @Autowired
-    public films(FileUploadService fileUploadService, FilmService filmService) {
+    public FilmsController(FileUploadService fileUploadService, FilmService filmService) {
         this.fileUploadService = fileUploadService;
         this.filmService = filmService;
     }
@@ -88,10 +88,10 @@ public class films {
     }
 
     @PostMapping("/edit/{id}")
-    public String editFilmPost(@PathVariable("id") Long id,
+    public String editFilm(@PathVariable("id") Long id,
                                @Valid Film film,
                                BindingResult bindingResult,
-                               @RequestParam("file") MultipartFile file,
+                               @RequestParam(value = "file", required = false) MultipartFile file,
                                @RequestParam(value = "filmTypes", required = false) List<String> filmTypes,
                                RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
@@ -129,7 +129,6 @@ public class films {
             redirectAttributes.addFlashAttribute("message", "Фильм успешно обновлен!");
         } catch (IOException e) {
             redirectAttributes.addFlashAttribute("message", "Ошибка загрузки файла: " + e.getMessage());
-            return "redirect:/admin/films";
         }
 
         return "redirect:/admin/films";

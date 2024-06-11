@@ -1,5 +1,6 @@
 package com.CMS.kinoCMS.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -8,6 +9,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -30,14 +34,13 @@ public class Hall {
     private String scheme;
     private String topBanner;
 
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cinema_id")
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Cinema cinema;
 
-
+    private LocalDate creationDate;
 
     // ------------- SEO Block
-
     @Size(max=255, message = "Url should be less than 255 characters")
     @NotEmpty(message = "Url shouldn't be empty")
     private String urlSEO;
@@ -53,6 +56,5 @@ public class Hall {
     @Size(max=4000, message = "Description should be less than 4000 characters")
     @NotEmpty(message = "Description shouldn't be empty")
     private String descriptionSEO;
-
-
 }
+

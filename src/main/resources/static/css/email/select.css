@@ -1,0 +1,24 @@
+
+.quill-editor {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+.form-container {
+    max-width: 800px;
+    margin: auto;
+}
+.action-buttons {
+    display: flex;
+    align-items: center;
+}
+.action-buttons .btn-primary {
+    margin-right: 10px;
+}
+.divider {
+    margin-right: 10px;
+}
+.table-responsive {
+    overflow-x: auto;
+}

@@ -53,6 +53,7 @@
     <!-- Page CSS -->
 
     <link rel="stylesheet" href="/assets/vendor/css/pages/app-kanban.css"/>
+    <link rel="stylesheet" href="/css/email/email-templates/add-edit.css"/>
     <!-- Helpers -->
     <script src="/assets/vendor/js/helpers.js"></script>
 
@@ -60,14 +61,7 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/assets/js/config.js"></script>
     <script src="/js/sidebar-active/sidebar-active-element.js"></script>
-    <style>
-        .quill-editor {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-        }
-    </style>
+
 </head>
 
 <body>
@@ -216,7 +210,7 @@
                     <div class="col-12">
                         <h2 class="fw-bold py-3 mb-4 text-center">Добавить шаблон</h2>
                         <div class="form-container">
-                            <form th:action="@{/admin/email-templates/add}" method="post" class="w-100" onsubmit="submitForm(event)">
+                            <form th:action="@{/admin/email-sending/email-templates/add}" method="post" class="w-100" onsubmit="submitForm(event)">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Название шаблона:</label>
                                     <input type="text" class="form-control" id="name" name="name" required>
@@ -263,23 +257,7 @@
                     <div class="content-backdrop fade"></div>
                 </div>
                 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-                <script>
-                    (function () {
-                        var quill = new Quill('#content', {
-                            theme: 'snow',
-                            modules: {
-                                toolbar: '#snow-toolbar'
-                            }
-                        });
-
-                        window.submitForm = function (event) {
-                            event.preventDefault();
-                            var content = quill.root.innerHTML;
-                            document.getElementById('hiddenContent').value = content;
-                            event.target.submit();
-                        }
-                    })();
-                </script>
+                <script src="/js/email/email-templates/add-edit.js"></script>
             </div>
         </div>
 

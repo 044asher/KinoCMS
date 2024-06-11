@@ -6,24 +6,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class EmailStatisticsService {
-
-    private AtomicInteger totalEmailsSent = new AtomicInteger(0);
-    private AtomicInteger emailsSentInCurrentSession = new AtomicInteger(0);
-
-    public int getTotalEmailsSent() {
-        return totalEmailsSent.get();
-    }
+    private final AtomicInteger emailsSent = new AtomicInteger(0);
 
     public void incrementEmailsSent() {
-        totalEmailsSent.incrementAndGet();
-        emailsSentInCurrentSession.incrementAndGet();
+        emailsSent.incrementAndGet();
     }
 
-    public int getEmailsSentInCurrentSession() {
-        return emailsSentInCurrentSession.get();
+    public int getEmailsSent() {
+        return emailsSent.get();
     }
 
-    public void resetSessionCounter() {
-        emailsSentInCurrentSession.set(0);
+    public void resetEmailsSent() {
+        emailsSent.set(0);
     }
 }

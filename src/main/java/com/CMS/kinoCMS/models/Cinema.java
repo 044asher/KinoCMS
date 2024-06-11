@@ -1,5 +1,7 @@
 package com.CMS.kinoCMS.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -33,14 +35,18 @@ public class Cinema {
     @Size(max = 2000)
     private String conditions;
 
+    @OneToMany(mappedBy = "cinema", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Hall> halls;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    Set<Hall> halls;
+    private String logoName;
+    private String bannerName;
 
-
+//    @ManyToOne
+//    @JoinColumn(name = "city_id")
+//    @JsonBackReference
+//    private City city;
 
     // ------------- SEO Block
-
     @Size(max=255, message = "Url should be less than 255 characters")
     @NotEmpty(message = "Url shouldn't be empty")
     private String urlSEO;
@@ -57,3 +63,4 @@ public class Cinema {
     @NotEmpty(message = "Description shouldn't be empty")
     private String descriptionSEO;
 }
+

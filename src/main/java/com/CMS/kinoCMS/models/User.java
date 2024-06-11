@@ -1,5 +1,8 @@
 package com.CMS.kinoCMS.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -28,7 +31,9 @@ public class User {
     @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     private String username;
     private String password;
+
     @Transient
+    @JsonIgnore
     private String passwordConfirm;
 
     @NotEmpty(message = "Email should not be empty")
@@ -50,6 +55,7 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "city_id")
+    @JsonBackReference
     private City city;
 
 

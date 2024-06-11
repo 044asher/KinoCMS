@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html
+        lang="en"
+        class="light-style layout-navbar-fixed layout-menu-fixed"
+        dir="ltr"
+        data-theme="theme-default"
+        data-assets-path="/assets/"
+        data-template="vertical-menu-template-no-customizer"
+>
+<head>
+    <meta charset="utf-8" />
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>Добавление зала</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome.css" />
+    <link rel="stylesheet" href="/assets/vendor/fonts/tabler-icons.css" />
+    <link rel="stylesheet" href="/assets/vendor/fonts/flag-icons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="/assets/vendor/css/rtl/core.css" />
+    <link rel="stylesheet" href="/assets/vendor/css/rtl/theme-default.css" />
+    <link rel="stylesheet" href="/assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/node-waves/node-waves.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/select2/select2.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/flatpickr/flatpickr.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/quill/typography.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/quill/katex.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/quill/editor.css" />
+
+    <!-- Page CSS -->
+
+    <link rel="stylesheet" href="/assets/vendor/css/pages/app-kanban.css" />
+    <link rel="stylesheet" href="/css/cinemas/add.css"/>
+    <!-- Helpers -->
+    <script src="/assets/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="/assets/js/config.js"></script>
+    <script src="/js/sidebar-active/sidebar-active-element.js"></script>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+        <!-- Menu -->
+
+        <header th:insert="~{blocks/sidebar :: sidebar}"></header>
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+            <!-- Navbar -->
+            <nav
+                    class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+                    id="layout-navbar"
+            >
+                <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                    <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                        <i class="ti ti-menu-2 ti-sm"></i>
+                    </a>
+                </div>
+
+                <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                    <!-- Search -->
+                    <div class="navbar-nav align-items-center">
+                        <div class="nav-item navbar-search-wrapper mb-0">
+                            <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
+                                <i class="ti ti-search ti-md me-2"></i>
+                                <span class="d-none d-md-inline-block text-muted">Search </span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /Search -->
+
+                    <ul class="navbar-nav flex-row align-items-center ms-auto">
+
+
+                        <!-- User -->
+                        <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                <div class="avatar avatar-online">
+                                    <img src="/assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" href="pages-account-settings-account.html">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0 me-3">
+                                                <div class="avatar avatar-online">
+                                                    <img src="/assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <span class="fw-semibold d-block">John Doe</span>
+                                                <small class="text-muted">Admin</small>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="pages-profile-user.html">
+                                        <i class="ti ti-user-check me-2 ti-sm"></i>
+                                        <span class="align-middle">My Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="pages-account-settings-account.html">
+                                        <i class="ti ti-settings me-2 ti-sm"></i>
+                                        <span class="align-middle">Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="pages-account-settings-billing.html">
+                        <span class="d-flex align-items-center align-middle">
+                          <i class="flex-shrink-0 ti ti-credit-card me-2 ti-sm"></i>
+                          <span class="flex-grow-1 align-middle">Billing</span>
+                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-label-danger w-px-20 h-px-20"
+                          >2</span
+                          >
+                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="pages-help-center-landing.html">
+                                        <i class="ti ti-lifebuoy me-2 ti-sm"></i>
+                                        <span class="align-middle">Help</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="pages-faq.html">
+                                        <i class="ti ti-help me-2 ti-sm"></i>
+                                        <span class="align-middle">FAQ</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="pages-pricing.html">
+                                        <i class="ti ti-currency-dollar me-2 ti-sm"></i>
+                                        <span class="align-middle">Pricing</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                                <li>
+                                    <form th:action="@{/logout}" method="post">
+                                        <button type="submit" class="dropdown-item">
+                                            <i class="ti ti-logout me-2 ti-sm"></i>
+                                            <span class="align-middle">Log Out</span>
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--/ User -->
+                    </ul>
+                </div>
+
+                <!-- Search Small Screens -->
+                <div class="navbar-search-wrapper search-input-wrapper d-none">
+                    <input
+                            type="text"
+                            class="form-control search-input container-xxl border-0"
+                            placeholder="Search..."
+                            aria-label="Search..."
+                    />
+                    <i class="ti ti-x ti-sm search-toggler cursor-pointer"></i>
+                </div>
+            </nav>
+            <!-- / Navbar -->
+
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+                <!-- Content -->
+
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <h4 class="fw-bold">Добавление зала</h4>
+                    <section class="content">
+                        <form method="post" th:object="${hall}" class="mt-2" enctype="multipart/form-data">
+                            <!-- Основные поля формы -->
+                            <label for="number" class="form-label">Номер зала:</label>
+                            <input type="number" th:value="*{number}" name="number" id="number" placeholder="Введите номер зала" class="form-control" required>
+                            <p style="color: red" th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></p>
+
+                            <label for="description" class="form-label mt-2">Описание:</label>
+                            <textarea name="description" id="description" placeholder="Введите описание" class="form-control mt-2" th:text="*{description}" required></textarea>
+                            <p style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+
+                            <!-- Поля загрузки файлов -->
+                            <label for="scheme" class="form-label mt-2">Загрузите схему зала:</label>
+                            <div class="drag-area" id="drag-area-scheme"> <!-- Здесь исправлен идентификатор -->
+                                <p>Перетащите файл сюда или нажмите для выбора файла</p>
+                                <input type="file" name="scheme" id="scheme" accept="image/*" hidden>
+                                <div class="preview" id="preview-scheme"></div> <!-- Здесь исправлен идентификатор -->
+                            </div>
+                            <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG)</small>
+
+                            <br>
+                            <label for="topBanner" class="form-label mt-2">Загрузите баннер:</label>
+                            <div class="drag-area" id="drag-area-topBanner">
+                                <p>Перетащите файл сюда или нажмите для выбора файла</p>
+                                <input type="file" name="topBanner" id="topBanner" accept="image/*" hidden>
+                                <div class="preview" id="preview-topBanner"></div>
+                            </div>
+                            <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG)</small>
+
+
+                            <!-- SEO блок -->
+                            <br><br>
+                            <h4>SEO блок:</h4>
+                            <label for="urlSEO" class="form-label mt-2">SEO URL:</label>
+                            <input type="text" th:value="*{urlSEO}" name="urlSEO" id="urlSEO" placeholder="Введите SEO URL" class="form-control mt-2" required>
+                            <p style="color: red" th:if="${#fields.hasErrors('urlSEO')}" th:errors="*{urlSEO}"></p>
+
+                            <label for="titleSEO" class="form-label mt-2">SEO Заголовок:</label>
+                            <input type="text" th:value="*{titleSEO}" name="titleSEO" id="titleSEO" placeholder="Введите SEO заголовок" class="form-control mt-2" required>
+                            <p style="color: red" th:if="${#fields.hasErrors('titleSEO')}" th:errors="*{titleSEO}"></p>
+
+                            <label for="keywordsSEO" class="form-label mt-2">SEO Ключевые слова:</label>
+                            <input type="text" th:value="*{keywordsSEO}" name="keywordsSEO" id="keywordsSEO" placeholder="Введите SEO ключевые слова" class="form-control mt-2" required>
+                            <p style="color: red" th:if="${#fields.hasErrors('keywordsSEO')}" th:errors="*{keywordsSEO}"></p>
+
+                            <label for="descriptionSEO" class="form-label mt-2">SEO Описание:</label>
+                            <textarea name="descriptionSEO" id="descriptionSEO" placeholder="Введите SEO описание" class="form-control mt-2" th:text="*{descriptionSEO}" required></textarea>
+                            <p style="color: red" th:if="${#fields.hasErrors('descriptionSEO')}" th:errors="*{descriptionSEO}"></p>
+                            <br>
+
+
+                            <!-- Кнопка для отправки формы -->
+                            <button type="submit" class="btn btn-success mt-2">Добавить зал</button>
+                        </form>
+                    </section>
+                </div>
+
+                <script src="/js/cinemas/halls/edit.js"></script>
+
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+    </div>
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+
+    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+    <div class="drag-target"></div>
+</div>
+<!-- / Layout wrapper -->
+
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js -->
+<script src="/assets/vendor/libs/jquery/jquery.js"></script>
+<script src="/assets/vendor/libs/popper/popper.js"></script>
+<script src="/assets/vendor/js/bootstrap.js"></script>
+<script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="/assets/vendor/libs/node-waves/node-waves.js"></script>
+
+<script src="/assets/vendor/libs/hammer/hammer.js"></script>
+<script src="/assets/vendor/libs/typeahead-js/typeahead.js"></script>
+
+<script src="/assets/vendor/js/menu.js"></script>
+<!-- endbuild -->
+
+<!-- Main JS -->
+<script src="/assets/js/main.js"></script>
+
+</body>
+</html>

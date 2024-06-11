@@ -21,14 +21,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Controller
 @RequestMapping("/admin/email-sending")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-public class email {
+public class EmailController {
     private final UserService userService;
     private final MailSender mailSender;
     private final EmailTemplateRepository emailTemplateRepository;
     private final EmailStatisticsService emailStatisticsService;
 
     @Autowired
-    public email(UserService userService, MailSender mailSender, EmailTemplateRepository emailTemplateRepository, EmailStatisticsService emailStatisticsService) {
+    public EmailController(UserService userService, MailSender mailSender, EmailTemplateRepository emailTemplateRepository, EmailStatisticsService emailStatisticsService) {
         this.userService = userService;
         this.mailSender = mailSender;
         this.emailTemplateRepository = emailTemplateRepository;
@@ -38,13 +38,14 @@ public class email {
     @GetMapping()
     public String emailSendingMain(Model model) {
         model.addAttribute("templates", emailTemplateRepository.findAll());
-        model.addAttribute("totalEmailsSent", emailStatisticsService.getTotalEmailsSent());
+        model.addAttribute("totalEmailsSent", emailStatisticsService.getEmailsSent());
         return "emails/email";
     }
 
     @PostMapping("/all")
     public @ResponseBody CompletableFuture<ResponseEntity<Map<String, Object>>> mailSendingToAll(@RequestParam String subject, @RequestParam String message) {
         List<User> users = userService.findAllUsers();
+        emailStatisticsService.resetEmailsSent();
         AtomicInteger counter = new AtomicInteger();
 
         return CompletableFuture.runAsync(() -> {
@@ -52,7 +53,6 @@ public class email {
                 mailSender.sendHtmlEmail(user.getEmail(), subject, message);
                 emailStatisticsService.incrementEmailsSent();
                 counter.incrementAndGet();
-                // Здесь вы можете сохранить прогресс в общей базе данных или в памяти
             }
         }).thenApply(v -> {
             Map<String, Object> response = new HashMap<>();
@@ -61,9 +61,13 @@ public class email {
             return ResponseEntity.ok(response);
         });
     }
+
     @GetMapping("/progress")
-    public @ResponseBody int getProgress() {
-        return emailStatisticsService.getEmailsSentInCurrentSession();
+    public @ResponseBody ResponseEntity<Map<String, Integer>> getProgress() {
+        Map<String, Integer> response = new HashMap<>();
+        response.put("emailsSent", emailStatisticsService.getEmailsSent());
+        response.put("totalUsers", userService.findAllUsers().size());
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/select")

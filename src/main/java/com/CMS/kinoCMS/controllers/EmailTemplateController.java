@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-@RequestMapping("/admin/email-templates")
-public class emailTemplateController {
+@RequestMapping("/admin/email-sending/email-templates")
+public class EmailTemplateController {
     private final EmailTemplateRepository emailTemplateRepository;
 
     @Autowired
-    public emailTemplateController(EmailTemplateRepository emailTemplateRepository) {
+    public EmailTemplateController(EmailTemplateRepository emailTemplateRepository) {
         this.emailTemplateRepository = emailTemplateRepository;
     }
 
@@ -39,7 +39,7 @@ public class emailTemplateController {
             return "email-templates/add";
         }
         emailTemplateRepository.save(template);
-        return "redirect:/admin/email-templates";
+        return "redirect:/admin/email-sending/email-templates";
     }
 
     @GetMapping("/edit/{id}")
@@ -55,13 +55,13 @@ public class emailTemplateController {
         }
         template.setId(id);
         emailTemplateRepository.save(template);
-        return "redirect:/admin/email-templates";
+        return "redirect:/admin/email-sending/email-templates";
     }
 
     @PostMapping("/delete/{id}")
     public String deleteTemplate(@PathVariable Long id) {
         emailTemplateRepository.deleteById(id);
-        return "redirect:/admin/email-templates";
+        return "redirect:/admin/email-sending/email-templates";
     }
 
 }

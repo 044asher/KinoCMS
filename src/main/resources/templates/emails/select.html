@@ -53,6 +53,7 @@
     <!-- Page CSS -->
 
     <link rel="stylesheet" href="/assets/vendor/css/pages/app-kanban.css"/>
+    <link rel="stylesheet" href="/css/email/select.css"/>
     <!-- Helpers -->
     <script src="/assets/vendor/js/helpers.js"></script>
 
@@ -60,31 +61,7 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/assets/js/config.js"></script>
     <script src="/js/sidebar-active/sidebar-active-element.js"></script>
-    <style>
-        .quill-editor {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-        }
-        .form-container {
-            max-width: 800px;
-            margin: auto;
-        }
-        .action-buttons {
-            display: flex;
-            align-items: center;
-        }
-        .action-buttons .btn-primary {
-            margin-right: 10px;
-        }
-        .divider {
-            margin-right: 10px;
-        }
-        .table-responsive {
-            overflow-x: auto;
-        }
-    </style>
+
 </head>
 
 <body>
@@ -326,55 +303,7 @@
                     </div>
 
                     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-                    <script>
-                        (function () {
-                            var quill = new Quill('#message', {
-                                theme: 'snow',
-                                modules: {
-                                    toolbar: '#snow-toolbar'
-                                }
-                            });
-
-                            window.submitForm = function (event) {
-                                event.preventDefault();
-                                var messageContent = quill.root.innerHTML;
-                                document.getElementById('hiddenMessage').value = messageContent;
-                                event.target.submit();
-                            }
-
-                            document.getElementById('applyTemplate').addEventListener('click', function () {
-                                var templateSelect = document.getElementById('template');
-                                var selectedOption = templateSelect.options[templateSelect.selectedIndex];
-                                var subject = selectedOption.getAttribute('data-subject');
-                                var content = selectedOption.getAttribute('data-content');
-                                if (subject && content) {
-                                    document.getElementById('subject').value = subject;
-                                    quill.root.innerHTML = content;
-                                }
-                            });
-                        })();
-                    </script>
-                    <script>
-                        function toggleAll(source) {
-                            var checkboxes = document.getElementsByName('mailingUsers');
-                            for (var i = 0; i < checkboxes.length; i++) {
-                                checkboxes[i].checked = source.checked;
-                            }
-                        }
-
-                        function toggleSingle() {
-                            var selectAll = document.getElementById('selectAll');
-                            var checkboxes = document.getElementsByName('mailingUsers');
-                            var allChecked = true;
-                            for (var i = 0; i < checkboxes.length; i++) {
-                                if (!checkboxes[i].checked) {
-                                    allChecked = false;
-                                    break;
-                                }
-                            }
-                            selectAll.checked = allChecked;
-                        }
-                    </script>
+                    <script src="/js/email/select.js"></script>
         </div>
     </div>
 

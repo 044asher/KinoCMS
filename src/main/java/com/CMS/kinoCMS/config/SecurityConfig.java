@@ -3,6 +3,7 @@ package com.CMS.kinoCMS.config;
 import com.CMS.kinoCMS.services.MyUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -13,11 +14,18 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
+//    private final CustomAccessDeniedHandler accessDeniedHandler;
+//
+//    public SecurityConfig(CustomAccessDeniedHandler accessDeniedHandler) {
+//        this.accessDeniedHandler = accessDeniedHandler;
+//    }
+
     @Bean
     public UserDetailsService userDetailsService() {
         return new MyUserDetailsService();
@@ -26,15 +34,16 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/assets/**", "/login", "/js/**", "/css/**", "/static/**,", "/img/**").permitAll()
-                        .requestMatchers("/registration").permitAll()
-                        .requestMatchers("/send-test-email").permitAll()
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/assets/**", "/login", "/registration", "/js/**", "/css/**", "/static/**,", "/img/**").permitAll()
                         .requestMatchers("/admin/**").authenticated())
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
                         .defaultSuccessUrl("/admin/stats")
                 )
+//                .exceptionHandling(e -> e.accessDeniedHandler(accessDeniedHandler)
+//                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
+                .exceptionHandling(exception -> exception.accessDeniedPage("/errors/403.html"))
                 .build();
     }
 

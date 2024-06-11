@@ -1,5 +1,6 @@
 package com.CMS.kinoCMS.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -24,5 +25,10 @@ public class City {
     private String name;
 
     @OneToMany(mappedBy = "city")
+    @JsonManagedReference
     private List<User> users;
+
+//    @OneToMany(mappedBy = "city")
+//    @JsonManagedReference
+//    private List<Cinema> cinemas;
 }
