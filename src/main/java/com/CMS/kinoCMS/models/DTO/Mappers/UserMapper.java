@@ -1,5 +1,6 @@
-package com.CMS.kinoCMS.models.DTO;
+package com.CMS.kinoCMS.models.DTO.Mappers;
 
+import com.CMS.kinoCMS.models.DTO.UserResponseDto;
 import com.CMS.kinoCMS.models.User;
 
 public class UserMapper {

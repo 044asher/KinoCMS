@@ -43,7 +43,7 @@ public class SecurityConfig {
                 )
 //                .exceptionHandling(e -> e.accessDeniedHandler(accessDeniedHandler)
 //                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
-                .exceptionHandling(exception -> exception.accessDeniedPage("/errors/403.html"))
+               // .exceptionHandling(exception -> exception.accessDeniedPage("/errors/403.html"))
                 .build();
     }
 

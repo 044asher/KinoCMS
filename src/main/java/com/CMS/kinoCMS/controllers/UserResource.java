@@ -1,7 +1,7 @@
 package com.CMS.kinoCMS.controllers;
 
 import com.CMS.kinoCMS.models.City;
-import com.CMS.kinoCMS.models.DTO.UserMapper;
+import com.CMS.kinoCMS.models.DTO.Mappers.UserMapper;
 import com.CMS.kinoCMS.models.DTO.UserResponseDto;
 import com.CMS.kinoCMS.models.User;
 import com.CMS.kinoCMS.models.DTO.UserDto;

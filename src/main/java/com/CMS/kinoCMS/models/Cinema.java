@@ -1,7 +1,5 @@
 package com.CMS.kinoCMS.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -41,10 +39,10 @@ public class Cinema {
     private String logoName;
     private String bannerName;
 
-//    @ManyToOne
-//    @JoinColumn(name = "city_id")
-//    @JsonBackReference
-//    private City city;
+    private double xCoordinate;
+    private double yCoordinate;
+    private String address;
+
 
     // ------------- SEO Block
     @Size(max=255, message = "Url should be less than 255 characters")

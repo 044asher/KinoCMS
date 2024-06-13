@@ -22,16 +22,10 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-    private Cinema cinema;
-
-    @Size(max = 255, message = "Address must be less than 255 characters")
-    @NotEmpty(message = "Address shouldn't be empty")
-    private String address;
 
     private LocalDate dateOfCreation;
     private boolean notActive;
+
 
     // ------------- SEO Block
 
