@@ -4,6 +4,8 @@ import com.CMS.kinoCMS.models.News;
 import com.CMS.kinoCMS.services.FileUploadService;
 import com.CMS.kinoCMS.services.NewsService;
 import jakarta.validation.Valid;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,8 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/admin/news")
 public class NewsController {
+    private static final Logger logger = LogManager.getLogger(NewsController.class);
+
     private final NewsService newsService;
     private final FileUploadService fileUploadService;
 
@@ -30,12 +34,14 @@ public class NewsController {
 
     @GetMapping
     public String news(Model model) {
+        logger.info("Fetching all news");
         model.addAttribute("news", newsService.findAll());
         return "/news/news-list";
     }
 
     @GetMapping("/{id}")
     public String newsEdit(@PathVariable long id, Model model) {
+        logger.info("Fetching news with ID {}", id);
         News news = newsService.findById(id).orElseThrow(() -> new IllegalArgumentException("News not found"));
         model.addAttribute("news", news);
         return "/news/news-edit";
@@ -44,7 +50,9 @@ public class NewsController {
     @PostMapping("/{id}")
     public String newsUpdate(@PathVariable long id, @Valid News news, BindingResult bindingResult,
                              @RequestParam(required = false) MultipartFile file) {
+        logger.info("Updating news with ID {}", id);
         if(bindingResult.hasErrors()) {
+            logger.warn("Validation errors in newsUpdate: {}", bindingResult.getAllErrors());
             return "/news/news-edit";
         }
         try{
@@ -53,6 +61,7 @@ public class NewsController {
             if(file != null && !file.isEmpty()) {
                 String resultMainImage = fileUploadService.uploadFile(file);
                 existingNews.setMainImage(resultMainImage);
+                logger.info("Uploaded file for news with ID {}: {}", id, resultMainImage);
             }
 
             existingNews.setName(news.getName());
@@ -68,7 +77,9 @@ public class NewsController {
             existingNews.setTitleSEO(news.getTitleSEO());
 
             newsService.save(existingNews);
+            logger.info("News with ID {} updated successfully", id);
         } catch (IOException e){
+            logger.error("Error updating news with ID " + id, e);
             e.printStackTrace();
         }
         return "redirect:/admin/news";
@@ -76,6 +87,7 @@ public class NewsController {
 
     @GetMapping("/add")
     public String newsAdd(Model model){
+        logger.info("Preparing to add news");
         model.addAttribute("news", new News());
         return "/news/news-add";
     }
@@ -83,17 +95,22 @@ public class NewsController {
     @PostMapping("/add")
     public String newsAdd(@Valid News news, BindingResult bindingResult,
                           @RequestParam(required = false) MultipartFile file){
+        logger.info("Adding new news: {}", news.getName());
         if(bindingResult.hasErrors()) {
+            logger.warn("Validation errors in newsAdd: {}", bindingResult.getAllErrors());
             return "/news/news-add";
         }
         try{
             if(file != null && !file.isEmpty()) {
                 String resultMainImage = fileUploadService.uploadFile(file);
                 news.setMainImage(resultMainImage);
+                logger.info("Uploaded file for new news: {}", resultMainImage);
             }
             news.setDateOfCreation(LocalDate.now());
             newsService.save(news);
+            logger.info("New news added successfully");
         }catch (IOException e){
+            logger.error("Error adding news: " + news.getName(), e);
             e.printStackTrace();
         }
         return "redirect:/admin/news";
@@ -101,27 +118,24 @@ public class NewsController {
 
     @PostMapping("/delete/{id}")
     public String newsDelete(@PathVariable long id) {
+        logger.info("Deleting news with ID {}", id);
         newsService.delete(newsService.findById(id).orElseThrow(() -> new IllegalArgumentException("News not found")));
         return "redirect:/admin/news";
     }
 
     @PostMapping("/{id}/change-status")
     public ResponseEntity<Void> changeStatus(@PathVariable long id){
+        logger.info("Changing status for news with ID {}", id);
         Optional<News> optionalNews = newsService.findById(id);
         if(optionalNews.isPresent()) {
             News news = optionalNews.get();
             news.setNotActive(!news.isNotActive());
             newsService.save(news);
+            logger.info("Status changed successfully for news with ID {}", id);
             return ResponseEntity.ok().build();
         }else {
+            logger.warn("News with ID {} not found", id);
             return ResponseEntity.notFound().build();
         }
     }
 }
-
-
-
-
-
-
-

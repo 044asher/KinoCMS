@@ -27,4 +27,8 @@ public class PageService {
     public Optional<Page> findById(long id) {
         return pageRepository.findById(id);
     }
+
+    public List<Page> findByIsDefault(boolean isDefault) {
+        return pageRepository.findAllByIsDefault(isDefault);
+    }
 }

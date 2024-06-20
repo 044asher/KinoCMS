@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class MainPage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Size(max = 255, message = "Number should be less than 255 symbols")
     @NotEmpty(message = "Number shouldn't be empty")

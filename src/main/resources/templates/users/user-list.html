@@ -239,12 +239,14 @@
 
 
                                     <td class="action-buttons">
-                                            <button id="edit-user" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#userEditDialog" th:data-userId="${user.id}"><i class="fas fa-edit"></i></button>
+                                        <a th:href="@{/admin/users/edit/{id}(id=${user.id})}" class="btn btn-warning ti ti-edit"></a>
 
                                             <form th:action="'/admin/users/' + ${user.id} + '/remove'" method="post">
                                                 <button class="btn btn-danger rounded" type="submit"><i class="fa fa-trash"></i></button>
                                             </form>
                                     </td>
+
+
                                 </tr>
                                 </tbody>
                             </table>
@@ -253,76 +255,7 @@
                 </div>
 
             </div>
-
-
-
-            <div class="modal fade" id="userEditDialog" tabindex="-1" role="dialog" aria-labelledby="userEditDialogLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="userEditDialogLabel">Edit user</h5>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <input type="hidden" id="user-id">
-                                <div class="form-group">
-                                    <label for="user-name" class="col-form-label">User name</label>
-                                    <input type="text" class="form-control" id="user-name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="user-email" class="col-form-label">Email</label>
-                                    <input type="email" class="form-control" id="user-email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="user-address" class="col-form-label">Address</label>
-                                    <input type="text" class="form-control" id="user-address">
-                                </div>
-                                <div class="form-group">
-                                    <label for="user-phoneNumber" class="col-form-label">Phone Number</label>
-                                    <input type="text" class="form-control" id="user-phoneNumber">
-                                </div>
-                                <div class="form-group">
-                                    <label for="user-dateOfBirthday" class="col-form-label">Date of Birthday</label>
-                                    <input type="date" class="form-control" id="user-dateOfBirthday">
-                                </div>
-                                <div class="form-group">
-                                    <label for="user-gender" class="col-form-label">Gender</label>
-                                    <select class="form-control" id="user-gender">
-                                        <option value="prefer_not_to_say">Prefer not to say</option>
-                                        <option value="female">Female</option>
-                                        <option value="male">Male</option>
-                                        <option value="non_binary">Non-binary</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="user-firstName" class="col-form-label">First Name</label>
-                                    <input type="text" class="form-control" id="user-firstName">
-                                </div>
-                                <div class="form-group">
-                                    <label for="user-lastName" class="col-form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="user-lastName">
-                                </div>
-                                <div class="form-group">
-                                    <label for="user-city" class="col-form-label">City</label>
-                                    <select id="user-city" class="form-control">
-                                    </select>
-                                </div>
-
-
-                                <input type="hidden" id="user-role">
-                                <input type="hidden" id="user-dateOfRegistration">
-                                <input type="hidden" id="user-password">
-
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button id="save-user-button" type="button" class="btn btn-primary">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                <!-- / Content -->
+            <!-- / Content -->
 
                 <div class="content-backdrop fade"></div>
             </div>
@@ -356,107 +289,6 @@
 
 <!-- Main JS -->
 <script src="/assets/js/main.js"></script>
-<script>
-    $('#userEditDialog').on('shown.bs.modal', function (event) {
-        let button = $(event.relatedTarget); // Button that triggered the modal
-        let userId = button.data('userid'); // Extract info from data-* attributes
-
-        if (userId) {
-            $.get({
-                url: '/admin/api/v1/user/' + userId,
-                success: (data) => {
-                    let modal = $(this);
-                    modal.find('#user-id').val(data.id);
-                    modal.find('#user-name').val(data.username);
-                    modal.find('#user-password').val(data.password);
-                    modal.find('#user-email').val(data.email);
-                    modal.find('#user-address').val(data.address);
-                    modal.find('#user-phoneNumber').val(data.phoneNumber);
-                    modal.find('#user-dateOfBirthday').val(data.dateOfBirthday);
-                    modal.find('#user-gender').val(data.gender);
-                    modal.find('#user-firstName').val(data.firstName);
-                    modal.find('#user-lastName').val(data.lastName);
-                    modal.find('#user-role').val(data.role); // Добавьте это
-                    modal.find('#user-dateOfRegistration').val(data.dateOfRegistration); // Добавьте это
-
-                    let citySelect = modal.find('#user-city');
-                    citySelect.empty(); // Очистка селектора
-                    $.get({
-                        url: '/admin/users/cities',
-                        success: (data) => {
-                            data.forEach(city => {
-                                citySelect.append(new Option(city.name, city.id));
-                            });
-                            citySelect.val(data.city.id); // Установка текущего города пользователя
-                        },
-                        error: (err) => {
-                            alert(err);
-                        }
-                    });
-
-                },
-                error: (err) => {
-                    alert(err);
-                }
-            });
-        }
-    });
-
-    $('#save-user-button').click(function() {
-        let modal = $('#userEditDialog');
-        let user = {
-            id: modal.find('#user-id').val(),
-            username: modal.find('#user-name').val(),
-            password: modal.find('#user-password').val(),
-            email: modal.find('#user-email').val(),
-            address: modal.find('#user-address').val(),
-            phoneNumber: modal.find('#user-phoneNumber').val(),
-            dateOfBirthday: modal.find('#user-dateOfBirthday').val(),
-            gender: modal.find('#user-gender').val(),
-            firstName: modal.find('#user-firstName').val(),
-            lastName: modal.find('#user-lastName').val(),
-            role: modal.find('#user-role').val(),
-            dateOfRegistration: modal.find('#user-dateOfRegistration').val(),
-            cityId: Number(modal.find('#user-city').val()),
-        };
-
-        // Проверка, чтобы не отправлять null значения
-        if (!user.role) {
-            delete user.role;
-        }
-        if (!user.dateOfRegistration) {
-            delete user.dateOfRegistration;
-        }
-
-        // Проверка, чтобы не отправлять пустые значения
-        if (!modal.find('#user-dateOfBirthday').val().trim()) {
-            delete user.dateOfBirthday;
-        }
-
-        let dateOfRegistration = modal.find('#user-dateOfRegistration').val();
-        if (dateOfRegistration) {
-            let parts = dateOfRegistration.split(',');
-            user.dateOfRegistration = `${parts[0]}-${parts[1].padStart(2, '0')}-${parts[2].padStart(2, '0')}`;
-        }
-
-        $.ajax({
-            url: '/admin/api/v1/user',
-            type: 'POST',
-            data: JSON.stringify(user),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: () => {
-                location.reload();
-            },
-            error: (err) => {
-                alert(err);
-            }
-        });
-
-        modal.modal('hide');
-    });
-
-</script>
 
 </body>
 </html>

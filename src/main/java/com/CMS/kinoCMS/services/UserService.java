@@ -32,4 +32,11 @@ public class UserService {
     public void delete(User user) {
         userRepository.delete(user);
     }
+    public List<User> findUsersByRole(String role){
+        return userRepository.findAllByRole(role);
+    }
+
+    public long countByGender(String gender) {
+        return userRepository.countByGender(gender);
+    }
 }

@@ -33,6 +33,7 @@ public class Page {
 
     private LocalDate dateOfCreation;
     private boolean notActive;
+    private boolean isDefault;
 
     // ------------- SEO Block
 

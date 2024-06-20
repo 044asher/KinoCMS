@@ -207,33 +207,59 @@
             </nav>
             <!-- / Navbar -->
 
-            <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Content -->
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <div th:each="el : ${banners}">
                         <div class="background-banner" th:style="'background-image: url(/img/' + ${el.background} + ');'"></div>
+                        <div th:each="image : ${el.images}">
+                            <img th:src="@{${image.url}}" th:alt="${image.caption}" style="width: 100px; height: 100px">
+                            <input th:value="${image.caption}"/>
+                            <input th:value="${image.url}">
+                        </div>
                     </div>
+
+                    <div class="col-12">
+                        <h2>На главной верх</h2>
+                        <form id="upload-images-form" action="/admin/banners-and-sliders/upload-images" method="post">
+                            <div id="images-section">
+                                <div class="image-entry">
+                                    <input type="text" name="imageUrls" placeholder="Image URL">
+                                    <input type="text" name="captions" placeholder="Caption">
+                                </div>
+                            </div>
+                            <button type="button" id="add-image" class="btn btn-primary mt-3">Добавить фото</button>
+                            <button type="submit" class="btn btn-success mt-3">Загрузить фото</button>
+                        </form>
+                    </div>
+
                     <div class="col-12">
                         <h2>Сквозной баннер на фоне</h2>
-                        <form id="upload-form" enctype="multipart/form-data" method="post">
+                        <form id="upload-background-form" action="/admin/banners-and-sliders/upload-background" enctype="multipart/form-data" method="post">
                             <div class="drag-area" id="drag-area">
                                 <p>Перетащите файл сюда или нажмите для выбора файла</p>
                                 <input type="file" name="background" id="background" accept="image/*" hidden>
                                 <div class="preview" id="preview"></div>
                             </div>
-                            <button type="submit" class="btn btn-success mt-3">Загрузить</button>
+                            <button type="submit" class="btn btn-success mt-3">Загрузить фон</button>
                         </form>
                     </div>
-
-                    `
                 </div>
-                <!-- / Content -->
-
-
                 <div class="content-backdrop fade"></div>
             </div>
-            <!-- Content wrapper -->
+
+            <script>
+                document.getElementById('add-image').addEventListener('click', function() {
+                    const imagesSection = document.getElementById('images-section');
+                    const newImageEntry = document.createElement('div');
+                    newImageEntry.className = 'image-entry';
+                    newImageEntry.innerHTML = '<input type="text" name="imageUrls" placeholder="Image URL"><input type="text" name="captions" placeholder="Caption">';
+                    imagesSection.appendChild(newImageEntry);
+                });
+            </script>
+
+
+
         </div>
         <!-- / Layout page -->
     </div>

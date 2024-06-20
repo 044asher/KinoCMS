@@ -9,50 +9,51 @@
         data-template="vertical-menu-template-no-customizer"
 >
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Редактирование фильма</title>
+    <title>Редактирование контактов/кинотеатра</title>
 
-    <meta name="description" content="" />
+    <meta name="description" content=""/>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico"/>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
             href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
             rel="stylesheet"
     />
 
     <!-- Icons -->
-    <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome.css" />
-    <link rel="stylesheet" href="/assets/vendor/fonts/tabler-icons.css" />
-    <link rel="stylesheet" href="/assets/vendor/fonts/flag-icons.css" />
+    <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome.css"/>
+    <link rel="stylesheet" href="/assets/vendor/fonts/tabler-icons.css"/>
+    <link rel="stylesheet" href="/assets/vendor/fonts/flag-icons.css"/>
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="/assets/vendor/css/rtl/core.css" />
-    <link rel="stylesheet" href="/assets/vendor/css/rtl/theme-default.css" />
-    <link rel="stylesheet" href="/assets/css/demo.css" />
+    <link rel="stylesheet" href="/assets/vendor/css/rtl/core.css"/>
+    <link rel="stylesheet" href="/assets/vendor/css/rtl/theme-default.css"/>
+    <link rel="stylesheet" href="/assets/css/demo.css"/>
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/node-waves/node-waves.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/select2/select2.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/flatpickr/flatpickr.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/quill/typography.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/quill/katex.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/quill/editor.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/node-waves/node-waves.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/typeahead-js/typeahead.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/select2/select2.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/flatpickr/flatpickr.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/quill/typography.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/quill/katex.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/quill/editor.css"/>
 
     <!-- Page CSS -->
 
-    <link rel="stylesheet" href="/assets/vendor/css/pages/app-kanban.css" />
+    <link rel="stylesheet" href="/assets/vendor/css/pages/app-kanban.css"/>
+    <link rel="stylesheet" href="/css/films/edit.css"/>
     <link rel="stylesheet" href="/css/films/edit.css"/>
     <!-- Helpers -->
     <script src="/assets/vendor/js/helpers.js"></script>
@@ -90,7 +91,8 @@
                     <!-- Search -->
                     <div class="navbar-nav align-items-center">
                         <div class="nav-item navbar-search-wrapper mb-0">
-                            <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
+                            <a class="nav-item nav-link search-toggler d-flex align-items-center px-0"
+                               href="javascript:void(0);">
                                 <i class="ti ti-search ti-md me-2"></i>
                                 <span class="d-none d-md-inline-block text-muted">Search</span>
                             </a>
@@ -103,9 +105,10 @@
 
                         <!-- User -->
                         <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
+                               data-bs-toggle="dropdown">
                                 <div class="avatar avatar-online">
-                                    <img src="/assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                                    <img src="/assets/img/avatars/1.png" alt class="h-auto rounded-circle"/>
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
@@ -114,7 +117,8 @@
                                         <div class="d-flex">
                                             <div class="flex-shrink-0 me-3">
                                                 <div class="avatar avatar-online">
-                                                    <img src="/assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                                                    <img src="/assets/img/avatars/1.png" alt
+                                                         class="h-auto rounded-circle"/>
                                                 </div>
                                             </div>
                                             <div class="flex-grow-1">
@@ -206,70 +210,66 @@
                 <!-- Content -->
 
                 <div class="container-xxl flex-grow-1 container-p-y">
-                    <h4 class="fw-bold">Редактирование фильма</h4>
+                    <h4 class="fw-bold">Редактирование контактов (кинотеатра)</h4>
                     <section class="content">
-                        <form method="post" th:object="${film}" class="mt-5" enctype="multipart/form-data">
+                        <form method="post" th:object="${cinemaUpdateDto}" class="mt-4" enctype="multipart/form-data">
+                            <h3 th:text="${cinema.name}"></h3>
 
-                            <label for="name" class="form-label">Название:</label>
-                            <input type="text" th:value="*{name}" name="name" id="name" placeholder="Введите название" class="form-control">
-                            <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                            <label for="address" class="form-label">Адрес:</label>
+                            <input type="text" th:field="*{address}" name="address" id="address"
+                                   placeholder="Введите адрес" class="form-control mb-2">
+                            <p style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
 
-                            <label for="description" class="form-label mt-2">Описание:</label>
-                            <textarea name="description" id="description" placeholder="Введите описание" class="form-control mt-2" th:text="*{description}"></textarea>
-                            <p style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+                            <div class="col-md-3">
+                                <label for="x-coordinate">X Координата:</label>
+                                <input type="text" id="x-coordinate" name="x-coordinate" class="form-control"
+                                       th:field="*{xCoordinate}" placeholder="Введите X координату"/><br>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="y-coordinate">Y Координата:</label>
+                                <input type="text" id="y-coordinate" name="y-coordinate" class="form-control"
+                                       th:field="*{yCoordinate}" placeholder="Введите Y координату"/>
+                            </div>
 
-                            <label for="file" class="form-label mt-2">Выберите фото:</label>
+                            <br>
+                            <div style="width: 100%">
+                                <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0"
+                                        marginwidth="0"
+                                        th:src="'https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q='
+                                        + ${cinema.address}
+                                        + '&amp;ll=' + ${cinema.xCoordinate} + ',' + ${cinema.yCoordinate}
+                                        +'&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed'">
+                                    <a href="https://www.gps.ie/">gps trackers</a></iframe>
+                            </div>
+
+
+                            <label for="file" class="form-label mt-2">Загрузите логотип:</label>
                             <div class="drag-area" id="drag-area">
                                 <p>Перетащите файл сюда или нажмите для выбора файла</p>
-                                <input type="file" name="file" id="file" accept="image/*" hidden>
+                                <input type="file" name="logoFile" id="file" accept="image/*" hidden>
                                 <div class="preview" id="preview">
-                                    <img th:src="@{/img/{imageName}(imageName = ${film.mainImage})}" >
+                                    <div th:if="${cinema.logoName}">
+                                        <img th:src="@{'/img/' + ${cinema.logoName}}" alt="Предпросмотр">
+                                    </div>
                                 </div>
                             </div>
-                            <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG)</small><br>
+                            <small class="form-text text-center text-muted mt-2">Только изображения (JPEG,
+                                PNG)</small><br>
 
-                            <label for="link" class="form-label mt-2">Ссылка на трейлер:</label>
-                            <input type="text" th:value="*{link}" name="link" id="link" placeholder="Введите ссылку на трейлер" class="form-control mt-2">
-                            <p style="color: red" th:if="${#fields.hasErrors('link')}" th:errors="*{link}"></p>
 
-                            <label for="date" class="form-label mt-2">Дата начала показа: <div th:text="${#temporals.format(film.date, 'dd.MM.yyyy')}" class="small" style="font-size: 10px;"></div></label>
-                            <input type="date" id="date" class="form-control" th:field="*{date}" th:value="${film.date}"><p style="color: red" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></p>
-                            <br>
-                            <h5>Типы кино:</h5>
-                            <div>
-                                <div th:each="type : ${allFilmTypes}">
-                                    <input type="checkbox" name="filmTypes" th:value="${type}" th:checked="${#arrays.contains(selectedFilmTypes, type)}">
-                                    <label th:text="${type}"></label>
-                                </div>
-                            </div>
-
-                            <br><br>
-                            <h4>SEO блок:</h4>
-
-                            <label for="urlSEO" class="form-label mt-2">SEO URL:</label>
-                            <input type="text" th:value="*{urlSEO}" name="urlSEO" id="urlSEO" placeholder="Введите SEO URL" class="form-control mt-2">
-                            <p style="color: red" th:if="${#fields.hasErrors('urlSEO')}" th:errors="*{urlSEO}"></p>
-
-                            <label for="titleSEO" class="form-label mt-2">SEO Заголовок:</label>
-                            <input type="text" th:value="*{titleSEO}" name="titleSEO" id="titleSEO" placeholder="Введите SEO заголовок" class="form-control mt-2">
-                            <p style="color: red" th:if="${#fields.hasErrors('titleSEO')}" th:errors="*{titleSEO}"></p>
-
-                            <label for="keywordsSEO" class="form-label mt-2">SEO Ключевые слова:</label>
-                            <input type="text" th:value="*{keywordsSEO}" name="keywordsSEO" id="keywordsSEO" placeholder="Введите SEO ключевые слова" class="form-control mt-2">
-                            <p style="color: red" th:if="${#fields.hasErrors('keywordsSEO')}" th:errors="*{keywordsSEO}"></p>
-
-                            <label for="descriptionSEO" class="form-label mt-2">SEO Описание:</label>
-                            <textarea name="descriptionSEO" id="descriptionSEO" placeholder="Введите SEO описание" class="form-control mt-2" th:text="*{descriptionSEO}"></textarea>
-                            <p style="color: red" th:if="${#fields.hasErrors('descriptionSEO')}" th:errors="*{descriptionSEO}"></p>
-
+                            <div class="action-buttons mt-3">
                             <button type="submit" class="btn btn-success mt-2">Сохранить изменения</button>
+                                <span class="mt-2">или</span>
+                                <a th:href="@{'/admin/cinemas/edit/' + ${cinema.id}}" class="btn btn-secondary mt-2">Редактировать остальные поля</a>
+                            </div>
                         </form>
                     </section>
+
                 </div>
+
 
             </div>
             <!-- / Content -->
-            <script src="/js/films/edit.js"></script>
 
             <div class="content-backdrop fade"></div>
         </div>
@@ -302,6 +302,8 @@
 
 <!-- Main JS -->
 <script src="/assets/js/main.js"></script>
+<script src="/js/pages/cinema-page.js"></script>
+
 
 </body>
 </html>

@@ -237,22 +237,23 @@
                             <h4>SEO блок:</h4>
 
                             <label for="urlSEO" class="form-label mt-2">SEO URL:</label>
-                            <input type="text" th:value="*{urlSEO}" name="urlSEO" id="urlSEO" placeholder="Введите SEO URL" class="form-control mt-2">
+                            <input type="text" th:field="*{urlSEO}" name="urlSEO" id="urlSEO" placeholder="Введите SEO URL" class="form-control mt-2">
                             <p style="color: red" th:if="${#fields.hasErrors('urlSEO')}" th:errors="*{urlSEO}"></p>
 
                             <label for="titleSEO" class="form-label mt-2">SEO Заголовок:</label>
-                            <input type="text" th:value="*{titleSEO}" name="titleSEO" id="titleSEO" placeholder="Введите SEO заголовок" class="form-control mt-2">
+                            <input type="text" th:field="*{titleSEO}" name="titleSEO" id="titleSEO" placeholder="Введите SEO заголовок" class="form-control mt-2">
                             <p style="color: red" th:if="${#fields.hasErrors('titleSEO')}" th:errors="*{titleSEO}"></p>
 
                             <label for="keywordsSEO" class="form-label mt-2">SEO Ключевые слова:</label>
-                            <input type="text" th:value="*{keywordsSEO}" name="keywordsSEO" id="keywordsSEO" placeholder="Введите SEO ключевые слова" class="form-control mt-2">
+                            <input type="text" th:field="*{keywordsSEO}" name="keywordsSEO" id="keywordsSEO" placeholder="Введите SEO ключевые слова" class="form-control mt-2" required>
                             <p style="color: red" th:if="${#fields.hasErrors('keywordsSEO')}" th:errors="*{keywordsSEO}"></p>
 
                             <label for="descriptionSEO" class="form-label mt-2">SEO Описание:</label>
-                            <textarea name="descriptionSEO" id="descriptionSEO" placeholder="Введите SEO описание" class="form-control mt-2" th:text="*{descriptionSEO}"></textarea>
+                            <textarea name="descriptionSEO" id="descriptionSEO" placeholder="Введите SEO описание" class="form-control mt-2" th:field="*{descriptionSEO}" required></textarea>
                             <p style="color: red" th:if="${#fields.hasErrors('descriptionSEO')}" th:errors="*{descriptionSEO}"></p>
 
                             <button type="submit" class="btn btn-success mt-2">Добавить</button>
+
                         </form>
                     </section>
                 </div>

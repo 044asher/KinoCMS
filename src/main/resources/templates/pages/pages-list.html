@@ -274,6 +274,22 @@
                                     <td class="action-buttons">
                                         <a th:href="@{/admin/pages/{id}(id=${page.id})}"
                                            class="btn btn-warning ti ti-edit"></a>
+                                    </td>
+                                </tr>
+
+                                <tr th:id="'row-' + ${page.id}" th:each="page : ${newPages}">
+                                    <td th:text="${page.name}"></td>
+                                    <td th:text="${#temporals.format(page.dateOfCreation, 'dd-MM-yyyy')}"></td>
+                                    <td class="status-column">
+                                        <button th:id="'status-button-' + ${page.id}"
+                                                th:onclick="'changeStatusPage(' + ${page.id} + ')'"
+                                                th:class="${page.notActive} ? 'btn btn-warning' : 'btn btn-success'">
+                                            <span th:text="${page.notActive} ? 'ВЫКЛ' : 'ВКЛ'"></span>
+                                        </button>
+                                    </td>
+                                    <td class="action-buttons">
+                                        <a th:href="@{/admin/pages/{id}(id=${page.id})}"
+                                           class="btn btn-warning ti ti-edit"></a>
                                         <form th:action="@{/admin/page/delete/{id}(id=${page.id})}" method="post" style="display:inline-block;">
                                             <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                                         </form>
