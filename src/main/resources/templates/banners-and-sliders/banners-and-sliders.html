@@ -214,24 +214,18 @@
                         <div class="background-banner" th:style="'background-image: url(/img/' + ${el.background} + ');'"></div>
                         <div th:each="image : ${el.images}" class="image-entry">
                             <img th:src="@{${image.url}}" th:alt="${image.caption}" style="width: 100px; height: 100px">
+                            <form th:action="@{/admin/banners-and-sliders/edit-image}" method="post" class="edit-image-form">
+                                <input type="hidden" name="imageId" th:value="${image.id}">
+                                <input type="text" name="imageUrl" th:value="${image.url}">
+                                <input type="text" name="caption" th:value="${image.caption}">
+                                <button type="submit" class="btn btn-primary">Сохранить</button>
+                            </form>
                             <form th:action="@{/admin/banners-and-sliders/delete-image}" method="post">
                                 <input type="hidden" name="imageId" th:value="${image.id}">
                                 <button type="submit" class="btn btn-danger">Удалить</button>
                             </form>
                         </div>
                     </div>
-
-                    <div class="col-12">
-                        <h2>На главной верх</h2>
-                        <form id="upload-image-form" action="/admin/banners-and-sliders/upload-image" method="post">
-                            <div class="image-entry">
-                                <input type="text" name="imageUrl" placeholder="Image URL" required>
-                                <input type="text" name="caption" placeholder="Caption" required>
-                            </div>
-                            <button type="submit" class="btn btn-success mt-3">Добавить фото</button>
-                        </form>
-                    </div>
-
                     <div class="col-12">
                         <h2>Сквозной баннер на фоне</h2>
                         <form id="upload-background-form" action="/admin/banners-and-sliders/upload-background" enctype="multipart/form-data" method="post">
@@ -241,6 +235,16 @@
                                 <div class="preview" id="preview"></div>
                             </div>
                             <button type="submit" class="btn btn-success mt-3">Загрузить фон</button>
+                        </form>
+                    </div>
+                    <div class="col-12">
+                        <h2>Загрузка фотографий</h2>
+                        <form id="upload-image-form" action="/admin/banners-and-sliders/upload-image" method="post">
+                            <div class="image-entry">
+                                <input type="text" name="imageUrl" placeholder="Image URL">
+                                <input type="text" name="caption" placeholder="Caption">
+                            </div>
+                            <button type="submit" class="btn btn-success mt-3">Добавить фото</button>
                         </form>
                     </div>
                 </div>
@@ -272,9 +276,8 @@
                         }
                     });
                 }
+
             </script>
-
-
 
         </div>
         <!-- / Layout page -->

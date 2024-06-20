@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/banners-and-sliders")
@@ -41,7 +42,6 @@ public class BannersAndSlidersController {
         logger.info("Exiting bannersAndSlidersPage method");
         return "banners-and-sliders/banners-and-sliders";
     }
-
     @PostMapping("/upload-background")
     public String uploadBackground(@RequestParam MultipartFile background) throws IOException {
         logger.info("Entering uploadBackground method");
@@ -103,4 +103,28 @@ public class BannersAndSlidersController {
         logger.info("Exiting deleteImage method");
         return "redirect:/admin/banners-and-sliders";
     }
+
+    @PostMapping("/edit-image")
+    public String editImage(@RequestParam Long imageId, @RequestParam String imageUrl, @RequestParam String caption) {
+        logger.info("Entering editImage method");
+
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
+        BannerImage image = bannersAndSliders.getImages().stream()
+                .filter(img -> img.getId().equals(imageId))
+                .findFirst()
+                .orElse(null);
+
+        if (image != null) {
+            image.setUrl(imageUrl);
+            image.setCaption(caption);
+            bannersAndSlidersRepository.save(bannersAndSliders);
+            logger.info("Image edited successfully");
+        } else {
+            logger.warn("Image with id {} not found", imageId);
+        }
+
+        logger.info("Exiting editImage method");
+        return "redirect:/admin/banners-and-sliders";
+    }
+
 }
