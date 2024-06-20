@@ -9,8 +9,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
+@Table
 @AllArgsConstructor
+@NoArgsConstructor
 public class BannerImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

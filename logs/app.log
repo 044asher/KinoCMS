@@ -1094,3 +1094,95 @@ org.hibernate.HibernateException: A collection with cascade="all-delete-orphan" 
 17:38:04.278 INFO  controllers.BannersAndSlidersController - Exiting uploadImages method
 17:38:04.328 INFO  controllers.BannersAndSlidersController - Entering bannersAndSlidersPage method
 17:38:04.335 INFO  controllers.BannersAndSlidersController - Exiting bannersAndSlidersPage method
+17:44:08.248 INFO  jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+17:44:08.261 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+17:44:08.272 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+17:44:14.285 INFO  util.Version - HV000001: Hibernate Validator 8.0.1.Final
+17:44:14.328 INFO  kinoCMS.KinoCmsApplication - Starting KinoCmsApplication using Java 22.0.1 with PID 24880 (C:\Games and Programms\Java Programms\kinoCMS\target\classes started by ROG ZEPHYRUS in C:\Games and Programms\Java Programms\kinoCMS)
+17:44:14.336 INFO  kinoCMS.KinoCmsApplication - No active profile set, falling back to 1 default profile: "default"
+17:44:15.422 INFO  config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+17:44:15.613 INFO  config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 183 ms. Found 12 JPA repository interfaces.
+17:44:16.377 INFO  tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+17:44:16.387 INFO  http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+17:44:16.388 INFO  core.StandardService - Starting service [Tomcat]
+17:44:16.388 INFO  core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+17:44:16.448 INFO  [localhost].[/] - Initializing Spring embedded WebApplicationContext
+17:44:16.448 INFO  context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2067 ms
+17:44:16.721 INFO  util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+17:44:16.766 INFO  hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+17:44:16.790 INFO  internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+17:44:16.974 INFO  persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+17:44:16.997 INFO  hikari.HikariDataSource - HikariPool-1 - Starting...
+17:44:17.258 INFO  pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@39a30d1a
+17:44:17.259 INFO  hikari.HikariDataSource - HikariPool-1 - Start completed.
+17:44:18.277 INFO  internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+17:44:18.342 INFO  jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+17:44:18.900 WARN  jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+17:44:19.361 INFO  web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+17:44:19.434 INFO  web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@48332a63, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6195e7d5, org.springframework.security.web.context.SecurityContextHolderFilter@35daccb8, org.springframework.security.web.header.HeaderWriterFilter@53785d1a, org.springframework.web.filter.CorsFilter@f2120d5, org.springframework.security.web.authentication.logout.LogoutFilter@611d867, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3bc2146c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7e2bd635, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5c0bacaa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1afea182, org.springframework.security.web.access.ExceptionTranslationFilter@7cd50c3d, org.springframework.security.web.access.intercept.AuthorizationFilter@f48a79a]
+17:44:19.881 INFO  http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+17:44:19.894 INFO  tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+17:44:19.906 INFO  kinoCMS.KinoCmsApplication - Started KinoCmsApplication in 5.964 seconds (process running for 7.037)
+17:44:20.327 INFO  [localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+17:44:20.328 INFO  servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+17:44:20.330 INFO  servlet.DispatcherServlet - Completed initialization in 2 ms
+17:45:13.431 INFO  controllers.BannersAndSlidersController - Entering bannersAndSlidersPage method
+17:45:13.459 INFO  controllers.BannersAndSlidersController - Exiting bannersAndSlidersPage method
+17:45:17.743 INFO  controllers.BannersAndSlidersController - Entering deleteImage method
+17:45:17.844 INFO  controllers.BannersAndSlidersController - Image deleted successfully
+17:45:17.844 INFO  controllers.BannersAndSlidersController - Exiting deleteImage method
+17:45:17.889 INFO  controllers.BannersAndSlidersController - Entering bannersAndSlidersPage method
+17:45:17.892 INFO  controllers.BannersAndSlidersController - Exiting bannersAndSlidersPage method
+17:45:43.126 INFO  controllers.BannersAndSlidersController - Entering uploadImage method
+17:45:43.160 INFO  controllers.BannersAndSlidersController - Image uploaded and saved successfully
+17:45:43.160 INFO  controllers.BannersAndSlidersController - Exiting uploadImage method
+17:45:43.193 INFO  controllers.BannersAndSlidersController - Entering bannersAndSlidersPage method
+17:45:43.202 INFO  controllers.BannersAndSlidersController - Exiting bannersAndSlidersPage method
+17:53:59.655 WARN  pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m12s191ms434µs).
+17:55:34.488 INFO  jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+17:55:34.505 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+17:55:34.507 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+17:55:37.845 INFO  util.Version - HV000001: Hibernate Validator 8.0.1.Final
+17:55:37.887 INFO  kinoCMS.KinoCmsApplication - Starting KinoCmsApplication using Java 22.0.1 with PID 23968 (C:\Games and Programms\Java Programms\kinoCMS\target\classes started by ROG ZEPHYRUS in C:\Games and Programms\Java Programms\kinoCMS)
+17:55:37.896 INFO  kinoCMS.KinoCmsApplication - No active profile set, falling back to 1 default profile: "default"
+17:55:38.982 INFO  config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+17:55:39.175 INFO  config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 185 ms. Found 12 JPA repository interfaces.
+17:55:40.098 INFO  tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+17:55:40.111 INFO  http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+17:55:40.114 INFO  core.StandardService - Starting service [Tomcat]
+17:55:40.114 INFO  core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+17:55:40.210 INFO  [localhost].[/] - Initializing Spring embedded WebApplicationContext
+17:55:40.211 INFO  context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2268 ms
+17:55:40.568 INFO  util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+17:55:40.630 INFO  hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+17:55:40.677 INFO  internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+17:55:40.939 INFO  persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+17:55:40.971 INFO  hikari.HikariDataSource - HikariPool-1 - Starting...
+17:55:41.323 INFO  pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@39a30d1a
+17:55:41.325 INFO  hikari.HikariDataSource - HikariPool-1 - Start completed.
+17:55:42.486 INFO  internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+17:55:42.560 INFO  jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+17:55:43.183 WARN  jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+17:55:43.674 INFO  web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+17:55:43.758 INFO  web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@56aacc7b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@112d94d, org.springframework.security.web.context.SecurityContextHolderFilter@331886ac, org.springframework.security.web.header.HeaderWriterFilter@2574123a, org.springframework.web.filter.CorsFilter@6e832c9, org.springframework.security.web.authentication.logout.LogoutFilter@5bee07c3, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@732f7660, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@185b998d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@38067d41, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@42f40ad0, org.springframework.security.web.access.ExceptionTranslationFilter@7ba0c0e5, org.springframework.security.web.access.intercept.AuthorizationFilter@34775090]
+17:55:44.241 INFO  http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+17:55:44.256 INFO  tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+17:55:44.265 INFO  kinoCMS.KinoCmsApplication - Started KinoCmsApplication in 6.769 seconds (process running for 7.844)
+17:55:44.876 INFO  [localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+17:55:44.877 INFO  servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+17:55:44.878 INFO  servlet.DispatcherServlet - Completed initialization in 1 ms
+17:55:58.325 INFO  controllers.BannersAndSlidersController - Entering bannersAndSlidersPage method
+17:55:58.349 INFO  controllers.BannersAndSlidersController - Exiting bannersAndSlidersPage method
+17:56:27.937 INFO  controllers.BannersAndSlidersController - Entering uploadImage method
+17:56:28.026 INFO  controllers.BannersAndSlidersController - Image uploaded and saved successfully
+17:56:28.026 INFO  controllers.BannersAndSlidersController - Exiting uploadImage method
+17:56:28.076 INFO  controllers.BannersAndSlidersController - Entering bannersAndSlidersPage method
+17:56:28.083 INFO  controllers.BannersAndSlidersController - Exiting bannersAndSlidersPage method
+17:56:30.068 INFO  controllers.BannersAndSlidersController - Entering deleteImage method
+17:56:30.108 INFO  controllers.BannersAndSlidersController - Image deleted successfully
+17:56:30.108 INFO  controllers.BannersAndSlidersController - Exiting deleteImage method
+17:56:30.130 INFO  controllers.BannersAndSlidersController - Entering bannersAndSlidersPage method
+17:56:30.138 INFO  controllers.BannersAndSlidersController - Exiting bannersAndSlidersPage method
+17:56:51.724 INFO  jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+17:56:51.724 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+17:56:51.740 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Controller
 @RequestMapping("/admin/banners-and-sliders")
@@ -46,13 +45,9 @@ public class BannersAndSlidersController {
     @PostMapping("/upload-background")
     public String uploadBackground(@RequestParam MultipartFile background) throws IOException {
         logger.info("Entering uploadBackground method");
-        BannersAndSliders bannersAndSliders = new BannersAndSliders();
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
         if (background != null && !background.isEmpty()) {
             logger.info("Background file is not empty, proceeding with upload");
-            List<BannersAndSliders> existingBackground = bannersAndSlidersRepository.findAll();
-            bannersAndSlidersRepository.deleteAll(existingBackground);
-            logger.info("Deleted existing banners and sliders");
-
             try {
                 String resultFilename = fileUploadService.uploadFile(background);
                 bannersAndSliders.setBackground(resultFilename);
@@ -69,25 +64,43 @@ public class BannersAndSlidersController {
         return "redirect:/admin/banners-and-sliders";
     }
 
-    @PostMapping("/upload-images")
-    public String uploadImages(@RequestParam List<String> imageUrls, @RequestParam List<String> captions) {
-        logger.info("Entering uploadImages method");
+    @PostMapping("/upload-image")
+    public String uploadImage(@RequestParam String imageUrl, @RequestParam String caption) {
+        logger.info("Entering uploadImage method");
 
         BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
-        bannersAndSliders.getImages().clear();
-
-        for (int i = 0; i < imageUrls.size(); i++) {
-            BannerImage image = new BannerImage();
-            image.setUrl(imageUrls.get(i));
-            image.setCaption(captions.get(i));
-            bannersAndSliders.addImage(image);
-        }
+        BannerImage image = new BannerImage();
+        image.setUrl(imageUrl);
+        image.setCaption(caption);
+        bannersAndSliders.addImage(image);
 
         bannersAndSlidersRepository.save(bannersAndSliders);
 
-        logger.info("Images uploaded and saved successfully");
-        logger.info("Exiting uploadImages method");
+        logger.info("Image uploaded and saved successfully");
+        logger.info("Exiting uploadImage method");
 
+        return "redirect:/admin/banners-and-sliders";
+    }
+
+    @PostMapping("/delete-image")
+    public String deleteImage(@RequestParam Long imageId) {
+        logger.info("Entering deleteImage method");
+
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
+        BannerImage image = bannersAndSliders.getImages().stream()
+                .filter(img -> img.getId().equals(imageId))
+                .findFirst()
+                .orElse(null);
+
+        if (image != null) {
+            bannersAndSliders.removeImage(image);
+            bannersAndSlidersRepository.save(bannersAndSliders);
+            logger.info("Image deleted successfully");
+        } else {
+            logger.warn("Image with id {} not found", imageId);
+        }
+
+        logger.info("Exiting deleteImage method");
         return "redirect:/admin/banners-and-sliders";
     }
 }

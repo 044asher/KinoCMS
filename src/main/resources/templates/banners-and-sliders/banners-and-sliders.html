@@ -212,24 +212,23 @@
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <div th:each="el : ${banners}">
                         <div class="background-banner" th:style="'background-image: url(/img/' + ${el.background} + ');'"></div>
-                        <div th:each="image : ${el.images}">
+                        <div th:each="image : ${el.images}" class="image-entry">
                             <img th:src="@{${image.url}}" th:alt="${image.caption}" style="width: 100px; height: 100px">
-                            <input th:value="${image.caption}"/>
-                            <input th:value="${image.url}">
+                            <form th:action="@{/admin/banners-and-sliders/delete-image}" method="post">
+                                <input type="hidden" name="imageId" th:value="${image.id}">
+                                <button type="submit" class="btn btn-danger">Удалить</button>
+                            </form>
                         </div>
                     </div>
 
                     <div class="col-12">
                         <h2>На главной верх</h2>
-                        <form id="upload-images-form" action="/admin/banners-and-sliders/upload-images" method="post">
-                            <div id="images-section">
-                                <div class="image-entry">
-                                    <input type="text" name="imageUrls" placeholder="Image URL">
-                                    <input type="text" name="captions" placeholder="Caption">
-                                </div>
+                        <form id="upload-image-form" action="/admin/banners-and-sliders/upload-image" method="post">
+                            <div class="image-entry">
+                                <input type="text" name="imageUrl" placeholder="Image URL" required>
+                                <input type="text" name="caption" placeholder="Caption" required>
                             </div>
-                            <button type="button" id="add-image" class="btn btn-primary mt-3">Добавить фото</button>
-                            <button type="submit" class="btn btn-success mt-3">Загрузить фото</button>
+                            <button type="submit" class="btn btn-success mt-3">Добавить фото</button>
                         </form>
                     </div>
 
@@ -248,14 +247,31 @@
                 <div class="content-backdrop fade"></div>
             </div>
 
+
             <script>
                 document.getElementById('add-image').addEventListener('click', function() {
                     const imagesSection = document.getElementById('images-section');
                     const newImageEntry = document.createElement('div');
                     newImageEntry.className = 'image-entry';
-                    newImageEntry.innerHTML = '<input type="text" name="imageUrls" placeholder="Image URL"><input type="text" name="captions" placeholder="Caption">';
+                    newImageEntry.innerHTML = '<input type="text" name="imageUrl" placeholder="Image URL"><input type="text" name="caption" placeholder="Caption">';
                     imagesSection.appendChild(newImageEntry);
                 });
+
+                function deleteImage(imageId) {
+                    fetch(`/admin/banners-and-sliders/delete-image`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `imageId=${imageId}`
+                    }).then(response => {
+                        if (response.ok) {
+                            window.location.reload();
+                        } else {
+                            alert('Failed to delete image');
+                        }
+                    });
+                }
             </script>
 
 
