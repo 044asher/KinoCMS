@@ -1,6 +1,6 @@
 package com.CMS.kinoCMS.config;
 
-import com.CMS.kinoCMS.services.MyUserDetailsService;
+import com.CMS.kinoCMS.admin.services.MyUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;

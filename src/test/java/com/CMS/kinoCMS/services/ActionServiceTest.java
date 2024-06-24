@@ -1,7 +1,8 @@
 package com.CMS.kinoCMS.services;
 
-import com.CMS.kinoCMS.models.Action;
-import com.CMS.kinoCMS.repositories.ActionRepository;
+import com.CMS.kinoCMS.admin.models.Action;
+import com.CMS.kinoCMS.admin.repositories.ActionRepository;
+import com.CMS.kinoCMS.admin.services.ActionService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -218,22 +218,32 @@
                             <p style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
 
                             <!-- Поля загрузки файлов -->
-                            <label for="scheme" class="form-label mt-2">Загрузите схему зала:</label>
-                            <div class="drag-area" id="drag-area-scheme"> <!-- Здесь исправлен идентификатор -->
+                            <label for="logo" class="form-label mt-2">Загрузите схему:</label>
+                            <div class="drag-area" id="drag-area-logo">
                                 <p>Перетащите файл сюда или нажмите для выбора файла</p>
-                                <input type="file" name="scheme" id="scheme" accept="image/*" hidden>
-                                <div class="preview" id="preview-scheme"></div> <!-- Здесь исправлен идентификатор -->
+                                <input type="file" name="logo" id="logo" accept="image/*" hidden>
+                                <div class="preview" id="preview-logo"></div>
                             </div>
                             <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG)</small>
 
                             <br>
-                            <label for="topBanner" class="form-label mt-2">Загрузите баннер:</label>
-                            <div class="drag-area" id="drag-area-topBanner">
+                            <label for="banner" class="form-label mt-2">Загрузите баннер:</label>
+                            <div class="drag-area" id="drag-area-banner">
                                 <p>Перетащите файл сюда или нажмите для выбора файла</p>
-                                <input type="file" name="topBanner" id="topBanner" accept="image/*" hidden>
-                                <div class="preview" id="preview-topBanner"></div>
+                                <input type="file" name="banner" id="banner" accept="image/*" hidden>
+                                <div class="preview" id="preview-banner"></div>
                             </div>
                             <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG)</small>
+
+                            <br>
+                            <label for="additionalFiles" class="form-label mt-2">Дополнительные изображения:</label>
+                            <div class="drag-area" id="drag-area-additional">
+                                <p>Перетащите файлы сюда или нажмите для выбора файлов</p>
+                                <input type="file" name="additionalFiles" id="additionalFiles" accept="image/*" multiple hidden>
+                                <div class="preview" id="preview-additional"></div>
+                            </div>
+                            <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG), максимум 5 файлов</small>
+
 
 
                             <!-- SEO блок -->
@@ -264,6 +274,7 @@
                 </div>
 
                 <script src="/js/cinemas/halls/edit.js"></script>
+                <script src="/js/cinemas/add.js"></script>
 
                 <div class="content-backdrop fade"></div>
             </div>

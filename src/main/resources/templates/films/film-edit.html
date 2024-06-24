@@ -62,6 +62,8 @@
     <script src="/assets/js/config.js"></script>
     <script src="/js/sidebar-active/sidebar-active-element.js"></script>
 
+
+
 </head>
 
 <body>
@@ -218,15 +220,33 @@
                             <textarea name="description" id="description" placeholder="Введите описание" class="form-control mt-2" th:text="*{description}"></textarea>
                             <p style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
 
-                            <label for="file" class="form-label mt-2">Выберите фото:</label>
+
+
+
+                            <label for="file" class="form-label mt-2">Выберите главное фото:</label>
                             <div class="drag-area" id="drag-area">
                                 <p>Перетащите файл сюда или нажмите для выбора файла</p>
                                 <input type="file" name="file" id="file" accept="image/*" hidden>
                                 <div class="preview" id="preview">
-                                    <img th:src="@{/img/{imageName}(imageName = ${film.mainImage})}" >
+                                    <img th:src="@{/img/{imageName}(imageName = ${film.mainImage})}" alt="Предпросмотр главного изображения">
                                 </div>
                             </div>
                             <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG)</small><br>
+
+                            <label for="additionalFiles" class="form-label mt-2">Выберите дополнительные фото:</label>
+                            <div class="drag-area" id="additional-drag-area">
+                                <p>Перетащите файлы сюда или нажмите для выбора файлов</p>
+                                <input type="file" name="additionalFiles" id="additionalFiles" accept="image/*" multiple hidden>
+                                <div class="additional-preview" id="additional-preview">
+                                    <div th:each="image : ${film.images}">
+                                        <img th:src="@{/img/{image}(image = ${image})}" alt="Предпросмотр дополнительного изображения">
+                                    </div>
+                                </div>
+                            </div>
+                            <small class="form-text text-center text-muted mt-2">До 5 изображений (JPEG, PNG)</small><br>
+
+
+
 
                             <label for="link" class="form-label mt-2">Ссылка на трейлер:</label>
                             <input type="text" th:value="*{link}" name="link" id="link" placeholder="Введите ссылку на трейлер" class="form-control mt-2">

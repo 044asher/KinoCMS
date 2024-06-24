@@ -1,66 +1,61 @@
-const dropAreaLogo = document.getElementById('drag-area-logo');
-const fileInputLogo = document.getElementById('logo');
-const previewLogo = document.getElementById('preview-logo');
+function setupDragAndDrop(dragAreaId, inputId, previewId, multiple = false, maxFiles = 1) {
+    const dropArea = document.getElementById(dragAreaId);
+    const fileInput = document.getElementById(inputId);
+    const preview = document.getElementById(previewId);
 
-const dropAreaBanner = document.getElementById('drag-area-banner');
-const fileInputBanner = document.getElementById('banner');
-const previewBanner = document.getElementById('preview-banner');
+    dropArea.addEventListener('click', () => fileInput.click());
 
-dropAreaLogo.addEventListener('click', () => fileInputLogo.click());
-dropAreaBanner.addEventListener('click', () => fileInputBanner.click());
+    dropArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropArea.classList.add('hover');
+    });
 
-dropAreaLogo.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    dropAreaLogo.classList.add('hover');
-});
+    dropArea.addEventListener('dragleave', () => {
+        dropArea.classList.remove('hover');
+    });
 
-dropAreaLogo.addEventListener('dragleave', () => {
-    dropAreaLogo.classList.remove('hover');
-});
+    dropArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropArea.classList.remove('hover');
+        const files = e.dataTransfer.files;
+        handleFiles(files, preview, multiple, maxFiles);
+    });
 
-dropAreaLogo.addEventListener('drop', (e) => {
-    e.preventDefault();
-    dropAreaLogo.classList.remove('hover');
-    const files = e.dataTransfer.files;
-    handleFiles(files, previewLogo);
-});
+    fileInput.addEventListener('change', (e) => {
+        const files = e.target.files;
+        handleFiles(files, preview, multiple, maxFiles);
+    });
 
-fileInputLogo.addEventListener('change', (e) => {
-    const files = e.target.files;
-    handleFiles(files, previewLogo);
-});
+    function handleFiles(files, preview, multiple, maxFiles) {
+        if (files.length === 0) return;
 
-dropAreaBanner.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    dropAreaBanner.classList.add('hover');
-});
+        if (!multiple && files.length > maxFiles) {
+            alert(`Можно загрузить только ${maxFiles} файл(а)`);
+            return;
+        }
 
-dropAreaBanner.addEventListener('dragleave', () => {
-    dropAreaBanner.classList.remove('hover');
-});
+        preview.innerHTML = '';
 
-dropAreaBanner.addEventListener('drop', (e) => {
-    e.preventDefault();
-    dropAreaBanner.classList.remove('hover');
-    const files = e.dataTransfer.files;
-    handleFiles(files, previewBanner);
-});
-
-fileInputBanner.addEventListener('change', (e) => {
-    const files = e.target.files;
-    handleFiles(files, previewBanner);
-});
-
-function handleFiles(files, preview) {
-    if (files.length === 0) return;
-    const file = files[0];
-    if (!file.type.startsWith('image/')) {
-        alert('Можно загружать только изображения!');
-        return;
+        for (let i = 0; i < Math.min(files.length, maxFiles); i++) {
+            const file = files[i];
+            if (!file.type.startsWith('image/')) {
+                alert('Можно загружать только изображения!');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.alt = 'Предпросмотр';
+                preview.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
     }
-    const reader = new FileReader();
-    reader.onload = (e) => {
-        preview.innerHTML = `<img src="${e.target.result}" alt="Предпросмотр">`;
-    };
-    reader.readAsDataURL(file);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    setupDragAndDrop('drag-area-logo', 'logo', 'preview-logo');
+    setupDragAndDrop('drag-area-banner', 'banner', 'preview-banner');
+    setupDragAndDrop('drag-area-additional', 'additionalFiles', 'preview-additional', true, 5);
+});

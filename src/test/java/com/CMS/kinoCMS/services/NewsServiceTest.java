@@ -1,7 +1,8 @@
 package com.CMS.kinoCMS.services;
 
-import com.CMS.kinoCMS.models.News;
-import com.CMS.kinoCMS.repositories.NewsRepository;
+import com.CMS.kinoCMS.admin.models.News;
+import com.CMS.kinoCMS.admin.repositories.NewsRepository;
+import com.CMS.kinoCMS.admin.services.NewsService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -229,13 +229,21 @@
                             <textarea name="description" id="description" placeholder="Введите описание" class="form-control mt-2" th:text="*{description}"></textarea>
                             <p style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
 
-                            <label for="file" class="form-label mt-2">Выберите фото:</label>
+
+                            <label for="mainFile" class="form-label mt-2">Главное изображение:</label>
+                            <input type="file" name="file" id="mainFile" accept="image/*" class="form-control mt-2">
+                            <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG)</small><br>
+
+                            <!-- Поле для загрузки дополнительных изображений -->
+                            <label for="additionalFiles" class="form-label mt-2">Дополнительные изображения (до 5 штук):</label>
                             <div class="drag-area" id="drag-area">
-                                <p>Перетащите файл сюда или нажмите для выбора файла</p>
-                                <input type="file" name="file" id="file" accept="image/*" hidden>
+                                <p>Перетащите файлы сюда или нажмите для выбора файлов</p>
+                                <input type="file" name="additionalFiles" id="additionalFiles" multiple accept="image/*" hidden>
                                 <div class="preview" id="preview"></div>
                             </div>
                             <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG)</small><br>
+
+
 
                             <label for="link" class="form-label mt-2">Ссылка на трейлер:</label>
                             <input type="text" th:value="*{link}" name="link" id="link" placeholder="Введите ссылку на трейлер" class="form-control mt-2">

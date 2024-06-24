@@ -1,8 +1,8 @@
 package com.CMS.kinoCMS.services.pages;
 
-import com.CMS.kinoCMS.models.Pages.MainPage;
-import com.CMS.kinoCMS.repositories.Pages.MainPageRepository;
-import com.CMS.kinoCMS.services.Pages.MainPageService;
+import com.CMS.kinoCMS.admin.models.Pages.MainPage;
+import com.CMS.kinoCMS.admin.repositories.Pages.MainPageRepository;
+import com.CMS.kinoCMS.admin.services.Pages.MainPageService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

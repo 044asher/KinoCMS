@@ -1,31 +1,31 @@
-const dropArea = document.getElementById('drag-area');
-const fileInput = document.getElementById('file');
-const preview = document.getElementById('preview');
+const mainDropArea = document.getElementById('drag-area');
+const mainFileInput = document.getElementById('file');
+const mainPreview = document.getElementById('preview');
 
-dropArea.addEventListener('click', () => fileInput.click());
+mainDropArea.addEventListener('click', () => mainFileInput.click());
 
-dropArea.addEventListener('dragover', (e) => {
+mainDropArea.addEventListener('dragover', (e) => {
     e.preventDefault();
-    dropArea.classList.add('hover');
+    mainDropArea.classList.add('hover');
 });
 
-dropArea.addEventListener('dragleave', () => {
-    dropArea.classList.remove('hover');
+mainDropArea.addEventListener('dragleave', () => {
+    mainDropArea.classList.remove('hover');
 });
 
-dropArea.addEventListener('drop', (e) => {
+mainDropArea.addEventListener('drop', (e) => {
     e.preventDefault();
-    dropArea.classList.remove('hover');
+    mainDropArea.classList.remove('hover');
     const files = e.dataTransfer.files;
-    handleFiles(files);
+    handleMainFile(files);
 });
 
-fileInput.addEventListener('change', (e) => {
+mainFileInput.addEventListener('change', (e) => {
     const files = e.target.files;
-    handleFiles(files);
+    handleMainFile(files);
 });
 
-function handleFiles(files) {
+function handleMainFile(files) {
     if (files.length === 0) return;
     const file = files[0];
     if (!file.type.startsWith('image/')) {
@@ -34,7 +34,56 @@ function handleFiles(files) {
     }
     const reader = new FileReader();
     reader.onload = (e) => {
-        preview.innerHTML = `<img src="${e.target.result}" alt="Предпросмотр">`;
+        mainPreview.innerHTML = `<img src="${e.target.result}" alt="Предпросмотр главного изображения">`;
     };
     reader.readAsDataURL(file);
+}
+
+const additionalDropArea = document.getElementById('additional-drag-area');
+const additionalFileInput = document.getElementById('additionalFiles');
+const additionalPreview = document.getElementById('additional-preview');
+
+additionalDropArea.addEventListener('click', () => additionalFileInput.click());
+
+additionalDropArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    additionalDropArea.classList.add('hover');
+});
+
+additionalDropArea.addEventListener('dragleave', () => {
+    additionalDropArea.classList.remove('hover');
+});
+
+additionalDropArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    additionalDropArea.classList.remove('hover');
+    const files = e.dataTransfer.files;
+    handleAdditionalFiles(files);
+});
+
+additionalFileInput.addEventListener('change', (e) => {
+    const files = e.target.files;
+    handleAdditionalFiles(files);
+});
+
+function handleAdditionalFiles(files) {
+    additionalPreview.innerHTML = ''; // Очистить предыдущие превью
+    if (files.length === 0) return;
+    const maxFiles = 5;
+    const filesArray = Array.from(files).slice(0, maxFiles); // Ограничить до 5 файлов
+
+    filesArray.forEach(file => {
+        if (!file.type.startsWith('image/')) {
+            alert('Можно загружать только изображения!');
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.alt = 'Предпросмотр дополнительного изображения';
+            additionalPreview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    });
 }

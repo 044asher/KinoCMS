@@ -1,7 +1,8 @@
 package com.CMS.kinoCMS.services;
 
-import com.CMS.kinoCMS.models.Cinema;
-import com.CMS.kinoCMS.repositories.CinemaRepository;
+import com.CMS.kinoCMS.admin.models.Cinema;
+import com.CMS.kinoCMS.admin.repositories.CinemaRepository;
+import com.CMS.kinoCMS.admin.services.CinemaService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -60,7 +61,7 @@ public class CinemaServiceTest {
     @Test
     public void shouldDeleteCinema() {
         Cinema cinema = getCinema(1L);
-        Optional<Cinema> optionalCinema = Optional.of(cinema);
+        Cinema optionalCinema = cinema;
 
         cinemaService.delete(optionalCinema);
 

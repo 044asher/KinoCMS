@@ -1,7 +1,8 @@
 package com.CMS.kinoCMS.services;
 
-import com.CMS.kinoCMS.models.Film;
-import com.CMS.kinoCMS.repositories.FilmRepository;
+import com.CMS.kinoCMS.admin.models.Film;
+import com.CMS.kinoCMS.admin.repositories.FilmRepository;
+import com.CMS.kinoCMS.admin.services.FilmService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,8 +1,8 @@
 package com.CMS.kinoCMS.services.pages;
 
-import com.CMS.kinoCMS.models.Pages.Contact;
-import com.CMS.kinoCMS.repositories.Pages.ContactsPageRepository;
-import com.CMS.kinoCMS.services.Pages.ContactsPageService;
+import com.CMS.kinoCMS.admin.models.Pages.Contact;
+import com.CMS.kinoCMS.admin.repositories.Pages.ContactsPageRepository;
+import com.CMS.kinoCMS.admin.services.Pages.ContactsPageService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

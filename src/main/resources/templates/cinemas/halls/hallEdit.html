@@ -9,7 +9,7 @@
         data-template="vertical-menu-template-no-customizer"
 >
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
@@ -17,42 +17,42 @@
 
     <title>Редактирование зала</title>
 
-    <meta name="description" content="" />
+    <meta name="description" content=""/>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico"/>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
             href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
             rel="stylesheet"
     />
 
     <!-- Icons -->
-    <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome.css" />
-    <link rel="stylesheet" href="/assets/vendor/fonts/tabler-icons.css" />
-    <link rel="stylesheet" href="/assets/vendor/fonts/flag-icons.css" />
+    <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome.css"/>
+    <link rel="stylesheet" href="/assets/vendor/fonts/tabler-icons.css"/>
+    <link rel="stylesheet" href="/assets/vendor/fonts/flag-icons.css"/>
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="/assets/vendor/css/rtl/core.css" />
-    <link rel="stylesheet" href="/assets/vendor/css/rtl/theme-default.css" />
-    <link rel="stylesheet" href="/assets/css/demo.css" />
+    <link rel="stylesheet" href="/assets/vendor/css/rtl/core.css"/>
+    <link rel="stylesheet" href="/assets/vendor/css/rtl/theme-default.css"/>
+    <link rel="stylesheet" href="/assets/css/demo.css"/>
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/node-waves/node-waves.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/select2/select2.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/flatpickr/flatpickr.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/quill/typography.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/quill/katex.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/quill/editor.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/node-waves/node-waves.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/typeahead-js/typeahead.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/select2/select2.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/flatpickr/flatpickr.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/quill/typography.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/quill/katex.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/quill/editor.css"/>
 
     <!-- Page CSS -->
 
-    <link rel="stylesheet" href="/assets/vendor/css/pages/app-kanban.css" />
+    <link rel="stylesheet" href="/assets/vendor/css/pages/app-kanban.css"/>
     <link rel="stylesheet" href="/css/films/edit.css"/>
     <!-- Helpers -->
     <script src="/assets/vendor/js/helpers.js"></script>
@@ -90,7 +90,8 @@
                     <!-- Search -->
                     <div class="navbar-nav align-items-center">
                         <div class="nav-item navbar-search-wrapper mb-0">
-                            <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
+                            <a class="nav-item nav-link search-toggler d-flex align-items-center px-0"
+                               href="javascript:void(0);">
                                 <i class="ti ti-search ti-md me-2"></i>
                                 <span class="d-none d-md-inline-block text-muted">Search</span>
                             </a>
@@ -103,9 +104,10 @@
 
                         <!-- User -->
                         <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
+                               data-bs-toggle="dropdown">
                                 <div class="avatar avatar-online">
-                                    <img src="/assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                                    <img src="/assets/img/avatars/1.png" alt class="h-auto rounded-circle"/>
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
@@ -114,7 +116,8 @@
                                         <div class="d-flex">
                                             <div class="flex-shrink-0 me-3">
                                                 <div class="avatar avatar-online">
-                                                    <img src="/assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                                                    <img src="/assets/img/avatars/1.png" alt
+                                                         class="h-auto rounded-circle"/>
                                                 </div>
                                             </div>
                                             <div class="flex-grow-1">
@@ -206,39 +209,77 @@
                 <!-- Content -->
 
                 <div class="container-xxl flex-grow-1 container-p-y">
-                    <h4 class="fw-bold">Редактирование кинозала</h4>
+                    <h4 class="fw-bold">Редактирование кинотеатра</h4>
                     <section class="content">
-                        <form method="post" th:object="${hall}" enctype="multipart/form-data" class="mt-2">
+                        <form method="post" th:object="${hall}" th:action="@{/admin/cinemas/halls/edit/{id}(id=${hall.id})}" enctype="multipart/form-data" class="mt-5">
 
                             <label for="number" class="form-label">Номер зала:</label>
-                            <input type="number" th:field="*{number}" id="number" placeholder="Введите номер зала" class="form-control">
+                            <input type="text" th:field="*{number}" id="number" placeholder="Введите номер зала" class="form-control">
                             <p style="color: red" th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></p>
 
                             <label for="description" class="form-label mt-2">Описание:</label>
                             <textarea id="description" placeholder="Введите описание" class="form-control mt-2" th:field="*{description}"></textarea>
                             <p style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
 
+
                             <br>
-                            <label for="scheme" class="form-label mt-2">Загрузите схему зала:</label>
-                            <div class="drag-area" id="drag-area-scheme">
+                            <label for="logo" class="form-label mt-2">Загрузите схему:</label>
+                            <div class="drag-area" id="drag-area-logo">
                                 <p>Перетащите файл сюда или нажмите для выбора файла</p>
-                                <input type="file" name="scheme" id="scheme" accept="image/*" hidden>
-                                <div class="preview" id="preview-scheme" th:if="${hall.scheme}">
+                                <input type="file" name="logo" id="logo" accept="image/*" hidden>
+                                <div class="preview" id="preview-logo" th:if="${hall.scheme}">
                                     <img th:src="@{'/img/' + ${hall.scheme}}" alt="Предпросмотр">
                                 </div>
                             </div>
                             <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG)</small><br>
 
                             <br>
-                            <label for="topBanner" class="form-label mt-2">Загрузите баннер:</label>
-                            <div class="drag-area" id="drag-area-topBanner">
+                            <label for="banner" class="form-label mt-2">Загрузите баннер:</label>
+                            <div class="drag-area" id="drag-area-banner">
                                 <p>Перетащите файл сюда или нажмите для выбора файла</p>
-                                <input type="file" name="topBanner" id="topBanner" accept="image/*" hidden>
-                                <div class="preview" id="preview-topBanner" th:if="${hall.topBanner}">
+                                <input type="file" name="banner" id="banner" accept="image/*" hidden>
+                                <div class="preview" id="preview-banner" th:if="${hall.topBanner}">
                                     <img th:src="@{'/img/' + ${hall.topBanner}}" alt="Предпросмотр">
                                 </div>
                             </div>
                             <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG)</small><br><br>
+
+                            <label for="additionalFiles" class="form-label mt-2">Дополнительные изображения:</label>
+                            <div class="drag-area" id="drag-area-additional">
+                                <p>Перетащите файлы сюда или нажмите для выбора файлов</p>
+                                <input type="file" name="additionalFiles" id="additionalFiles" accept="image/*" multiple hidden>
+                                <div class="preview" id="preview-additional" th:if="${hall.images}">
+                                    <div th:each="image : ${hall.images}">
+                                        <img th:src="@{'/img/' + ${image}}" alt="Предпросмотр">
+                                    </div>
+                                </div>
+                            </div>
+                            <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG), максимум 5 файлов</small><br><br>
+
+
+
+
+<!--                            <br>-->
+<!--                            <label for="scheme" class="form-label mt-2">Загрузите схему:</label>-->
+<!--                            <div class="drag-area" id="drag-area-scheme">-->
+<!--                                <p>Перетащите файл сюда или нажмите для выбора файла</p>-->
+<!--                                <input type="file" name="scheme" id="scheme" accept="image/*" hidden>-->
+<!--                                <div class="preview" id="preview-scheme" th:if="${hall.scheme}">-->
+<!--                                    <img th:src="@{'/img/' + ${hall.scheme}}" alt="Предпросмотр">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG)</small><br>-->
+
+<!--                            <br>-->
+<!--                            <label for="topBanner" class="form-label mt-2">Загрузите баннер:</label>-->
+<!--                            <div class="drag-area" id="drag-area-topBanner">-->
+<!--                                <p>Перетащите файл сюда или нажмите для выбора файла</p>-->
+<!--                                <input type="file" name="topBanner" id="topBanner" accept="image/*" hidden>-->
+<!--                                <div class="preview" id="preview-topBanner" th:if="${hall.topBanner}">-->
+<!--                                    <img th:src="@{'/img/' + ${hall.topBanner}}" alt="Предпросмотр">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG)</small><br>-->
 
                             <h4>SEO блок:</h4>
 
@@ -258,17 +299,18 @@
                             <textarea id="descriptionSEO" placeholder="Введите SEO описание" class="form-control mt-2" th:field="*{descriptionSEO}"></textarea>
                             <p style="color: red" th:if="${#fields.hasErrors('descriptionSEO')}" th:errors="*{descriptionSEO}"></p>
 
-
                             <button type="submit" class="btn btn-success mt-2">Сохранить</button>
                         </form>
                     </section>
                 </div>
 
+
                 <script src="/js/cinemas/halls/edit.js"></script>
+                <script src="/js/cinemas/edit.js"></script>
 
 
             </div>
-                <div class="content-backdrop fade"></div>
+            <div class="content-backdrop fade"></div>
         </div>
         <!-- Content wrapper -->
     </div>

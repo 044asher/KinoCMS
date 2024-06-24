@@ -1,6 +1,6 @@
 package com.CMS.kinoCMS.config;
 
-import com.CMS.kinoCMS.models.User;
+import com.CMS.kinoCMS.admin.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

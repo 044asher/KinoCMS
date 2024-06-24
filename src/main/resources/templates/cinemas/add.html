@@ -239,6 +239,14 @@
                             </div>
                             <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG)</small>
 
+                            <br>
+                            <label for="additionalFiles" class="form-label mt-2">Дополнительные изображения:</label>
+                            <div class="drag-area" id="drag-area-additional">
+                                <p>Перетащите файлы сюда или нажмите для выбора файлов</p>
+                                <input type="file" name="additionalFiles" id="additionalFiles" accept="image/*" multiple hidden>
+                                <div class="preview" id="preview-additional"></div>
+                            </div>
+                            <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG), максимум 5 файлов</small>
 
                             <!-- SEO блок -->
                             <br><br>
@@ -271,7 +279,8 @@
                     </section>
                 </div>
 
-                    <script src="/js/cinemas/add.js"></script>
+
+                <script src="/js/cinemas/add.js"></script>
 
             <div class="content-backdrop fade"></div>
         </div>

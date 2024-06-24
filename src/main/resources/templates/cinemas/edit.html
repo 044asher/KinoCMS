@@ -222,7 +222,6 @@
                             <textarea id="conditions" placeholder="Введите условия" class="form-control mt-2" th:field="*{conditions}"></textarea>
                             <p style="color: red" th:if="${#fields.hasErrors('conditions')}" th:errors="*{conditions}"></p>
 
-
                             <br>
                             <label for="logo" class="form-label mt-2">Загрузите логотип:</label>
                             <div class="drag-area" id="drag-area-logo">
@@ -245,19 +244,32 @@
                             </div>
                             <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG)</small><br><br>
 
+                            <label for="additionalFiles" class="form-label mt-2">Дополнительные изображения:</label>
+                            <div class="drag-area" id="drag-area-additional">
+                                <p>Перетащите файлы сюда или нажмите для выбора файлов</p>
+                                <input type="file" name="additionalFiles" id="additionalFiles" accept="image/*" multiple hidden>
+                                <div class="preview" id="preview-additional" th:if="${cinema.images}">
+                                    <div th:each="image : ${cinema.images}">
+                                        <img th:src="@{'/img/' + ${image}}" alt="Предпросмотр">
+                                    </div>
+                                </div>
+                            </div>
+                            <small class="form-text text-center text-muted mt-2">Только изображения (JPEG, PNG), максимум 5 файлов</small><br><br>
 
-                            <table class="template-table table table-striped table-hover">
+
+                            <table class="invoice-list-table table border-top">
                                 <thead>
                                 <tr>
                                     <th>Название</th>
                                     <th>Дата создания</th>
-                                    <th>Действия</th>
+                                    <th>Ред./Удал.</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="hall : ${halls}">
-                                    <td th:text="${hall.number} + ' зал'"></td>
+                                <tr th:id="'row-' + ${hall.id}" th:each="hall : ${halls}">
+                                    <td th:text="${hall.number}"></td>
                                     <td th:text="${#temporals.format(hall.creationDate, 'dd-MM-yyyy')}"></td>
+
                                     <td class="action-buttons">
                                         <a th:href="@{/admin/cinemas/halls/edit/{id}(id=${hall.id})}" class="btn btn-warning ti ti-edit"></a>
                                         <form th:action="@{/admin/cinemas/halls/delete/{id}(id=${hall.id})}" method="post" style="display:inline-block;">
@@ -267,10 +279,9 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <a th:href="@{/admin/cinemas/halls/add/{cinemaId}(cinemaId=${cinema.id})}" class="btn rounded-pill btn-outline-primary mt-2">Добавить зал</a>
-                            <br>
-                            <br>
+                            <a th:href="'/admin/cinemas/halls/add/' + ${cinema.id}" class="btn btn-label-primary waves-effect">Добавить зал</a>
 
+                            <br><br>
 
 
                             <h4>SEO блок:</h4>
@@ -295,6 +306,7 @@
                         </form>
                     </section>
                 </div>
+
 
             </div>
 

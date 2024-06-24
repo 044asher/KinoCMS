@@ -235,7 +235,7 @@
 
                                     <td class="action-buttons">
                                         <a th:href="@{/admin/actions/{id}(id=${action.id})}" class="btn btn-warning ti ti-edit"></a>
-                                        <form th:action="@{/admin/action/delete/{id}(id=${action.id})}" method="post" style="display:inline-block;">
+                                        <form th:action="@{/admin/actions/delete/{id}(id=${action.id})}" method="post" style="display:inline-block;">
                                             <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                                         </form>
                                     </td>

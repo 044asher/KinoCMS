@@ -1,7 +1,8 @@
 package com.CMS.kinoCMS.services;
 
-import com.CMS.kinoCMS.models.Hall;
-import com.CMS.kinoCMS.repositories.HallRepository;
+import com.CMS.kinoCMS.admin.models.Hall;
+import com.CMS.kinoCMS.admin.repositories.HallRepository;
+import com.CMS.kinoCMS.admin.services.HallService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
