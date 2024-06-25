@@ -3,11 +3,13 @@ package com.CMS.kinoCMS.admin.controllers;
 import com.CMS.kinoCMS.admin.models.Action;
 import com.CMS.kinoCMS.admin.services.ActionService;
 import com.CMS.kinoCMS.admin.services.FileUploadService;
+import com.CMS.kinoCMS.config.MyUserDetails;
 import jakarta.validation.Valid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -46,6 +49,7 @@ public class ActionController {
         logger.info("Entering actionAdd (GET) method");
         model.addAttribute("action", new Action());
         logger.info("Exiting actionAdd (GET) method");
+
         return "actions/action-add";
     }
 

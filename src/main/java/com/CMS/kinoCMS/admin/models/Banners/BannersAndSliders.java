@@ -26,13 +26,28 @@ public class BannersAndSliders {
     @OneToMany(mappedBy = "bannersAndSliders", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BannerImage> images = new ArrayList<>();
 
-    public void addImage(BannerImage image) {
-        images.add(image);
-        image.setBannersAndSliders(this);
-    }
+    @OneToMany(mappedBy = "bannersAndSliders", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BannerNewsActions> newsImages = new ArrayList<>();
+
 
     public void removeImage(BannerImage image) {
         images.remove(image);
         image.setBannersAndSliders(null);
+    }
+
+    public void addBannerImage(BannerImage image) {
+        images.add(image);
+        image.setBannersAndSliders(this);
+    }
+
+    public void addNewsImage(BannerNewsActions newsImage) {
+        newsImages.add(newsImage);
+        newsImage.setBannersAndSliders(this);
+    }
+
+
+    public void removeImage(BannerNewsActions newsImage) {
+        newsImages.remove(newsImage);
+        newsImage.setBannersAndSliders(null);
     }
 }

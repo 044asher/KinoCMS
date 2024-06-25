@@ -13,7 +13,7 @@ import java.util.UUID;
 @Service
 public class FileUploadService {
     @Value("${upload.path}")
-    private String uploadPath;
+    public String uploadPath;
 
     public String uploadFile(MultipartFile file) throws IOException{
         if(file == null || file.isEmpty()){

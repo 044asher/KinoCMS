@@ -8,10 +8,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
-
 public class MyUserDetails implements UserDetails {
     private User user;
-    public MyUserDetails(User user){
+
+    public MyUserDetails(User user) {
         this.user = user;
     }
 
@@ -51,4 +51,21 @@ public class MyUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public String getFirstName() {
+        return user.getFirstName();
+    }
+
+    public String getLastName() {
+        return user.getLastName();
+    }
+
+    public String getRole() {
+        return user.getRole();
+    }
+
+    public Long getId() {
+        return user.getId();
+    }
 }
+
