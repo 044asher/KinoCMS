@@ -192,8 +192,9 @@
                             <p style="color: red" th:if="${#fields.hasErrors('link')}" th:errors="*{link}"></p>
 
                             <label for="dateOfCreation" class="form-label mt-2">Дата публикации:
-                                <div th:text="${#temporals.format(action.dateOfCreation, 'dd.MM.yyyy')}" class="small" style="font-size: 10px;"></div>
                             </label>
+                            <div th:text="${#temporals.format(action.dateOfCreation, 'dd.MM.yyyy')}" class="small" style="font-size: 10px;"></div>
+
                             <input type="date" id="dateOfCreation" class="form-control" th:field="*{dateOfCreation}" th:value="${action.dateOfCreation}">
                             <p style="color: red" th:if="${#fields.hasErrors('dateOfCreation')}" th:errors="*{dateOfCreation}"></p>
 
@@ -237,11 +238,8 @@
 
 <!-- Drag Target Area To SlideIn Menu On Small Screens -->
 <div class="drag-target"></div>
-</div>
-<!-- / Layout wrapper -->
 
-<!-- Core JS -->
-<!-- build:js assets/vendor/js/core.js -->
+
 <script src="/assets/vendor/libs/jquery/jquery.js"></script>
 <script src="/assets/vendor/libs/popper/popper.js"></script>
 <script src="/assets/vendor/js/bootstrap.js"></script>

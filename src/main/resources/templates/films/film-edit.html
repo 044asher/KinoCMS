@@ -192,7 +192,10 @@
                             <input type="text" th:value="*{link}" name="link" id="link" placeholder="Введите ссылку на трейлер" class="form-control mt-2">
                             <p style="color: red" th:if="${#fields.hasErrors('link')}" th:errors="*{link}"></p>
 
-                            <label for="date" class="form-label mt-2">Дата начала показа: <div th:text="${#temporals.format(film.date, 'dd.MM.yyyy')}" class="small" style="font-size: 10px;"></div></label>
+                            <label for="date" class="form-label mt-2">Дата начала показа: </label>
+                            <div th:text="${#temporals.format(film.date, 'dd.MM.yyyy')}" class="small" style="font-size: 10px;"></div>
+
+
                             <input type="date" id="date" class="form-control" th:field="*{date}" th:value="${film.date}"><p style="color: red" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></p>
                             <br>
                             <h5>Типы кино:</h5>
@@ -243,11 +246,8 @@
 
 <!-- Drag Target Area To SlideIn Menu On Small Screens -->
 <div class="drag-target"></div>
-</div>
-<!-- / Layout wrapper -->
 
-<!-- Core JS -->
-<!-- build:js assets/vendor/js/core.js -->
+
 <script src="/assets/vendor/libs/jquery/jquery.js"></script>
 <script src="/assets/vendor/libs/popper/popper.js"></script>
 <script src="/assets/vendor/js/bootstrap.js"></script>

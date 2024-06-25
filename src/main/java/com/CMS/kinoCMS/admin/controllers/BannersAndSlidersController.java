@@ -43,7 +43,7 @@ public class BannersAndSlidersController {
         model.addAttribute("bannersAndSliders", bannersAndSlidersList);
 
         if (!bannersAndSlidersList.isEmpty()) {
-            BannersAndSliders bannersAndSliders = bannersAndSlidersList.get(0);
+            BannersAndSliders bannersAndSliders = bannersAndSlidersList.getFirst();
             model.addAttribute("bannerImages", bannersAndSliders.getImages());
             model.addAttribute("newsImages", bannersAndSliders.getNewsImages());
         }
@@ -56,7 +56,7 @@ public class BannersAndSlidersController {
     @PostMapping("/upload-background")
     public String uploadBackground(@RequestParam MultipartFile background) throws IOException {
         logger.info("Entering uploadBackground method");
-        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         if (background != null && !background.isEmpty()) {
             logger.info("Background file is not empty, proceeding with upload");
             try {
@@ -79,7 +79,7 @@ public class BannersAndSlidersController {
     public String uploadImage(@RequestParam String imageUrl, @RequestParam String caption) {
         logger.info("Entering uploadImage method");
 
-        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         BannerImage image = new BannerImage();
         image.setUrl(imageUrl);
         image.setCaption(caption);
@@ -97,7 +97,7 @@ public class BannersAndSlidersController {
     public String deleteImage(@RequestParam Long imageId) {
         logger.info("Entering deleteImage method");
 
-        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         BannerImage image = bannersAndSliders.getImages().stream()
                 .filter(img -> img.getId().equals(imageId))
                 .findFirst()
@@ -119,7 +119,7 @@ public class BannersAndSlidersController {
     public String editImage(@RequestParam Long imageId, @RequestParam String imageUrl, @RequestParam String caption) {
         logger.info("Entering editImage method");
 
-        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         BannerImage image = bannersAndSliders.getImages().stream()
                 .filter(img -> img.getId().equals(imageId))
                 .findFirst()
@@ -145,7 +145,7 @@ public class BannersAndSlidersController {
     public String uploadNewsImage(@RequestParam String newsImageUrl, @RequestParam String newsImageCaption) {
         logger.info("Entering uploadNewsImage method");
 
-        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         BannerNewsActions image = new BannerNewsActions();
         image.setUrl(newsImageUrl);
         image.setCaption(newsImageCaption);
@@ -163,7 +163,7 @@ public class BannersAndSlidersController {
     public String deleteNewsImage(@RequestParam Long imageId) {
         logger.info("Entering deleteNewsImage method");
 
-        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         BannerNewsActions image = bannersAndSliders.getNewsImages().stream()
                 .filter(img -> img.getId().equals(imageId))
                 .findFirst()
@@ -186,7 +186,7 @@ public class BannersAndSlidersController {
     public String editNewsImage(@RequestParam Long imageId, @RequestParam String imageUrl, @RequestParam String caption) {
         logger.info("Entering editNewsImage method");
 
-        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         BannerNewsActions image = bannersAndSliders.getNewsImages().stream()
                 .filter(img -> img.getId().equals(imageId))
                 .findFirst()

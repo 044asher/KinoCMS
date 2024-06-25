@@ -16,8 +16,7 @@ public class AdminInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (handler instanceof HandlerMethod) {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            if (authentication != null && authentication.getPrincipal() instanceof MyUserDetails) {
-                MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
+            if (authentication != null && authentication.getPrincipal() instanceof MyUserDetails userDetails) {
                 request.setAttribute("firstName", userDetails.getFirstName());
                 request.setAttribute("lastName", userDetails.getLastName());
                 request.setAttribute("role", userDetails.getRole());

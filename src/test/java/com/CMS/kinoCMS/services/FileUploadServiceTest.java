@@ -43,9 +43,7 @@ public class FileUploadServiceTest {
     @Test
     public void testUploadFile_withNullFile() {
         // Act & Assert
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            fileUploadService.uploadFile(null);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> fileUploadService.uploadFile(null));
     }
 
     @Test
@@ -54,9 +52,7 @@ public class FileUploadServiceTest {
         MockMultipartFile mockMultipartFile = new MockMultipartFile("file", "test.txt", "text/plain", new byte[0]);
 
         // Act & Assert
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            fileUploadService.uploadFile(mockMultipartFile);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> fileUploadService.uploadFile(mockMultipartFile));
     }
 
     @Test
@@ -84,8 +80,6 @@ public class FileUploadServiceTest {
     @Test
     public void testUploadAdditionalFiles_withEmptyFiles() {
         // Act & Assert
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            fileUploadService.uploadAdditionalFiles(new MultipartFile[0]);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> fileUploadService.uploadAdditionalFiles(new MultipartFile[0]));
     }
 }

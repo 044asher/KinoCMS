@@ -13,8 +13,7 @@ public class GlobalControllerAdvice {
     @ModelAttribute
     public void addUserAttributes(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.getPrincipal() instanceof MyUserDetails) {
-            MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
+        if (authentication != null && authentication.getPrincipal() instanceof MyUserDetails userDetails) {
             model.addAttribute("firstName", userDetails.getFirstName());
             model.addAttribute("lastName", userDetails.getLastName());
             model.addAttribute("role", userDetails.getRole());
