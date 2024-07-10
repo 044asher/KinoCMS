@@ -167,7 +167,7 @@
                                     <td>
                                         <p>Главная страница</p>
                                     </td>
-                                    <td th:text="${#temporals.format(main.dateOfCreation, 'dd-MM-yyyy')}"></td>
+                                    <td th:text="${#temporals.format(main.dateOfCreation, 'dd.MM.yyyy')}"></td>
                                     <td class="status-column">
                                         <button th:id="'main-status-button-' + ${main.id}"
                                                 th:onclick="'changeStatusMain(' + ${main.id} + ')'"
@@ -184,7 +184,7 @@
                                     <td>
                                         <p>Контакты</p>
                                     </td>
-                                    <td th:text="${#temporals.format(contacts.dateOfCreation, 'dd-MM-yyyy')}"></td>
+                                    <td th:text="${#temporals.format(contacts.dateOfCreation, 'dd.MM.yyyy')}"></td>
                                     <td class="status-column">
                                         <button th:id="'contacts-status-button-' + ${contacts.id}"
                                                 th:onclick="'changeStatusContact(' + ${contacts.id} + ')'"
@@ -200,7 +200,7 @@
 
                                 <tr th:id="'row-' + ${page.id}" th:each="page : ${pages}">
                                     <td th:text="${page.name}"></td>
-                                    <td th:text="${#temporals.format(page.dateOfCreation, 'dd-MM-yyyy')}"></td>
+                                    <td th:text="${#temporals.format(page.dateOfCreation, 'dd.MM.yyyy')}"></td>
                                     <td class="status-column">
                                         <button th:id="'status-button-' + ${page.id}"
                                                 th:onclick="'changeStatusPage(' + ${page.id} + ')'"
@@ -216,7 +216,7 @@
 
                                 <tr th:id="'row-' + ${page.id}" th:each="page : ${newPages}">
                                     <td th:text="${page.name}"></td>
-                                    <td th:text="${#temporals.format(page.dateOfCreation, 'dd-MM-yyyy')}"></td>
+                                    <td th:text="${#temporals.format(page.dateOfCreation, 'dd.MM.yyyy')}"></td>
                                     <td class="status-column">
                                         <button th:id="'status-button-' + ${page.id}"
                                                 th:onclick="'changeStatusPage(' + ${page.id} + ')'"

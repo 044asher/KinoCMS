@@ -62,4 +62,9 @@ public class Page {
     @Size(max = 4000, message = "Description should be less than 4000 characters")
     @NotEmpty(message = "Description shouldn't be empty")
     private String descriptionSEO;
+
+
+
+    @OneToMany(mappedBy = "page", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MenuItem> menuItems = new ArrayList<>();
 }

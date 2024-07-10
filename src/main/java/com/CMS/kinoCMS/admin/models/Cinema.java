@@ -33,6 +33,7 @@ public class Cinema {
 
     @NotEmpty(message = "Conditions should not be empty")
     @Size(max = 2000)
+    @Column(columnDefinition = "TEXT")
     private String conditions;
 
     @OneToMany(mappedBy = "cinema", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)

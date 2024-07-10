@@ -10,4 +10,6 @@ import java.util.List;
 public interface FilmRepository extends JpaRepository<Film, Long> {
     List<Film> findByDateBeforeOrDate(LocalDate date, LocalDate now);
     List<Film> findByDateAfterOrDateIsNull(LocalDate date);
+
+    List<Film> findByIsPrePremiere(boolean premiere);
 }

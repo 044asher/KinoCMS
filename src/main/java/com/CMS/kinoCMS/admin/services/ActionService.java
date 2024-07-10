@@ -32,4 +32,8 @@ public class ActionService {
     public void delete(Action action) {
         actionRepository.delete(action);
     }
+
+    public List<Action> findByNotActive(boolean isActive) {
+        return actionRepository.findByNotActive(isActive);
+    }
 }

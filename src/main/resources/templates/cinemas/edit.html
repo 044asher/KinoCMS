@@ -61,7 +61,6 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/assets/js/config.js"></script>
     <script src="/js/sidebar-active/sidebar-active-element.js"></script>
-
 </head>
 
 <body>
@@ -146,7 +145,12 @@
                 <!-- Content -->
 
                 <div class="container-xxl flex-grow-1 container-p-y">
-                    <h4 class="fw-bold">Редактирование кинотеатра</h4>
+                    <div class="edit-header">
+                        <h4 class="fw-bold">Редактирование кинотеатра</h4>
+                        <a th:href="'/admin/pages/contacts/cinema/edit/' + ${cinema.id}">
+                            <h7 class="text-primary">Редактировать контакты</h7>
+                        </a>
+                    </div>
                     <section class="content">
                         <form method="post" th:object="${cinema}" th:action="@{/admin/cinemas/edit/{id}(id=${cinema.id})}" enctype="multipart/form-data" class="mt-3">
 
@@ -208,7 +212,7 @@
                                 <tbody>
                                 <tr th:id="'row-' + ${hall.id}" th:each="hall : ${halls}">
                                     <td th:text="${hall.number}"></td>
-                                    <td th:text="${#temporals.format(hall.creationDate, 'dd-MM-yyyy')}"></td>
+                                    <td th:text="${#temporals.format(hall.creationDate, 'dd.MM.yyyy')}"></td>
 
                                     <td class="action-buttons">
                                         <a th:href="@{/admin/cinemas/halls/edit/{id}(id=${hall.id})}" class="btn btn-warning ti ti-edit"></a>

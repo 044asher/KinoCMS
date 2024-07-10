@@ -1,0 +1,223 @@
+<div th:fragment="topbar">
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome.css"/>
+    <link rel="stylesheet" href="/assets/vendor/fonts/tabler-icons.css"/>
+    <link rel="stylesheet" href="/assets/vendor/fonts/flag-icons.css"/>
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="/assets/vendor/css/rtl/core.css"/>
+    <link rel="stylesheet" href="/assets/vendor/css/rtl/theme-default.css"/>
+    <link rel="stylesheet" href="/assets/css/demo.css"/>
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/node-waves/node-waves.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/typeahead-js/typeahead.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/select2/select2.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/flatpickr/flatpickr.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/quill/typography.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/quill/katex.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/quill/editor.css"/>
+
+    <!-- Page CSS -->
+
+    <link rel="stylesheet" href="/assets/vendor/css/pages/app-kanban.css"/>
+    <!-- Helpers -->
+    <script src="/assets/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="/assets/js/config.js"></script>
+    <script src="/js/sidebar-active/sidebar-active-element.js"></script>
+    <style>
+        .layout-navbar {
+            z-index: 1060;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        .layout-menu-horizontal {
+            margin-top: 0;
+            z-index: 1020;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        .content-wrapper {
+            padding-top: 75px;
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 15px;
+        }
+        .user-buttons {
+            display: flex;
+            align-items: center;
+        }
+        .user-buttons .btn {
+            margin-right: 10px;
+        }
+        .user-buttons form {
+            margin: 0;
+        }
+        .input-group {
+            margin-right: 15px;
+        }
+    </style>
+
+    <!-- Navbar -->
+    <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
+        <div class="container-xxl">
+            <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
+                <a href="/main" class="app-brand-link gap-2">
+                <span class="app-brand-logo demo">
+                    <img src="/img/free-icon-audience-3350561.png" style="width: 32px; height: 26px; fill: none">
+                </span>
+                    <span class="app-brand-text demo menu-text fw-bold">Lincoln Plaza</span>
+                </a>
+
+            </div>
+
+
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                <ul class="navbar-nav flex-row align-items-center ms-auto">
+                    <li class="nav-item">
+                        <div class="social-icon my-3">
+                            <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-facebook me-2">
+                                <i class="ti ti-brand-facebook"></i>
+                            </a>
+                            <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-twitter me-2">
+                                <i class="ti ti-brand-twitter"></i>
+                            </a>
+                            <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-linkedin me-2">
+                                <i class="ti ti-brand-linkedin"></i>
+                            </a>
+                            <a href="/admin/stats" class="btn btn-icon btn-sm btn-github">
+                                <i class="ti ti-brand-github"></i>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <form class="d-flex">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="tf-icons ti ti-search"></i></span>
+                                <input type="text" class="form-control" placeholder="Search...">
+                            </div>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <div class="user-buttons" th:if="${userId != null}">
+                            <a class="btn rounded-pill btn-outline-primary waves-effect" th:href="'/user/' + ${userId}" th:text="${firstName} + ' ' + ${lastName}">Редактировать</a>
+                            <form th:action="@{/logout}" method="post">
+                                <button type="submit" class="btn rounded-pill btn-outline-danger waves-effect">
+                                    <i class="ti ti-logout me-2 ti-sm"></i>
+                                    <span class="align-middle">Выйти</span>
+                                </button>
+                            </form>
+
+                        </div>
+                        <div class="user-buttons" th:if="${userId == null}">
+                            <a class="btn btn-outline-success waves-effect" th:href="@{/login}">Войти</a>
+                            <a class="btn btn-outline-primary waves-effect" th:href="@{/registration}">Зарегистрироваться</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Search Small Screens -->
+            <div class="navbar-search-wrapper search-input-wrapper container-xxl d-none">
+                <input
+                        type="text"
+                        class="form-control search-input border-0"
+                        placeholder="Search..."
+                        aria-label="Search..."
+                />
+                <i class="ti ti-x ti-sm search-toggler cursor-pointer"></i>
+            </div>
+        </div>
+    </nav>
+    <!-- / Navbar -->
+
+    <!-- Menu -->
+    <aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0" style="top: 60px;">
+        <div class="container-xxl d-flex h-100">
+            <ul class="menu-inner py-1">
+                <li class="menu-item">
+                    <a href="/main" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                        <div data-i18n="Page 1">Главная</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/posters" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-app-window"></i>
+                        <div data-i18n="Page 2">Афиша</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/schedule" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-app-window"></i>
+                        <div data-i18n="Page 3">Расписание</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/cinemas" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-app-window"></i>
+                        <div data-i18n="Page 4">Кинотеатры</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/actions" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-app-window"></i>
+                        <div data-i18n="Page 5">Акции</div>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="/pages/about-cinemas" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                        <div data-i18n="Pages">О кинотеатре</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <!-- / Menu -->
+</div>
+
+<div class="content-wrapper">
+    <!-- Контент страницы -->
+
+
+
+<script src="/assets/vendor/libs/jquery/jquery.js"></script>
+<script src="/assets/vendor/libs/popper/popper.js"></script>
+<script src="/assets/vendor/js/bootstrap.js"></script>
+<script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="/assets/vendor/libs/node-waves/node-waves.js"></script>
+
+<script src="/assets/vendor/libs/hammer/hammer.js"></script>
+<script src="/assets/vendor/libs/typeahead-js/typeahead.js"></script>
+
+<script src="/assets/vendor/js/menu.js"></script>
+
+
+<!-- endbuild -->
+
+<!-- Main JS -->
+<script src="/assets/js/main.js"></script>
+</div>

@@ -14,19 +14,29 @@ public class FilmService {
     @Autowired
     private FilmRepository filmRepository;
 
-    public List<Film> getCurrentFilms(){
+    public List<Film> getCurrentFilms() {
         LocalDate today = LocalDate.now();
         return filmRepository.findByDateBeforeOrDate(today, today);
     }
 
-    public List<Film> getUpcomingFilms(){
+    public List<Film> getUpcomingFilms() {
         LocalDate today = LocalDate.now();
         return filmRepository.findByDateAfterOrDateIsNull(today);
     }
-    public void save(Film film){
+
+    public List<Film> getPrePremieresFilms(boolean prePremiere) {
+        return filmRepository.findByIsPrePremiere(prePremiere);
+    }
+
+    public void save(Film film) {
         filmRepository.save(film);
     }
-    public Optional<Film> findById(Long id){
+
+    public Optional<Film> findById(Long id) {
         return filmRepository.findById(id);
+    }
+
+    public List<Film> findAll() {
+        return filmRepository.findAll();
     }
 }

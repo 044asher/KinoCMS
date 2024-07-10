@@ -31,4 +31,8 @@ public class PageService {
     public List<Page> findByIsDefault(boolean isDefault) {
         return pageRepository.findAllByIsDefault(isDefault);
     }
+
+    public Optional<Page> findByName(String name) {
+        return pageRepository.findByName(name);
+    }
 }

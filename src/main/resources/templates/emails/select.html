@@ -218,8 +218,8 @@
                                             <tr th:each="user : ${users}" th:id="'row-' + ${user.id}">
                                                 <td><input type="checkbox" name="mailingUsers" th:value="${user.id}" onclick="toggleSingle();"></td>
                                                 <td th:text="${user.id}"></td>
-                                                <td th:text="${#temporals.format(user.dateOfRegistration, 'dd-MM-yyyy')}"></td>
-                                                <td th:text="${user.dateOfBirthday != null ? #temporals.format(user.dateOfBirthday, 'dd-MM-yyyy') : 'Не указано'}"></td>
+                                                <td th:text="${#temporals.format(user.dateOfRegistration, 'dd.MM.yyyy')}"></td>
+                                                <td th:text="${user.dateOfBirthday != null ? #temporals.format(user.dateOfBirthday, 'dd.MM.yyyy') : 'Не указано'}"></td>
                                                 <td th:text="${user.email}"></td>
                                                 <td th:text="${user.phoneNumber != null ? user.phoneNumber : 'Не указано'}"></td>
                                                 <td th:text="${user.firstName != null && user.lastName != null ? user.firstName + ' ' + user.lastName : (user.firstName != null ? user.firstName : (user.lastName != null ? user.lastName : 'Не указано'))}"></td>

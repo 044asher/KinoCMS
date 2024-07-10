@@ -1,6 +1,5 @@
 package com.CMS.kinoCMS.config;
 
-import com.CMS.kinoCMS.config.ControllerAdvices.AdminInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -31,9 +30,5 @@ public class MvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/css/");
 
     }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new AdminInterceptor()).addPathPatterns("/admin/**");
-    }
+    
 }

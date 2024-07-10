@@ -47,6 +47,10 @@ public class Hall {
     @Size(max = 5)
     private List<String> images = new ArrayList<>();
 
+    @OneToMany(mappedBy = "hall", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Seat> seats = new ArrayList<>();
+
+
     // ------------- SEO Block
     @Size(max=255, message = "Url should be less than 255 characters")
     @NotEmpty(message = "Url shouldn't be empty")

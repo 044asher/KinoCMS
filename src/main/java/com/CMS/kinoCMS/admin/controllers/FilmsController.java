@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,7 +71,7 @@ public class FilmsController {
             if (mainFile != null && !mainFile.isEmpty()) {
                 String resultFileName = fileUploadService.uploadFile(mainFile);
                 film.setMainImage(resultFileName);
-                logger.info("Uploaded main file with name: {}", resultFileName);
+                logger.info("Uploaded mainPage file with name: {}", resultFileName);
             }
 
             // Обработка дополнительных изображений
@@ -146,7 +147,7 @@ public class FilmsController {
             existingFilm.setName(film.getName());
             existingFilm.setDescription(film.getDescription());
             existingFilm.setLink(film.getLink());
-            if(film.getDate() != null) {
+            if (film.getDate() != null) {
                 existingFilm.setDate(film.getDate());
             }
             existingFilm.setUrlSEO(film.getUrlSEO());
@@ -159,6 +160,12 @@ public class FilmsController {
                 existingFilm.setTypes(typesString);
             } else {
                 existingFilm.setTypes("");
+            }
+
+            if (film.getDate() != null && film.getDate().isBefore(LocalDate.now())) {
+                existingFilm.setPrePremiere(false);
+            } else {
+                existingFilm.setPrePremiere(film.isPrePremiere());
             }
 
             filmService.save(existingFilm);

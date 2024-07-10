@@ -1,5 +1,6 @@
 package com.CMS.kinoCMS.admin.controllers;
 
+import com.CMS.kinoCMS.admin.models.Pages.MenuItem;
 import com.CMS.kinoCMS.admin.services.Pages.ContactsPageService;
 import com.CMS.kinoCMS.admin.services.Pages.MainPageService;
 import com.CMS.kinoCMS.admin.models.Cinema;
@@ -10,6 +11,7 @@ import com.CMS.kinoCMS.admin.models.Pages.MainPage;
 import com.CMS.kinoCMS.admin.models.Pages.Page;
 import com.CMS.kinoCMS.admin.services.CinemaService;
 import com.CMS.kinoCMS.admin.services.FileUploadService;
+import com.CMS.kinoCMS.admin.services.Pages.MenuItemService;
 import com.CMS.kinoCMS.admin.services.Pages.PageService;
 import jakarta.validation.Valid;
 import org.apache.logging.log4j.LogManager;
@@ -38,14 +40,16 @@ public class PagesController {
     private final PageService pageService;
     private final FileUploadService fileUploadService;
     private final CinemaService cinemaService;
+    private final MenuItemService menuItemService;
 
     @Autowired
-    public PagesController(MainPageService mainPageService, ContactsPageService contactsPageService, PageService pageService, FileUploadService fileUploadService, CinemaService cinemaService) {
+    public PagesController(MainPageService mainPageService, ContactsPageService contactsPageService, PageService pageService, FileUploadService fileUploadService, CinemaService cinemaService, MenuItemService menuItemService) {
         this.mainPageService = mainPageService;
         this.contactsPageService = contactsPageService;
         this.pageService = pageService;
         this.fileUploadService = fileUploadService;
         this.cinemaService = cinemaService;
+        this.menuItemService = menuItemService;
     }
 
     @GetMapping
@@ -108,7 +112,7 @@ public class PagesController {
         Optional<MainPage> mainPage = mainPageService.findById(id);
         if (mainPage.isPresent()) {
             model.addAttribute("main", mainPage.get());
-            logger.info("Exiting mainPageEdit (GET) method with main page found");
+            logger.info("Exiting mainPageEdit (GET) method with mainPage page found");
             return "pages/main-page";
         } else {
             logger.warn("Main page with ID: {} not found", id);
@@ -227,7 +231,15 @@ public class PagesController {
         logger.info("Entering pageEdit (GET) method with ID: {}", id);
         Optional<Page> optionalPage = pageService.findById(id);
         if(optionalPage.isPresent()) {
-            model.addAttribute("page", optionalPage.get());
+            Page page = optionalPage.get();
+            model.addAttribute("page", page);
+
+            if ("Кафе-Бар".equals(page.getName())) {
+                List<MenuItem> menuItems = menuItemService.findByPage(page);
+                model.addAttribute("menuItems", menuItems);
+                logger.info("Updating cafe-bar page");
+            }
+
             logger.info("Exiting pageEdit (GET) method with page found");
             return "pages/pages-edit";
         } else {
@@ -276,6 +288,48 @@ public class PagesController {
         logger.info("Exiting pageEdit (POST) method");
         return "redirect:/admin/pages";
     }
+
+
+    @PostMapping("/{id}/add-menu-item")
+    public String addMenuItem(@PathVariable long id,
+                              @RequestParam String itemName,
+                              @RequestParam double price,
+                              @RequestParam String ingredients) {
+        Optional<Page> optionalPage = pageService.findById(id);
+        if (optionalPage.isPresent()) {
+            Page page = optionalPage.get();
+            if ("Кафе-Бар".equals(page.getName())) {
+                MenuItem menuItem = new MenuItem();
+                menuItem.setItemName(itemName);
+                menuItem.setPrice(price);
+                menuItem.setPage(page);
+                menuItem.setIngredients(ingredients);
+                menuItemService.save(menuItem);
+            }
+        }
+        return "redirect:/admin/pages/" + id;
+    }
+
+    @PostMapping("/delete-menu-item/{itemId}")
+    public String deleteMenuItem(@PathVariable long pageId, @PathVariable long itemId) {
+        menuItemService.deleteById(itemId);
+        return "redirect:/admin/pages/" + pageId;
+    }
+
+    @PostMapping("/{pageId}/edit-menu-item/{itemId}")
+    public String editMenuItem(@PathVariable long pageId, @PathVariable long itemId,
+                               @RequestParam String itemName, @RequestParam double price,
+                               @RequestParam String ingredients) {
+        MenuItem menuItem = menuItemService.findById(itemId);
+        if (menuItem != null) {
+            menuItem.setItemName(itemName);
+            menuItem.setPrice(price);
+            menuItem.setIngredients(ingredients);
+            menuItemService.save(menuItem);
+        }
+        return "redirect:/admin/pages/" + pageId;
+    }
+
 
 
     @PostMapping("/main-page/{id}/change-status")

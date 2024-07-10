@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html
+        lang="en"
+        class="light-style layout-menu-fixed"
+        dir="ltr"
+        data-theme="theme-default"
+        data-assets-path="/assets/"
+        data-template="horizontal-menu-template-no-customizer"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <title>Кинотеатр | Lincoln Plaza</title>
+
+    <style>
+        .banner {
+            width: 100%;
+            height: 56vh;
+            object-fit: cover;
+        }
+        .ad-container {
+            width: 150px;
+            height: 170px;
+        }
+        .conditions-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .film-logo {
+            max-width: 300px;
+            height: auto;
+            margin-right: 20px;
+        }
+        .flex-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .sidebar {
+            width: 150px;
+            float: left;
+        }
+        .main-content {
+            margin-left: 170px;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+    <div class="layout-container">
+        <div th:insert="~{blocks/topbar :: topbar}"></div>
+
+        <!-- Layout container -->
+        <div class="layout-page">
+            <!-- Content -->
+            <div class="content-wrapper ml-200">
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container mt-2">
+                        <img th:src="@{/img/{imageName}(imageName = ${cinema.bannerName})}" alt="banner" class="banner">
+                        <div class="sidebar">
+                            <div class="ad-container ml-4 mt-5">
+                                <img src="/assets/img/elements/15.jpg" alt="Ad" class="img-fluid">
+                            </div>
+                            <div>
+                                <p th:text="'Количество залов: ' + ${halls.size()}"></p>
+                                <div th:each="hall : ${halls}">
+                                    <table>
+                                        <a th:href="'/cinemas/hall/' + ${hall.id}">
+                                            <tr th:text="'Зал ' + ${hall.number}"></tr>
+                                        </a>
+                                    </table>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="mt-4">Смотрите сегодня:</p>
+                                <div th:each="entry : ${schedulesByDate}">
+                                    <table>
+                                        <tbody>
+                                        <tr th:each="schedule : ${entry.value}">
+                                            <td th:text="${#temporals.format(schedule.time, 'HH:mm')}" class="mb-2">Время</td>
+                                            <td>
+                                                <a th:href="'/film/' + ${schedule.film.id}">
+                                                    <span th:text="${schedule.film.name}">Название фильма</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-content">
+                            <div class="flex-container mt-4">
+                                <img th:src="@{/img/{imageName}(imageName = ${cinema.logoName})}" alt="logo" class="film-logo">
+                                <h2 th:text="${cinema.name}">Название</h2>
+                            </div>
+                            <a th:href="'/schedule/' + ${cinema.id}" class="btn btn-label-success waves-effect mt-1 mb-3">Посмотреть расписания</a>
+
+                            <p th:text="${cinema.description}"></p>
+                            <h3 class="text-center mb-3">Условия</h3>
+                            <div class="conditions-box">
+                                <p th:text="${cinema.conditions}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- / Content -->
+        </div>
+        <div th:insert="~{blocks/footer :: footer}"></div>
+        <!--/ Layout container -->
+    </div>
+</div>
+
+</body>
+</html>

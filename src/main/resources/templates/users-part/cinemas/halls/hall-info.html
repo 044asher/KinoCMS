@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html
+        lang="en"
+        class="light-style layout-menu-fixed"
+        dir="ltr"
+        data-theme="theme-default"
+        data-assets-path="/assets/"
+        data-template="horizontal-menu-template-no-customizer"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <title>Зал | Lincoln Plaza</title>
+
+    <style>
+        .banner {
+            width: 100%;
+            height: 56vh;
+            object-fit: cover;
+        }
+        .ad-container {
+            width: 150px;
+            height: 170px;
+        }
+        .sidebar {
+            width: 150px;
+            float: left;
+        }
+        .main-content {
+            margin-left: 170px;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .schedule-button {
+            text-decoration: none;
+            color: black;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+    </style>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+    <div class="layout-container">
+        <div th:insert="~{blocks/topbar :: topbar}"></div>
+
+        <!-- Layout container -->
+        <div class="layout-page">
+            <!-- Content -->
+            <div class="content-wrapper ml-200">
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container mt-2">
+                        <img th:src="@{/img/{imageName}(imageName = ${hall.topBanner})}" alt="banner" class="banner">
+                        <div class="sidebar">
+                            <div class="ad-container ml-4 mt-5">
+                                <img src="/assets/img/elements/15.jpg" alt="Ad" class="img-fluid">
+                            </div>
+
+                            <div>
+                                <p class="mt-4">Смотрите сегодня:</p>
+                                <div th:each="entry : ${schedulesByDate}">
+                                    <table>
+                                        <tbody>
+                                        <tr th:each="schedule : ${entry.value}">
+                                            <td th:text="${#temporals.format(schedule.time, 'HH:mm')}" class="mb-2">Время</td>
+                                            <td>
+                                                <a th:href="'/film/' + ${schedule.film.id}">
+                                                    <span th:text="${schedule.film.name}">Название фильма</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-content">
+                            <a th:href="'/schedule/' + ${hall.getCinema().id} + '?filmId=&hallId=' + ${hall.id} + '&filmType='"
+                               class="schedule-button mt-5 mb-1">Посмотреть расписания</a>
+                            <div class="flex-container mt-3">
+
+                                <h2 class="text-center hall-number" th:text="'Зал ' + ${hall.number}">Номер</h2>
+                            </div>
+
+                            <p class="mt-1" th:text="${hall.description}"></p>
+
+                            <h2 class="text-center hall-number">Схема зала</h2>
+
+                            <img th:src="@{/img/{imageName}(imageName = ${hall.scheme})}" alt="logo" class="banner">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- / Content -->
+        </div>
+        <div th:insert="~{blocks/footer :: footer}"></div>
+        <!--/ Layout container -->
+    </div>
+</div>
+
+</body>
+</html>

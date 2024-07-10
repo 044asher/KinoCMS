@@ -17,6 +17,7 @@ public class GlobalControllerAdvice {
             model.addAttribute("firstName", userDetails.getFirstName());
             model.addAttribute("lastName", userDetails.getLastName());
             model.addAttribute("role", userDetails.getRole());
+            model.addAttribute("userId", userDetails.getId());
         }
     }
 }

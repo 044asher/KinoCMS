@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Выбор мест в зале</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <style>
+        .seat {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin: 5px;
+            background-color: #ddd;
+            border: 1px solid #aaa;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+        }
+        .booked {
+            background-color: #f00; /* Цвет для забронированных мест */
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Выберите места в зале</h2>
+    <div>
+        <h3>Зал: <span th:text="${hall.number}">Номер зала</span></h3>
+        <div id="seatMap">
+            <!-- Тут будет динамически генерируемая схема зала -->
+        </div>
+        <form id="bookingForm" th:action="@{/book-seats}" method="post">
+            <input type="hidden" id="scheduleId" name="scheduleId" th:value="${schedule.id}" />
+            <input type="hidden" id="userId" name="userId" th:value="${userDetails.id}" />
+            <input type="hidden" id="selectedSeats" name="selectedSeats" />
+            <button type="submit" id="bookSeatsBtn" class="btn btn-primary" disabled>Забронировать выбранные места</button>
+        </form>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    var bookedSeats = /*[[${bookedSeats}]]*/ [];
+
+    // Функция для отображения схемы зала
+    function renderSeatMap() {
+        var seatMapDiv = document.getElementById('seatMap');
+        seatMapDiv.innerHTML = '';
+
+        for (var row = 1; row <= /*[[${hall.maxRows}]]*/; row++) {
+            var rowDiv = document.createElement('div');
+            rowDiv.classList.add('row');
+
+            for (var seatNum = 1; seatNum <= /*[[${hall.seatsPerRow}]]*/; seatNum++) {
+                var seatId = row + '-' + seatNum;
+                var seatDiv = document.createElement('div');
+                seatDiv.id = seatId;
+                seatDiv.classList.add('seat');
+
+                if (bookedSeats.includes(seatId)) {
+                    seatDiv.classList.add('booked');
+                    seatDiv.textContent = 'X'; // Место уже забронировано
+                } else {
+                    seatDiv.textContent = seatId; // Место доступно для бронирования
+                    seatDiv.addEventListener('click', function() {
+                        toggleSeatSelection(this);
+                    });
+                }
+
+                rowDiv.appendChild(seatDiv);
+            }
+
+            seatMapDiv.appendChild(rowDiv);
+        }
+    }
+
+    // Функция для переключения выбора места
+    function toggleSeatSelection(seatDiv) {
+        if (seatDiv.classList.contains('booked')) {
+            return; // Нельзя выбрать уже забронированное место
+        }
+
+        seatDiv.classList.toggle('selected');
+        updateSelectedSeats();
+    }
+
+    // Функция для обновления списка выбранных мест
+    function updateSelectedSeats() {
+        var selectedSeats = [];
+        var selectedSeatDivs = document.querySelectorAll('.seat.selected');
+        selectedSeatDivs.forEach(function(seatDiv) {
+            selectedSeats.push(seatDiv.id);
+        });
+
+        document.getElementById('selectedSeats').value = selectedSeats.join(',');
+        document.getElementById('bookSeatsBtn').disabled = selectedSeats.length === 0;
+    }
+
+    // Инициализация
+    window.onload = function() {
+        renderSeatMap();
+    };
+</script>
+</body>
+</html>

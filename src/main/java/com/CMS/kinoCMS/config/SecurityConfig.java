@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
-                        .defaultSuccessUrl("/admin/stats")
+                        .defaultSuccessUrl("/main")
                 )
             .exceptionHandling(exception -> exception.accessDeniedPage("/errors/403.html"))
  .build();

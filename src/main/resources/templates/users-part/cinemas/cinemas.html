@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html
+        lang="en"
+        class="light-style layout-menu-fixed"
+        dir="ltr"
+        data-theme="theme-default"
+        data-assets-path="/assets/"
+        data-template="horizontal-menu-template-no-customizer"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <title>Кинотеатры | Lincoln Plaza</title>
+
+    <style>
+        .logo-img {
+            height: 220px;
+            width: 90%;
+        }
+
+        .ad-container {
+            width: 150px;
+            height: 300px;
+            position: absolute;
+            top: 190px;
+            right: 50px;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+    <div class="layout-container">
+        <div th:insert="~{blocks/topbar :: topbar}"></div>
+
+        <!-- Layout container -->
+        <div class="layout-page">
+            <!-- Content -->
+            <div class="content-wrapper ml-200">
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container mt-5">
+                        <div class="row">
+                            <div th:if="${cinemas.isEmpty()}">
+                                <p>Нет кинотеатров.</p>
+                            </div>
+                            <div th:if="${!cinemas.isEmpty()}">
+                                <div class="row">
+                                    <div class="flex-grow-1">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <div th:if="${cinemas.isEmpty()}">
+                                                    <p>Нет кинотеатров.</p>
+                                                </div>
+                                                <div th:if="${!cinemas.isEmpty()}">
+                                                    <div class="row">
+                                                        <div class="col-md-4" th:each="cinema : ${cinemas}">
+                                                            <a th:href="'/cinemas/' + ${cinema.id}">
+                                                                <div class="card mb-4">
+                                                                    <img th:src="@{/img/{imageName}(imageName = ${cinema.logoName})}"
+                                                                         class="card-img-top logo-img"
+                                                                         alt="Film Image">
+                                                                    <div class="card-body">
+                                                                        <h5 class="card-title text-center"
+                                                                            th:text="${cinema.name}">Название</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="ad-container ml-4 mt-4">
+                                                    <img src="/assets/img/elements/15.jpg" alt="Ad"
+                                                         class="img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- / Content -->
+        </div>
+        <div th:insert="~{blocks/footer :: footer}"></div>
+        <!--/ Layout container -->
+    </div>
+</div>
+
+
+
+</body>
+</html>

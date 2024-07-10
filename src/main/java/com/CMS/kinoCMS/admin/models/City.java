@@ -28,7 +28,4 @@ public class City {
     @JsonManagedReference
     private List<User> users;
 
-//    @OneToMany(mappedBy = "city")
-//    @JsonManagedReference
-//    private List<Cinema> cinemas;
 }

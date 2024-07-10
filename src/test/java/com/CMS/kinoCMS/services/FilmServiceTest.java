@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +52,47 @@ public class FilmServiceTest {
         Assertions.assertEquals(films.size(), result.size());
         Assertions.assertEquals(films, result);
     }
+
+    @Test
+    public void testGetPrePremieresFilms() {
+
+        boolean prePremiere = true;
+        Film film1 = new Film();
+        film1.setId(1L);
+        film1.setName("Film 1");
+        film1.setPrePremiere(true);
+
+        Film film2 = new Film();
+        film2.setId(2L);
+        film2.setName("Film 2");
+        film2.setPrePremiere(true);
+
+        List<Film> prePremiereFilms = Arrays.asList(film1, film2);
+
+        Mockito.when(filmRepository.findByIsPrePremiere(prePremiere)).thenReturn(prePremiereFilms);
+
+
+        List<Film> result = filmService.getPrePremieresFilms(prePremiere);
+
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(2, result.size());
+        Assertions.assertEquals(prePremiereFilms, result);
+    }
+
+    @Test
+    public void testGetPrePremieresFilms_NoPrePremieres() {
+
+        boolean prePremiere = false;
+        Mockito.when(filmRepository.findByIsPrePremiere(prePremiere)).thenReturn(List.of());
+
+        List<Film> result = filmService.getPrePremieresFilms(prePremiere);
+
+
+        Assertions.assertNotNull(result);
+        Assertions.assertTrue(result.isEmpty());
+    }
+
 
     @Test
     public void shouldSaveFilm() {

@@ -41,6 +41,8 @@ public class Film {
 
     private String types;
 
+    private boolean isPrePremiere;
+
 
     @ElementCollection
     @CollectionTable(name = "film_images", joinColumns = @JoinColumn(name = "film_id"))

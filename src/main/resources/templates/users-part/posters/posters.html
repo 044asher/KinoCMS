@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html
+        lang="en"
+        class="light-style layout-menu-fixed"
+        dir="ltr"
+        data-theme="theme-default"
+        data-assets-path="/assets/"
+        data-template="horizontal-menu-template-no-customizer"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>Афиша | Lincoln Plaza</title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/css/user_part/posters.css">
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+    <div class="layout-container">
+        <div th:insert="~{blocks/topbar :: topbar}"></div>
+
+        <!-- Layout container -->
+        <div class="layout-page full-height">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="javascript:void(0)">Афиша</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/posters/upcoming">Скоро</a>
+                    </li>
+                </ul>
+                <!-- Ad Banner -->
+                <img src="/assets/img/elements/15.jpg" alt="Ad Banner" class="ad-banner">
+            </div>
+
+            <!-- Content -->
+            <div class="content-wrapper ml-200">
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container mt-2">
+                        <div class="row">
+                            <!-- PrePremiere Films -->
+                            <div th:if="${!prePremiereFilms.isEmpty()}" th:each="film : ${prePremiereFilms}"
+                                 class="col-md-4">
+                                <div class="card mb-4">
+                                    <img th:src="@{/img/{imageName}(imageName = ${film.mainImage})}"
+                                         class="card-img-top film-img" alt="Film Image">
+                                    <div class="card-body">
+                                        <a th:href="'/film/' + ${film.id}">
+                                            <h5 class="card-title" th:text="${film.name}">Название фильма</h5>
+                                        </a>
+                                        <h6 class="premiere-label">ДОПРЕМЬЕРНЫЙ ПОКАЗ</h6>
+                                        <p th:text="'Смотрите с ' + ${film.getDate()}"></p>
+                                        <a th:href="'/film/' + ${film.id}" class="btn btn-primary">Купить билет</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Current Films -->
+                            <div th:if="${!currentFilms.isEmpty()}" th:each="film : ${currentFilms}" class="col-md-4">
+                                <div class="card mb-4">
+                                    <img th:src="@{/img/{imageName}(imageName = ${film.mainImage})}"
+                                         class="card-img-top film-img" alt="Film Image">
+                                    <div class="card-body">
+                                        <a th:href="'/film/' + ${film.id}">
+                                            <h5 class="card-title" th:text="${film.name}">Название фильма</h5>
+                                        </a>
+                                        <a th:href="'/film/' + ${film.id}" class="btn btn-primary">Купить билет</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div th:if="${currentFilms.isEmpty()}" class="col-md-12">
+                                <p>Нет текущих фильмов.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ Content -->
+        </div>
+        <div th:insert="~{blocks/footer :: footer}"></div>
+        <!--/ Layout container -->
+    </div>
+</div>
+</body>
+</html>

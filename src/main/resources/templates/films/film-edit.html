@@ -206,6 +206,14 @@
                                 </div>
                             </div>
 
+
+                            <!-- Чекбокс для допремьерного статуса -->
+                            <label for="prePremiere" class="form-label mt-2">Допремьерный показ:</label>
+                            <input type="checkbox" name="prePremiere" id="prePremiere" th:checked="*{prePremiere}" th:disabled="${film.date != null and film.date.isBefore(T(java.time.LocalDate).now())}">
+                            <p style="color: red" th:if="${#fields.hasErrors('prePremiere')}" th:errors="*{prePremiere}"></p>
+
+
+
                             <br><br>
                             <h4>SEO блок:</h4>
 
@@ -233,6 +241,34 @@
             </div>
             <!-- / Content -->
             <script src="/js/films/edit.js"></script>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const dateField = document.getElementById('date');
+                    const prePremiereCheckbox = document.getElementById('prePremiere');
+
+                    function checkDate() {
+                        const today = new Date().toISOString().split('T')[0];
+                        const selectedDate = dateField.value;
+
+                        if (selectedDate && selectedDate <= today) {
+                            prePremiereCheckbox.checked = false;
+                            prePremiereCheckbox.disabled = true;
+                        } else {
+                            prePremiereCheckbox.disabled = false;
+                        }
+                    }
+
+                    dateField.addEventListener('change', checkDate);
+
+                    // Check on page load
+                    checkDate();
+                });
+            </script>
+
+
+
+
 
             <div class="content-backdrop fade"></div>
         </div>

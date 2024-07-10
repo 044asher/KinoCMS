@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html
+        lang="en"
+        class="light-style layout-menu-fixed"
+        dir="ltr"
+        data-theme="theme-default"
+        data-assets-path="/assets/"
+        data-template="horizontal-menu-template-no-customizer"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <title th:text="${page.name} + ' | Lincoln Plaza'">Lincoln Plaza</title>
+    <style>
+        .ad-container {
+            width: 150px;
+            height: 300px;
+            position: absolute;
+            top: 620px;
+            right: 70px;
+        }
+
+        .logo-img {
+            width: 90%;
+            height: 520px;
+        }
+
+        .banner {
+            width: 100%;
+            height: 69vh;
+            object-fit: cover;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        .footer {
+            margin-top: auto;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+    <div class="layout-container">
+        <div th:insert="~{blocks/topbar :: topbar}"></div>
+
+        <!-- Layout container -->
+        <div class="layout-page">
+            <!-- Content -->
+            <div class="content-wrapper ml-200">
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container mt-2">
+                        <img th:src="@{/img/{imageName}(imageName = ${page.mainImage})}" alt="banner" class="banner">
+                        <div class="d-flex">
+                            <div class="flex-grow-1">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <h2 class="text-center mt-4 mb-4" th:text="${page.name}">name</h2>
+
+                                        <img th:if="${page.images != null and page.images.size() > 0}"
+                                             th:src="@{/img/{imageName}(imageName = ${page.images[0]})}"
+                                             class="card-img-top logo-img"
+                                             alt="Action Image">
+
+                                        <p th:text="${page.description}" class="mt-3"></p>
+
+                                        <div th:if="${page.images != null and page.images.size() > 1}">
+                                        <div id="carouselExample-cf" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
+                                            <ol class="carousel-indicators">
+                                                <li data-bs-target="#carouselExample-cf" data-bs-slide-to="0" class=""></li>
+                                                <li data-bs-target="#carouselExample-cf" data-bs-slide-to="1" class=""></li>
+                                                <li data-bs-target="#carouselExample-cf" data-bs-slide-to="2" class=""></li>
+                                                <li data-bs-target="#carouselExample-cf" data-bs-slide-to="3" class="active" aria-current="true"></li>
+                                            </ol>
+                                            <div class="carousel-inner">
+                                                <!-- Проверка первого изображения -->
+                                                <div class="carousel-item" th:if="${page.images != null and page.images.size() > 1}">
+                                                    <img class="d-block w-100 img-fluid" th:src="@{/img/{imageName}(imageName=${page.images[1]})}" alt="First slide">
+                                                </div>
+                                                <!-- Проверка второго изображения -->
+                                                <div class="carousel-item" th:if="${page.images != null and page.images.size() > 2}">
+                                                    <img class="d-block w-100 img-fluid" th:src="@{/img/{imageName}(imageName=${page.images[2]})}" alt="Second slide">
+                                                </div>
+                                                <!-- Проверка третьего изображения -->
+                                                <div class="carousel-item" th:if="${page.images != null and page.images.size() > 3}">
+                                                    <img class="d-block w-100 img-fluid" th:src="@{/img/{imageName}(imageName=${page.images[3]})}" alt="Third slide">
+                                                </div>
+                                                <!-- Проверка четвертого изображения -->
+                                                <div class="carousel-item active" th:if="${page.images != null and page.images.size() > 4}">
+                                                    <img class="d-block w-100 img-fluid" th:src="@{/img/{imageName}(imageName=${page.images[4]})}" alt="Fourth slide">
+                                                </div>
+                                            </div>
+                                            <a class="carousel-control-prev" href="#carouselExample-cf" role="button" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next" href="#carouselExample-cf" role="button" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </a>
+                                        </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="ad-container ml-4 mt-4">
+                                <img src="/assets/img/elements/13.jpg" alt="Ad" class="img-fluid ad">
+                                <img src="/assets/img/elements/15.jpg" alt="Ad" class="img-fluid mt-3">
+                                <img src="/assets/img/elements/15.jpg" alt="Ad" class="img-fluid mt-3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- / Content -->
+        </div>
+        <div class="footer" th:insert="~{blocks/footer :: footer}"></div>
+        <!--/ Layout container -->
+
+
+<script src="/assets/vendor/js/bootstrap.js"></script>
+
+
+</body>
+</html>
+
+

@@ -165,7 +165,7 @@
                                 <tbody>
                                 <tr th:id="'row-' + ${news.id}" th:each="news : ${news}">
                                     <td th:text="${news.name}"></td>
-                                    <td th:text="${#temporals.format(news.dateOfCreation, 'dd-MM-yyyy')}"></td>
+                                    <td th:text="${#temporals.format(news.dateOfCreation, 'dd.MM.yyyy')}"></td>
                                     <td class="status-column">
                                         <button th:id="'status-button-' + ${news.id}" th:onclick="'changeStatus(' + ${news.id} + ')'" th:class="${news.notActive} ? 'btn btn-warning' : 'btn btn-success'">
                                             <span th:text="${news.notActive} ? 'ВЫКЛ' : 'ВКЛ'"></span>

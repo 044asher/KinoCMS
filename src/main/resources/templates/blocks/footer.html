@@ -1,0 +1,102 @@
+<div th:fragment="footer">
+    <style>
+        .app-buttons {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .btn-google-play, .btn-app-store {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            width: 200px; /* или другой размер по вашему выбору */
+            height: 50px; /* или другой размер по вашему выбору */
+            margin-bottom: 10px;
+        }
+
+        .btn-google-play {
+            background-color: #3DDC84; /* Цвет Google Play */
+        }
+
+        .btn-app-store {
+            background-color: #0070C9; /* Цвет App Store */
+        }
+
+        .btn-google-play i, .btn-app-store i {
+            margin-right: 10px;
+        }
+
+    </style>
+
+    <!-- Footer -->
+    <section id="adv-footer">
+        <footer class="footer bg-light">
+            <div class="container-fluid container-p-x pt-5 pb-4">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3 mb-4 mb-sm-0">
+                        <h4 class="fw-bolder mb-3">
+                            <a href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/landing-page/"
+                               target="_blank" class="footer-text">Lincoln Plaza</a>
+                        </h4>
+                        <span>Get ready for better feelings</span>
+                        <div class="social-icon my-3">
+                            <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-facebook me-2">
+                                <i class="ti ti-brand-facebook"></i>
+                            </a>
+                            <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-twitter me-2">
+                                <i class="ti ti-brand-twitter"></i>
+                            </a>
+                            <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-linkedin me-2">
+                                <i class="ti ti-brand-linkedin"></i>
+                            </a>
+                            <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-github">
+                                <i class="ti ti-brand-github"></i>
+                            </a>
+                        </div>
+                        <p class="pt-4">
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            © Lincoln Group
+                        </p>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 mb-4 mb-md-0">
+                        <div class="app-buttons">
+                            <a href="https://play.google.com/store/books?hl=en" class="btn btn-google-play">
+                                <i class="fab fa-google-play"></i> Google Play
+                            </a>
+                            <a href="https://apps.apple.com/ru/developer/apple/id284417353?mt=12" class="btn btn-app-store mt-2">
+                                <i class="fab fa-app-store"></i> App Store
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 mb-4 mb-sm-0">
+                        <h5>Products</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Admin Template</a></li>
+                            <li><a href="javascript:void(0)" class="footer-link d-block pb-2">UI Kit</a></li>
+                            <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Styleguide</a></li>
+                            <li><a href="javascript:void(0)" class="footer-link d-block pb-2">API</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <h5>Features</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Affiliate Program</a></li>
+                            <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Integration</a></li>
+                            <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Support</a></li>
+                            <li><a href="javascript:void(0)" class="footer-link d-block pb-2">Special Offers</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+    <!-- / Footer -->
+</div>

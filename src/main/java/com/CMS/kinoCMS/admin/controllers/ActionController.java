@@ -41,47 +41,47 @@ public class ActionController {
         return "actions/action-list";
     }
 
-    @GetMapping("/add")
-    public String actionAdd(Model model) {
-        logger.info("Entering actionAdd (GET) method");
-        model.addAttribute("action", new Action());
-        logger.info("Exiting actionAdd (GET) method");
+        @GetMapping("/add")
+        public String actionAdd(Model model) {
+            logger.info("Entering actionAdd (GET) method");
+            model.addAttribute("action", new Action());
+            logger.info("Exiting actionAdd (GET) method");
 
-        return "actions/action-add";
-    }
-
-    @PostMapping("/add")
-    public String actionAdd(@Valid @ModelAttribute Action action,
-                            BindingResult bindingResult,
-                            @RequestParam(required = false) MultipartFile file,
-                            @RequestParam("additionalFiles") MultipartFile[] additionalFiles) {
-        logger.info("Entering actionAdd (POST) method");
-        if (bindingResult.hasErrors()) {
-            logger.warn("Binding result has errors: {}", bindingResult.getAllErrors());
             return "actions/action-add";
         }
-        try {
-            if (file != null && !file.isEmpty()) {
-                String fileName = fileUploadService.uploadFile(file);
-                action.setMainImage(fileName);
-                logger.info("File uploaded successfully with name: {}", fileName);
-            }
 
-            if (additionalFiles != null && additionalFiles.length > 0) {
-                List<String> newImageNames = fileUploadService.uploadAdditionalFiles(additionalFiles);
-                action.getImages().addAll(newImageNames.stream().limit(5).toList());
-                logger.info("Uploaded additional files for new action");
+        @PostMapping("/add")
+        public String actionAdd(@Valid @ModelAttribute Action action,
+                                BindingResult bindingResult,
+                                @RequestParam(required = false) MultipartFile file,
+                                @RequestParam("additionalFiles") MultipartFile[] additionalFiles) {
+            logger.info("Entering actionAdd (POST) method");
+            if (bindingResult.hasErrors()) {
+                logger.warn("Binding result has errors: {}", bindingResult.getAllErrors());
+                return "actions/action-add";
             }
+            try {
+                if (file != null && !file.isEmpty()) {
+                    String fileName = fileUploadService.uploadFile(file);
+                    action.setMainImage(fileName);
+                    logger.info("File uploaded successfully with name: {}", fileName);
+                }
 
-            action.setDateOfCreation(LocalDate.now());
-            actionService.save(action);
-            logger.info("Action saved successfully with ID: {}", action.getId());
-        } catch (IOException e) {
-            logger.error("Error uploading file", e);
+                if (additionalFiles != null && additionalFiles.length > 0) {
+                    List<String> newImageNames = fileUploadService.uploadAdditionalFiles(additionalFiles);
+                    action.getImages().addAll(newImageNames.stream().limit(5).toList());
+                    logger.info("Uploaded additional files for new action");
+                }
+
+                action.setDateOfCreation(LocalDate.now());
+                actionService.save(action);
+                logger.info("Action saved successfully with ID: {}", action.getId());
+            } catch (IOException e) {
+                logger.error("Error uploading file", e);
+            }
+            logger.info("Exiting actionAdd (POST) method");
+            return "redirect:/admin/actions";
         }
-        logger.info("Exiting actionAdd (POST) method");
-        return "redirect:/admin/actions";
-    }
 
     @GetMapping("/{id}")
     public String actionEdit(@PathVariable int id, Model model) {
