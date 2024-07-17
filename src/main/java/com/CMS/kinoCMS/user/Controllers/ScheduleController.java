@@ -15,12 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/schedule")
@@ -51,29 +48,14 @@ public class ScheduleController {
                            @RequestParam(required = false) String filmType,
                            Model model) {
         Optional<Cinema> cinema = cinemaService.findById(id);
-        LocalDate today = LocalDate.now();
-        LocalDate oneWeekLater = today.plusWeeks(1);
-        LocalTime currentTime = LocalTime.now();
 
-        List<Schedule> schedules = scheduleService.findByCinemaIdAndDateRange(id, today, oneWeekLater);
 
-        // Фильтрация расписаний на текущий день и последующие дни
-        List<Schedule> filteredSchedules = schedules.stream()
-                .filter(schedule -> !schedule.getDate().isEqual(today) || schedule.getTime().isAfter(currentTime))
-                .filter(schedule -> filmId == null || schedule.getFilm().getId().equals(filmId))
-                .filter(schedule -> hallId == null || schedule.getHall().getId().equals(hallId))
-                .filter(schedule -> filmType == null || schedule.getFilm().getTypes().contains(filmType))
-                .sorted(Comparator.comparing(Schedule::getTime))
-                .toList();
-
-        // Группировка по датам
-        Map<LocalDate, List<Schedule>> schedulesByDate = filteredSchedules.stream()
-                .collect(Collectors.groupingBy(Schedule::getDate));
-
+        List<Schedule> filteredSchedules = scheduleService.getFilteredSchedules(id, filmId, hallId, filmType);
+        Map<LocalDate, List<Schedule>> schedulesByDate = scheduleService.groupSchedulesByDate(filteredSchedules);
         // Сортировка по датам
         List<Map.Entry<LocalDate, List<Schedule>>> sortedSchedulesByDate = schedulesByDate.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
-                .collect(Collectors.toList());
+                .toList();
 
         model.addAttribute("cinema", cinema.orElseThrow());
         model.addAttribute("schedulesByDate", sortedSchedulesByDate);

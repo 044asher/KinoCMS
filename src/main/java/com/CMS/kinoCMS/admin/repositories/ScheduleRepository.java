@@ -14,4 +14,6 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     List<Schedule> findByCinemaId(long cinemaId);
 
     List<Schedule> findByHallIdAndDateBetween(long hallId, LocalDate today, LocalDate endDate);
+
+    List<Schedule> findByFilmIdAndDateBetween(long filmId, LocalDate today, LocalDate endDate);
 }

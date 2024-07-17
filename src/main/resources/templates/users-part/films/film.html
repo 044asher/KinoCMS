@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html
+        lang="en"
+        class="light-style layout-menu-fixed"
+        dir="ltr"
+        data-theme="theme-default"
+        data-assets-path="/assets/"
+        data-template="horizontal-menu-template-no-customizer"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <title th:text="${film.name} + ' | Lincoln Plaza'">Lincoln Plaza</title>
+
+    <style>
+        .logo-img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+    <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/node-waves/node-waves.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/typeahead-js/typeahead.css"/>
+    <link rel="stylesheet" href="/assets/vendor/libs/swiper/swiper.css"/>
+    <link rel="stylesheet" href="/assets/vendor/css/pages/ui-carousel.css"/>
+    <script src="/assets/vendor/js/helpers.js"></script>
+    <script src="/assets/js/config.js"></script>
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="/assets/vendor/css/pages/ui-carousel.css"/>
+    <!-- Helpers -->
+    <script src="/assets/vendor/js/helpers.js"></script>
+</head>
+
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+    <div class="layout-container">
+        <div th:insert="~{blocks/topbar :: topbar}"></div>
+
+        <!-- Layout container -->
+        <div class="layout-page">
+            <!-- Content -->
+            <div class="content-wrapper ml-200">
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container mt-2">
+
+                        <iframe width="780" height="380"
+                                th:src="${embedLink}"
+                                title="YouTube video player"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+
+                        <div class="d-flex">
+                            <div class="flex-grow-1">
+                                <div class="row">
+                                    <h2 class="text-center mt-4 mb-4" th:text="${film.name}">name</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div th:each="entry : ${schedulesByCinema.entrySet()}">
+                            <h3 th:text="${entry.key.name}">Cinema Name</h3>
+                            <div class="row mb-3">
+                                <div th:each="schedule : ${entry.value}" class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title"
+                                                th:text="${#temporals.format(schedule.date, 'dd.MM.yyyy')} + '. Зал №: ' + ${schedule.hall.number}">
+                                                Date - Hall</h5>
+                                            <p class="card-text">
+                                                <strong>Время:</strong> <span th:text="${schedule.time}">Time</span><br>
+                                                <strong>Цена:</strong> $<span th:text="${schedule.price}">Price</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img th:src="@{'/img/' + ${film.mainImage}}" alt="Logo" class="logo-img">
+
+                                <table class="table table-bordered mt-2">
+                                    <tbody>
+                                    <tr th:if="${film.year != null}">
+                                        <td>Год:</td>
+                                        <td th:text="${film.year}"></td>
+                                    </tr>
+                                    <tr th:if="${film.country != null}">
+                                        <td>Страна:</td>
+                                        <td th:text="${film.country}"></td>
+                                    </tr>
+                                    <tr th:if="${film.musician != null}">
+                                        <td>Композитор:</td>
+                                        <td th:text="${film.musician}"></td>
+                                    </tr>
+                                    <tr th:if="${film.producer != null and film.producer.size() > 0}">
+                                        <td>Продюсеры:</td>
+                                        <td th:each="producer : ${film.producer}">
+                                            <span th:text="${producer}"></span><br>
+                                        </td>
+                                    </tr>
+                                    <tr th:if="${film.director != null}">
+                                        <td>Режиссер:</td>
+                                        <td th:text="${film.director}"></td>
+                                    </tr>
+                                    <tr th:if="${film.writer != null and film.writer.size() > 0}">
+                                        <td>Сценаристы:</td>
+                                        <td th:each="writer : ${film.writer}">
+                                            <span th:text="${writer}"></span><br>
+                                        </td>
+                                    </tr>
+                                    <tr th:if="${film.genre != null and film.genre.size() > 0}">
+                                        <td>Жанры:</td>
+                                        <td th:each="genre : ${film.genre}">
+                                            <span th:text="${genre}"></span><br>
+                                        </td>
+                                    </tr>
+                                    <tr th:if="${film.age != null}">
+                                        <td>Возрастное ограничение:</td>
+                                        <td th:text="${film.age}"></td>
+                                    </tr>
+                                    <tr th:if="${film.time != null}">
+                                        <td>Продолжительность (мин.):</td>
+                                        <td th:text="${film.time}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="col-md-8">
+                                <p th:text="${film.description}"></p>
+                                <div th:if="${film.images != null and film.images.size() > 0}">
+                                    <h2 class="text-center mt-3">Скриншоты</h2>
+                                    <div class="container">
+                                        <div class="col-12">
+                                            <div id="swiper-gallery">
+                                                <div class="swiper gallery-top">
+                                                    <div class="swiper-wrapper">
+                                                        <div th:each="image, iterStat : ${film.images}"
+                                                             class="swiper-slide">
+                                                            <img th:src="@{/img/{image}(image=${image})}"
+                                                                 alt="Image" class="img-fluid"/>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Add Arrows -->
+                                                    <div class="swiper-button-next swiper-button-white"></div>
+                                                    <div class="swiper-button-prev swiper-button-white"></div>
+                                                </div>
+                                                <div class="swiper gallery-thumbs">
+                                                    <div class="swiper-wrapper">
+                                                        <div th:each="image, iterStat : ${film.images}"
+                                                             class="swiper-slide">
+                                                            <img th:src="@{/img/{image}(image=${image})}"
+                                                                 alt="Image Thumbnail" class="img-fluid"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- / Content -->
+</div>
+<div class="footer" th:insert="~{blocks/footer :: footer}"></div>
+<!--/ Layout container -->
+<script src="/assets/vendor/js/bootstrap.js"></script>
+
+
+<script src="/assets/vendor/js/bootstrap.js"></script>
+
+<!-- Vendors JS -->
+<script src="/assets/vendor/libs/swiper/swiper.js"></script>
+
+<!-- Page JS -->
+<script src="/assets/js/ui-carousel.js"></script>
+
+
+</body>
+</html>

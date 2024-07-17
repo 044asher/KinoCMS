@@ -87,3 +87,27 @@ function handleAdditionalFiles(files) {
         reader.readAsDataURL(file);
     });
 }
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const dateField = document.getElementById('date');
+    const prePremiereCheckbox = document.getElementById('prePremiere');
+
+    function checkDate() {
+        const today = new Date().toISOString().split('T')[0];
+        const selectedDate = dateField.value;
+
+        if (selectedDate && selectedDate <= today) {
+            prePremiereCheckbox.checked = false;
+            prePremiereCheckbox.disabled = true;
+        } else {
+            prePremiereCheckbox.disabled = false;
+        }
+    }
+
+    dateField.addEventListener('change', checkDate);
+
+    // Check on page load
+    checkDate();
+});

@@ -20,8 +20,6 @@ public class MvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/");
 
 
-
-
         registry.addResourceHandler("/assets/**")
                 .addResourceLocations("classpath:/static/assets/");
         registry.addResourceHandler("/js/**")

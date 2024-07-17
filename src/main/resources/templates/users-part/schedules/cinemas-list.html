@@ -40,7 +40,7 @@
                                             <img th:src="@{/img/{imageName}(imageName = ${cinema.logoName})}" class="card-img-top logo-img" alt="Film Image">
                                             <div class="card-body">
                                                 <h5 class="card-title" th:text="${cinema.name}">Название</h5>
-                                                <p>Адрес: <span th:text="${cinema.address}">Cinema Address</span></p>
+                                                <p th:if="${cinema.address} != null">Адрес: <span th:text="${cinema.address}">Cinema Address</span></p>
                                                 <div class="btn-group" role="group">
                                                     <a th:href="'/schedule/' + ${cinema.id}" class="btn btn-success btn-rounded-left">Посмотреть расписания</a>
                                                 </div>

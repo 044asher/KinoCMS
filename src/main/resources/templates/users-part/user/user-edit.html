@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html
+        lang="en"
+        class="light-style layout-menu-fixed"
+        dir="ltr"
+        data-theme="theme-default"
+        data-assets-path="/assets/"
+        data-template="horizontal-menu-template-no-customizer"
+>
+<head>
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <title th:text="'Редактирование пользователя | Lincoln Plaza'">Lincoln Plaza</title>
+</head>
+<body>
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+    <div class="layout-container">
+        <div th:insert="~{blocks/topbar :: topbar}"></div>
+        <h2 class="text-center mt-4 mb-4">Edit User Profile</h2>
+        <form th:action="@{/user/edit}" th:object="${user}" method="post" class="container mt-5">
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="row">
+                <!-- Первая колонка -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Логин (псевдоним):</label>
+                        <input type="text" id="username" class="form-control" th:field="*{username}"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Эл. почта:</label>
+                        <input type="email" id="email" class="form-control" th:field="*{email}"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Адрес:</label>
+                        <input type="text" id="address" class="form-control" th:field="*{address}"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phoneNumber" class="form-label">Номер телефона</label>
+                        <input type="text" id="phoneNumber" class="form-control" th:field="*{phoneNumber}"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dateOfBirthday" class="form-label">Дата рождения</label>
+                        <input type="date" id="dateOfBirthday" class="form-control" th:field="*{dateOfBirthday}"/>
+                    </div>
+
+
+                </div>
+
+                <!-- Вторая колонка -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="gender" class="form-label">Пол:</label>
+                        <select id="gender" class="form-select" th:field="*{gender}">
+                            <option value="prefer_not_to_say">Предпочитаю не говорить</option>
+                            <option value="female">Женщина</option>
+                            <option value="male">Мужчина</option>
+                            <option value="non_binary">Не бинарная особа</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">Имя:</label>
+                        <input type="text" id="firstName" class="form-control" th:field="*{firstName}"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Фамилия:</label>
+                        <input type="text" id="lastName" class="form-control" th:field="*{lastName}"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="city" class="form-label">Город:</label>
+                        <select id="city" class="form-select" th:field="*{city.id}">
+                            <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
+                        </select>
+                    </div>
+
+                    <div class="card p-3">
+                        <p class="text-center">Смена пароля</p>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Введите пароль:</label>
+                            <input type="password" id="password" class="form-control" th:field="*{password}"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="passwordConfirm" class="form-label">Подтвердите пароль:</label>
+                            <input type="password" id="passwordConfirm" class="form-control" th:field="*{passwordConfirm}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-primary mb-5">Save Changes</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+<div th:insert="~{blocks/footer :: footer}"></div>
+<script src="/assets/vendor/js/bootstrap.js"></script>
+</body>
+</html>

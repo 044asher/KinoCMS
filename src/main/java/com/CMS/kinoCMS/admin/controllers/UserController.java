@@ -88,7 +88,6 @@ public class UserController {
             existingUser.setAddress(user.getAddress());
             existingUser.setPhoneNumber(user.getPhoneNumber());
 
-            // Set date of birthday if not null
             if (user.getDateOfBirthday() != null) {
                 existingUser.setDateOfBirthday(user.getDateOfBirthday());
             }

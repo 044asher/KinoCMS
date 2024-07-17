@@ -43,7 +43,6 @@ public class Film {
 
     private boolean isPrePremiere;
 
-
     @ElementCollection
     @CollectionTable(name = "film_images", joinColumns = @JoinColumn(name = "film_id"))
     @Column(name = "image_name")
@@ -51,7 +50,6 @@ public class Film {
     private List<String> images = new ArrayList<>();
 
     // ------------- SEO Block
-
     @Size(max=255, message = "Url should be less than 255 characters")
     @NotEmpty(message = "Url shouldn't be empty")
     private String urlSEO;
@@ -68,4 +66,28 @@ public class Film {
     @NotEmpty(message = "Description shouldn't be empty")
     private String descriptionSEO;
 
+    //---------------Info-------------------
+    private int year;
+    private String country;
+    private String musician;
+
+    @ElementCollection
+    @CollectionTable(name = "film_producers", joinColumns = @JoinColumn(name = "film_id"))
+    @Column(name = "producer")
+    private List<String> producer = new ArrayList<>();
+
+    private String director;
+
+    @ElementCollection
+    @CollectionTable(name = "film_writers", joinColumns = @JoinColumn(name = "film_id"))
+    @Column(name = "writer")
+    private List<String> writer = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(name = "film_genres", joinColumns = @JoinColumn(name = "film_id"))
+    @Column(name = "genre")
+    private List<String> genre = new ArrayList<>();
+
+    private int age;
+    private int time;
 }

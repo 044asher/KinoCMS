@@ -2,9 +2,8 @@ package com.CMS.kinoCMS.admin.controllers.Cinemas;
 
 import com.CMS.kinoCMS.admin.models.Cinema;
 import com.CMS.kinoCMS.admin.services.CinemaService;
-import com.CMS.kinoCMS.admin.services.HallService;
-import com.CMS.kinoCMS.admin.models.Hall;
 import com.CMS.kinoCMS.admin.services.FileUploadService;
+import com.CMS.kinoCMS.admin.services.HallService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -85,55 +83,10 @@ public class CinemaController {
         }
 
         try {
-            if (!logo.isEmpty()) {
-                String resultLogoName = fileUploadService.uploadFile(logo);
-                cinema.setLogoName(resultLogoName);
-                logger.info("Uploaded cinema logo: {}", resultLogoName);
-            }
-            if (!banner.isEmpty()) {
-                String resultBannerName = fileUploadService.uploadFile(banner);
-                cinema.setBannerName(resultBannerName);
-                logger.info("Uploaded cinema banner: {}", resultBannerName);
-            }
-
-            if (additionalFiles != null && additionalFiles.length > 0) {
-                List<String> newImageNames = fileUploadService.uploadAdditionalFiles(additionalFiles);
-                cinema.getImages().addAll(newImageNames.stream().limit(5).toList());
-            }
-
-            cinemaService.save(cinema);
+            cinemaService.saveCinema(cinema, logo, banner, additionalFiles, hallNumber, hallDescription, hallScheme, hallBanner, urlSeo, titleSeo, keywordsSeo, descriptionSeo);
             logger.info("Saved cinema: {}", cinema.getName());
-
-            if (hallNumber != null && !hallNumber.isEmpty()) {
-                for (int i = 0; i < hallNumber.size(); i++) {
-                    Hall hall = new Hall();
-                    hall.setNumber(hallNumber.get(i));
-                    hall.setDescription(hallDescription.get(i));
-                    hall.setCinema(cinema);
-
-                    if (hallScheme != null && i < hallScheme.size() && !hallScheme.get(i).isEmpty()) {
-                        String resultSchemeName = fileUploadService.uploadFile(hallScheme.get(i));
-                        hall.setScheme(resultSchemeName);
-                        logger.info("Uploaded hall scheme: {}", resultSchemeName);
-                    }
-                    if (hallBanner != null && i < hallBanner.size() && !hallBanner.get(i).isEmpty()) {
-                        String resultBannerName = fileUploadService.uploadFile(hallBanner.get(i));
-                        hall.setTopBanner(resultBannerName);
-                        logger.info("Uploaded hall banner: {}", resultBannerName);
-                    }
-                    hall.setUrlSEO(urlSeo.get(i));
-                    hall.setTitleSEO(titleSeo.get(i));
-                    hall.setKeywordsSEO(keywordsSeo.get(i));
-                    hall.setDescriptionSEO(descriptionSeo.get(i));
-                    hall.setCreationDate(LocalDate.now());
-                    hallService.save(hall);
-                    logger.info("Saved hall: {}", hall.getNumber());
-                }
-            }
-
         } catch (IOException e) {
             logger.error("Error uploading files or saving cinema/hall: {}", e.getMessage());
-            e.printStackTrace();
         }
 
         logger.info("Exiting addCinema (POST) method");
@@ -228,7 +181,6 @@ public class CinemaController {
             logger.info("Updated cinema with ID: {}", id);
         } catch (IOException e) {
             logger.error("Error uploading files or saving cinema: {}", e.getMessage());
-            e.printStackTrace();
             return "cinemas/edit";
         }
 

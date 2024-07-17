@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/cinemas")
@@ -47,77 +48,42 @@ public class CinemaUserController {
         Optional<Cinema> cinema = cinemaService.findById(id);
         cinema.ifPresent(value -> model.addAttribute("cinema", value));
 
-        LocalDate today = LocalDate.now();
-        LocalTime currentTime = LocalTime.now();
+        List<Schedule> filteredSchedules = scheduleService.getFilteredSchedules(id, null, null, null);
+        Map<LocalDate, List<Schedule>> schedulesByDate = scheduleService.groupSchedulesByDate(filteredSchedules);
 
-        // Найти все расписания на сегодня
-        List<Schedule> schedules = scheduleService.findByCinemaIdAndDateRange(id, today, today);
-
-        // Отфильтровать сеансы, которые начинаются сегодня и не прошли по времени
-        List<Schedule> filteredSchedules = schedules.stream()
-                .filter(schedule -> schedule.getDate().isEqual(today) && schedule.getTime().isAfter(currentTime))
-                .sorted(Comparator.comparing(Schedule::getTime))
-                .toList();
-
-        // Группировать сеансы по дате
-        Map<LocalDate, List<Schedule>> schedulesByDate = filteredSchedules.stream()
-                .collect(Collectors.groupingBy(Schedule::getDate));
-
-        // Сортировать сгруппированные сеансы по дате
         List<Map.Entry<LocalDate, List<Schedule>>> sortedSchedulesByDate = schedulesByDate.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
                 .toList();
 
-
-
-        List<Hall> halls = hallService.findAll();
-        List<Hall> filteredHalls = halls.stream().sorted(Comparator.comparing(Hall::getNumber))
+        List<Hall> halls = hallService.findAll().stream()
+                .sorted(Comparator.comparing(Hall::getNumber))
                 .toList();
-
 
         model.addAttribute("cinema", cinema.orElseThrow());
         model.addAttribute("schedulesByDate", sortedSchedulesByDate);
         model.addAttribute("films", filmService.findAll());
-        model.addAttribute("halls", filteredHalls);
-        model.addAttribute("images", cinema.get().getImages());
+        model.addAttribute("halls", halls);
+        model.addAttribute("images", cinema.orElseThrow().getImages());
 
         return "users-part/cinemas/cinema-info";
     }
-
-
 
     @GetMapping("/hall/{hallId}")
     public String hallSchedule(@PathVariable long hallId, Model model) {
         Optional<Hall> hall = hallService.findById(hallId);
         hall.ifPresent(value -> model.addAttribute("hall", value));
 
-        LocalDate today = LocalDate.now();
-        LocalTime currentTime = LocalTime.now();
+        List<Schedule> filteredSchedules = scheduleService.getFilteredSchedules(null, null, hallId, null);
+        Map<LocalDate, List<Schedule>> schedulesByDate = scheduleService.groupSchedulesByDate(filteredSchedules);
 
-        // Найти все расписания на сегодня для данного зала
-        List<Schedule> schedules = scheduleService.findByHallIdAndDateRange(hallId, today, today);
-
-        // Отфильтровать сеансы, которые начинаются сегодня и не прошли по времени
-        List<Schedule> filteredSchedules = schedules.stream()
-                .filter(schedule -> schedule.getDate().isEqual(today) && schedule.getTime().isAfter(currentTime))
-                .sorted(Comparator.comparing(Schedule::getTime))
-                .toList();
-
-        // Группировать сеансы по дате
-        Map<LocalDate, List<Schedule>> schedulesByDate = filteredSchedules.stream()
-                .collect(Collectors.groupingBy(Schedule::getDate));
-
-        // Сортировать сгруппированные сеансы по дате
         List<Map.Entry<LocalDate, List<Schedule>>> sortedSchedulesByDate = schedulesByDate.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
                 .toList();
 
         model.addAttribute("schedulesByDate", sortedSchedulesByDate);
         model.addAttribute("films", filmService.findAll());
-        model.addAttribute("images", hall.get().getImages());
+        model.addAttribute("images", hall.orElseThrow().getImages());
 
         return "users-part/cinemas/halls/hall-info";
     }
-
-
 }

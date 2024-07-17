@@ -1,16 +1,15 @@
 package com.CMS.kinoCMS.admin.controllers;
 
-import com.CMS.kinoCMS.admin.models.Pages.MenuItem;
-import com.CMS.kinoCMS.admin.services.Pages.ContactsPageService;
-import com.CMS.kinoCMS.admin.services.Pages.MainPageService;
 import com.CMS.kinoCMS.admin.models.Cinema;
 import com.CMS.kinoCMS.admin.models.DTO.CinemaUpdateDto;
 import com.CMS.kinoCMS.admin.models.DTO.Mappers.CinemaMapper;
 import com.CMS.kinoCMS.admin.models.Pages.Contact;
 import com.CMS.kinoCMS.admin.models.Pages.MainPage;
+import com.CMS.kinoCMS.admin.models.Pages.MenuItem;
 import com.CMS.kinoCMS.admin.models.Pages.Page;
 import com.CMS.kinoCMS.admin.services.CinemaService;
-import com.CMS.kinoCMS.admin.services.FileUploadService;
+import com.CMS.kinoCMS.admin.services.Pages.ContactsPageService;
+import com.CMS.kinoCMS.admin.services.Pages.MainPageService;
 import com.CMS.kinoCMS.admin.services.Pages.MenuItemService;
 import com.CMS.kinoCMS.admin.services.Pages.PageService;
 import jakarta.validation.Valid;
@@ -25,7 +24,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,16 +36,14 @@ public class PagesController {
     private final MainPageService mainPageService;
     private final ContactsPageService contactsPageService;
     private final PageService pageService;
-    private final FileUploadService fileUploadService;
     private final CinemaService cinemaService;
     private final MenuItemService menuItemService;
 
     @Autowired
-    public PagesController(MainPageService mainPageService, ContactsPageService contactsPageService, PageService pageService, FileUploadService fileUploadService, CinemaService cinemaService, MenuItemService menuItemService) {
+    public PagesController(MainPageService mainPageService, ContactsPageService contactsPageService, PageService pageService, CinemaService cinemaService, MenuItemService menuItemService) {
         this.mainPageService = mainPageService;
         this.contactsPageService = contactsPageService;
         this.pageService = pageService;
-        this.fileUploadService = fileUploadService;
         this.cinemaService = cinemaService;
         this.menuItemService = menuItemService;
     }
@@ -82,22 +78,7 @@ public class PagesController {
             return "pages/pages-add";
         }
         try {
-            if (file != null && !file.isEmpty()) {
-                String fileName = fileUploadService.uploadFile(file);
-                newPage.setMainImage(fileName);
-                logger.info("File uploaded successfully with name: {}", fileName);
-            }
-
-            if (additionalFiles != null && additionalFiles.length > 0) {
-                List<String> newImageNames = fileUploadService.uploadAdditionalFiles(additionalFiles);
-                newPage.getImages().addAll(newImageNames.stream().limit(5).toList());
-                logger.info("Uploaded additional files for new page");
-            }
-
-            newPage.setDateOfCreation(LocalDate.now());
-            newPage.setNotActive(false);
-            newPage.setDefault(false);
-            pageService.save(newPage);
+            pageService.addNewPage(newPage, file, additionalFiles);
             logger.info("Page saved successfully with ID: {}", newPage.getId());
         } catch (IOException e) {
             logger.error("Error uploading file", e);
@@ -131,20 +112,8 @@ public class PagesController {
             return "pages/main-page";
         }
 
-        MainPage existingMainPage = mainPageService.findById(id)
-                .orElseThrow(() -> new RuntimeException("Main Page Not Found"));
-
-        existingMainPage.setFirsNumber(mainPage.getFirsNumber());
-        existingMainPage.setSecondNumber(mainPage.getSecondNumber());
-        existingMainPage.setTextSEO(mainPage.getTextSEO());
-        existingMainPage.setDateOfCreation(existingMainPage.getDateOfCreation());
-        existingMainPage.setTitleSEO(mainPage.getTitleSEO());
-        existingMainPage.setUrlSEO(mainPage.getUrlSEO());
-        existingMainPage.setKeywordsSEO(mainPage.getKeywordsSEO());
-        existingMainPage.setDescriptionSEO(mainPage.getDescriptionSEO());
-
-        mainPageService.save(existingMainPage);
-        logger.info("Main page updated successfully with ID: {}", existingMainPage.getId());
+        mainPageService.updateMainPage(id, mainPage);
+        logger.info("Main page updated successfully with ID: {}", id);
         logger.info("Exiting mainPageEdit (POST) method");
         return "redirect:/admin/pages";
     }
@@ -170,17 +139,12 @@ public class PagesController {
             return "pages/contacts-page";
         }
 
-        Contact existingContact = contactsPageService.findById(id).orElseThrow(() -> new RuntimeException("Contact Not Found"));
-        existingContact.setTitleSEO(contact.getTitleSEO());
-        existingContact.setUrlSEO(contact.getUrlSEO());
-        existingContact.setKeywordsSEO(contact.getKeywordsSEO());
-        existingContact.setDescriptionSEO(contact.getDescriptionSEO());
-
-        contactsPageService.save(existingContact);
-        logger.info("Contact page updated successfully with ID: {}", existingContact.getId());
+        contactsPageService.updateContactPage(id, contact);
+        logger.info("Contact page updated successfully with ID: {}", id);
         logger.info("Exiting contactsPageEdit (POST) method");
         return "redirect:/admin/pages";
     }
+
 
     @GetMapping("/contacts/cinema/edit/{id}")
     public String cinemaPageEdit(@PathVariable Long id, Model model) {
@@ -205,20 +169,8 @@ public class PagesController {
         }
 
         try {
-            Cinema existingCinema = cinemaService.findById(id)
-                    .orElseThrow(() -> new RuntimeException("Cinema Not Found"));
-
-            if (logoFile != null && !logoFile.isEmpty()) {
-                String fileName = fileUploadService.uploadFile(logoFile);
-                existingCinema.setLogoName(fileName);
-                logger.info("File uploaded successfully with name: {}", fileName);
-            }
-
-            existingCinema.setAddress(cinemaUpdateDto.getAddress());
-            existingCinema.setXCoordinate(cinemaUpdateDto.getXCoordinate());
-            existingCinema.setYCoordinate(cinemaUpdateDto.getYCoordinate());
-            cinemaService.save(existingCinema);
-            logger.info("Cinema updated successfully with ID: {}", existingCinema.getId());
+            contactsPageService.updateCinemaPage(id, cinemaUpdateDto, logoFile);
+            logger.info("Cinema updated successfully with ID: {}", id);
         } catch (IOException e) {
             logger.error("Error uploading file", e);
         }
@@ -230,7 +182,7 @@ public class PagesController {
     public String pageEdit(@PathVariable long id, Model model) {
         logger.info("Entering pageEdit (GET) method with ID: {}", id);
         Optional<Page> optionalPage = pageService.findById(id);
-        if(optionalPage.isPresent()) {
+        if (optionalPage.isPresent()) {
             Page page = optionalPage.get();
             model.addAttribute("page", page);
 
@@ -261,27 +213,8 @@ public class PagesController {
             return "pages/pages-edit";
         }
         try {
-            Page existingPage = pageService.findById(id).orElseThrow(() -> new RuntimeException("Page Not Found"));
-            if (file != null && !file.isEmpty()) {
-                existingPage.setMainImage(fileUploadService.uploadFile(file));
-                logger.info("File uploaded successfully with name: {}", existingPage.getMainImage());
-            }
-
-            if(additionalFiles != null && additionalFiles.length > 0) {
-                List<String> newImageNames = fileUploadService.uploadAdditionalFiles(additionalFiles);
-                existingPage.getImages().clear();
-                existingPage.getImages().addAll(newImageNames.stream().limit(5).toList());
-                logger.info("Uploaded additional files for page with id: {}", id);
-            }
-
-            existingPage.setName(page.getName());
-            existingPage.setDescription(page.getDescription());
-            existingPage.setDescriptionSEO(page.getDescriptionSEO());
-            existingPage.setTitleSEO(page.getTitleSEO());
-            existingPage.setUrlSEO(page.getUrlSEO());
-            existingPage.setKeywordsSEO(page.getKeywordsSEO());
-            pageService.save(existingPage);
-            logger.info("Page updated successfully with ID: {}", existingPage.getId());
+            pageService.updatePage(id, page, file, additionalFiles);
+            logger.info("Page updated successfully with ID: {}", id);
         } catch (IOException e) {
             logger.error("Error uploading file", e);
         }
@@ -295,51 +228,16 @@ public class PagesController {
                               @RequestParam String itemName,
                               @RequestParam double price,
                               @RequestParam String ingredients) {
-        Optional<Page> optionalPage = pageService.findById(id);
-        if (optionalPage.isPresent()) {
-            Page page = optionalPage.get();
-            if ("Кафе-Бар".equals(page.getName())) {
-                MenuItem menuItem = new MenuItem();
-                menuItem.setItemName(itemName);
-                menuItem.setPrice(price);
-                menuItem.setPage(page);
-                menuItem.setIngredients(ingredients);
-                menuItemService.save(menuItem);
-            }
-        }
+        pageService.addMenuItemToPage(id, itemName, price, ingredients);
         return "redirect:/admin/pages/" + id;
     }
-
-    @PostMapping("/delete-menu-item/{itemId}")
-    public String deleteMenuItem(@PathVariable long pageId, @PathVariable long itemId) {
-        menuItemService.deleteById(itemId);
-        return "redirect:/admin/pages/" + pageId;
-    }
-
-    @PostMapping("/{pageId}/edit-menu-item/{itemId}")
-    public String editMenuItem(@PathVariable long pageId, @PathVariable long itemId,
-                               @RequestParam String itemName, @RequestParam double price,
-                               @RequestParam String ingredients) {
-        MenuItem menuItem = menuItemService.findById(itemId);
-        if (menuItem != null) {
-            menuItem.setItemName(itemName);
-            menuItem.setPrice(price);
-            menuItem.setIngredients(ingredients);
-            menuItemService.save(menuItem);
-        }
-        return "redirect:/admin/pages/" + pageId;
-    }
-
-
 
     @PostMapping("/main-page/{id}/change-status")
     public ResponseEntity<Void> changeStatus(@PathVariable long id) {
         logger.info("Entering changeStatus method with ID: {}", id);
         Optional<MainPage> optionalMainPage = mainPageService.findById(id);
         if (optionalMainPage.isPresent()) {
-            MainPage mainPage = optionalMainPage.get();
-            mainPage.setNotActive(!mainPage.isNotActive());
-            mainPageService.save(mainPage);
+            pageService.changeStatus(optionalMainPage.get());
             logger.info("Main page status changed successfully for ID: {}", id);
             return ResponseEntity.ok().build();
         } else {
@@ -353,9 +251,7 @@ public class PagesController {
         logger.info("Entering changeStatusContacts method with ID: {}", id);
         Optional<Contact> optionalContactsPage = contactsPageService.findById(id);
         if (optionalContactsPage.isPresent()) {
-            Contact contactPage = optionalContactsPage.get();
-            contactPage.setNotActive(!contactPage.isNotActive());
-            contactsPageService.save(contactPage);
+            pageService.changeStatus(optionalContactsPage.get());
             logger.info("Contact page status changed successfully for ID: {}", id);
             return ResponseEntity.ok().build();
         } else {
@@ -369,9 +265,7 @@ public class PagesController {
         logger.info("Entering changeStatusPages method with ID: {}", id);
         Optional<Page> optionalPage = pageService.findById(id);
         if (optionalPage.isPresent()) {
-            Page page = optionalPage.get();
-            page.setNotActive(!page.isNotActive());
-            pageService.save(page);
+            pageService.changeStatus(optionalPage.get());
             logger.info("Page status changed successfully for ID: {}", id);
             return ResponseEntity.ok().build();
         } else {

@@ -29,4 +29,20 @@ public class MainPageService {
         mainPageRepository.save(mainPage);
     }
 
+    public void updateMainPage(long id, MainPage mainPage) {
+        MainPage existingMainPage = findById(id)
+                .orElseThrow(() -> new RuntimeException("Main Page Not Found"));
+
+        existingMainPage.setFirsNumber(mainPage.getFirsNumber());
+        existingMainPage.setSecondNumber(mainPage.getSecondNumber());
+        existingMainPage.setTextSEO(mainPage.getTextSEO());
+        existingMainPage.setDateOfCreation(existingMainPage.getDateOfCreation());
+        existingMainPage.setTitleSEO(mainPage.getTitleSEO());
+        existingMainPage.setUrlSEO(mainPage.getUrlSEO());
+        existingMainPage.setKeywordsSEO(mainPage.getKeywordsSEO());
+        existingMainPage.setDescriptionSEO(mainPage.getDescriptionSEO());
+
+        save(existingMainPage);
+    }
+
 }

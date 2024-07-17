@@ -121,7 +121,7 @@
                     </li>
                     <li class="nav-item">
                         <div class="user-buttons" th:if="${userId != null}">
-                            <a class="btn rounded-pill btn-outline-primary waves-effect" th:href="'/user/' + ${userId}" th:text="${firstName} + ' ' + ${lastName}">Редактировать</a>
+                            <a class="btn rounded-pill btn-outline-primary waves-effect" th:href="'/user/edit/' + ${userId}" th:text="${firstName} + ' ' + ${lastName}">Редактировать</a>
                             <form th:action="@{/logout}" method="post">
                                 <button type="submit" class="btn rounded-pill btn-outline-danger waves-effect">
                                     <i class="ti ti-logout me-2 ti-sm"></i>
@@ -193,6 +193,66 @@
                         <div data-i18n="Pages">О кинотеатре</div>
                     </a>
                 </li>
+
+                <!-- -------------------------------------------------------------- -->
+
+                <li class="menu-item">
+                    <a href="/pages/news" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-page-break"></i>
+                        <div data-i18n="Pages">Новости</div>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="/pages/cafe-bar" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-page-break"></i>
+                        <div data-i18n="Pages">Кафе-Бар</div>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="/pages/vip-hall" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-page-break"></i>
+                        <div data-i18n="Pages">Vip зал</div>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="/pages/children-room" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-page-break"></i>
+                        <div data-i18n="Pages">Детская комната</div>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="/pages/children-room" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-page-break"></i>
+                        <div data-i18n="Pages">Детская комната</div>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="/pages/advertisement" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-page-break"></i>
+                        <div data-i18n="Pages">Реклама</div>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="/pages/mobile-app" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-page-break"></i>
+                        <div data-i18n="Pages">Мобильное приложение</div>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="/pages/contacts" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-page-break"></i>
+                        <div data-i18n="Pages">Контакты</div>
+                    </a>
+                </li>
+
+
             </ul>
         </div>
     </aside>

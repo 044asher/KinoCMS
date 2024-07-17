@@ -1,0 +1,18 @@
+.menu-item-form {
+    padding: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+.menu-item-form .form-group {
+    margin-bottom: 1rem;
+}
+.menu-item-form h6 {
+    margin-bottom: 1rem;
+}
+textarea.textarea-autosize {
+    padding-top:10px;
+    padding-bottom:25px;
+    width:100%;
+    display:block;
+}
