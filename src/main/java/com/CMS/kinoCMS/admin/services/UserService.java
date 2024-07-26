@@ -1,90 +1,61 @@
 package com.CMS.kinoCMS.admin.services;
 
-import com.CMS.kinoCMS.admin.repositories.UserRepository;
 import com.CMS.kinoCMS.admin.models.User;
+import com.CMS.kinoCMS.admin.repositories.UserRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Log4j2
 public class UserService {
 
     private final UserRepository userRepository;
-
-    private BCryptPasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    public List<User> findAllUsers(){
+    public List<User> findAllUsers() {
+        log.info("Fetching all users");
         return userRepository.findAll();
     }
 
     public Optional<User> findUserById(Long userId) {
+        log.info("Finding user by id: {}", userId);
         return userRepository.findById(userId);
     }
 
     public void saveUser(User user) {
+        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+        log.info("Saving user: {}", user);
         userRepository.save(user);
     }
 
     public void delete(User user) {
+        log.info("Deleting user: {}", user);
         userRepository.delete(user);
     }
 
-    public List<User> findUsersByRole(String role){
+    public List<User> findUsersByRole(String role) {
+        log.info("Finding users by role: {}", role);
         return userRepository.findAllByRole(role);
     }
 
     public long countByGender(String gender) {
+        log.info("Counting users by gender: {}", gender);
         return userRepository.countByGender(gender);
-    }
-
-    public String getCurrentUsername() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            return ((UserDetails) principal).getUsername();
-        } else {
-            throw new AccessDeniedException("Access Denied");
-        }
-    }
-
-    public User updateUser(User user, String currentUsername) {
-        User existingUser = findUserById(user.getId())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id: " + user.getId()));
-
-        if (!existingUser.getUsername().equals(currentUsername)) {
-            throw new AccessDeniedException("Access Denied");
-        }
-
-        existingUser.setUsername(user.getUsername());
-        existingUser.setEmail(user.getEmail());
-        existingUser.setAddress(user.getAddress());
-        existingUser.setPhoneNumber(user.getPhoneNumber());
-        existingUser.setDateOfBirthday(user.getDateOfBirthday());
-        existingUser.setGender(user.getGender());
-        existingUser.setFirstName(user.getFirstName());
-        existingUser.setLastName(user.getLastName());
-        existingUser.setCity(user.getCity());
-
-        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
-            existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
-
-        saveUser(existingUser);
-        return existingUser;
-    }
-
-    public boolean isAuthorizedUser(long userId, String currentUsername) {
-        User user = findUserById(userId).orElseThrow(() -> new IllegalArgumentException("Invalid user Id: " + userId));
-        return user.getUsername().equals(currentUsername);
     }
 }

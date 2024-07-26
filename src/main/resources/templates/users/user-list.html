@@ -146,7 +146,49 @@
                 <!-- Content -->
 
                 <div class="container-xxl flex-grow-1 container-p-y">
-                    <h4 class="fw-bold py-3 mb-4">Пользователи</h4>
+                    <div class="row py-2">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="fw-bold py-3 mb-2">Пользователи</h4>
+                            <button id="create-city" type="button" class="btn btn-primary" data-toggle="modal" data-target="#cityEditDialog">Управление городами</button>
+                        </div>
+                    </div>
+
+
+                    <div class="modal fade" id="cityEditDialog" tabindex="-1" role="dialog" aria-labelledby="cityEditDialogLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="cityEditDialogLabel">Управление городами</h5>
+                                    <p class="small">Удаление города доступно только в случае, если ни один из пользователей его не выбирал</p>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Имя</th>
+                                            <th>Действия</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="city-list">
+                                        <!-- Cities will be loaded here dynamically -->
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                    <form id="city-form">
+                                        <input type="hidden" id="city-id">
+                                        <div class="form-group">
+                                            <label for="city-name" class="col-form-label">Название города</label>
+                                            <input type="text" class="form-control" id="city-name">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                    <button id="save-city-button" type="button" class="btn btn-primary">Сохранить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Invoice List Table -->
                     <div class="card">
@@ -184,8 +226,6 @@
                                                 <button class="btn btn-danger rounded" type="submit"><i class="fa fa-trash"></i></button>
                                             </form>
                                     </td>
-
-
                                 </tr>
                                 </tbody>
                             </table>
@@ -202,12 +242,6 @@
         </div>
         <!-- / Layout page -->
     </div>
-
-    <!-- Overlay -->
-    <div class="layout-overlay layout-menu-toggle"></div>
-
-    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
-    <div class="drag-target"></div>
 
 <!-- / Layout wrapper -->
 
@@ -228,6 +262,99 @@
 
 <!-- Main JS -->
 <script src="/assets/js/main.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<script>
+    $('#cityEditDialog').on('shown.bs.modal', function (event) {
+        $.get({
+            url: '/api/v1/city/all',
+            success: (data) => {
+                let cityList = $('#city-list');
+                cityList.empty(); // Clear the list
+                data.forEach(city => {
+                    $.get({
+                        url: '/api/v1/city/' + city.id + '/user-count',
+                        success: (userCount) => {
+                            let deleteButton = userCount === 0 ? `<button class="btn btn-danger delete-city" data-id="${city.id}">Удалить</button>` : '';
+                            cityList.append(`
+                            <tr>
+                                <td>${city.name}</td>
+                                <td>
+                                    <button class="btn btn-primary edit-city" data-id="${city.id}" data-name="${city.name}">Изменить</button>
+                                    ${deleteButton}
+                                </td>
+                            </tr>
+                        `);
+
+                            $('.edit-city').click(function() {
+                                let id = $(this).data('id');
+                                let name = $(this).data('name');
+                                $('#city-id').val(id);
+                                $('#city-name').val(name);
+                            });
+
+                            $('.delete-city').click(function() {
+                                let id = $(this).data('id');
+                                if (confirm('Are you sure you want to delete this city?')) {
+                                    $.ajax({
+                                        url: '/api/v1/city/' + id,
+                                        type: 'DELETE',
+                                        success: () => {
+                                            location.reload();
+                                        },
+                                        error: (err) => {
+                                            alert('Error deleting city: ' + err);
+                                        }
+                                    });
+                                }
+                            });
+                        },
+                        error: (err) => {
+                            alert('Error loading user count: ' + err);
+                        }
+                    });
+                });
+            },
+            error: (err) => {
+                alert('Error loading cities: ' + err);
+            }
+        });
+    });
+
+    $('#save-city-button').click(function() {
+        let city = {
+            id: $('#city-id').val(),
+            name: $('#city-name').val()
+        };
+
+        $.ajax({
+            url: '/api/v1/city',
+            type: 'POST',
+            data: JSON.stringify(city),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: () => {
+                location.reload();
+            },
+            error: (err) => {
+                alert('Error saving city: ' + err);
+            }
+        });
+
+        $('#cityEditDialog').modal('hide');
+    });
+
+</script>
+
 
 </body>
 </html>

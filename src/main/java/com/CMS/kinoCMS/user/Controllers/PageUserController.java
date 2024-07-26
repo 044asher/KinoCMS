@@ -2,11 +2,12 @@ package com.CMS.kinoCMS.user.Controllers;
 
 import com.CMS.kinoCMS.admin.models.Cinema;
 import com.CMS.kinoCMS.admin.models.News;
+import com.CMS.kinoCMS.admin.models.Pages.Contact;
 import com.CMS.kinoCMS.admin.models.Pages.MenuItem;
 import com.CMS.kinoCMS.admin.models.Pages.Page;
 import com.CMS.kinoCMS.admin.services.CinemaService;
-import com.CMS.kinoCMS.admin.services.FilmService;
 import com.CMS.kinoCMS.admin.services.NewsService;
+import com.CMS.kinoCMS.admin.services.Pages.ContactsPageService;
 import com.CMS.kinoCMS.admin.services.Pages.MenuItemService;
 import com.CMS.kinoCMS.admin.services.Pages.PageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,15 @@ public class PageUserController {
     private final NewsService newsService;
     private final MenuItemService menuItemService;
     private final CinemaService cinemaService;
+    private final ContactsPageService contactsPageService;
 
     @Autowired
-    public PageUserController(PageService pageService, NewsService newsService, MenuItemService menuItemService, FilmService filmService, CinemaService cinemaService) {
+    public PageUserController(PageService pageService, NewsService newsService, MenuItemService menuItemService, CinemaService cinemaService, ContactsPageService contactsPageService) {
         this.pageService = pageService;
         this.newsService = newsService;
         this.menuItemService = menuItemService;
         this.cinemaService = cinemaService;
+        this.contactsPageService = contactsPageService;
     }
 
     @GetMapping("/about-cinemas")
@@ -48,7 +51,7 @@ public class PageUserController {
     @GetMapping("/news")
     public String news(Model model) {
         List<News> news = newsService.findAll();
-        if(!news.isEmpty()) {
+        if (!news.isEmpty()) {
             model.addAttribute("news", news);
         }
         return "users-part/pages/news";
@@ -63,56 +66,60 @@ public class PageUserController {
 
     @GetMapping("/cafe-bar")
     public String cafeBar(Model model) {
-        List<MenuItem> menuItems = menuItemService.findAll();
-        Optional<Page> cafeBar = pageService.findByName("Кафе-Бар");
-        if (cafeBar.isPresent() && !cafeBar.get().isNotActive()) {
-            model.addAttribute("page", cafeBar.get());
+        Optional<Page> cafeBar = pageService.getPageWithCheck("Кафе-Бар", model);
+        if (cafeBar.isPresent()) {
+            List<MenuItem> menuItems = menuItemService.findAll();
             model.addAttribute("menuItems", menuItems);
+            return "users-part/pages/pages";
         }
-        return "/users-part/pages/pages";
+        return "errors/page-not-active";
     }
 
     @GetMapping("/vip-hall")
     public String vipHall(Model model) {
-        Optional<Page> vipHall = pageService.findByName("Vip-зал");
-        if(vipHall.isPresent() && !vipHall.get().isNotActive()) {
-            model.addAttribute("page", vipHall.get());
+        Optional<Page> vipHall = pageService.getPageWithCheck("Vip-зал", model);
+        if (vipHall.isPresent()) {
+            return "users-part/pages/pages";
         }
-        return "users-part/pages/pages";
+        return "errors/page-not-active";
+
     }
 
     @GetMapping("/children-room")
-    public String childrenRoom(Model model){
-        Optional<Page> childrenRoom = pageService.findByName("Детская комната");
-        if(childrenRoom.isPresent() && !childrenRoom.get().isNotActive()) {
-            model.addAttribute("page", childrenRoom.get());
+    public String childrenRoom(Model model) {
+        Optional<Page> childrenRoom = pageService.getPageWithCheck("Детская комната", model);
+        if (childrenRoom.isPresent()) {
+            return "users-part/pages/pages";
         }
-        return "users-part/pages/pages";
+        return "errors/page-not-active";
     }
 
     @GetMapping("/advertisement")
     public String advertisement(Model model) {
-        Optional<Page> advertisement = pageService.findByName("Реклама");
-        if(advertisement.isPresent() && !advertisement.get().isNotActive()) {
-            model.addAttribute("page", advertisement.get());
+        Optional<Page> advertisement = pageService.getPageWithCheck("Реклама", model);
+        if (advertisement.isPresent()) {
+            return "users-part/pages/pages";
         }
-        return "users-part/pages/pages";
+        return "errors/page-not-active";
     }
 
     @GetMapping("/mobile-app")
     public String mobileApp(Model model) {
-        Optional<Page> mobileApp = pageService.findByName("Мобильное приложение");
-        if(mobileApp.isPresent() && !mobileApp.get().isNotActive()) {
-            model.addAttribute("page", mobileApp.get());
+        Optional<Page> mobileApp = pageService.getPageWithCheck("Мобильное приложение", model);
+        if (mobileApp.isPresent()) {
+            return "users-part/pages/pages";
         }
-        return "users-part/pages/pages";
+        return "errors/page-not-active";
     }
 
     @GetMapping("/contacts")
     public String contacts(Model model) {
-        Optional<Page> contacts = pageService.findByName("Контакты");
-        if (contacts.isPresent() && !contacts.get().isNotActive()) {
-            model.addAttribute("page", contacts.get());
+        Contact contacts = contactsPageService.findAll().getFirst();
+        model.addAttribute("page", contacts);
+        if (contacts.isNotActive()) {
+            List<Cinema> cinemasForNotActivePage = cinemaService.findAll().stream().limit(6).toList();
+            model.addAttribute("cinemasForNotActivePage", cinemasForNotActivePage);
+            return "errors/page-not-active";
         }
 
         List<Cinema> allCinemas = cinemaService.findAll();
@@ -126,6 +133,15 @@ public class PageUserController {
 
         model.addAttribute("cinemas", cinemasWithCoordinatesAndAddress);
         return "users-part/pages/contacts";
+    }
+
+    @GetMapping("/{id}")
+    public String getPage(@PathVariable long id, Model model) {
+        Optional<Page> page = pageService.findById(id);
+        if (page.isPresent() && !page.get().isNotActive()) {
+            model.addAttribute("page", page.get());
+        }
+        return "users-part/pages/pageTemplate";
     }
 
 }

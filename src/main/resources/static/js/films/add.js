@@ -1,6 +1,8 @@
 const dropArea = document.getElementById('drag-area');
 const fileInput = document.getElementById('additionalFiles');
 const preview = document.getElementById('preview');
+const form = document.getElementById('your-form-id'); // Добавьте id вашей формы
+const hiddenInputsContainer = document.getElementById('hidden-inputs-container');
 
 dropArea.addEventListener('click', () => fileInput.click());
 
@@ -42,7 +44,19 @@ function handleFiles(files) {
             img.src = e.target.result;
             img.alt = 'Предпросмотр';
             preview.appendChild(img);
+
+            // Добавить скрытые поля для отправки информации о файле на сервер
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'existingFiles';
+            hiddenInput.value = e.target.result; // Можно изменить для хранения информации о файле
+            hiddenInputsContainer.appendChild(hiddenInput);
         };
         reader.readAsDataURL(file);
     });
 }
+
+// Дополнительно, если вы хотите обработать форму
+form.addEventListener('submit', (e) => {
+    // Здесь можно добавить логику перед отправкой формы
+});

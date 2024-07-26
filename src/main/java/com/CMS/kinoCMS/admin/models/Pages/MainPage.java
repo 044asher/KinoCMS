@@ -21,12 +21,10 @@ public class MainPage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Size(max = 255, message = "Number should be less than 255 symbols")
-    @NotEmpty(message = "Number shouldn't be empty")
+    @Size(max = 20, message = "Number should be less than 20 symbols")
     private String firsNumber;
 
-    @Size(max = 255, message = "Number should be less than 255 symbols")
-    @NotEmpty(message = "Number shouldn't be empty")
+    @Size(max = 20, message = "Number should be less than 20 symbols")
     private String secondNumber;
 
     @Size(max=255, message = "Text must be less than 255 characters")

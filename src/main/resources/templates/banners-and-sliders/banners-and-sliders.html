@@ -34,7 +34,8 @@
                         <h2>На главной верх</h2>
                         <div class="image-entry-container">
                             <div th:each="image : ${bannerImages}" class="image-entry">
-                                <img th:src="@{${image.url}}" th:alt="${image.caption}" style="width: 100px; height: 100px">
+                                <img th:src="@{${image.url}}" th:alt="${image.caption}"
+                                     style="width: 100px; height: 100px">
                                 <form th:action="@{/admin/banners-and-sliders/edit-image}" method="post"
                                       class="edit-image-form">
                                     <input type="hidden" name="imageId" th:value="${image.id}">
@@ -50,10 +51,13 @@
 
                             <!-- Форма для добавления новой фотографии -->
                             <div class="add-image-entry">
-                                <form id="upload-image-form" action="/admin/banners-and-sliders/upload-image" method="post"
+                                <form id="upload-image-form" action="/admin/banners-and-sliders/upload-image"
+                                      method="post"
                                       class="edit-image-form">
-                                    <input type="text" name="imageUrl" class="form-control" placeholder="Image URL" required>
-                                    <input type="text" name="caption" class="form-control" placeholder="Caption" required>
+                                    <input type="text" name="imageUrl" class="form-control" placeholder="Image URL"
+                                           required>
+                                    <input type="text" name="caption" class="form-control" placeholder="Caption"
+                                           required>
                                     <button type="submit" class="btn btn-success">Добавить фото</button>
                                 </form>
                             </div>
@@ -77,12 +81,14 @@
                         <h2>На главной Новости Акции</h2>
                         <div class="image-entry-container">
                             <div th:each="newsImage : ${newsImages}" class="image-entry">
-                                <img th:src="@{${newsImage.url}}" th:alt="${newsImage.caption}" style="width: 100px; height: 100px">
+                                <img th:src="@{${newsImage.url}}" th:alt="${newsImage.caption}"
+                                     style="width: 100px; height: 100px">
                                 <form th:action="@{/admin/banners-and-sliders/edit-news-image}" method="post"
                                       class="edit-image-form">
                                     <input type="hidden" name="imageId" th:value="${newsImage.id}">
                                     <input type="text" name="imageUrl" class="form-control" th:value="${newsImage.url}">
-                                    <input type="text" name="caption" class="form-control" th:value="${newsImage.caption}">
+                                    <input type="text" name="caption" class="form-control"
+                                           th:value="${newsImage.caption}">
                                     <button type="submit" class="btn btn-primary">Сохранить</button>
                                 </form>
                                 <form th:action="@{/admin/banners-and-sliders/delete-news-image}" method="post">
@@ -95,8 +101,10 @@
                             <div class="add-image-entry">
                                 <form id="upload-news-image-form" action="/admin/banners-and-sliders/upload-news-image"
                                       method="post" class="edit-image-form">
-                                    <input type="text" name="newsImageUrl" class="form-control" placeholder="Image URL" required>
-                                    <input type="text" name="newsImageCaption" class="form-control" placeholder="Caption" required>
+                                    <input type="text" name="newsImageUrl" class="form-control" placeholder="Image URL"
+                                           required>
+                                    <input type="text" name="newsImageCaption" class="form-control"
+                                           placeholder="Caption" required>
                                     <button type="submit" class="btn btn-success">Добавить фото</button>
                                 </form>
                             </div>
@@ -110,6 +118,7 @@
         <!-- / Layout page -->
     </div>
 
-<script src="/js/banners-and-sliders/drag&drop.js"></script>
+    <script src="/js/banners-and-sliders/drag&drop.js"></script>
+</div>
 </body>
 </html>

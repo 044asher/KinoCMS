@@ -2,6 +2,7 @@ package com.CMS.kinoCMS.admin.services;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -10,6 +11,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 @Service
+@Log4j2
 public class MailSender {
     @Autowired
     private JavaMailSender mailSender;
@@ -19,18 +21,6 @@ public class MailSender {
 
     public MailSender(JavaMailSender mailSender){
         this.mailSender = mailSender;
-    }
-
-    public void send(String emailTo, String subject, String message){
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-
-        mailMessage.setFrom(username);
-        mailMessage.setTo(emailTo);
-        mailMessage.setSubject(subject);
-        mailMessage.setText(message);
-
-        mailSender.send(mailMessage);
-
     }
 
     public void sendHtmlEmail(String emailTo, String subject, String message) {
@@ -43,7 +33,7 @@ public class MailSender {
             helper.setText(message, true);
             mailSender.send(mimeMessage);
         } catch (MessagingException e) {
-            e.printStackTrace();
+            log.error("Error while sending formatted HTML message", e);
         }
     }
 }

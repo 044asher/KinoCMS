@@ -1,46 +1,4 @@
 <div th:fragment="topbar">
-    <meta name="description" content="" />
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-            rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome.css"/>
-    <link rel="stylesheet" href="/assets/vendor/fonts/tabler-icons.css"/>
-    <link rel="stylesheet" href="/assets/vendor/fonts/flag-icons.css"/>
-
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="/assets/vendor/css/rtl/core.css"/>
-    <link rel="stylesheet" href="/assets/vendor/css/rtl/theme-default.css"/>
-    <link rel="stylesheet" href="/assets/css/demo.css"/>
-
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
-    <link rel="stylesheet" href="/assets/vendor/libs/node-waves/node-waves.css"/>
-    <link rel="stylesheet" href="/assets/vendor/libs/typeahead-js/typeahead.css"/>
-    <link rel="stylesheet" href="/assets/vendor/libs/select2/select2.css"/>
-    <link rel="stylesheet" href="/assets/vendor/libs/flatpickr/flatpickr.css"/>
-    <link rel="stylesheet" href="/assets/vendor/libs/quill/typography.css"/>
-    <link rel="stylesheet" href="/assets/vendor/libs/quill/katex.css"/>
-    <link rel="stylesheet" href="/assets/vendor/libs/quill/editor.css"/>
-
-    <!-- Page CSS -->
-
-    <link rel="stylesheet" href="/assets/vendor/css/pages/app-kanban.css"/>
-    <!-- Helpers -->
-    <script src="/assets/vendor/js/helpers.js"></script>
-
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="/assets/js/config.js"></script>
-    <script src="/js/sidebar-active/sidebar-active-element.js"></script>
     <style>
         .layout-navbar {
             z-index: 1060;
@@ -77,6 +35,19 @@
         .input-group {
             margin-right: 15px;
         }
+
+        .phone-numbers {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+        }
+
+        .phone-number {
+            margin: 0;
+        }
     </style>
 
     <!-- Navbar -->
@@ -95,6 +66,10 @@
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
                 <ul class="navbar-nav flex-row align-items-center ms-auto">
+                    <li class="nav-item phone-numbers">
+                        <p th:if="${firstNumber} != null" th:text="${firstNumber}" class="phone-number"></p>
+                        <p th:if="${secondNumber} != null" th:text="${secondNumber}" class="phone-number"></p>
+                    </li>
                     <li class="nav-item">
                         <div class="social-icon my-3">
                             <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-facebook me-2">
@@ -128,7 +103,6 @@
                                     <span class="align-middle">Выйти</span>
                                 </button>
                             </form>
-
                         </div>
                         <div class="user-buttons" th:if="${userId == null}">
                             <a class="btn btn-outline-success waves-effect" th:href="@{/login}">Войти</a>
@@ -162,122 +136,115 @@
                         <div data-i18n="Page 1">Главная</div>
                     </a>
                 </li>
+
+
                 <li class="menu-item">
-                    <a href="/posters" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-app-window"></i>
-                        <div data-i18n="Page 2">Афиша</div>
+                    <a href="/posters" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons ti ti-camera-plus"></i>
+                        <div data-i18n="Page 2">В кино</div>
                     </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="/posters" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-zoom-in-area"></i>
+                                <div data-i18n="Analytics">Афиша</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/posters/upcoming" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-file-import"></i>
+                                <div data-i18n="Analytics">Скоро</div>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+
                 <li class="menu-item">
                     <a href="/schedule" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-app-window"></i>
-                        <div data-i18n="Page 3">Расписание</div>
+                        <i class="menu-icon tf-icons ti ti-calendar-event"></i>
+                        <div>Расписание</div>
                     </a>
                 </li>
                 <li class="menu-item">
                     <a href="/cinemas" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-app-window"></i>
-                        <div data-i18n="Page 4">Кинотеатры</div>
+                        <i class="menu-icon tf-icons ti ti-movie"></i>
+                        <div>Кинотеатры</div>
                     </a>
                 </li>
                 <li class="menu-item">
                     <a href="/actions" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-app-window"></i>
-                        <div data-i18n="Page 5">Акции</div>
+                        <i class="menu-icon tf-icons ti mood-dollar"></i>
+                        <div>Акции</div>
                     </a>
                 </li>
+
+                <!------------------------------------------------------------>
 
                 <li class="menu-item">
-                    <a href="/pages/about-cinemas" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-smart-home"></i>
-                        <div data-i18n="Pages">О кинотеатре</div>
+                    <a href="javascript:void(0)" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons ti ti-menu-2"></i>
+                        <div>Подробнее</div>
                     </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="/pages/about-cinemas" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-file-description"></i>
+                                <div>О кинотеатре</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/pages/news" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-news"></i>
+                                <div>Новости</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/pages/cafe-bar" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-tools-kitchen-2"></i>
+                                <div>Кафе-Бар</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/pages/vip-hall" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-diamond"></i>
+                                <div>Vip зал</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/pages/children-room" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-mood-kid"></i>
+                                <div>Детская комната</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/pages/advertisement" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-ad"></i>
+                                <div>Реклама</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/pages/mobile-app" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-device-mobile"></i>
+                                <div>Мобильное приложение</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/pages/contacts" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-map-2"></i>
+                                <div>Контакты</div>
+                            </a>
+                        </li>
+                        <li th:each="page : ${nonDefaultActivePages}" class="menu-item">
+                            <a th:href="@{/pages/{id}(id=${page.id})}" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-page-break"></i>
+                                <div th:text="${page.name}">Page Name</div>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-
-                <!-- -------------------------------------------------------------- -->
-
-                <li class="menu-item">
-                    <a href="/pages/news" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-page-break"></i>
-                        <div data-i18n="Pages">Новости</div>
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a href="/pages/cafe-bar" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-page-break"></i>
-                        <div data-i18n="Pages">Кафе-Бар</div>
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a href="/pages/vip-hall" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-page-break"></i>
-                        <div data-i18n="Pages">Vip зал</div>
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a href="/pages/children-room" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-page-break"></i>
-                        <div data-i18n="Pages">Детская комната</div>
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a href="/pages/children-room" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-page-break"></i>
-                        <div data-i18n="Pages">Детская комната</div>
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a href="/pages/advertisement" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-page-break"></i>
-                        <div data-i18n="Pages">Реклама</div>
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a href="/pages/mobile-app" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-page-break"></i>
-                        <div data-i18n="Pages">Мобильное приложение</div>
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a href="/pages/contacts" class="menu-link">
-                        <i class="menu-icon tf-icons ti ti-page-break"></i>
-                        <div data-i18n="Pages">Контакты</div>
-                    </a>
-                </li>
-
 
             </ul>
         </div>
     </aside>
     <!-- / Menu -->
-</div>
-
-<div class="content-wrapper">
-    <!-- Контент страницы -->
-
-
-
-<script src="/assets/vendor/libs/jquery/jquery.js"></script>
-<script src="/assets/vendor/libs/popper/popper.js"></script>
-<script src="/assets/vendor/js/bootstrap.js"></script>
-<script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-<script src="/assets/vendor/libs/node-waves/node-waves.js"></script>
-
-<script src="/assets/vendor/libs/hammer/hammer.js"></script>
-<script src="/assets/vendor/libs/typeahead-js/typeahead.js"></script>
-
-<script src="/assets/vendor/js/menu.js"></script>
-
-
-<!-- endbuild -->
-
-<!-- Main JS -->
-<script src="/assets/js/main.js"></script>
 </div>

@@ -2,8 +2,6 @@ package com.CMS.kinoCMS.admin.controllers;
 
 import com.CMS.kinoCMS.admin.models.User;
 import com.CMS.kinoCMS.admin.services.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -18,8 +16,6 @@ import java.util.List;
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
 public class StatsController {
     private final UserService userService;
-    private static final Logger logger = LoggerFactory.getLogger(StatsController.class);
-
     @Autowired
     public StatsController(UserService userService) {
         this.userService = userService;
@@ -27,8 +23,6 @@ public class StatsController {
 
     @GetMapping
     public String statsPage(Model model) {
-        logger.info("Entering statsPage method");
-
         List<User> admins = userService.findUsersByRole("ROLE_ADMIN");
         List<User> users = userService.findUsersByRole("ROLE_USER");
 
@@ -42,12 +36,6 @@ public class StatsController {
         long otherCount = userService.countByGender("other");
         long preferNotToSayCount = userService.countByGender("prefer_not_to_say");
 
-        logger.info("Male Count: {}", maleCount);
-        logger.info("Female Count: {}", femaleCount);
-        logger.info("Non-binary Count: {}", nonBinaryCount);
-        logger.info("Other Count: {}", otherCount);
-        logger.info("Prefer not to say Count: {}", preferNotToSayCount);
-
         model.addAttribute("adminCount", admins.size());
         model.addAttribute("userCount", users.size());
         model.addAttribute("maleCount", maleCount);
@@ -56,7 +44,6 @@ public class StatsController {
         model.addAttribute("otherCount", otherCount);
         model.addAttribute("preferNotToSayCount", preferNotToSayCount);
 
-        logger.info("Exiting statsPage method");
         return "stats/stats-main";
     }
 }

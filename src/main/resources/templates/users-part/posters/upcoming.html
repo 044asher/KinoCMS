@@ -9,17 +9,9 @@
         data-template="horizontal-menu-template-no-customizer"
 >
 <head>
-    <meta charset="utf-8"/>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
-
-    <title>Афиша | Lincoln Plaza</title>
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico"/>
-
+    <head th:insert="~{blocks/links :: links}"></head>
+    <title>Скоро | Lincoln Plaza</title>
     <link rel="stylesheet" type="text/css" href="/css/user_part/posters.css">
-
 </head>
 
 <body>
@@ -79,5 +71,6 @@
     </div>
     <!--/ Layout container -->
 </div>
+<div th:insert="~{blocks/vuexy-scripts :: vuexy-scripts}"></div>
 </body>
 </html>

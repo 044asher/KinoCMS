@@ -1,5 +1,6 @@
 package com.CMS.kinoCMS.admin.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -16,6 +17,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"users"})
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

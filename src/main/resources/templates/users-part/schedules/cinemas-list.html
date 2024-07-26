@@ -9,12 +9,7 @@
         data-template="horizontal-menu-template-no-customizer"
 >
 <head>
-    <meta charset="utf-8"/>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
-
+    <head th:insert="~{blocks/links :: links}"></head>
     <link rel="stylesheet" href="/css/cinemas/main.css"/>
     <title>Расписание | Lincoln Plaza</title>
 </head>
@@ -63,5 +58,6 @@
         <!--/ Layout container -->
     </div>
 </div>
+<div th:insert="~{blocks/vuexy-scripts :: vuexy-scripts}"></div>
 </body>
 </html>

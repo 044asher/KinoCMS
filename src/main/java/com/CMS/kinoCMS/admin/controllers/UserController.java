@@ -1,8 +1,8 @@
 package com.CMS.kinoCMS.admin.controllers;
 
-import com.CMS.kinoCMS.admin.repositories.CityRepository;
 import com.CMS.kinoCMS.admin.models.City;
 import com.CMS.kinoCMS.admin.models.User;
+import com.CMS.kinoCMS.admin.repositories.CityRepository;
 import com.CMS.kinoCMS.admin.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,6 @@ public class UserController {
     private final CityRepository cityRepository;
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-
     @Autowired
     public UserController(UserService userService, CityRepository cityRepository) {
         this.userService = userService;
@@ -38,28 +37,12 @@ public class UserController {
 
             model.addAttribute("users", users);
             model.addAttribute("cities", cities);
-
-            logger.info("Retrieved user list with {} users", users.size());
             return "users/user-list";
         } catch (Exception e) {
             logger.error("Failed to retrieve user list: {}", e.getMessage());
             throw e;
         }
     }
-
-    @GetMapping("/cities")
-    @ResponseBody
-    public List<City> getCities(){
-        try {
-            List<City> cities = cityRepository.findAll();
-            logger.info("Retrieved {} cities", cities.size());
-            return cities;
-        } catch (Exception e) {
-            logger.error("Failed to retrieve cities: {}", e.getMessage());
-            throw e;
-        }
-    }
-
 
     @GetMapping("/edit/{id}")
     public String userEdit(@PathVariable("id") long id, Model model) {
@@ -68,8 +51,6 @@ public class UserController {
                     .orElseThrow(() -> new IllegalArgumentException("Invalid user Id: " + id));
             model.addAttribute("user", user);
             model.addAttribute("cities", cityRepository.findAll());
-
-            logger.info("Editing user with Id: {}", id);
             return "users/user-edit";
         } catch (Exception e) {
             logger.error("Failed to load user for editing: {}", e.getMessage());
@@ -98,8 +79,6 @@ public class UserController {
             existingUser.setCity(user.getCity());
 
             userService.saveUser(existingUser);
-
-            logger.info("Updated user with Id: {}", id);
             return "redirect:/admin/users";
         } catch (Exception e) {
             logger.error("Failed to update user with Id {}: {}", id, e.getMessage());
@@ -112,8 +91,6 @@ public class UserController {
         try {
             Optional<User> optionalUser = userService.findUserById(id);
             optionalUser.ifPresent(userService::delete);
-
-            logger.info("Deleted user with Id: {}", id);
             return "redirect:/admin/users";
         } catch (Exception e) {
             logger.error("Failed to delete user with Id {}: {}", id, e.getMessage());
@@ -121,4 +98,14 @@ public class UserController {
         }
     }
 
+    @GetMapping("/add-city")
+    public String addCity(){
+        return "/users/user-add-city";
+    }
+
+    @PostMapping("/add-city")
+    public String userAddCity(@ModelAttribute City city){
+        cityRepository.save(city);
+        return "redirect:/admin/users";
+    }
 }

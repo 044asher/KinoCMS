@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
     menuLinks.forEach(function(link) {
         var linkUrl = link.getAttribute('href');
 
-        if (currentUrl.startsWith(linkUrl)) {
+        if (currentUrl === linkUrl) {
+            link.closest('.menu-item').classList.add('active');
+        } else if(currentUrl.startsWith(linkUrl) && linkUrl !== '/posters') {
             link.closest('.menu-item').classList.add('active');
         }
     });

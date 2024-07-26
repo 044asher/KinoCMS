@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface PageRepository extends JpaRepository<Page, Long> {
     List<Page> findAllByIsDefault(Boolean isDefault);
-
     Optional<Page> findByName(String name);
+
 }

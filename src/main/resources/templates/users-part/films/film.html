@@ -9,31 +9,18 @@
         data-template="horizontal-menu-template-no-customizer"
 >
 <head>
-    <meta charset="utf-8"/>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
+    <head th:insert="~{blocks/links :: links}"></head>
     <title th:text="${film.name} + ' | Lincoln Plaza'">Lincoln Plaza</title>
-
     <style>
         .logo-img {
             width: 100%;
             height: auto;
         }
+        .card-text{
+            text-decoration: none;
+            color: #413939;
+        }
     </style>
-    <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
-    <link rel="stylesheet" href="/assets/vendor/libs/node-waves/node-waves.css"/>
-    <link rel="stylesheet" href="/assets/vendor/libs/typeahead-js/typeahead.css"/>
-    <link rel="stylesheet" href="/assets/vendor/libs/swiper/swiper.css"/>
-    <link rel="stylesheet" href="/assets/vendor/css/pages/ui-carousel.css"/>
-    <script src="/assets/vendor/js/helpers.js"></script>
-    <script src="/assets/js/config.js"></script>
-
-    <!-- Page CSS -->
-    <link rel="stylesheet" href="/assets/vendor/css/pages/ui-carousel.css"/>
-    <!-- Helpers -->
-    <script src="/assets/vendor/js/helpers.js"></script>
 </head>
 
 <body>
@@ -49,11 +36,13 @@
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <div class="container mt-2">
 
+                        <div class="d-flex justify-content-center">
                         <iframe width="780" height="380"
                                 th:src="${embedLink}"
                                 title="YouTube video player"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowfullscreen></iframe>
+                        </div>
 
                         <div class="d-flex">
                             <div class="flex-grow-1">
@@ -68,6 +57,7 @@
                             <div class="row mb-3">
                                 <div th:each="schedule : ${entry.value}" class="col-md-4 mb-3">
                                     <div class="card">
+                                        <a th:href="'/film-booking/' + ${schedule.id}">
                                         <div class="card-body">
                                             <h5 class="card-title"
                                                 th:text="${#temporals.format(schedule.date, 'dd.MM.yyyy')} + '. Зал №: ' + ${schedule.hall.number}">
@@ -77,6 +67,7 @@
                                                 <strong>Цена:</strong> $<span th:text="${schedule.price}">Price</span>
                                             </p>
                                         </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +77,7 @@
                             <div class="col-md-4">
                                 <img th:src="@{'/img/' + ${film.mainImage}}" alt="Logo" class="logo-img">
 
-                                <table class="table table-bordered mt-2">
+                                <table class="table mt-2">
                                     <tbody>
                                     <tr th:if="${film.year != null}">
                                         <td>Год:</td>
@@ -124,7 +115,7 @@
                                     </tr>
                                     <tr th:if="${film.age != null}">
                                         <td>Возрастное ограничение:</td>
-                                        <td th:text="${film.age}"></td>
+                                        <td th:text="${film.age} + '+'"></td>
                                     </tr>
                                     <tr th:if="${film.time != null}">
                                         <td>Продолжительность (мин.):</td>
@@ -178,17 +169,6 @@
 </div>
 <div class="footer" th:insert="~{blocks/footer :: footer}"></div>
 <!--/ Layout container -->
-<script src="/assets/vendor/js/bootstrap.js"></script>
-
-
-<script src="/assets/vendor/js/bootstrap.js"></script>
-
-<!-- Vendors JS -->
-<script src="/assets/vendor/libs/swiper/swiper.js"></script>
-
-<!-- Page JS -->
-<script src="/assets/js/ui-carousel.js"></script>
-
-
+<div th:insert="~{blocks/vuexy-scripts :: vuexy-scripts}"></div>
 </body>
 </html>

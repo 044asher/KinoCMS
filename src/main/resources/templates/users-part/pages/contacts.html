@@ -9,11 +9,7 @@
         data-template="horizontal-menu-template-no-customizer"
 >
 <head>
-    <meta charset="utf-8"/>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
+    <head th:insert="~{blocks/links :: links}"></head>
     <title th:text="'Контакты | Lincoln Plaza'">Lincoln Plaza</title>
     <style>
         .ad-container {
@@ -93,7 +89,7 @@
 </div>
 <div th:insert="~{blocks/footer :: footer}"></div>
 <!--/ Layout container -->
-<script src="/assets/vendor/js/bootstrap.js"></script>
+<div th:insert="~{blocks/vuexy-scripts :: vuexy-scripts}"></div>
 </body>
 </html>
 

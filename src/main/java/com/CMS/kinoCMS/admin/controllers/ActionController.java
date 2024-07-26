@@ -84,6 +84,7 @@ public class ActionController {
 
     @PostMapping("/{id}/change-status")
     public ResponseEntity<Void> actionChangeStatus(@PathVariable long id) {
+        // comment
         try {
             actionService.changeActionStatus(id);
             return ResponseEntity.ok().build();

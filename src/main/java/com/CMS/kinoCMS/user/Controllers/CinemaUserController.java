@@ -7,6 +7,7 @@ import com.CMS.kinoCMS.admin.services.CinemaService;
 import com.CMS.kinoCMS.admin.services.FilmService;
 import com.CMS.kinoCMS.admin.services.HallService;
 import com.CMS.kinoCMS.admin.services.ScheduleService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Controller
+@Log4j2
 @RequestMapping("/cinemas")
 public class CinemaUserController {
     private final CinemaService cinemaService;
@@ -73,13 +75,14 @@ public class CinemaUserController {
         Optional<Hall> hall = hallService.findById(hallId);
         hall.ifPresent(value -> model.addAttribute("hall", value));
 
-        List<Schedule> filteredSchedules = scheduleService.getFilteredSchedules(null, null, hallId, null);
+        List<Schedule> filteredSchedules = scheduleService.getFilteredSchedulesHalls(hallId);
         Map<LocalDate, List<Schedule>> schedulesByDate = scheduleService.groupSchedulesByDate(filteredSchedules);
 
         List<Map.Entry<LocalDate, List<Schedule>>> sortedSchedulesByDate = schedulesByDate.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
                 .toList();
 
+        log.info("schedulesByDate: {}", sortedSchedulesByDate);
         model.addAttribute("schedulesByDate", sortedSchedulesByDate);
         model.addAttribute("films", filmService.findAll());
         model.addAttribute("images", hall.orElseThrow().getImages());

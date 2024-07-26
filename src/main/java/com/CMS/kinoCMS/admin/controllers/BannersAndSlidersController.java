@@ -37,7 +37,6 @@ public class BannersAndSlidersController {
 
     @GetMapping
     public String bannersAndSlidersPage(Model model) {
-        logger.info("Entering bannersAndSlidersPage method");
 
         List<BannersAndSliders> bannersAndSlidersList = bannersAndSlidersRepository.findAll();
         model.addAttribute("bannersAndSliders", bannersAndSlidersList);
@@ -47,23 +46,18 @@ public class BannersAndSlidersController {
             model.addAttribute("bannerImages", bannersAndSliders.getImages());
             model.addAttribute("newsImages", bannersAndSliders.getNewsImages());
         }
-
-        logger.info("Exiting bannersAndSlidersPage method");
         return "banners-and-sliders/banners-and-sliders";
     }
 
 
     @PostMapping("/upload-background")
     public String uploadBackground(@RequestParam MultipartFile background) throws IOException {
-        logger.info("Entering uploadBackground method");
         BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         if (background != null && !background.isEmpty()) {
-            logger.info("Background file is not empty, proceeding with upload");
             try {
                 String resultFilename = fileUploadService.uploadFile(background);
                 bannersAndSliders.setBackground(resultFilename);
                 bannersAndSlidersRepository.save(bannersAndSliders);
-                logger.info("Background file uploaded and saved successfully with filename: {}", resultFilename);
             } catch (IOException e) {
                 logger.error("Error uploading background file", e);
                 throw e;
@@ -71,14 +65,11 @@ public class BannersAndSlidersController {
         } else {
             logger.warn("Background file is null or empty");
         }
-        logger.info("Exiting uploadBackground method");
         return "redirect:/admin/banners-and-sliders";
     }
 
     @PostMapping("/upload-image")
     public String uploadImage(@RequestParam String imageUrl, @RequestParam String caption) {
-        logger.info("Entering uploadImage method");
-
         BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         BannerImage image = new BannerImage();
         image.setUrl(imageUrl);
@@ -87,15 +78,11 @@ public class BannersAndSlidersController {
 
         bannersAndSlidersRepository.save(bannersAndSliders);
 
-        logger.info("Image uploaded and saved successfully");
-        logger.info("Exiting uploadImage method");
-
         return "redirect:/admin/banners-and-sliders";
     }
 
     @PostMapping("/delete-image")
     public String deleteImage(@RequestParam Long imageId) {
-        logger.info("Entering deleteImage method");
 
         BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         BannerImage image = bannersAndSliders.getImages().stream()
@@ -106,19 +93,14 @@ public class BannersAndSlidersController {
         if (image != null) {
             bannersAndSliders.removeImage(image);
             bannersAndSlidersRepository.save(bannersAndSliders);
-            logger.info("Image deleted successfully");
         } else {
             logger.warn("Image with id {} not found", imageId);
         }
-
-        logger.info("Exiting deleteImage method");
         return "redirect:/admin/banners-and-sliders";
     }
 
     @PostMapping("/edit-image")
     public String editImage(@RequestParam Long imageId, @RequestParam String imageUrl, @RequestParam String caption) {
-        logger.info("Entering editImage method");
-
         BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         BannerImage image = bannersAndSliders.getImages().stream()
                 .filter(img -> img.getId().equals(imageId))
@@ -129,12 +111,10 @@ public class BannersAndSlidersController {
             image.setUrl(imageUrl);
             image.setCaption(caption);
             bannersAndSlidersRepository.save(bannersAndSliders);
-            logger.info("Image edited successfully");
         } else {
             logger.warn("Image with id {} not found", imageId);
         }
 
-        logger.info("Exiting editImage method");
         return "redirect:/admin/banners-and-sliders";
     }
 
@@ -143,8 +123,6 @@ public class BannersAndSlidersController {
 
     @PostMapping("/upload-news-image")
     public String uploadNewsImage(@RequestParam String newsImageUrl, @RequestParam String newsImageCaption) {
-        logger.info("Entering uploadNewsImage method");
-
         BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         BannerNewsActions image = new BannerNewsActions();
         image.setUrl(newsImageUrl);
@@ -153,16 +131,11 @@ public class BannersAndSlidersController {
 
         bannersAndSlidersRepository.save(bannersAndSliders);
 
-        logger.info("News Image uploaded and saved successfully");
-        logger.info("Exiting uploadNewsImage method");
-
         return "redirect:/admin/banners-and-sliders";
     }
 
     @PostMapping("/delete-news-image")
     public String deleteNewsImage(@RequestParam Long imageId) {
-        logger.info("Entering deleteNewsImage method");
-
         BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         BannerNewsActions image = bannersAndSliders.getNewsImages().stream()
                 .filter(img -> img.getId().equals(imageId))
@@ -172,20 +145,16 @@ public class BannersAndSlidersController {
         if (image != null) {
             bannersAndSliders.removeImage(image);
             bannersAndSlidersRepository.save(bannersAndSliders);
-            logger.info("News image deleted successfully");
         } else {
             logger.warn("News image with id {} not found", imageId);
         }
 
-        logger.info("Exiting deleteNewsImage method");
         return "redirect:/admin/banners-and-sliders";
     }
 
 
     @PostMapping("/edit-news-image")
     public String editNewsImage(@RequestParam Long imageId, @RequestParam String imageUrl, @RequestParam String caption) {
-        logger.info("Entering editNewsImage method");
-
         BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         BannerNewsActions image = bannersAndSliders.getNewsImages().stream()
                 .filter(img -> img.getId().equals(imageId))
@@ -196,12 +165,9 @@ public class BannersAndSlidersController {
             image.setUrl(imageUrl);
             image.setCaption(caption);
             bannersAndSlidersRepository.save(bannersAndSliders);
-            logger.info("News image edited successfully");
         } else {
             logger.warn("News-image with id {} not found", imageId);
         }
-
-        logger.info("Exiting editNewsImage method");
         return "redirect:/admin/banners-and-sliders";
     }
 

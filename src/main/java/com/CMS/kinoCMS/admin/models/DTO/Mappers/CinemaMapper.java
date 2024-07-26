@@ -5,10 +5,7 @@ import com.CMS.kinoCMS.admin.models.DTO.CinemaUpdateDto;
 
 public class CinemaMapper {
     public static CinemaUpdateDto toCinemaUpdateDto(Cinema cinema) {
-        CinemaUpdateDto dto = new CinemaUpdateDto();
-        dto.setAddress(cinema.getAddress());
-        dto.setXCoordinate(cinema.getXCoordinate());
-        dto.setYCoordinate(cinema.getYCoordinate());
+        CinemaUpdateDto dto = new CinemaUpdateDto(cinema.getAddress(), cinema.getXCoordinate(), cinema.getYCoordinate());
         return dto;
     }
 }

@@ -36,7 +36,6 @@ public class MainController {
         model.addAttribute("upcomingFilms", upcomingFilms);
 
         model.addAttribute("banner", bannersAndSliders.getBackground());
-
         return "users-part/main-page/main";
     }
 }
