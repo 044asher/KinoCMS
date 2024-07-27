@@ -1,17 +1,8 @@
 <!DOCTYPE html>
-
-<html
-        lang="en"
-        class="light-style layout-navbar-fixed layout-menu-fixed"
-        dir="ltr"
-        data-theme="theme-default"
-        data-assets-path="/assets/"
-        data-template="vertical-menu-template-no-customizer"
->
+<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets/" data-template="vertical-menu-template-no-customizer">
 <head>
     <title>Статистика</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <style>
         .stats-container {
             display: flex;
@@ -29,8 +20,8 @@
             margin: 10px;
         }
         .stats-box-users {
-            border-color: #6a0dad; /* Dark Violet */
-            background-color: #f3e5f5; /* Lavender Blush */
+            border-color: #6a0dad;
+            background-color: #f3e5f5;
         }
         .stats-box h3, .stats-box-users h3 {
             margin: 0;
@@ -38,7 +29,7 @@
             color: #ff9800;
         }
         .stats-box-users h3 {
-            color: #6a0dad; /* Dark Violet */
+            color: #6a0dad;
         }
         .stats-box .count, .stats-box-users .count {
             font-size: 2.5em;
@@ -46,14 +37,19 @@
             margin-top: 10px;
         }
         .stats-box-users .count {
-            color: #9370db; /* Medium Purple */
+            color: #9370db;
         }
-
+        #genderChartContainer {
+            width: 50%; /* Adjust this to change the size */
+            max-width: 400px; /* Set a maximum width */
+            margin: 0 auto; /* Center the chart */
+        }
+        canvas {
+            width: 100% !important; /* Make the canvas take full width of its container */
+            height: auto !important; /* Maintain aspect ratio */
+        }
     </style>
-
-
 </head>
-
 <body>
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">
@@ -65,18 +61,13 @@
         <!-- Layout container -->
         <div class="layout-page">
             <!-- Navbar -->
-            <nav
-                    class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-                    id="layout-navbar"
-            >
+            <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
                 <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
                     <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
                         <i class="ti ti-menu-2 ti-sm"></i>
                     </a>
                 </div>
-
                 <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-
                     <div class="navbar-nav align-items-center">
                         <div class="nav-item navbar-search-wrapper mb-0">
                             <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
@@ -84,7 +75,6 @@
                             </a>
                         </div>
                     </div>
-
                     <ul class="navbar-nav flex-row align-items-center ms-auto">
                         <!-- User -->
                         <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -125,8 +115,6 @@
                         <!--/ User -->
                     </ul>
                 </div>
-
-
             </nav>
             <!-- / Navbar -->
 
@@ -134,6 +122,7 @@
             <div class="content-wrapper">
                 <!-- Content -->
                 <div class="container-xxl flex-grow-1 container-p-y">
+                    <h2 class="text-center">Количество пользователей</h2>
                     <div class="stats-container">
                         <div class="stats-box">
                             <h3>Всего администраторов</h3>
@@ -145,8 +134,9 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            <canvas id="genderChart" width="400" height="400"></canvas>
+                        <h2 class="text-center">Пользователи по полу</h2>
+                        <div id="genderChartContainer" class="col-md-12">
+                            <canvas id="genderChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -156,8 +146,61 @@
         </div>
         <!-- / Layout page -->
     </div>
-
 </div>
 <script src="/assets/js/dashboards-analytics.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('genderChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Male', 'Female', 'Non-Binary', 'Other', 'Prefer Not to Say'],
+                datasets: [{
+                    label: 'Gender Distribution',
+                    data: [
+                        /* Replace these with server-side data */
+                        /* Example: ${maleCount}, ${femaleCount}, ${nonBinaryCount}, ${otherCount}, ${preferNotToSayCount} */
+                        [[${maleCount}]],
+                        [[${femaleCount}]],
+                        [[${nonBinaryCount}]],
+                        [[${otherCount}]],
+                        [[${preferNotToSayCount}]]
+                    ],
+                    backgroundColor: [
+                        '#FF6384',
+                        '#36A2EB',
+                        '#FFCE56',
+                        '#4BC0C0',
+                        '#9966FF'
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Allow resizing based on container
+                aspectRatio: 1, // Adjust aspect ratio if needed
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                let label = tooltipItem.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += tooltipItem.raw;
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
 </body>
 </html>

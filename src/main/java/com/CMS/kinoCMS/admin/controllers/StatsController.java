@@ -29,15 +29,13 @@ public class StatsController {
         model.addAttribute("adminCount", admins.size());
         model.addAttribute("userCount", users.size());
 
-        // Count users by gender --------------------------------------------------------------
+        // Count users by gender
         long maleCount = userService.countByGender("male");
         long femaleCount = userService.countByGender("female");
         long nonBinaryCount = userService.countByGender("non_binary");
         long otherCount = userService.countByGender("other");
         long preferNotToSayCount = userService.countByGender("prefer_not_to_say");
 
-        model.addAttribute("adminCount", admins.size());
-        model.addAttribute("userCount", users.size());
         model.addAttribute("maleCount", maleCount);
         model.addAttribute("femaleCount", femaleCount);
         model.addAttribute("nonBinaryCount", nonBinaryCount);
