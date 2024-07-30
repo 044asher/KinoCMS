@@ -122,13 +122,17 @@
                         <button type="submit" class="btn btn-primary">Добавить расписание</button>
                     </form>
                     <hr>
-                    <h2>Текущие расписания</h2>
+                    <h2 class="mb-3">Текущие расписания</h2>
                     <div th:each="schedule : ${schedules}">
                         <p th:text="'Дата: ' + ${#temporals.format(schedule.date, 'dd.MM.yyyy')} + ', Время: ' + ${#temporals.format(schedule.time, 'HH:mm')} + ', Фильм: ' + ${schedule.film.name} + ', Зал: ' + ${schedule.hall.number} + ', Цена: ' + ${schedule.price}">Расписание</p>
+                        <form th:action="@{/admin/schedules/{cinemaId}/{scheduleId}/delete(cinemaId=${cinema.id},scheduleId=${schedule.id})}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm mb-2">Удалить</button>
+                        </form>
+                        <hr>
                     </div>
-
+                </div>
             </div>
-            <!-- / Content -->
+                <!-- / Content -->
         </div>
         <!-- Content wrapper -->
     </div>

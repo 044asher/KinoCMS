@@ -67,6 +67,7 @@ public class Film {
     private String descriptionSEO;
 
     //---------------Info-------------------
+
     private int year;
     private String country;
     private String musician;

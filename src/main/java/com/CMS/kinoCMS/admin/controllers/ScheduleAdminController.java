@@ -68,4 +68,10 @@ public class ScheduleAdminController {
         scheduleService.save(newSchedule);
         return "redirect:/admin/schedules/" + id;
     }
+
+    @PostMapping("/{cinemaId}/{scheduleId}/delete")
+    public String deleteSchedule(@PathVariable long cinemaId, @PathVariable long scheduleId) {
+        scheduleService.deleteById(scheduleId);
+        return "redirect:/admin/schedules/" + cinemaId + "#schedules";
+    }
 }

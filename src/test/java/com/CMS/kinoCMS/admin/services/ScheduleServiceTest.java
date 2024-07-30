@@ -170,5 +170,12 @@ public class ScheduleServiceTest {
         assertTrue(result.contains(schedule2));
         verify(scheduleRepository, times(1)).findByHallIdAndDateBetween(hallId, today, oneWeekLater);
     }
+
+    @Test
+    public void testDeleteById(){
+        Long id = 1L;
+        scheduleRepository.deleteById(id);
+        verify(scheduleRepository, times(1)).deleteById(id);
+    }
 }
 

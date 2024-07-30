@@ -86,4 +86,8 @@ public class ScheduleService {
                 .sorted(Comparator.comparing(Schedule::getTime))
                 .toList();
     }
+
+    public void deleteById(long scheduleId) {
+        scheduleRepository.deleteById(scheduleId);
+    }
 }

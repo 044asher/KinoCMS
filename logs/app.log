@@ -9822,3 +9822,1051 @@ Consider defining a bean of type 'org.springframework.security.crypto.bcrypt.BCr
 20:28:40.867 INFO  jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 20:28:40.869 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 20:28:40.872 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+10:45:19.720 INFO  util.Version - HV000001: Hibernate Validator 8.0.1.Final
+10:45:19.755 INFO  kinoCMS.KinoCmsApplication - Starting KinoCmsApplication using Java 22.0.1 with PID 23272 (C:\Games and Programms\Java Programms\kinoCMS\target\classes started by ROG ZEPHYRUS in C:\Games and Programms\Java Programms\kinoCMS)
+10:45:19.755 INFO  kinoCMS.KinoCmsApplication - No active profile set, falling back to 1 default profile: "default"
+10:45:20.655 INFO  config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+10:45:20.810 INFO  config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 148 ms. Found 14 JPA repository interfaces.
+10:45:21.476 INFO  tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+10:45:21.487 INFO  http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+10:45:21.488 INFO  core.StandardService - Starting service [Tomcat]
+10:45:21.489 INFO  core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+10:45:21.559 INFO  [localhost].[/] - Initializing Spring embedded WebApplicationContext
+10:45:21.559 INFO  context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1758 ms
+10:45:21.811 INFO  util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+10:45:21.871 INFO  hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+10:45:21.903 INFO  internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+10:45:22.121 INFO  persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+10:45:22.148 INFO  hikari.HikariDataSource - HikariPool-1 - Starting...
+10:45:22.485 INFO  pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3fecb076
+10:45:22.486 INFO  hikari.HikariDataSource - HikariPool-1 - Start completed.
+10:45:23.520 INFO  internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+10:45:23.663 INFO  jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+10:45:24.236 WARN  jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+10:45:24.653 INFO  web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+10:45:24.732 INFO  web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4e2f6452, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4ff1e20b, org.springframework.security.web.context.SecurityContextHolderFilter@2290186e, org.springframework.security.web.header.HeaderWriterFilter@6859080d, org.springframework.web.filter.CorsFilter@38c464df, org.springframework.security.web.authentication.logout.LogoutFilter@a72bb34, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2e3334d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2400673b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7d60a62f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@45957b8f, org.springframework.security.web.access.ExceptionTranslationFilter@5c71329f, org.springframework.security.web.access.intercept.AuthorizationFilter@68a1906f]
+10:45:25.216 INFO  http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+10:45:25.235 INFO  tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+10:45:25.244 INFO  kinoCMS.KinoCmsApplication - Started KinoCmsApplication in 5.762 seconds (process running for 6.695)
+10:45:25.705 INFO  [localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+10:45:25.706 INFO  servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+10:45:25.711 INFO  servlet.DispatcherServlet - Completed initialization in 5 ms
+10:46:10.659 INFO  Pages.PageService - Finding pages with isDefault: false
+10:46:10.793 INFO  Pages.MainPageService - Fetching all main pages
+10:46:13.297 INFO  services.MyUserDetailsService - Attempting to load user by username: user
+10:46:13.420 INFO  Pages.PageService - Finding pages with isDefault: false
+10:46:13.424 INFO  Pages.MainPageService - Fetching all main pages
+10:46:13.887 WARN  servlet.PageNotFound - No mapping for GET /favicon.ico
+10:46:13.889 WARN  servlet.PageNotFound - No endpoint GET /favicon.ico.
+10:46:13.895 INFO  Pages.PageService - Finding pages with isDefault: false
+10:46:13.897 INFO  Pages.MainPageService - Fetching all main pages
+10:46:21.923 INFO  Pages.PageService - Finding pages with isDefault: false
+10:46:21.927 INFO  Pages.MainPageService - Fetching all main pages
+10:46:21.929 INFO  Pages.MainPageService - Fetching all main pages
+10:46:21.933 INFO  Pages.ContactsPageService - Finding all contacts
+10:46:21.949 INFO  Pages.PageService - Finding pages with isDefault: true
+10:46:21.954 INFO  Pages.PageService - Finding pages with isDefault: false
+10:46:26.305 INFO  Pages.PageService - Finding pages with isDefault: false
+10:46:26.309 INFO  Pages.MainPageService - Fetching all main pages
+10:46:26.312 INFO  services.CinemaService - Fetching all cinemas
+10:46:27.831 INFO  Pages.PageService - Finding pages with isDefault: false
+10:46:27.837 INFO  Pages.MainPageService - Fetching all main pages
+10:46:27.847 INFO  services.CinemaService - Finding cinema with id: 1
+10:46:27.855 INFO  services.ScheduleService - Finding schedules for cinemaId: 1
+10:46:27.876 INFO  services.HallService - Retrieved 3 halls
+10:46:33.406 INFO  Pages.PageService - Finding pages with isDefault: false
+10:46:33.409 INFO  Pages.MainPageService - Fetching all main pages
+10:46:33.485 INFO  Pages.PageService - Finding pages with isDefault: false
+10:46:33.488 INFO  Pages.MainPageService - Fetching all main pages
+10:46:33.491 INFO  services.CinemaService - Finding cinema with id: 1
+10:46:33.495 INFO  services.ScheduleService - Finding schedules for cinemaId: 1
+10:46:33.509 INFO  services.HallService - Retrieved 3 halls
+10:47:20.266 INFO  jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+10:47:20.269 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+10:47:20.274 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+10:47:22.977 INFO  util.Version - HV000001: Hibernate Validator 8.0.1.Final
+10:47:23.004 INFO  kinoCMS.KinoCmsApplication - Starting KinoCmsApplication using Java 22.0.1 with PID 27116 (C:\Games and Programms\Java Programms\kinoCMS\target\classes started by ROG ZEPHYRUS in C:\Games and Programms\Java Programms\kinoCMS)
+10:47:23.006 INFO  kinoCMS.KinoCmsApplication - No active profile set, falling back to 1 default profile: "default"
+10:47:23.680 INFO  config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+10:47:23.803 INFO  config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 117 ms. Found 14 JPA repository interfaces.
+10:47:24.378 INFO  tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+10:47:24.386 INFO  http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+10:47:24.387 INFO  core.StandardService - Starting service [Tomcat]
+10:47:24.387 INFO  core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+10:47:24.461 INFO  [localhost].[/] - Initializing Spring embedded WebApplicationContext
+10:47:24.462 INFO  context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1428 ms
+10:47:24.684 INFO  util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+10:47:24.727 INFO  hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+10:47:24.752 INFO  internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+10:47:24.918 INFO  persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+10:47:24.938 INFO  hikari.HikariDataSource - HikariPool-1 - Starting...
+10:47:25.160 INFO  pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7c37ac3c
+10:47:25.161 INFO  hikari.HikariDataSource - HikariPool-1 - Start completed.
+10:47:26.151 INFO  internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+10:47:26.285 INFO  jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+10:47:26.839 WARN  jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+10:47:27.235 INFO  web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+10:47:27.306 INFO  web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@65314e4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@a93c88a, org.springframework.security.web.context.SecurityContextHolderFilter@3569f0f1, org.springframework.security.web.header.HeaderWriterFilter@323a47fe, org.springframework.web.filter.CorsFilter@741cb82c, org.springframework.security.web.authentication.logout.LogoutFilter@2991524, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@467924d8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6fd6d887, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2081c267, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@db372b, org.springframework.security.web.access.ExceptionTranslationFilter@2da16d31, org.springframework.security.web.access.intercept.AuthorizationFilter@7152ee36]
+10:47:27.707 INFO  http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+10:47:27.719 INFO  tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+10:47:27.728 INFO  kinoCMS.KinoCmsApplication - Started KinoCmsApplication in 4.994 seconds (process running for 6.064)
+10:47:27.926 INFO  [localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+10:47:27.926 INFO  servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+10:47:27.929 INFO  servlet.DispatcherServlet - Completed initialization in 3 ms
+10:47:36.832 INFO  Pages.PageService - Finding pages with isDefault: false
+10:47:36.937 INFO  Pages.MainPageService - Fetching all main pages
+10:47:40.435 INFO  services.MyUserDetailsService - Attempting to load user by username: user
+10:47:40.541 INFO  Pages.PageService - Finding pages with isDefault: false
+10:47:40.543 INFO  Pages.MainPageService - Fetching all main pages
+10:47:40.551 INFO  services.CinemaService - Finding cinema with id: 1
+10:47:40.563 INFO  services.ScheduleService - Finding schedules for cinemaId: 1
+10:47:40.578 INFO  services.HallService - Retrieved 3 halls
+10:57:52.774 INFO  jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+10:57:52.778 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+10:57:52.785 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+10:57:56.000 INFO  util.Version - HV000001: Hibernate Validator 8.0.1.Final
+10:57:56.033 INFO  kinoCMS.KinoCmsApplication - Starting KinoCmsApplication using Java 22.0.1 with PID 21428 (C:\Games and Programms\Java Programms\kinoCMS\target\classes started by ROG ZEPHYRUS in C:\Games and Programms\Java Programms\kinoCMS)
+10:57:56.035 INFO  kinoCMS.KinoCmsApplication - No active profile set, falling back to 1 default profile: "default"
+10:57:56.878 INFO  config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+10:57:57.007 INFO  config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 123 ms. Found 14 JPA repository interfaces.
+10:57:57.578 INFO  tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+10:57:57.587 INFO  http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+10:57:57.588 INFO  core.StandardService - Starting service [Tomcat]
+10:57:57.588 INFO  core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+10:57:57.664 INFO  [localhost].[/] - Initializing Spring embedded WebApplicationContext
+10:57:57.664 INFO  context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1600 ms
+10:57:57.935 INFO  util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+10:57:57.978 INFO  hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+10:57:58.003 INFO  internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+10:57:58.167 INFO  persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+10:57:58.189 INFO  hikari.HikariDataSource - HikariPool-1 - Starting...
+10:57:58.419 INFO  pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@665f88e1
+10:57:58.420 INFO  hikari.HikariDataSource - HikariPool-1 - Start completed.
+10:57:59.368 INFO  internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+10:57:59.497 INFO  jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+10:58:00.062 WARN  jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+10:58:00.484 INFO  web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+10:58:00.553 INFO  web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4ff1e20b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@38c464df, org.springframework.security.web.context.SecurityContextHolderFilter@686a192d, org.springframework.security.web.header.HeaderWriterFilter@3bcebb8f, org.springframework.web.filter.CorsFilter@45957b8f, org.springframework.security.web.authentication.logout.LogoutFilter@1bbebf8e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@66a5f996, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1c1bb1e7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5a7e2f07, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70ad9a9b, org.springframework.security.web.access.ExceptionTranslationFilter@225fc6a2, org.springframework.security.web.access.intercept.AuthorizationFilter@558bff39]
+10:58:00.948 INFO  http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+10:58:00.972 INFO  tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+10:58:00.979 INFO  kinoCMS.KinoCmsApplication - Started KinoCmsApplication in 5.277 seconds (process running for 6.408)
+10:58:01.495 INFO  [localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+10:58:01.495 INFO  servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+10:58:01.495 INFO  servlet.DispatcherServlet - Completed initialization in 0 ms
+10:58:55.954 INFO  Pages.PageService - Finding pages with isDefault: false
+10:58:56.068 INFO  Pages.MainPageService - Fetching all main pages
+10:58:59.051 INFO  services.MyUserDetailsService - Attempting to load user by username: user
+10:58:59.166 INFO  Pages.PageService - Finding pages with isDefault: false
+10:58:59.166 INFO  Pages.MainPageService - Fetching all main pages
+10:58:59.176 INFO  services.CinemaService - Finding cinema with id: 1
+10:58:59.190 INFO  services.ScheduleService - Finding schedules for cinemaId: 1
+10:58:59.209 INFO  services.HallService - Retrieved 3 halls
+10:59:13.721 INFO  Pages.PageService - Finding pages with isDefault: false
+10:59:13.723 INFO  Pages.MainPageService - Fetching all main pages
+10:59:13.801 INFO  Pages.PageService - Finding pages with isDefault: false
+10:59:13.806 INFO  Pages.MainPageService - Fetching all main pages
+10:59:13.809 INFO  services.CinemaService - Finding cinema with id: 1
+10:59:13.814 INFO  services.ScheduleService - Finding schedules for cinemaId: 1
+10:59:13.831 INFO  services.HallService - Retrieved 3 halls
+10:59:43.169 INFO  jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+10:59:43.171 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+10:59:43.176 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+10:59:45.950 INFO  util.Version - HV000001: Hibernate Validator 8.0.1.Final
+10:59:45.988 INFO  kinoCMS.KinoCmsApplication - Starting KinoCmsApplication using Java 22.0.1 with PID 20820 (C:\Games and Programms\Java Programms\kinoCMS\target\classes started by ROG ZEPHYRUS in C:\Games and Programms\Java Programms\kinoCMS)
+10:59:45.991 INFO  kinoCMS.KinoCmsApplication - No active profile set, falling back to 1 default profile: "default"
+10:59:46.775 INFO  config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+10:59:46.904 INFO  config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 123 ms. Found 14 JPA repository interfaces.
+10:59:47.462 INFO  tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+10:59:47.470 INFO  http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+10:59:47.471 INFO  core.StandardService - Starting service [Tomcat]
+10:59:47.471 INFO  core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+10:59:47.541 INFO  [localhost].[/] - Initializing Spring embedded WebApplicationContext
+10:59:47.541 INFO  context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1520 ms
+10:59:47.819 INFO  util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+10:59:47.868 INFO  hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+10:59:47.894 INFO  internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+10:59:48.085 INFO  persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+10:59:48.111 INFO  hikari.HikariDataSource - HikariPool-1 - Starting...
+10:59:48.406 INFO  pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@665f88e1
+10:59:48.408 INFO  hikari.HikariDataSource - HikariPool-1 - Start completed.
+10:59:49.712 INFO  internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+10:59:49.919 INFO  jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+10:59:50.622 WARN  jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+10:59:51.126 INFO  web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+10:59:51.206 INFO  web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@70f446c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4e2f6452, org.springframework.security.web.context.SecurityContextHolderFilter@3d1f809, org.springframework.security.web.header.HeaderWriterFilter@6fc98c70, org.springframework.web.filter.CorsFilter@4ff1e20b, org.springframework.security.web.authentication.logout.LogoutFilter@1e31e7e0, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7e01d838, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6f14ce3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@71fa6aa7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@38c464df, org.springframework.security.web.access.ExceptionTranslationFilter@58070889, org.springframework.security.web.access.intercept.AuthorizationFilter@3c8802cf]
+10:59:51.696 INFO  http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+10:59:51.710 INFO  tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+10:59:51.720 INFO  kinoCMS.KinoCmsApplication - Started KinoCmsApplication in 6.043 seconds (process running for 7.016)
+10:59:52.063 INFO  [localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+10:59:52.064 INFO  servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+10:59:52.065 INFO  servlet.DispatcherServlet - Completed initialization in 1 ms
+10:59:56.676 INFO  Pages.MainPageService - Fetching all main pages
+10:59:56.796 INFO  Pages.PageService - Finding pages with isDefault: false
+10:59:59.125 INFO  services.MyUserDetailsService - Attempting to load user by username: user
+10:59:59.237 INFO  Pages.MainPageService - Fetching all main pages
+10:59:59.241 INFO  Pages.PageService - Finding pages with isDefault: false
+10:59:59.249 INFO  services.CinemaService - Finding cinema with id: 1
+10:59:59.262 INFO  services.ScheduleService - Finding schedules for cinemaId: 1
+10:59:59.280 INFO  services.HallService - Retrieved 3 halls
+11:07:27.889 INFO  services.ScheduleService - Finding schedules for cinemaId: 1
+11:07:27.913 INFO  services.ScheduleService - Saving schedule: com.CMS.kinoCMS.admin.models.Schedule@28da7d11
+11:07:27.920 INFO  services.ScheduleService - Filtering schedules for cinemaId: 1, filmId: 1, hallId: 1, filmType: 3D
+11:07:27.920 INFO  services.ScheduleService - Finding schedules for cinemaId: 1, between dates: 2024-07-27 and 2024-08-03
+11:07:27.924 INFO  services.ScheduleService - Finding schedule by id: 1
+11:07:27.929 INFO  services.ScheduleService - Finding schedules for filmId: 1, between dates: 2024-07-27 and 2024-08-03
+11:07:27.932 INFO  services.ScheduleService - Finding schedules for cinemaId: 1, between dates: 2024-07-27 and 2024-08-03
+11:07:27.936 INFO  services.ScheduleService - Grouping schedules by date
+11:07:27.942 INFO  services.ScheduleService - Filtering schedules for hallId: 1
+11:07:44.932 INFO  jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+11:07:44.933 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+11:07:44.938 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+11:27:10.306 INFO  util.Version - HV000001: Hibernate Validator 8.0.1.Final
+11:27:10.342 INFO  kinoCMS.KinoCmsApplication - Starting KinoCmsApplication using Java 22.0.1 with PID 7356 (C:\Games and Programms\Java Programms\kinoCMS\target\classes started by ROG ZEPHYRUS in C:\Games and Programms\Java Programms\kinoCMS)
+11:27:10.346 INFO  kinoCMS.KinoCmsApplication - No active profile set, falling back to 1 default profile: "default"
+11:27:11.161 INFO  config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11:27:11.294 INFO  config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 126 ms. Found 14 JPA repository interfaces.
+11:27:11.890 INFO  tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+11:27:11.898 INFO  http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+11:27:11.899 INFO  core.StandardService - Starting service [Tomcat]
+11:27:11.900 INFO  core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+11:27:11.970 INFO  [localhost].[/] - Initializing Spring embedded WebApplicationContext
+11:27:11.970 INFO  context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1582 ms
+11:27:12.205 INFO  util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+11:27:12.246 INFO  hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+11:27:12.271 INFO  internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+11:27:12.431 INFO  persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+11:27:12.453 INFO  hikari.HikariDataSource - HikariPool-1 - Starting...
+11:27:12.692 INFO  pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3fecb076
+11:27:12.694 INFO  hikari.HikariDataSource - HikariPool-1 - Start completed.
+11:27:13.720 INFO  internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+11:27:13.863 INFO  jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11:27:14.446 WARN  jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11:27:14.863 INFO  web.EndpointLinksResolver - Exposing 1 endpoint(s) beneath base path '/actuator'
+11:27:14.933 INFO  web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2dc0cbbc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@16b6493d, org.springframework.security.web.context.SecurityContextHolderFilter@21dc1d99, org.springframework.security.web.header.HeaderWriterFilter@1cd97ebe, org.springframework.web.filter.CorsFilter@3bf7c70e, org.springframework.security.web.authentication.logout.LogoutFilter@28c06c3c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@26e199ed, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@614da024, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@65314e4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1aa945f6, org.springframework.security.web.access.ExceptionTranslationFilter@5a7e2f07, org.springframework.security.web.access.intercept.AuthorizationFilter@7e1b96a7]
+11:27:15.341 INFO  http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+11:27:15.354 INFO  tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+11:27:15.364 INFO  kinoCMS.KinoCmsApplication - Started KinoCmsApplication in 5.362 seconds (process running for 6.389)
+11:27:15.964 INFO  [localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+11:27:15.964 INFO  servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+11:27:15.965 INFO  servlet.DispatcherServlet - Completed initialization in 1 ms
+11:27:18.383 INFO  Pages.MainPageService - Fetching all main pages
+11:27:18.480 INFO  Pages.PageService - Finding pages with isDefault: false
+11:27:24.272 INFO  Pages.MainPageService - Fetching all main pages
+11:27:24.276 INFO  Pages.PageService - Finding pages with isDefault: false
+11:27:24.279 INFO  services.CinemaService - Fetching all cinemas
+11:27:25.799 INFO  Pages.MainPageService - Fetching all main pages
+11:27:25.804 INFO  Pages.PageService - Finding pages with isDefault: false
+11:27:25.816 INFO  services.CinemaService - Finding cinema with id: 1
+11:27:25.826 INFO  services.ScheduleService - Filtering schedules for cinemaId: 1, filmId: null, hallId: null, filmType: null
+11:27:25.827 INFO  services.ScheduleService - Finding schedules for cinemaId: 1, between dates: 2024-07-27 and 2024-08-03
+11:27:25.837 INFO  services.ScheduleService - Grouping schedules by date
+11:27:25.851 INFO  services.HallService - Retrieved 3 halls
+11:27:33.506 INFO  Pages.MainPageService - Fetching all main pages
+11:27:33.513 INFO  Pages.PageService - Finding pages with isDefault: false
+11:27:46.084 INFO  Pages.MainPageService - Fetching all main pages
+11:27:46.088 INFO  Pages.PageService - Finding pages with isDefault: false
+11:27:52.373 INFO  services.MyUserDetailsService - Attempting to load user by username: user
+11:27:52.477 INFO  Pages.MainPageService - Fetching all main pages
+11:27:52.482 INFO  Pages.PageService - Finding pages with isDefault: false
+11:27:52.486 INFO  services.CinemaService - Finding cinema with id: 1
+11:27:52.490 INFO  services.ScheduleService - Finding schedules for cinemaId: 1
+11:27:52.504 INFO  services.HallService - Retrieved 3 halls
+11:27:55.839 INFO  Pages.MainPageService - Fetching all main pages
+11:27:55.843 INFO  Pages.PageService - Finding pages with isDefault: false
+11:27:55.846 INFO  services.ActionService - Fetching all actions
+11:28:27.904 INFO  Pages.MainPageService - Fetching all main pages
+11:28:27.908 INFO  Pages.PageService - Finding pages with isDefault: false
+11:28:29.880 INFO  Pages.MainPageService - Fetching all main pages
+11:28:29.883 INFO  Pages.PageService - Finding pages with isDefault: false
+11:28:46.691 INFO  Pages.MainPageService - Fetching all main pages
+11:28:46.695 INFO  Pages.PageService - Finding pages with isDefault: false
+11:28:46.738 INFO  services.FilmService - Updating film with id: 6
+11:28:46.740 INFO  services.FileUploadService - Successfully uploaded file: animal20.jpg to C:\resources\img\6802e25a-d53b-4f5f-9b6f-0c0e72c96bf5.animal20.jpg
+11:28:46.740 INFO  services.FilmService - Main image updated for film: Sumy State University
+11:28:46.742 INFO  services.FileUploadService - Successfully uploaded file: animal13.jpg to C:\resources\img\f36ec360-1b7a-4cc7-8ede-8abe7eb331fd.animal13.jpg
+11:28:46.743 INFO  services.FileUploadService - Successfully uploaded file: animal14.jpg to C:\resources\img\3eb8cd0e-6621-43f3-9f7f-40392626170d.animal14.jpg
+11:28:46.749 INFO  services.FilmService - Additional images updated for film: Sumy State University
+11:28:46.801 INFO  services.FilmService - Film updated and saved: Sumy State University
+11:28:46.826 INFO  Pages.MainPageService - Fetching all main pages
+11:28:46.830 INFO  Pages.PageService - Finding pages with isDefault: false
+11:28:49.698 INFO  Pages.MainPageService - Fetching all main pages
+11:28:49.701 INFO  Pages.PageService - Finding pages with isDefault: false
+11:29:16.583 INFO  Pages.MainPageService - Fetching all main pages
+11:29:16.586 INFO  Pages.PageService - Finding pages with isDefault: false
+11:29:16.595 WARN  controllers.FilmsController - Validation errors in editFilm: [Field error in object 'film' on field 'age': rejected value []; codes [typeMismatch.film.age,typeMismatch.age,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [film.age,age]; arguments []; default message [age]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'age'; For input string: ""], Field error in object 'film' on field 'time': rejected value []; codes [typeMismatch.film.time,typeMismatch.time,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [film.time,time]; arguments []; default message [time]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'time'; For input string: ""], Field error in object 'film' on field 'year': rejected value []; codes [typeMismatch.film.year,typeMismatch.year,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [film.year,year]; arguments []; default message [year]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'year'; For input string: ""]]
+11:29:16.720 INFO  Pages.MainPageService - Fetching all main pages
+11:29:16.723 INFO  Pages.PageService - Finding pages with isDefault: false
+11:29:27.485 INFO  Pages.MainPageService - Fetching all main pages
+11:29:27.488 INFO  Pages.PageService - Finding pages with isDefault: false
+11:29:55.444 INFO  Pages.MainPageService - Fetching all main pages
+11:29:55.447 INFO  Pages.PageService - Finding pages with isDefault: false
+11:29:55.454 WARN  controllers.FilmsController - Validation errors in editFilm: [Field error in object 'film' on field 'age': rejected value []; codes [typeMismatch.film.age,typeMismatch.age,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [film.age,age]; arguments []; default message [age]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'age'; For input string: ""], Field error in object 'film' on field 'time': rejected value []; codes [typeMismatch.film.time,typeMismatch.time,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [film.time,time]; arguments []; default message [time]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'time'; For input string: ""], Field error in object 'film' on field 'year': rejected value []; codes [typeMismatch.film.year,typeMismatch.year,typeMismatch.int,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [film.year,year]; arguments []; default message [year]]; default message [Failed to convert property value of type 'java.lang.String' to required type 'int' for property 'year'; For input string: ""]]
+11:29:55.575 INFO  Pages.MainPageService - Fetching all main pages
+11:29:55.578 INFO  Pages.PageService - Finding pages with isDefault: false
+11:30:57.427 INFO  Pages.MainPageService - Fetching all main pages
+11:30:57.431 INFO  Pages.PageService - Finding pages with isDefault: false
+11:30:59.234 INFO  Pages.MainPageService - Fetching all main pages
+11:30:59.237 INFO  Pages.PageService - Finding pages with isDefault: false
+11:31:47.683 INFO  Pages.MainPageService - Fetching all main pages
+11:31:47.688 INFO  Pages.PageService - Finding pages with isDefault: false
+11:31:47.694 INFO  services.FilmService - Updating film with id: 7
+11:31:47.695 INFO  services.FileUploadService - Successfully uploaded file: animal46.jpg to C:\resources\img\1d8e6168-4f78-4e3d-953d-4c1d51f3c938.animal46.jpg
+11:31:47.695 INFO  services.FilmService - Main image updated for film: Голодные игры
+11:31:47.696 INFO  services.FileUploadService - Successfully uploaded file: animal8.jpg to C:\resources\img\43b12ca9-d80c-44f8-a071-e9fb37c72f77.animal8.jpg
+11:31:47.697 INFO  services.FileUploadService - Successfully uploaded file: animal14.jpg to C:\resources\img\276647ae-b309-4068-bacd-516f459d4eb2.animal14.jpg
+11:31:47.698 INFO  services.FilmService - Additional images updated for film: Голодные игры
+11:31:47.708 INFO  services.FilmService - Film updated and saved: Голодные игры
+11:31:47.717 INFO  Pages.MainPageService - Fetching all main pages
+11:31:47.721 INFO  Pages.PageService - Finding pages with isDefault: false
+11:31:53.451 INFO  Pages.MainPageService - Fetching all main pages
+11:31:53.456 INFO  Pages.PageService - Finding pages with isDefault: false
+11:32:35.709 INFO  Pages.MainPageService - Fetching all main pages
+11:32:35.712 INFO  Pages.PageService - Finding pages with isDefault: false
+11:32:35.719 INFO  services.FilmService - Updating film with id: 8
+11:32:35.721 INFO  services.FileUploadService - Successfully uploaded file: animal40.jpg to C:\resources\img\2cd6a67f-5878-45bc-a24b-1434185f53a9.animal40.jpg
+11:32:35.721 INFO  services.FilmService - Main image updated for film: Film
+11:32:35.722 INFO  services.FileUploadService - Successfully uploaded file: animal53.jpg to C:\resources\img\0a084ae8-a752-414e-a0a7-926270794e4f.animal53.jpg
+11:32:35.723 INFO  services.FileUploadService - Successfully uploaded file: animal54.jpg to C:\resources\img\8590e3d6-b239-4d77-8711-aeb569883497.animal54.jpg
+11:32:35.723 INFO  services.FileUploadService - Successfully uploaded file: animal58.jpg to C:\resources\img\9d722b5f-8bea-4c60-bb9b-79563c7dd8b9.animal58.jpg
+11:32:35.724 INFO  services.FileUploadService - Successfully uploaded file: animal59.jpg to C:\resources\img\0f937637-b4dd-43dc-8660-165258030e82.animal59.jpg
+11:32:35.725 INFO  services.FileUploadService - Successfully uploaded file: animal60.jpg to C:\resources\img\6e833bd5-01e5-4eda-b00f-0f91407b8835.animal60.jpg
+11:32:35.727 INFO  services.FilmService - Additional images updated for film: Film
+11:32:35.736 INFO  services.FilmService - Film updated and saved: Film
+11:32:35.746 INFO  Pages.MainPageService - Fetching all main pages
+11:32:35.749 INFO  Pages.PageService - Finding pages with isDefault: false
+11:36:47.764 INFO  services.CinemaService - Fetching all cinemas
+11:36:47.827 INFO  services.CinemaService - Saving cinema: com.CMS.kinoCMS.admin.models.Cinema@45aca496
+11:36:47.894 INFO  services.CinemaService - Updating cinema with id: 1
+11:36:47.895 INFO  services.CinemaService - Finding cinema with id: 1
+11:36:47.896 INFO  services.CinemaService - Updated logo for cinema: updatedLogo.jpg
+11:36:47.896 INFO  services.CinemaService - Updated banner for cinema: updatedBanner.jpg
+11:36:47.896 INFO  services.CinemaService - Updated additional files for cinema: [image1.jpg, image2.jpg]
+11:36:47.898 INFO  services.CinemaService - Saving cinema: com.CMS.kinoCMS.admin.models.Cinema@58606c91
+11:36:47.909 INFO  services.CinemaService - Saving new cinema: com.CMS.kinoCMS.admin.models.Cinema@47768e74
+11:36:47.909 INFO  services.CinemaService - Uploaded logo for cinema: logo.jpg
+11:36:47.910 INFO  services.CinemaService - Uploaded banner for cinema: banner.jpg
+11:36:47.910 INFO  services.CinemaService - Uploaded additional files for cinema: [image1.jpg, image2.jpg]
+11:36:47.910 INFO  services.CinemaService - Saving cinema: com.CMS.kinoCMS.admin.models.Cinema@47768e74
+11:36:47.911 INFO  services.CinemaService - Uploaded scheme for hall 1: null
+11:36:47.911 INFO  services.CinemaService - Uploaded banner for hall 1: null
+11:36:47.913 INFO  services.CinemaService - Saved hall with number: 1
+11:36:47.914 INFO  services.CinemaService - Uploaded scheme for hall 2: null
+11:36:47.915 INFO  services.CinemaService - Uploaded banner for hall 2: null
+11:36:47.915 INFO  services.CinemaService - Saved hall with number: 2
+11:36:47.923 INFO  services.CinemaService - Finding cinema with id: 1
+11:36:47.929 INFO  services.CinemaService - Deleting cinema: com.CMS.kinoCMS.admin.models.Cinema@6aa7b67f
+11:36:47.961 ERROR services.FileUploadService - Files array is empty
+11:36:47.976 INFO  services.FileUploadService - Successfully uploaded file: test.txt to C:\Games and Programms\Java Programms\kinoCMS\uploads\702dbcd4-6d74-48d5-ae44-8a30e421b7c6.test.txt
+11:36:47.982 ERROR services.FileUploadService - File is empty or null
+11:36:47.988 INFO  services.FileUploadService - Successfully uploaded file: test1.txt to C:\Games and Programms\Java Programms\kinoCMS\uploads\79fe9410-3064-4ca4-bda0-e31a41178f1b.test1.txt
+11:36:47.990 INFO  services.FileUploadService - Successfully uploaded file: test2.txt to C:\Games and Programms\Java Programms\kinoCMS\uploads\7b79ddf2-be63-412a-abce-12b2d850d745.test2.txt
+11:36:47.997 ERROR services.FileUploadService - Files array is empty
+11:36:48.002 ERROR services.FileUploadService - File is empty or null
+11:36:48.066 INFO  services.HallManagementService - Adding new hall: Set logo logo.jpg
+11:36:48.067 INFO  services.HallManagementService - Adding new hall: Set banner banner.jpg
+11:36:48.067 INFO  services.HallManagementService - Adding new hall: Added 2 images
+11:36:48.068 INFO  services.HallManagementService - Added new hall successfully to cinema 1
+11:36:48.083 INFO  services.HallManagementService - Updated hall 1: Set new logo logo.jpg
+11:36:48.084 INFO  services.HallManagementService - Updated hall 1: Set new banner banner.jpg
+11:36:48.085 INFO  services.HallManagementService - Updated hall 1: Added 2 new images
+11:36:48.086 INFO  services.HallManagementService - Updated hall 1 successfully
+11:36:48.189 INFO  services.FilmService - Updating film with id: 1
+11:36:48.190 INFO  services.FilmService - Main image updated for film: Test Film
+11:36:48.190 INFO  services.FilmService - Additional images updated for film: Test Film
+11:36:48.190 INFO  services.FilmService - Film updated and saved: Updated Film
+11:36:48.202 INFO  services.FilmService - Processing film data for: Test Film
+11:36:48.203 INFO  services.FilmService - Main image uploaded for film: Test Film
+11:36:48.203 INFO  services.FilmService - Additional images uploaded for film: Test Film
+11:36:48.203 INFO  services.FilmService - Film data processed and saved: Test Film
+11:36:48.270 INFO  services.NewsService - Main image uploaded: mainImage.jpg
+11:36:48.270 INFO  services.NewsService - Additional images uploaded: [image1.jpg, image2.jpg]
+11:36:48.270 INFO  services.NewsService - News saved: com.CMS.kinoCMS.admin.models.News@546394ed
+11:36:48.270 INFO  services.NewsService - News added: com.CMS.kinoCMS.admin.models.News@546394ed
+11:36:48.277 INFO  services.NewsService - News saved: com.CMS.kinoCMS.admin.models.News@19bedeb8
+11:36:48.282 INFO  services.NewsService - Main image updated: updatedMainImage.jpg
+11:36:48.283 INFO  services.NewsService - Additional images updated: [updatedImage1.jpg, updatedImage2.jpg]
+11:36:48.283 INFO  services.NewsService - News saved: com.CMS.kinoCMS.admin.models.News@6975fb1c
+11:36:48.283 INFO  services.NewsService - News updated: com.CMS.kinoCMS.admin.models.News@6975fb1c
+11:36:48.290 INFO  services.NewsService - News deleted: com.CMS.kinoCMS.admin.models.News@3513c84c
+11:36:48.465 INFO  Pages.PageService - Adding menu item 'Item Name' to page with id: 1
+11:36:48.465 INFO  Pages.PageService - Finding page with id: 1
+11:36:48.466 INFO  Pages.PageService - Menu item 'Item Name' added successfully
+11:36:48.471 INFO  Pages.PageService - Changing status for page object: com.CMS.kinoCMS.admin.models.Pages.Page@3cc79c02
+11:36:48.541 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@3cc79c02
+11:36:48.548 INFO  Pages.PageService - Adding new page: com.CMS.kinoCMS.admin.models.Pages.Page@19b02dfd
+11:36:48.548 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@19b02dfd
+11:36:48.553 INFO  Pages.PageService - Fetching all pages
+11:36:48.602 INFO  Pages.PageService - Fetching page with name: Test Page
+11:36:48.602 INFO  Pages.PageService - Finding page with name: Test Page
+11:36:48.604 INFO  Pages.PageService - Page 'Test Page' is not active, adding cinemas for display
+11:36:48.609 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@23ca36d
+11:36:48.615 INFO  Pages.PageService - Finding page with name: Test Page
+11:36:48.622 INFO  Pages.PageService - Updating page with id: 1
+11:36:48.622 INFO  Pages.PageService - Finding page with id: 1
+11:36:48.623 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@55c57422
+11:36:48.628 INFO  Pages.PageService - Changing status for page object: com.CMS.kinoCMS.admin.models.Pages.MainPage@4a058df8
+11:36:48.628 INFO  Pages.PageService - Saving main page: com.CMS.kinoCMS.admin.models.Pages.MainPage@4a058df8
+11:36:48.633 INFO  Pages.PageService - Finding page with id: 1
+11:36:48.639 INFO  Pages.PageService - Adding menu item 'Item Name' to page with id: 1
+11:36:48.639 INFO  Pages.PageService - Finding page with id: 1
+11:36:48.639 ERROR Pages.PageService - Page with id '1' not found
+11:36:48.643 INFO  Pages.PageService - Changing status for page object: com.CMS.kinoCMS.admin.models.Pages.Contact@674da77b
+11:36:48.643 INFO  Pages.PageService - Saving contact page: com.CMS.kinoCMS.admin.models.Pages.Contact@674da77b
+11:36:48.648 INFO  Pages.PageService - Finding pages with isDefault: true
+11:36:49.013 INFO  Pages.ContactsPageService - Finding all contacts
+11:36:49.018 INFO  Pages.ContactsPageService - Saving contact: com.CMS.kinoCMS.admin.models.Pages.Contact@d36c1c3
+11:36:49.024 INFO  Pages.ContactsPageService - Updating cinema with ID: 1
+11:36:49.026 INFO  Pages.ContactsPageService - Uploaded new logo file: newLogo.png
+11:36:49.033 INFO  Pages.ContactsPageService - Finding contact by ID: 1
+11:36:49.039 INFO  Pages.ContactsPageService - Updating contact with ID: 1
+11:36:49.039 INFO  Pages.ContactsPageService - Finding contact by ID: 1
+11:36:49.039 INFO  Pages.ContactsPageService - Saving contact: com.CMS.kinoCMS.admin.models.Pages.Contact@4dd2ef54
+11:36:49.120 INFO  Pages.MainPageService - Fetching all main pages
+11:36:49.125 INFO  Pages.MainPageService - Saving main page: com.CMS.kinoCMS.admin.models.Pages.MainPage@5514579e
+11:36:49.130 INFO  Pages.MainPageService - Updating main page with id: 1
+11:36:49.130 INFO  Pages.MainPageService - Fetching main page with id: 1
+11:36:49.131 INFO  Pages.MainPageService - Saving main page: com.CMS.kinoCMS.admin.models.Pages.MainPage@2dd0a0d0
+11:36:49.138 INFO  Pages.MainPageService - Updating main page with id: 1
+11:36:49.138 INFO  Pages.MainPageService - Fetching main page with id: 1
+11:36:49.144 INFO  Pages.MainPageService - Fetching main page with id: 1
+11:36:49.226 INFO  services.HallService - Retrieved 2 halls
+11:36:49.227 INFO  services.HallService - Saved hall with id 1
+11:36:49.230 INFO  services.HallService - Deleted hall with id 1
+11:36:49.232 INFO  services.HallService - Found hall with id 1
+11:36:49.235 INFO  services.HallService - Retrieved 2 halls for cinema with id 1
+11:36:49.236 INFO  services.HallService - Deleted hall with id 1
+11:36:49.387 INFO  services.ActionService - Fetching all actions
+11:36:49.391 INFO  services.ActionService - Saving action with id: null
+11:36:49.395 INFO  services.ActionService - Changing status for action with id: 1
+11:36:49.395 INFO  services.ActionService - Fetching action by id: 1
+11:36:49.397 INFO  services.ActionService - Status changed successfully for action with id: 1
+11:36:49.402 INFO  services.ActionService - Updating action with id: 1
+11:36:49.402 INFO  services.ActionService - Fetching action by id: 1
+11:36:49.403 INFO  services.ActionService - Uploaded new main image for action with id: 1
+11:36:49.404 INFO  services.ActionService - Uploaded new additional images for action with id: 1
+11:36:49.404 INFO  services.ActionService - Action updated successfully with id: 1
+11:36:49.409 INFO  services.ActionService - Saving new action
+11:36:49.409 INFO  services.ActionService - Uploaded main image for action with id: null
+11:36:49.410 INFO  services.ActionService - Uploaded additional images for action with id: null
+11:36:49.410 INFO  services.ActionService - Action saved successfully with id: null
+11:36:49.415 INFO  services.ActionService - Fetching action by id: 1
+11:36:49.417 INFO  services.ActionService - Deleting action with id: null
+11:36:49.422 INFO  services.ActionService - Fetching actions by status: true
+11:36:49.430 INFO  services.MyUserDetailsService - Attempting to load user by username: User
+11:36:49.497 INFO  Pages.MenuItemService - Fetching all menu items
+11:36:49.501 INFO  Pages.MenuItemService - Saving menu item: com.CMS.kinoCMS.admin.models.Pages.MenuItem@6d17914a
+11:36:49.505 INFO  Pages.MenuItemService - Finding menu items for page: com.CMS.kinoCMS.admin.models.Pages.Page@30ffb2a6
+11:36:49.508 INFO  Pages.MenuItemService - Finding menu item with id: 1
+11:36:49.511 INFO  Pages.MenuItemService - Deleting menu item with id: 1
+11:36:49.516 INFO  Pages.MenuItemService - Finding menu item with id: 1
+11:36:49.521 INFO  services.EmailStatisticsService - Incremented emails sent count: 1
+11:36:49.521 INFO  services.EmailStatisticsService - Incremented emails sent count: 2
+11:36:49.521 INFO  services.EmailStatisticsService - Emails sent count has been reset
+11:36:49.522 INFO  services.EmailStatisticsService - Current emails sent count: 0
+11:36:49.523 INFO  services.EmailStatisticsService - Incremented emails sent count: 1
+11:36:49.523 INFO  services.EmailStatisticsService - Incremented emails sent count: 2
+11:36:49.523 INFO  services.EmailStatisticsService - Current emails sent count: 2
+11:36:49.524 INFO  services.EmailStatisticsService - Incremented emails sent count: 1
+11:36:49.524 INFO  services.EmailStatisticsService - Incremented emails sent count: 2
+11:36:49.524 INFO  services.EmailStatisticsService - Current emails sent count: 2
+11:36:49.579 INFO  services.ScheduleService - Finding schedules for cinemaId: 1
+11:36:49.581 INFO  services.ScheduleService - Saving schedule: com.CMS.kinoCMS.admin.models.Schedule@300a38e7
+11:36:49.586 INFO  services.ScheduleService - Filtering schedules for cinemaId: 1, filmId: 1, hallId: 1, filmType: 3D
+11:36:49.586 INFO  services.ScheduleService - Finding schedules for cinemaId: 1, between dates: 2024-07-27 and 2024-08-03
+11:36:49.591 INFO  services.ScheduleService - Finding schedule by id: 1
+11:36:49.594 INFO  services.ScheduleService - Finding schedules for filmId: 1, between dates: 2024-07-27 and 2024-08-03
+11:36:49.600 INFO  services.ScheduleService - Finding schedules for cinemaId: 1, between dates: 2024-07-27 and 2024-08-03
+11:36:49.602 INFO  services.ScheduleService - Grouping schedules by date
+11:36:49.610 INFO  services.ScheduleService - Filtering schedules for hallId: 1
+11:37:13.455 INFO  services.CinemaService - Fetching all cinemas
+11:37:13.505 INFO  services.CinemaService - Saving cinema: com.CMS.kinoCMS.admin.models.Cinema@574a89e2
+11:37:13.566 INFO  services.CinemaService - Updating cinema with id: 1
+11:37:13.566 INFO  services.CinemaService - Finding cinema with id: 1
+11:37:13.568 INFO  services.CinemaService - Updated logo for cinema: updatedLogo.jpg
+11:37:13.569 INFO  services.CinemaService - Updated banner for cinema: updatedBanner.jpg
+11:37:13.569 INFO  services.CinemaService - Updated additional files for cinema: [image1.jpg, image2.jpg]
+11:37:13.570 INFO  services.CinemaService - Saving cinema: com.CMS.kinoCMS.admin.models.Cinema@67064bdc
+11:37:13.581 INFO  services.CinemaService - Saving new cinema: com.CMS.kinoCMS.admin.models.Cinema@435cc7f9
+11:37:13.582 INFO  services.CinemaService - Uploaded logo for cinema: logo.jpg
+11:37:13.582 INFO  services.CinemaService - Uploaded banner for cinema: banner.jpg
+11:37:13.582 INFO  services.CinemaService - Uploaded additional files for cinema: [image1.jpg, image2.jpg]
+11:37:13.582 INFO  services.CinemaService - Saving cinema: com.CMS.kinoCMS.admin.models.Cinema@435cc7f9
+11:37:13.583 INFO  services.CinemaService - Uploaded scheme for hall 1: null
+11:37:13.583 INFO  services.CinemaService - Uploaded banner for hall 1: null
+11:37:13.584 INFO  services.CinemaService - Saved hall with number: 1
+11:37:13.585 INFO  services.CinemaService - Uploaded scheme for hall 2: null
+11:37:13.585 INFO  services.CinemaService - Uploaded banner for hall 2: null
+11:37:13.585 INFO  services.CinemaService - Saved hall with number: 2
+11:37:13.591 INFO  services.CinemaService - Finding cinema with id: 1
+11:37:13.595 INFO  services.CinemaService - Deleting cinema: com.CMS.kinoCMS.admin.models.Cinema@cda6019
+11:37:13.619 ERROR services.FileUploadService - Files array is empty
+11:37:13.631 INFO  services.FileUploadService - Successfully uploaded file: test.txt to C:\Games and Programms\Java Programms\kinoCMS\uploads\4814a5f8-188a-4ab2-b2e5-4d385875434e.test.txt
+11:37:13.636 ERROR services.FileUploadService - File is empty or null
+11:37:13.641 INFO  services.FileUploadService - Successfully uploaded file: test1.txt to C:\Games and Programms\Java Programms\kinoCMS\uploads\c367fc63-10ef-4924-8d53-1134f7065491.test1.txt
+11:37:13.642 INFO  services.FileUploadService - Successfully uploaded file: test2.txt to C:\Games and Programms\Java Programms\kinoCMS\uploads\d95b7ed7-f8b6-4a5c-a853-3205bedcb82b.test2.txt
+11:37:13.646 ERROR services.FileUploadService - Files array is empty
+11:37:13.650 ERROR services.FileUploadService - File is empty or null
+11:37:13.701 INFO  services.HallManagementService - Adding new hall: Set logo logo.jpg
+11:37:13.701 INFO  services.HallManagementService - Adding new hall: Set banner banner.jpg
+11:37:13.701 INFO  services.HallManagementService - Adding new hall: Added 2 images
+11:37:13.701 INFO  services.HallManagementService - Added new hall successfully to cinema 1
+11:37:13.713 INFO  services.HallManagementService - Updated hall 1: Set new logo logo.jpg
+11:37:13.713 INFO  services.HallManagementService - Updated hall 1: Set new banner banner.jpg
+11:37:13.714 INFO  services.HallManagementService - Updated hall 1: Added 2 new images
+11:37:13.714 INFO  services.HallManagementService - Updated hall 1 successfully
+11:37:13.800 INFO  services.FilmService - Updating film with id: 1
+11:37:13.800 INFO  services.FilmService - Main image updated for film: Test Film
+11:37:13.801 INFO  services.FilmService - Additional images updated for film: Test Film
+11:37:13.801 INFO  services.FilmService - Film updated and saved: Updated Film
+11:37:13.813 INFO  services.FilmService - Processing film data for: Test Film
+11:37:13.813 INFO  services.FilmService - Main image uploaded for film: Test Film
+11:37:13.813 INFO  services.FilmService - Additional images uploaded for film: Test Film
+11:37:13.815 INFO  services.FilmService - Film data processed and saved: Test Film
+11:37:13.871 INFO  services.NewsService - Main image uploaded: mainImage.jpg
+11:37:13.871 INFO  services.NewsService - Additional images uploaded: [image1.jpg, image2.jpg]
+11:37:13.871 INFO  services.NewsService - News saved: com.CMS.kinoCMS.admin.models.News@31142d58
+11:37:13.871 INFO  services.NewsService - News added: com.CMS.kinoCMS.admin.models.News@31142d58
+11:37:13.877 INFO  services.NewsService - News saved: com.CMS.kinoCMS.admin.models.News@3134153d
+11:37:13.881 INFO  services.NewsService - Main image updated: updatedMainImage.jpg
+11:37:13.882 INFO  services.NewsService - Additional images updated: [updatedImage1.jpg, updatedImage2.jpg]
+11:37:13.882 INFO  services.NewsService - News saved: com.CMS.kinoCMS.admin.models.News@2f4b98f6
+11:37:13.882 INFO  services.NewsService - News updated: com.CMS.kinoCMS.admin.models.News@2f4b98f6
+11:37:13.890 INFO  services.NewsService - News deleted: com.CMS.kinoCMS.admin.models.News@2da16263
+11:37:14.033 INFO  Pages.PageService - Adding menu item 'Item Name' to page with id: 1
+11:37:14.033 INFO  Pages.PageService - Finding page with id: 1
+11:37:14.035 INFO  Pages.PageService - Menu item 'Item Name' added successfully
+11:37:14.038 INFO  Pages.PageService - Changing status for page object: com.CMS.kinoCMS.admin.models.Pages.Page@64e1377c
+11:37:14.068 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@64e1377c
+11:37:14.073 INFO  Pages.PageService - Adding new page: com.CMS.kinoCMS.admin.models.Pages.Page@640cc04b
+11:37:14.073 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@640cc04b
+11:37:14.078 INFO  Pages.PageService - Fetching all pages
+11:37:14.112 INFO  Pages.PageService - Fetching page with name: Test Page
+11:37:14.112 INFO  Pages.PageService - Finding page with name: Test Page
+11:37:14.113 INFO  Pages.PageService - Page 'Test Page' is not active, adding cinemas for display
+11:37:14.116 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@4087c7fc
+11:37:14.120 INFO  Pages.PageService - Finding page with name: Test Page
+11:37:14.123 INFO  Pages.PageService - Updating page with id: 1
+11:37:14.124 INFO  Pages.PageService - Finding page with id: 1
+11:37:14.125 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@5b5b59
+11:37:14.128 INFO  Pages.PageService - Changing status for page object: com.CMS.kinoCMS.admin.models.Pages.MainPage@3b353651
+11:37:14.128 INFO  Pages.PageService - Saving main page: com.CMS.kinoCMS.admin.models.Pages.MainPage@3b353651
+11:37:14.133 INFO  Pages.PageService - Finding page with id: 1
+11:37:14.138 INFO  Pages.PageService - Adding menu item 'Item Name' to page with id: 1
+11:37:14.138 INFO  Pages.PageService - Finding page with id: 1
+11:37:14.139 ERROR Pages.PageService - Page with id '1' not found
+11:37:14.144 INFO  Pages.PageService - Changing status for page object: com.CMS.kinoCMS.admin.models.Pages.Contact@3453acd2
+11:37:14.144 INFO  Pages.PageService - Saving contact page: com.CMS.kinoCMS.admin.models.Pages.Contact@3453acd2
+11:37:14.149 INFO  Pages.PageService - Finding pages with isDefault: true
+11:37:14.418 INFO  Pages.ContactsPageService - Finding all contacts
+11:37:14.420 INFO  Pages.ContactsPageService - Saving contact: com.CMS.kinoCMS.admin.models.Pages.Contact@265c1a7c
+11:37:14.426 INFO  Pages.ContactsPageService - Updating cinema with ID: 1
+11:37:14.428 INFO  Pages.ContactsPageService - Uploaded new logo file: newLogo.png
+11:37:14.432 INFO  Pages.ContactsPageService - Finding contact by ID: 1
+11:37:14.436 INFO  Pages.ContactsPageService - Updating contact with ID: 1
+11:37:14.436 INFO  Pages.ContactsPageService - Finding contact by ID: 1
+11:37:14.438 INFO  Pages.ContactsPageService - Saving contact: com.CMS.kinoCMS.admin.models.Pages.Contact@296edc75
+11:37:14.508 INFO  Pages.MainPageService - Fetching all main pages
+11:37:14.511 INFO  Pages.MainPageService - Saving main page: com.CMS.kinoCMS.admin.models.Pages.MainPage@48bc2fce
+11:37:14.512 INFO  Pages.MainPageService - Updating main page with id: 1
+11:37:14.512 INFO  Pages.MainPageService - Fetching main page with id: 1
+11:37:14.513 INFO  Pages.MainPageService - Saving main page: com.CMS.kinoCMS.admin.models.Pages.MainPage@153d6d74
+11:37:14.515 INFO  Pages.MainPageService - Updating main page with id: 1
+11:37:14.515 INFO  Pages.MainPageService - Fetching main page with id: 1
+11:37:14.520 INFO  Pages.MainPageService - Fetching main page with id: 1
+11:37:14.564 INFO  services.HallService - Retrieved 2 halls
+11:37:14.568 INFO  services.HallService - Saved hall with id 1
+11:37:14.570 INFO  services.HallService - Deleted hall with id 1
+11:37:14.574 INFO  services.HallService - Found hall with id 1
+11:37:14.576 INFO  services.HallService - Retrieved 2 halls for cinema with id 1
+11:37:14.578 INFO  services.HallService - Deleted hall with id 1
+11:37:14.699 INFO  services.ActionService - Fetching all actions
+11:37:14.702 INFO  services.ActionService - Saving action with id: null
+11:37:14.705 INFO  services.ActionService - Changing status for action with id: 1
+11:37:14.705 INFO  services.ActionService - Fetching action by id: 1
+11:37:14.706 INFO  services.ActionService - Status changed successfully for action with id: 1
+11:37:14.710 INFO  services.ActionService - Updating action with id: 1
+11:37:14.711 INFO  services.ActionService - Fetching action by id: 1
+11:37:14.711 INFO  services.ActionService - Uploaded new main image for action with id: 1
+11:37:14.712 INFO  services.ActionService - Uploaded new additional images for action with id: 1
+11:37:14.712 INFO  services.ActionService - Action updated successfully with id: 1
+11:37:14.715 INFO  services.ActionService - Saving new action
+11:37:14.716 INFO  services.ActionService - Uploaded main image for action with id: null
+11:37:14.716 INFO  services.ActionService - Uploaded additional images for action with id: null
+11:37:14.716 INFO  services.ActionService - Action saved successfully with id: null
+11:37:14.720 INFO  services.ActionService - Fetching action by id: 1
+11:37:14.724 INFO  services.ActionService - Deleting action with id: null
+11:37:14.728 INFO  services.ActionService - Fetching actions by status: true
+11:37:14.734 INFO  services.MyUserDetailsService - Attempting to load user by username: User
+11:37:14.777 INFO  Pages.MenuItemService - Fetching all menu items
+11:37:14.781 INFO  Pages.MenuItemService - Saving menu item: com.CMS.kinoCMS.admin.models.Pages.MenuItem@41f785e3
+11:37:14.786 INFO  Pages.MenuItemService - Finding menu items for page: com.CMS.kinoCMS.admin.models.Pages.Page@6b25ef1c
+11:37:14.789 INFO  Pages.MenuItemService - Finding menu item with id: 1
+11:37:14.792 INFO  Pages.MenuItemService - Deleting menu item with id: 1
+11:37:14.797 INFO  Pages.MenuItemService - Finding menu item with id: 1
+11:37:14.801 INFO  services.EmailStatisticsService - Incremented emails sent count: 1
+11:37:14.803 INFO  services.EmailStatisticsService - Incremented emails sent count: 2
+11:37:14.803 INFO  services.EmailStatisticsService - Emails sent count has been reset
+11:37:14.803 INFO  services.EmailStatisticsService - Current emails sent count: 0
+11:37:14.804 INFO  services.EmailStatisticsService - Incremented emails sent count: 1
+11:37:14.804 INFO  services.EmailStatisticsService - Incremented emails sent count: 2
+11:37:14.804 INFO  services.EmailStatisticsService - Current emails sent count: 2
+11:37:14.805 INFO  services.EmailStatisticsService - Incremented emails sent count: 1
+11:37:14.805 INFO  services.EmailStatisticsService - Incremented emails sent count: 2
+11:37:14.805 INFO  services.EmailStatisticsService - Current emails sent count: 2
+11:37:14.867 INFO  services.ScheduleService - Finding schedules for cinemaId: 1
+11:37:14.869 INFO  services.ScheduleService - Saving schedule: com.CMS.kinoCMS.admin.models.Schedule@640c216b
+11:37:14.873 INFO  services.ScheduleService - Filtering schedules for cinemaId: 1, filmId: 1, hallId: 1, filmType: 3D
+11:37:14.873 INFO  services.ScheduleService - Finding schedules for cinemaId: 1, between dates: 2024-07-27 and 2024-08-03
+11:37:14.878 INFO  services.ScheduleService - Finding schedule by id: 1
+11:37:14.882 INFO  services.ScheduleService - Finding schedules for filmId: 1, between dates: 2024-07-27 and 2024-08-03
+11:37:14.886 INFO  services.ScheduleService - Finding schedules for cinemaId: 1, between dates: 2024-07-27 and 2024-08-03
+11:37:14.888 INFO  services.ScheduleService - Grouping schedules by date
+11:37:14.896 INFO  services.ScheduleService - Filtering schedules for hallId: 1
+11:37:23.767 INFO  services.CinemaService - Fetching all cinemas
+11:37:23.823 INFO  services.CinemaService - Saving cinema: com.CMS.kinoCMS.admin.models.Cinema@59696551
+11:37:23.881 INFO  services.CinemaService - Updating cinema with id: 1
+11:37:23.881 INFO  services.CinemaService - Finding cinema with id: 1
+11:37:23.884 INFO  services.CinemaService - Updated logo for cinema: updatedLogo.jpg
+11:37:23.884 INFO  services.CinemaService - Updated banner for cinema: updatedBanner.jpg
+11:37:23.884 INFO  services.CinemaService - Updated additional files for cinema: [image1.jpg, image2.jpg]
+11:37:23.885 INFO  services.CinemaService - Saving cinema: com.CMS.kinoCMS.admin.models.Cinema@12e5da86
+11:37:23.896 INFO  services.CinemaService - Saving new cinema: com.CMS.kinoCMS.admin.models.Cinema@4f5b08d
+11:37:23.898 INFO  services.CinemaService - Uploaded logo for cinema: logo.jpg
+11:37:23.898 INFO  services.CinemaService - Uploaded banner for cinema: banner.jpg
+11:37:23.899 INFO  services.CinemaService - Uploaded additional files for cinema: [image1.jpg, image2.jpg]
+11:37:23.899 INFO  services.CinemaService - Saving cinema: com.CMS.kinoCMS.admin.models.Cinema@4f5b08d
+11:37:23.899 INFO  services.CinemaService - Uploaded scheme for hall 1: null
+11:37:23.900 INFO  services.CinemaService - Uploaded banner for hall 1: null
+11:37:23.901 INFO  services.CinemaService - Saved hall with number: 1
+11:37:23.902 INFO  services.CinemaService - Uploaded scheme for hall 2: null
+11:37:23.902 INFO  services.CinemaService - Uploaded banner for hall 2: null
+11:37:23.902 INFO  services.CinemaService - Saved hall with number: 2
+11:37:23.911 INFO  services.CinemaService - Finding cinema with id: 1
+11:37:23.916 INFO  services.CinemaService - Deleting cinema: com.CMS.kinoCMS.admin.models.Cinema@1e0a864d
+11:37:23.944 ERROR services.FileUploadService - Files array is empty
+11:37:23.957 INFO  services.FileUploadService - Successfully uploaded file: test.txt to C:\Games and Programms\Java Programms\kinoCMS\uploads\ad618592-36de-4086-9801-e72ee5dbfe21.test.txt
+11:37:23.962 ERROR services.FileUploadService - File is empty or null
+11:37:23.968 INFO  services.FileUploadService - Successfully uploaded file: test1.txt to C:\Games and Programms\Java Programms\kinoCMS\uploads\bc89398e-cd18-434f-94a5-60b390453bba.test1.txt
+11:37:23.976 INFO  services.FileUploadService - Successfully uploaded file: test2.txt to C:\Games and Programms\Java Programms\kinoCMS\uploads\3555c45a-36fb-4144-9498-985fd6cd95cc.test2.txt
+11:37:23.981 ERROR services.FileUploadService - Files array is empty
+11:37:23.985 ERROR services.FileUploadService - File is empty or null
+11:37:24.034 INFO  services.HallManagementService - Adding new hall: Set logo logo.jpg
+11:37:24.034 INFO  services.HallManagementService - Adding new hall: Set banner banner.jpg
+11:37:24.035 INFO  services.HallManagementService - Adding new hall: Added 2 images
+11:37:24.035 INFO  services.HallManagementService - Added new hall successfully to cinema 1
+11:37:24.049 INFO  services.HallManagementService - Updated hall 1: Set new logo logo.jpg
+11:37:24.049 INFO  services.HallManagementService - Updated hall 1: Set new banner banner.jpg
+11:37:24.050 INFO  services.HallManagementService - Updated hall 1: Added 2 new images
+11:37:24.050 INFO  services.HallManagementService - Updated hall 1 successfully
+11:37:24.144 INFO  services.FilmService - Updating film with id: 1
+11:37:24.144 INFO  services.FilmService - Main image updated for film: Test Film
+11:37:24.145 INFO  services.FilmService - Additional images updated for film: Test Film
+11:37:24.145 INFO  services.FilmService - Film updated and saved: Updated Film
+11:37:24.157 INFO  services.FilmService - Processing film data for: Test Film
+11:37:24.158 INFO  services.FilmService - Main image uploaded for film: Test Film
+11:37:24.158 INFO  services.FilmService - Additional images uploaded for film: Test Film
+11:37:24.158 INFO  services.FilmService - Film data processed and saved: Test Film
+11:37:24.215 INFO  services.NewsService - Main image uploaded: mainImage.jpg
+11:37:24.216 INFO  services.NewsService - Additional images uploaded: [image1.jpg, image2.jpg]
+11:37:24.216 INFO  services.NewsService - News saved: com.CMS.kinoCMS.admin.models.News@2da16263
+11:37:24.216 INFO  services.NewsService - News added: com.CMS.kinoCMS.admin.models.News@2da16263
+11:37:24.221 INFO  services.NewsService - News saved: com.CMS.kinoCMS.admin.models.News@7377781e
+11:37:24.227 INFO  services.NewsService - Main image updated: updatedMainImage.jpg
+11:37:24.227 INFO  services.NewsService - Additional images updated: [updatedImage1.jpg, updatedImage2.jpg]
+11:37:24.228 INFO  services.NewsService - News saved: com.CMS.kinoCMS.admin.models.News@5e8507f1
+11:37:24.228 INFO  services.NewsService - News updated: com.CMS.kinoCMS.admin.models.News@5e8507f1
+11:37:24.232 INFO  services.NewsService - News deleted: com.CMS.kinoCMS.admin.models.News@7cfb4736
+11:37:24.377 INFO  Pages.PageService - Adding menu item 'Item Name' to page with id: 1
+11:37:24.377 INFO  Pages.PageService - Finding page with id: 1
+11:37:24.379 INFO  Pages.PageService - Menu item 'Item Name' added successfully
+11:37:24.382 INFO  Pages.PageService - Changing status for page object: com.CMS.kinoCMS.admin.models.Pages.Page@4cad79bc
+11:37:24.414 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@4cad79bc
+11:37:24.419 INFO  Pages.PageService - Adding new page: com.CMS.kinoCMS.admin.models.Pages.Page@a9c5b75
+11:37:24.419 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@a9c5b75
+11:37:24.422 INFO  Pages.PageService - Fetching all pages
+11:37:24.457 INFO  Pages.PageService - Fetching page with name: Test Page
+11:37:24.457 INFO  Pages.PageService - Finding page with name: Test Page
+11:37:24.458 INFO  Pages.PageService - Page 'Test Page' is not active, adding cinemas for display
+11:37:24.462 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@33f17289
+11:37:24.465 INFO  Pages.PageService - Finding page with name: Test Page
+11:37:24.470 INFO  Pages.PageService - Updating page with id: 1
+11:37:24.470 INFO  Pages.PageService - Finding page with id: 1
+11:37:24.471 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@2ceca2ef
+11:37:24.476 INFO  Pages.PageService - Changing status for page object: com.CMS.kinoCMS.admin.models.Pages.MainPage@3453acd2
+11:37:24.476 INFO  Pages.PageService - Saving main page: com.CMS.kinoCMS.admin.models.Pages.MainPage@3453acd2
+11:37:24.483 INFO  Pages.PageService - Finding page with id: 1
+11:37:24.488 INFO  Pages.PageService - Adding menu item 'Item Name' to page with id: 1
+11:37:24.489 INFO  Pages.PageService - Finding page with id: 1
+11:37:24.489 ERROR Pages.PageService - Page with id '1' not found
+11:37:24.494 INFO  Pages.PageService - Changing status for page object: com.CMS.kinoCMS.admin.models.Pages.Contact@38ee7a9d
+11:37:24.494 INFO  Pages.PageService - Saving contact page: com.CMS.kinoCMS.admin.models.Pages.Contact@38ee7a9d
+11:37:24.498 INFO  Pages.PageService - Finding pages with isDefault: true
+11:37:24.764 INFO  Pages.ContactsPageService - Finding all contacts
+11:37:24.767 INFO  Pages.ContactsPageService - Saving contact: com.CMS.kinoCMS.admin.models.Pages.Contact@32507479
+11:37:24.772 INFO  Pages.ContactsPageService - Updating cinema with ID: 1
+11:37:24.773 INFO  Pages.ContactsPageService - Uploaded new logo file: newLogo.png
+11:37:24.789 INFO  Pages.ContactsPageService - Finding contact by ID: 1
+11:37:24.791 INFO  Pages.ContactsPageService - Updating contact with ID: 1
+11:37:24.793 INFO  Pages.ContactsPageService - Finding contact by ID: 1
+11:37:24.793 INFO  Pages.ContactsPageService - Saving contact: com.CMS.kinoCMS.admin.models.Pages.Contact@5d9618f2
+11:37:24.840 INFO  Pages.MainPageService - Fetching all main pages
+11:37:24.842 INFO  Pages.MainPageService - Saving main page: com.CMS.kinoCMS.admin.models.Pages.MainPage@1ee5632d
+11:37:24.844 INFO  Pages.MainPageService - Updating main page with id: 1
+11:37:24.844 INFO  Pages.MainPageService - Fetching main page with id: 1
+11:37:24.846 INFO  Pages.MainPageService - Saving main page: com.CMS.kinoCMS.admin.models.Pages.MainPage@29d25e65
+11:37:24.850 INFO  Pages.MainPageService - Updating main page with id: 1
+11:37:24.850 INFO  Pages.MainPageService - Fetching main page with id: 1
+11:37:24.853 INFO  Pages.MainPageService - Fetching main page with id: 1
+11:37:24.899 INFO  services.HallService - Retrieved 2 halls
+11:37:24.901 INFO  services.HallService - Saved hall with id 1
+11:37:24.904 INFO  services.HallService - Deleted hall with id 1
+11:37:24.907 INFO  services.HallService - Found hall with id 1
+11:37:24.911 INFO  services.HallService - Retrieved 2 halls for cinema with id 1
+11:37:24.912 INFO  services.HallService - Deleted hall with id 1
+11:37:25.038 INFO  services.ActionService - Fetching all actions
+11:37:25.040 INFO  services.ActionService - Saving action with id: null
+11:37:25.043 INFO  services.ActionService - Changing status for action with id: 1
+11:37:25.043 INFO  services.ActionService - Fetching action by id: 1
+11:37:25.045 INFO  services.ActionService - Status changed successfully for action with id: 1
+11:37:25.049 INFO  services.ActionService - Updating action with id: 1
+11:37:25.049 INFO  services.ActionService - Fetching action by id: 1
+11:37:25.050 INFO  services.ActionService - Uploaded new main image for action with id: 1
+11:37:25.050 INFO  services.ActionService - Uploaded new additional images for action with id: 1
+11:37:25.050 INFO  services.ActionService - Action updated successfully with id: 1
+11:37:25.056 INFO  services.ActionService - Saving new action
+11:37:25.056 INFO  services.ActionService - Uploaded main image for action with id: null
+11:37:25.057 INFO  services.ActionService - Uploaded additional images for action with id: null
+11:37:25.057 INFO  services.ActionService - Action saved successfully with id: null
+11:37:25.061 INFO  services.ActionService - Fetching action by id: 1
+11:37:25.064 INFO  services.ActionService - Deleting action with id: null
+11:37:25.069 INFO  services.ActionService - Fetching actions by status: true
+11:37:25.077 INFO  services.MyUserDetailsService - Attempting to load user by username: User
+11:37:25.129 INFO  Pages.MenuItemService - Fetching all menu items
+11:37:25.131 INFO  Pages.MenuItemService - Saving menu item: com.CMS.kinoCMS.admin.models.Pages.MenuItem@566c1e71
+11:37:25.135 INFO  Pages.MenuItemService - Finding menu items for page: com.CMS.kinoCMS.admin.models.Pages.Page@60b1ff3b
+11:37:25.140 INFO  Pages.MenuItemService - Finding menu item with id: 1
+11:37:25.143 INFO  Pages.MenuItemService - Deleting menu item with id: 1
+11:37:25.148 INFO  Pages.MenuItemService - Finding menu item with id: 1
+11:37:25.154 INFO  services.EmailStatisticsService - Incremented emails sent count: 1
+11:37:25.154 INFO  services.EmailStatisticsService - Incremented emails sent count: 2
+11:37:25.154 INFO  services.EmailStatisticsService - Emails sent count has been reset
+11:37:25.155 INFO  services.EmailStatisticsService - Current emails sent count: 0
+11:37:25.156 INFO  services.EmailStatisticsService - Incremented emails sent count: 1
+11:37:25.156 INFO  services.EmailStatisticsService - Incremented emails sent count: 2
+11:37:25.156 INFO  services.EmailStatisticsService - Current emails sent count: 2
+11:37:25.157 INFO  services.EmailStatisticsService - Incremented emails sent count: 1
+11:37:25.157 INFO  services.EmailStatisticsService - Incremented emails sent count: 2
+11:37:25.157 INFO  services.EmailStatisticsService - Current emails sent count: 2
+11:37:25.206 INFO  services.ScheduleService - Finding schedules for cinemaId: 1
+11:37:25.209 INFO  services.ScheduleService - Saving schedule: com.CMS.kinoCMS.admin.models.Schedule@65859b44
+11:37:25.212 INFO  services.ScheduleService - Filtering schedules for cinemaId: 1, filmId: 1, hallId: 1, filmType: 3D
+11:37:25.213 INFO  services.ScheduleService - Finding schedules for cinemaId: 1, between dates: 2024-07-27 and 2024-08-03
+11:37:25.217 INFO  services.ScheduleService - Finding schedule by id: 1
+11:37:25.221 INFO  services.ScheduleService - Finding schedules for filmId: 1, between dates: 2024-07-27 and 2024-08-03
+11:37:25.225 INFO  services.ScheduleService - Finding schedules for cinemaId: 1, between dates: 2024-07-27 and 2024-08-03
+11:37:25.228 INFO  services.ScheduleService - Grouping schedules by date
+11:37:25.239 INFO  services.ScheduleService - Filtering schedules for hallId: 1
+11:37:52.135 INFO  services.CinemaService - Fetching all cinemas
+11:37:52.181 INFO  services.CinemaService - Saving cinema: com.CMS.kinoCMS.admin.models.Cinema@71b639d0
+11:37:52.238 INFO  services.CinemaService - Updating cinema with id: 1
+11:37:52.238 INFO  services.CinemaService - Finding cinema with id: 1
+11:37:52.238 INFO  services.CinemaService - Updated logo for cinema: updatedLogo.jpg
+11:37:52.238 INFO  services.CinemaService - Updated banner for cinema: updatedBanner.jpg
+11:37:52.238 INFO  services.CinemaService - Updated additional files for cinema: [image1.jpg, image2.jpg]
+11:37:52.240 INFO  services.CinemaService - Saving cinema: com.CMS.kinoCMS.admin.models.Cinema@6a1d6ef2
+11:37:52.247 INFO  services.CinemaService - Saving new cinema: com.CMS.kinoCMS.admin.models.Cinema@39c96e48
+11:37:52.248 INFO  services.CinemaService - Uploaded logo for cinema: logo.jpg
+11:37:52.248 INFO  services.CinemaService - Uploaded banner for cinema: banner.jpg
+11:37:52.248 INFO  services.CinemaService - Uploaded additional files for cinema: [image1.jpg, image2.jpg]
+11:37:52.248 INFO  services.CinemaService - Saving cinema: com.CMS.kinoCMS.admin.models.Cinema@39c96e48
+11:37:52.249 INFO  services.CinemaService - Uploaded scheme for hall 1: null
+11:37:52.249 INFO  services.CinemaService - Uploaded banner for hall 1: null
+11:37:52.251 INFO  services.CinemaService - Saved hall with number: 1
+11:37:52.252 INFO  services.CinemaService - Uploaded scheme for hall 2: null
+11:37:52.252 INFO  services.CinemaService - Uploaded banner for hall 2: null
+11:37:52.252 INFO  services.CinemaService - Saved hall with number: 2
+11:37:52.259 INFO  services.CinemaService - Finding cinema with id: 1
+11:37:52.263 INFO  services.CinemaService - Deleting cinema: com.CMS.kinoCMS.admin.models.Cinema@76e9f00b
+11:37:52.286 ERROR services.FileUploadService - Files array is empty
+11:37:52.296 INFO  services.FileUploadService - Successfully uploaded file: test.txt to C:\Games and Programms\Java Programms\kinoCMS\uploads\36136257-0918-460a-ab80-f5e76c0dcec3.test.txt
+11:37:52.302 ERROR services.FileUploadService - File is empty or null
+11:37:52.306 INFO  services.FileUploadService - Successfully uploaded file: test1.txt to C:\Games and Programms\Java Programms\kinoCMS\uploads\0d3310a7-e03e-4848-81ac-06c03f9d5af4.test1.txt
+11:37:52.308 INFO  services.FileUploadService - Successfully uploaded file: test2.txt to C:\Games and Programms\Java Programms\kinoCMS\uploads\9da22072-1bd8-45c1-9e62-90cec8004f62.test2.txt
+11:37:52.313 ERROR services.FileUploadService - Files array is empty
+11:37:52.317 ERROR services.FileUploadService - File is empty or null
+11:37:52.375 INFO  services.HallManagementService - Adding new hall: Set logo logo.jpg
+11:37:52.375 INFO  services.HallManagementService - Adding new hall: Set banner banner.jpg
+11:37:52.375 INFO  services.HallManagementService - Adding new hall: Added 2 images
+11:37:52.376 INFO  services.HallManagementService - Added new hall successfully to cinema 1
+11:37:52.387 INFO  services.HallManagementService - Updated hall 1: Set new logo logo.jpg
+11:37:52.387 INFO  services.HallManagementService - Updated hall 1: Set new banner banner.jpg
+11:37:52.388 INFO  services.HallManagementService - Updated hall 1: Added 2 new images
+11:37:52.388 INFO  services.HallManagementService - Updated hall 1 successfully
+11:37:52.472 INFO  services.FilmService - Updating film with id: 1
+11:37:52.473 INFO  services.FilmService - Main image updated for film: Test Film
+11:37:52.473 INFO  services.FilmService - Additional images updated for film: Test Film
+11:37:52.474 INFO  services.FilmService - Film updated and saved: Updated Film
+11:37:52.487 INFO  services.FilmService - Processing film data for: Test Film
+11:37:52.488 INFO  services.FilmService - Main image uploaded for film: Test Film
+11:37:52.488 INFO  services.FilmService - Additional images uploaded for film: Test Film
+11:37:52.488 INFO  services.FilmService - Film data processed and saved: Test Film
+11:37:52.552 INFO  services.NewsService - Main image uploaded: mainImage.jpg
+11:37:52.552 INFO  services.NewsService - Additional images uploaded: [image1.jpg, image2.jpg]
+11:37:52.553 INFO  services.NewsService - News saved: com.CMS.kinoCMS.admin.models.News@716185fe
+11:37:52.553 INFO  services.NewsService - News added: com.CMS.kinoCMS.admin.models.News@716185fe
+11:37:52.560 INFO  services.NewsService - News saved: com.CMS.kinoCMS.admin.models.News@fd09e43
+11:37:52.564 INFO  services.NewsService - Main image updated: updatedMainImage.jpg
+11:37:52.565 INFO  services.NewsService - Additional images updated: [updatedImage1.jpg, updatedImage2.jpg]
+11:37:52.565 INFO  services.NewsService - News saved: com.CMS.kinoCMS.admin.models.News@25f61c2c
+11:37:52.565 INFO  services.NewsService - News updated: com.CMS.kinoCMS.admin.models.News@25f61c2c
+11:37:52.571 INFO  services.NewsService - News deleted: com.CMS.kinoCMS.admin.models.News@461c3709
+11:37:52.697 INFO  Pages.PageService - Adding menu item 'Item Name' to page with id: 1
+11:37:52.698 INFO  Pages.PageService - Finding page with id: 1
+11:37:52.698 INFO  Pages.PageService - Menu item 'Item Name' added successfully
+11:37:52.702 INFO  Pages.PageService - Changing status for page object: com.CMS.kinoCMS.admin.models.Pages.Page@193bb809
+11:37:52.729 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@193bb809
+11:37:52.733 INFO  Pages.PageService - Adding new page: com.CMS.kinoCMS.admin.models.Pages.Page@364fd4ae
+11:37:52.733 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@364fd4ae
+11:37:52.736 INFO  Pages.PageService - Fetching all pages
+11:37:52.764 INFO  Pages.PageService - Fetching page with name: Test Page
+11:37:52.766 INFO  Pages.PageService - Finding page with name: Test Page
+11:37:52.766 INFO  Pages.PageService - Page 'Test Page' is not active, adding cinemas for display
+11:37:52.770 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@4ea56bdb
+11:37:52.773 INFO  Pages.PageService - Finding page with name: Test Page
+11:37:52.778 INFO  Pages.PageService - Updating page with id: 1
+11:37:52.778 INFO  Pages.PageService - Finding page with id: 1
+11:37:52.779 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@2180e789
+11:37:52.783 INFO  Pages.PageService - Changing status for page object: com.CMS.kinoCMS.admin.models.Pages.MainPage@2de6f1bc
+11:37:52.783 INFO  Pages.PageService - Saving main page: com.CMS.kinoCMS.admin.models.Pages.MainPage@2de6f1bc
+11:37:52.788 INFO  Pages.PageService - Finding page with id: 1
+11:37:52.793 INFO  Pages.PageService - Adding menu item 'Item Name' to page with id: 1
+11:37:52.793 INFO  Pages.PageService - Finding page with id: 1
+11:37:52.793 ERROR Pages.PageService - Page with id '1' not found
+11:37:52.796 INFO  Pages.PageService - Changing status for page object: com.CMS.kinoCMS.admin.models.Pages.Contact@4fba8eec
+11:37:52.796 INFO  Pages.PageService - Saving contact page: com.CMS.kinoCMS.admin.models.Pages.Contact@4fba8eec
+11:37:52.801 INFO  Pages.PageService - Finding pages with isDefault: true
+11:37:53.073 INFO  Pages.ContactsPageService - Finding all contacts
+11:37:53.076 INFO  Pages.ContactsPageService - Saving contact: com.CMS.kinoCMS.admin.models.Pages.Contact@77896335
+11:37:53.080 INFO  Pages.ContactsPageService - Updating cinema with ID: 1
+11:37:53.082 INFO  Pages.ContactsPageService - Uploaded new logo file: newLogo.png
+11:37:53.085 INFO  Pages.ContactsPageService - Finding contact by ID: 1
+11:37:53.089 INFO  Pages.ContactsPageService - Updating contact with ID: 1
+11:37:53.089 INFO  Pages.ContactsPageService - Finding contact by ID: 1
+11:37:53.090 INFO  Pages.ContactsPageService - Saving contact: com.CMS.kinoCMS.admin.models.Pages.Contact@13516600
+11:37:53.139 INFO  Pages.MainPageService - Fetching all main pages
+11:37:53.142 INFO  Pages.MainPageService - Saving main page: com.CMS.kinoCMS.admin.models.Pages.MainPage@6c8f4bc7
+11:37:53.145 INFO  Pages.MainPageService - Updating main page with id: 1
+11:37:53.145 INFO  Pages.MainPageService - Fetching main page with id: 1
+11:37:53.146 INFO  Pages.MainPageService - Saving main page: com.CMS.kinoCMS.admin.models.Pages.MainPage@7d66a126
+11:37:53.150 INFO  Pages.MainPageService - Updating main page with id: 1
+11:37:53.151 INFO  Pages.MainPageService - Fetching main page with id: 1
+11:37:53.157 INFO  Pages.MainPageService - Fetching main page with id: 1
+11:37:53.220 INFO  services.HallService - Retrieved 2 halls
+11:37:53.222 INFO  services.HallService - Saved hall with id 1
+11:37:53.225 INFO  services.HallService - Deleted hall with id 1
+11:37:53.230 INFO  services.HallService - Found hall with id 1
+11:37:53.233 INFO  services.HallService - Retrieved 2 halls for cinema with id 1
+11:37:53.236 INFO  services.HallService - Deleted hall with id 1
+11:37:53.348 INFO  services.ActionService - Fetching all actions
+11:37:53.351 INFO  services.ActionService - Saving action with id: null
+11:37:53.353 INFO  services.ActionService - Changing status for action with id: 1
+11:37:53.353 INFO  services.ActionService - Fetching action by id: 1
+11:37:53.354 INFO  services.ActionService - Status changed successfully for action with id: 1
+11:37:53.358 INFO  services.ActionService - Updating action with id: 1
+11:37:53.358 INFO  services.ActionService - Fetching action by id: 1
+11:37:53.359 INFO  services.ActionService - Uploaded new main image for action with id: 1
+11:37:53.359 INFO  services.ActionService - Uploaded new additional images for action with id: 1
+11:37:53.359 INFO  services.ActionService - Action updated successfully with id: 1
+11:37:53.362 INFO  services.ActionService - Saving new action
+11:37:53.363 INFO  services.ActionService - Uploaded main image for action with id: null
+11:37:53.363 INFO  services.ActionService - Uploaded additional images for action with id: null
+11:37:53.363 INFO  services.ActionService - Action saved successfully with id: null
+11:37:53.366 INFO  services.ActionService - Fetching action by id: 1
+11:37:53.370 INFO  services.ActionService - Deleting action with id: null
+11:37:53.372 INFO  services.ActionService - Fetching actions by status: true
+11:37:53.379 INFO  services.MyUserDetailsService - Attempting to load user by username: User
+11:37:53.427 INFO  Pages.MenuItemService - Fetching all menu items
+11:37:53.430 INFO  Pages.MenuItemService - Saving menu item: com.CMS.kinoCMS.admin.models.Pages.MenuItem@67a8bcbb
+11:37:53.433 INFO  Pages.MenuItemService - Finding menu items for page: com.CMS.kinoCMS.admin.models.Pages.Page@2fc7fa6e
+11:37:53.436 INFO  Pages.MenuItemService - Finding menu item with id: 1
+11:37:53.438 INFO  Pages.MenuItemService - Deleting menu item with id: 1
+11:37:53.441 INFO  Pages.MenuItemService - Finding menu item with id: 1
+11:37:53.446 INFO  services.EmailStatisticsService - Incremented emails sent count: 1
+11:37:53.446 INFO  services.EmailStatisticsService - Incremented emails sent count: 2
+11:37:53.446 INFO  services.EmailStatisticsService - Emails sent count has been reset
+11:37:53.447 INFO  services.EmailStatisticsService - Current emails sent count: 0
+11:37:53.448 INFO  services.EmailStatisticsService - Incremented emails sent count: 1
+11:37:53.448 INFO  services.EmailStatisticsService - Incremented emails sent count: 2
+11:37:53.448 INFO  services.EmailStatisticsService - Current emails sent count: 2
+11:37:53.450 INFO  services.EmailStatisticsService - Incremented emails sent count: 1
+11:37:53.450 INFO  services.EmailStatisticsService - Incremented emails sent count: 2
+11:37:53.450 INFO  services.EmailStatisticsService - Current emails sent count: 2
+11:37:53.506 INFO  services.ScheduleService - Finding schedules for cinemaId: 1
+11:37:53.508 INFO  services.ScheduleService - Saving schedule: com.CMS.kinoCMS.admin.models.Schedule@3c09a350
+11:37:53.512 INFO  services.ScheduleService - Filtering schedules for cinemaId: 1, filmId: 1, hallId: 1, filmType: 3D
+11:37:53.512 INFO  services.ScheduleService - Finding schedules for cinemaId: 1, between dates: 2024-07-27 and 2024-08-03
+11:37:53.517 INFO  services.ScheduleService - Finding schedule by id: 1
+11:37:53.521 INFO  services.ScheduleService - Finding schedules for filmId: 1, between dates: 2024-07-27 and 2024-08-03
+11:37:53.524 INFO  services.ScheduleService - Finding schedules for cinemaId: 1, between dates: 2024-07-27 and 2024-08-03
+11:37:53.527 INFO  services.ScheduleService - Grouping schedules by date
+11:37:53.536 INFO  services.ScheduleService - Filtering schedules for hallId: 1
+11:38:11.695 INFO  services.CinemaService - Fetching all cinemas
+11:38:11.748 INFO  services.CinemaService - Saving cinema: com.CMS.kinoCMS.admin.models.Cinema@10a98392
+11:38:11.817 INFO  services.CinemaService - Updating cinema with id: 1
+11:38:11.817 INFO  services.CinemaService - Finding cinema with id: 1
+11:38:11.817 INFO  services.CinemaService - Updated logo for cinema: updatedLogo.jpg
+11:38:11.818 INFO  services.CinemaService - Updated banner for cinema: updatedBanner.jpg
+11:38:11.818 INFO  services.CinemaService - Updated additional files for cinema: [image1.jpg, image2.jpg]
+11:38:11.818 INFO  services.CinemaService - Saving cinema: com.CMS.kinoCMS.admin.models.Cinema@4fc5563d
+11:38:11.828 INFO  services.CinemaService - Saving new cinema: com.CMS.kinoCMS.admin.models.Cinema@3458eca5
+11:38:11.829 INFO  services.CinemaService - Uploaded logo for cinema: logo.jpg
+11:38:11.829 INFO  services.CinemaService - Uploaded banner for cinema: banner.jpg
+11:38:11.829 INFO  services.CinemaService - Uploaded additional files for cinema: [image1.jpg, image2.jpg]
+11:38:11.829 INFO  services.CinemaService - Saving cinema: com.CMS.kinoCMS.admin.models.Cinema@3458eca5
+11:38:11.829 INFO  services.CinemaService - Uploaded scheme for hall 1: null
+11:38:11.830 INFO  services.CinemaService - Uploaded banner for hall 1: null
+11:38:11.831 INFO  services.CinemaService - Saved hall with number: 1
+11:38:11.832 INFO  services.CinemaService - Uploaded scheme for hall 2: null
+11:38:11.832 INFO  services.CinemaService - Uploaded banner for hall 2: null
+11:38:11.832 INFO  services.CinemaService - Saved hall with number: 2
+11:38:11.840 INFO  services.CinemaService - Finding cinema with id: 1
+11:38:11.845 INFO  services.CinemaService - Deleting cinema: com.CMS.kinoCMS.admin.models.Cinema@3e4e8fdf
+11:38:11.871 ERROR services.FileUploadService - Files array is empty
+11:38:11.883 INFO  services.FileUploadService - Successfully uploaded file: test.txt to C:\Games and Programms\Java Programms\kinoCMS\uploads\802e212d-6dfb-4af8-91c5-d5ec4141d5ee.test.txt
+11:38:11.889 ERROR services.FileUploadService - File is empty or null
+11:38:11.896 INFO  services.FileUploadService - Successfully uploaded file: test1.txt to C:\Games and Programms\Java Programms\kinoCMS\uploads\91421765-71c7-423a-a4e7-87d13f9aa084.test1.txt
+11:38:11.902 INFO  services.FileUploadService - Successfully uploaded file: test2.txt to C:\Games and Programms\Java Programms\kinoCMS\uploads\d58b3976-db19-401e-93f7-02245003b53c.test2.txt
+11:38:11.908 ERROR services.FileUploadService - Files array is empty
+11:38:11.912 ERROR services.FileUploadService - File is empty or null
+11:38:11.971 INFO  services.HallManagementService - Adding new hall: Set logo logo.jpg
+11:38:11.972 INFO  services.HallManagementService - Adding new hall: Set banner banner.jpg
+11:38:11.972 INFO  services.HallManagementService - Adding new hall: Added 2 images
+11:38:11.972 INFO  services.HallManagementService - Added new hall successfully to cinema 1
+11:38:11.983 INFO  services.HallManagementService - Updated hall 1: Set new logo logo.jpg
+11:38:11.984 INFO  services.HallManagementService - Updated hall 1: Set new banner banner.jpg
+11:38:11.984 INFO  services.HallManagementService - Updated hall 1: Added 2 new images
+11:38:11.984 INFO  services.HallManagementService - Updated hall 1 successfully
+11:38:12.070 INFO  services.FilmService - Updating film with id: 1
+11:38:12.071 INFO  services.FilmService - Main image updated for film: Test Film
+11:38:12.071 INFO  services.FilmService - Additional images updated for film: Test Film
+11:38:12.071 INFO  services.FilmService - Film updated and saved: Updated Film
+11:38:12.082 INFO  services.FilmService - Processing film data for: Test Film
+11:38:12.082 INFO  services.FilmService - Main image uploaded for film: Test Film
+11:38:12.082 INFO  services.FilmService - Additional images uploaded for film: Test Film
+11:38:12.083 INFO  services.FilmService - Film data processed and saved: Test Film
+11:38:12.141 INFO  services.NewsService - Main image uploaded: mainImage.jpg
+11:38:12.142 INFO  services.NewsService - Additional images uploaded: [image1.jpg, image2.jpg]
+11:38:12.142 INFO  services.NewsService - News saved: com.CMS.kinoCMS.admin.models.News@33e434c8
+11:38:12.142 INFO  services.NewsService - News added: com.CMS.kinoCMS.admin.models.News@33e434c8
+11:38:12.148 INFO  services.NewsService - News saved: com.CMS.kinoCMS.admin.models.News@32f5ecc4
+11:38:12.153 INFO  services.NewsService - Main image updated: updatedMainImage.jpg
+11:38:12.153 INFO  services.NewsService - Additional images updated: [updatedImage1.jpg, updatedImage2.jpg]
+11:38:12.154 INFO  services.NewsService - News saved: com.CMS.kinoCMS.admin.models.News@32120956
+11:38:12.154 INFO  services.NewsService - News updated: com.CMS.kinoCMS.admin.models.News@32120956
+11:38:12.160 INFO  services.NewsService - News deleted: com.CMS.kinoCMS.admin.models.News@1b90fee4
+11:38:12.286 INFO  Pages.PageService - Adding menu item 'Item Name' to page with id: 1
+11:38:12.286 INFO  Pages.PageService - Finding page with id: 1
+11:38:12.287 INFO  Pages.PageService - Menu item 'Item Name' added successfully
+11:38:12.290 INFO  Pages.PageService - Changing status for page object: com.CMS.kinoCMS.admin.models.Pages.Page@3ece79fe
+11:38:12.325 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@3ece79fe
+11:38:12.331 INFO  Pages.PageService - Adding new page: com.CMS.kinoCMS.admin.models.Pages.Page@faea4da
+11:38:12.333 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@faea4da
+11:38:12.336 INFO  Pages.PageService - Fetching all pages
+11:38:12.377 INFO  Pages.PageService - Fetching page with name: Test Page
+11:38:12.377 INFO  Pages.PageService - Finding page with name: Test Page
+11:38:12.378 INFO  Pages.PageService - Page 'Test Page' is not active, adding cinemas for display
+11:38:12.381 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@ea00de
+11:38:12.387 INFO  Pages.PageService - Finding page with name: Test Page
+11:38:12.392 INFO  Pages.PageService - Updating page with id: 1
+11:38:12.392 INFO  Pages.PageService - Finding page with id: 1
+11:38:12.393 INFO  Pages.PageService - Saving page: com.CMS.kinoCMS.admin.models.Pages.Page@2c1f8dbd
+11:38:12.398 INFO  Pages.PageService - Changing status for page object: com.CMS.kinoCMS.admin.models.Pages.MainPage@6dca31eb
+11:38:12.398 INFO  Pages.PageService - Saving main page: com.CMS.kinoCMS.admin.models.Pages.MainPage@6dca31eb
+11:38:12.402 INFO  Pages.PageService - Finding page with id: 1
+11:38:12.406 INFO  Pages.PageService - Adding menu item 'Item Name' to page with id: 1
+11:38:12.406 INFO  Pages.PageService - Finding page with id: 1
+11:38:12.406 ERROR Pages.PageService - Page with id '1' not found
+11:38:12.410 INFO  Pages.PageService - Changing status for page object: com.CMS.kinoCMS.admin.models.Pages.Contact@2443abd6
+11:38:12.410 INFO  Pages.PageService - Saving contact page: com.CMS.kinoCMS.admin.models.Pages.Contact@2443abd6
+11:38:12.414 INFO  Pages.PageService - Finding pages with isDefault: true
+11:38:12.669 INFO  Pages.ContactsPageService - Finding all contacts
+11:38:12.671 INFO  Pages.ContactsPageService - Saving contact: com.CMS.kinoCMS.admin.models.Pages.Contact@4b28a7bf
+11:38:12.676 INFO  Pages.ContactsPageService - Updating cinema with ID: 1
+11:38:12.677 INFO  Pages.ContactsPageService - Uploaded new logo file: newLogo.png
+11:38:12.681 INFO  Pages.ContactsPageService - Finding contact by ID: 1
+11:38:12.686 INFO  Pages.ContactsPageService - Updating contact with ID: 1
+11:38:12.686 INFO  Pages.ContactsPageService - Finding contact by ID: 1
+11:38:12.688 INFO  Pages.ContactsPageService - Saving contact: com.CMS.kinoCMS.admin.models.Pages.Contact@433ef204
+11:38:12.740 INFO  Pages.MainPageService - Fetching all main pages
+11:38:12.743 INFO  Pages.MainPageService - Saving main page: com.CMS.kinoCMS.admin.models.Pages.MainPage@1471b98d
+11:38:12.747 INFO  Pages.MainPageService - Updating main page with id: 1
+11:38:12.747 INFO  Pages.MainPageService - Fetching main page with id: 1
+11:38:12.749 INFO  Pages.MainPageService - Saving main page: com.CMS.kinoCMS.admin.models.Pages.MainPage@54895681
+11:38:12.754 INFO  Pages.MainPageService - Updating main page with id: 1
+11:38:12.754 INFO  Pages.MainPageService - Fetching main page with id: 1
+11:38:12.760 INFO  Pages.MainPageService - Fetching main page with id: 1
+11:38:12.807 INFO  services.HallService - Retrieved 2 halls
+11:38:12.810 INFO  services.HallService - Saved hall with id 1
+11:38:12.812 INFO  services.HallService - Deleted hall with id 1
+11:38:12.816 INFO  services.HallService - Found hall with id 1
+11:38:12.818 INFO  services.HallService - Retrieved 2 halls for cinema with id 1
+11:38:12.822 INFO  services.HallService - Deleted hall with id 1
+11:38:12.956 INFO  services.ActionService - Fetching all actions
+11:38:12.959 INFO  services.ActionService - Saving action with id: null
+11:38:12.963 INFO  services.ActionService - Changing status for action with id: 1
+11:38:12.963 INFO  services.ActionService - Fetching action by id: 1
+11:38:12.964 INFO  services.ActionService - Status changed successfully for action with id: 1
+11:38:12.969 INFO  services.ActionService - Updating action with id: 1
+11:38:12.969 INFO  services.ActionService - Fetching action by id: 1
+11:38:12.969 INFO  services.ActionService - Uploaded new main image for action with id: 1
+11:38:12.969 INFO  services.ActionService - Uploaded new additional images for action with id: 1
+11:38:12.970 INFO  services.ActionService - Action updated successfully with id: 1
+11:38:12.974 INFO  services.ActionService - Saving new action
+11:38:12.974 INFO  services.ActionService - Uploaded main image for action with id: null
+11:38:12.974 INFO  services.ActionService - Uploaded additional images for action with id: null
+11:38:12.975 INFO  services.ActionService - Action saved successfully with id: null
+11:38:12.977 INFO  services.ActionService - Fetching action by id: 1
+11:38:12.981 INFO  services.ActionService - Deleting action with id: null
+11:38:12.984 INFO  services.ActionService - Fetching actions by status: true
+11:38:12.991 INFO  services.MyUserDetailsService - Attempting to load user by username: User
+11:38:13.046 INFO  Pages.MenuItemService - Fetching all menu items
+11:38:13.047 INFO  Pages.MenuItemService - Saving menu item: com.CMS.kinoCMS.admin.models.Pages.MenuItem@77c23d90
+11:38:13.051 INFO  Pages.MenuItemService - Finding menu items for page: com.CMS.kinoCMS.admin.models.Pages.Page@6133e20b
+11:38:13.055 INFO  Pages.MenuItemService - Finding menu item with id: 1
+11:38:13.058 INFO  Pages.MenuItemService - Deleting menu item with id: 1
+11:38:13.061 INFO  Pages.MenuItemService - Finding menu item with id: 1
+11:38:13.065 INFO  services.EmailStatisticsService - Incremented emails sent count: 1
+11:38:13.065 INFO  services.EmailStatisticsService - Incremented emails sent count: 2
+11:38:13.065 INFO  services.EmailStatisticsService - Emails sent count has been reset
+11:38:13.065 INFO  services.EmailStatisticsService - Current emails sent count: 0
+11:38:13.067 INFO  services.EmailStatisticsService - Incremented emails sent count: 1
+11:38:13.067 INFO  services.EmailStatisticsService - Incremented emails sent count: 2
+11:38:13.067 INFO  services.EmailStatisticsService - Current emails sent count: 2
+11:38:13.068 INFO  services.EmailStatisticsService - Incremented emails sent count: 1
+11:38:13.069 INFO  services.EmailStatisticsService - Incremented emails sent count: 2
+11:38:13.069 INFO  services.EmailStatisticsService - Current emails sent count: 2
+11:38:13.118 INFO  services.ScheduleService - Finding schedules for cinemaId: 1
+11:38:13.123 INFO  services.ScheduleService - Saving schedule: com.CMS.kinoCMS.admin.models.Schedule@28dd81ad
+11:38:13.127 INFO  services.ScheduleService - Filtering schedules for cinemaId: 1, filmId: 1, hallId: 1, filmType: 3D
+11:38:13.127 INFO  services.ScheduleService - Finding schedules for cinemaId: 1, between dates: 2024-07-27 and 2024-08-03
+11:38:13.132 INFO  services.ScheduleService - Finding schedule by id: 1
+11:38:13.136 INFO  services.ScheduleService - Finding schedules for filmId: 1, between dates: 2024-07-27 and 2024-08-03
+11:38:13.141 INFO  services.ScheduleService - Finding schedules for cinemaId: 1, between dates: 2024-07-27 and 2024-08-03
+11:38:13.144 INFO  services.ScheduleService - Grouping schedules by date
+11:38:13.152 INFO  services.ScheduleService - Filtering schedules for hallId: 1
+11:38:44.978 INFO  Pages.MainPageService - Fetching all main pages
+11:38:44.981 INFO  Pages.PageService - Finding pages with isDefault: false
+12:08:58.446 INFO  Pages.MainPageService - Fetching all main pages
+12:08:58.454 INFO  Pages.PageService - Finding pages with isDefault: false
+12:09:01.183 INFO  services.MyUserDetailsService - Attempting to load user by username: user
+12:09:01.259 INFO  Pages.MainPageService - Fetching all main pages
+12:09:01.261 INFO  Pages.PageService - Finding pages with isDefault: false
+12:10:45.016 INFO  Pages.MainPageService - Fetching all main pages
+12:10:45.022 INFO  Pages.PageService - Finding pages with isDefault: false
+12:10:46.845 INFO  Pages.MainPageService - Fetching all main pages
+12:10:46.847 INFO  Pages.PageService - Finding pages with isDefault: false
+12:10:53.136 INFO  Pages.MainPageService - Fetching all main pages
+12:10:53.139 INFO  Pages.PageService - Finding pages with isDefault: false
+12:21:40.702 INFO  jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+12:21:40.704 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+12:21:40.706 INFO  hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
