@@ -7,9 +7,13 @@ import com.CMS.kinoCMS.admin.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,16 +34,29 @@ public class UserController {
     }
 
     @GetMapping
-    public String userList(Model model){
+    public String userList(@RequestParam(value = "page", defaultValue = "0") int page,
+                           @RequestParam(value = "search", required = false) String search,
+                           Model model) {
         try {
-            List<User> users = userService.findAllUsers();
+            Pageable pageable = PageRequest.of(page, 5);
+            Page<User> userPage;
+
+            if (StringUtils.hasText(search)) {
+                userPage = userService.searchUsers(search, pageable);
+            } else {
+                userPage = userService.findAllUsers(pageable);
+            }
+
             List<City> cities = cityRepository.findAll();
 
-            model.addAttribute("users", users);
+            model.addAttribute("users", userPage.getContent());
             model.addAttribute("cities", cities);
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPages", userPage.getTotalPages());
+            model.addAttribute("search", search);
             return "users/user-list";
         } catch (Exception e) {
-            logger.error("Failed to retrieve user list: {}", e.getMessage());
+            logger.error("Не удалось получить список пользователей: {}", e.getMessage());
             throw e;
         }
     }

@@ -51,7 +51,7 @@ public class FilmsController {
                               BindingResult bindingResult,
                               @RequestParam("file") MultipartFile mainFile,
                               @RequestParam("additionalFiles") MultipartFile[] additionalFiles,
-                              @RequestParam("filmTypes") List<String> filmTypes,
+                              @RequestParam(value = "filmTypes", required = false) List<String> filmTypes,
                               @RequestParam(required = false) Integer year,
                               @RequestParam(required = false) String country,
                               @RequestParam(required = false) String musician,

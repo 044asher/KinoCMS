@@ -19,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
-
 @Controller
 @RequestMapping("/admin/banners-and-sliders")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
@@ -37,7 +36,6 @@ public class BannersAndSlidersController {
 
     @GetMapping
     public String bannersAndSlidersPage(Model model) {
-
         List<BannersAndSliders> bannersAndSlidersList = bannersAndSlidersRepository.findAll();
         model.addAttribute("bannersAndSliders", bannersAndSlidersList);
 
@@ -48,7 +46,6 @@ public class BannersAndSlidersController {
         }
         return "banners-and-sliders/banners-and-sliders";
     }
-
 
     @PostMapping("/upload-background")
     public String uploadBackground(@RequestParam MultipartFile background) throws IOException {
@@ -69,13 +66,21 @@ public class BannersAndSlidersController {
     }
 
     @PostMapping("/upload-image")
-    public String uploadImage(@RequestParam String imageUrl, @RequestParam String caption) {
+    public String uploadImage(@RequestParam(required = false) MultipartFile imageFile,
+                              @RequestParam(required = false) String imageUrl,
+                              @RequestParam String caption) throws IOException {
         BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         BannerImage image = new BannerImage();
-        image.setUrl(imageUrl);
         image.setCaption(caption);
-        bannersAndSliders.addBannerImage(image);
 
+        if (imageFile != null && !imageFile.isEmpty()) {
+            String resultFilename = fileUploadService.uploadFile(imageFile);
+            image.setUrl(resultFilename);
+        } else if (imageUrl != null && !imageUrl.isEmpty()) {
+            image.setUrl(imageUrl);
+        }
+
+        bannersAndSliders.addBannerImage(image);
         bannersAndSlidersRepository.save(bannersAndSliders);
 
         return "redirect:/admin/banners-and-sliders";
@@ -83,7 +88,6 @@ public class BannersAndSlidersController {
 
     @PostMapping("/delete-image")
     public String deleteImage(@RequestParam Long imageId) {
-
         BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         BannerImage image = bannersAndSliders.getImages().stream()
                 .filter(img -> img.getId().equals(imageId))
@@ -114,21 +118,25 @@ public class BannersAndSlidersController {
         } else {
             logger.warn("Image with id {} not found", imageId);
         }
-
         return "redirect:/admin/banners-and-sliders";
     }
 
-
-
-
     @PostMapping("/upload-news-image")
-    public String uploadNewsImage(@RequestParam String newsImageUrl, @RequestParam String newsImageCaption) {
+    public String uploadNewsImage(@RequestParam(required = false) MultipartFile newsImageFile,
+                                  @RequestParam(required = false) String newsImageUrl,
+                                  @RequestParam String newsImageCaption) throws IOException {
         BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
         BannerNewsActions image = new BannerNewsActions();
-        image.setUrl(newsImageUrl);
         image.setCaption(newsImageCaption);
-        bannersAndSliders.addNewsImage(image);
 
+        if (newsImageFile != null && !newsImageFile.isEmpty()) {
+            String resultFilename = fileUploadService.uploadFile(newsImageFile);
+            image.setUrl(resultFilename);
+        } else if (newsImageUrl != null && !newsImageUrl.isEmpty()) {
+            image.setUrl(newsImageUrl);
+        }
+
+        bannersAndSliders.addNewsImage(image);
         bannersAndSlidersRepository.save(bannersAndSliders);
 
         return "redirect:/admin/banners-and-sliders";
@@ -148,10 +156,8 @@ public class BannersAndSlidersController {
         } else {
             logger.warn("News image with id {} not found", imageId);
         }
-
         return "redirect:/admin/banners-and-sliders";
     }
-
 
     @PostMapping("/edit-news-image")
     public String editNewsImage(@RequestParam Long imageId, @RequestParam String imageUrl, @RequestParam String caption) {
@@ -170,5 +176,4 @@ public class BannersAndSlidersController {
         }
         return "redirect:/admin/banners-and-sliders";
     }
-
 }

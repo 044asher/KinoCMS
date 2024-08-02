@@ -111,16 +111,18 @@ public class CinemaController {
                              @RequestParam(required = false) MultipartFile logo,
                              @RequestParam(required = false) MultipartFile banner,
                              @RequestParam(required = false, value = "additionalFiles") MultipartFile[] additionalFiles) {
+        logger.info("Received conditions: {}", cinema.getConditions());
         if (bindingResult.hasErrors()) {
             logger.warn("Binding result has errors: {}", bindingResult.getAllErrors());
             return "cinemas/edit";
         }
         try {
+
             cinemaService.updateCinema(id, cinema, logo, banner, additionalFiles);
         } catch (IOException e) {
             logger.error("Error uploading files or saving cinema: {}", e.getMessage());
             return "cinemas/edit";
         }
-        return "redirect:/admin/cinemas";
+        return "redirect:/admin/cinemas/edit/" + id;
     }
 }

@@ -35,6 +35,7 @@ function handleMainFile(files) {
     const reader = new FileReader();
     reader.onload = (e) => {
         mainPreview.innerHTML = `<img src="${e.target.result}" alt="Предпросмотр главного изображения">`;
+        document.querySelector('input[name="existingMainImage"]').value = '';
     };
     reader.readAsDataURL(file);
 }
@@ -67,11 +68,11 @@ additionalFileInput.addEventListener('change', (e) => {
 });
 
 function handleAdditionalFiles(files) {
-    additionalPreview.innerHTML = ''; // Очистить предыдущие превью
     if (files.length === 0) return;
     const maxFiles = 5;
     const filesArray = Array.from(files).slice(0, maxFiles); // Ограничить до 5 файлов
 
+    additionalPreview.innerHTML = ''; // Очистить предыдущие превью
     filesArray.forEach(file => {
         if (!file.type.startsWith('image/')) {
             alert('Можно загружать только изображения!');
@@ -86,28 +87,7 @@ function handleAdditionalFiles(files) {
         };
         reader.readAsDataURL(file);
     });
+
+    // Очистить скрытые поля, если выбраны новые файлы
+    document.querySelectorAll('input[name="existingImages"]').forEach(input => input.value = '');
 }
-
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const dateField = document.getElementById('date');
-    const prePremiereCheckbox = document.getElementById('prePremiere');
-
-    function checkDate() {
-        const today = new Date().toISOString().split('T')[0];
-        const selectedDate = dateField.value;
-
-        if (selectedDate && selectedDate <= today) {
-            prePremiereCheckbox.checked = false;
-            prePremiereCheckbox.disabled = true;
-        } else {
-            prePremiereCheckbox.disabled = false;
-        }
-    }
-
-    dateField.addEventListener('change', checkDate);
-
-    // Check on page load
-    checkDate();
-});

@@ -1,12 +1,10 @@
 package com.CMS.kinoCMS.admin.services;
 
-import com.CMS.kinoCMS.admin.repositories.UserRepository;
 import com.CMS.kinoCMS.admin.models.User;
+import com.CMS.kinoCMS.admin.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +18,10 @@ public class UserService {
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    public Page<User> findAllUsers(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 
     public List<User> findAllUsers(){
@@ -44,5 +46,9 @@ public class UserService {
 
     public long countByGender(String gender) {
         return userRepository.countByGender(gender);
+    }
+
+    public Page<User> searchUsers(String search, Pageable pageable) {
+        return userRepository.findByUsernameContainingOrEmailContainingOrFirstNameContainingOrLastNameContainingOrPhoneNumberContaining(search, search, search, search, search, pageable);
     }
 }

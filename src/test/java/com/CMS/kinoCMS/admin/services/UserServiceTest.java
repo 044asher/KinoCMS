@@ -7,6 +7,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +27,19 @@ public class UserServiceTest {
 
     @InjectMocks
     private UserService userService;
+
+    @Test
+    public void testFindAllUsersPageable() {
+        Pageable pageable = PageRequest.of(0, 10);
+        List<User> users = List.of(new User(), new User());
+        Page<User> userPage = new PageImpl<>(users, pageable, users.size());
+
+        when(userRepository.findAll(pageable)).thenReturn(userPage);
+
+        Page<User> result = userService.findAllUsers(pageable);
+        assertEquals(userPage, result);
+        verify(userRepository, times(1)).findAll(pageable);
+    }
 
     @Test
     public void testFindAllUsers() {
@@ -85,5 +102,20 @@ public class UserServiceTest {
         assertEquals(count, result);
         verify(userRepository, times(1)).countByGender(gender);
     }
-}
 
+    @Test
+    public void testSearchUsers() {
+        String search = "test";
+        Pageable pageable = PageRequest.of(0, 10);
+        List<User> users = List.of(new User(), new User());
+        Page<User> userPage = new PageImpl<>(users, pageable, users.size());
+
+        when(userRepository.findByUsernameContainingOrEmailContainingOrFirstNameContainingOrLastNameContainingOrPhoneNumberContaining(
+                search, search, search, search, search, pageable)).thenReturn(userPage);
+
+        Page<User> result = userService.searchUsers(search, pageable);
+        assertEquals(userPage, result);
+        verify(userRepository, times(1)).findByUsernameContainingOrEmailContainingOrFirstNameContainingOrLastNameContainingOrPhoneNumberContaining(
+                search, search, search, search, search, pageable);
+    }
+}

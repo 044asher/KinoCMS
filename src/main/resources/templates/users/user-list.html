@@ -60,6 +60,26 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/assets/js/config.js"></script>
     <script src="/js/sidebar-active/sidebar-active-element.js"></script>
+    <style>
+        .pagination {
+            margin: 20px 0;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #fff;
+        }
+
+        .pagination .page-link {
+            cursor: pointer;
+        }
+
+        .pagination .page-link:hover {
+            background-color: #e9ecef;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -149,6 +169,10 @@
                     <div class="row py-2">
                         <div class="d-flex justify-content-between align-items-center">
                             <h4 class="fw-bold py-3 mb-2">Пользователи</h4>
+                            <form th:action="@{/admin/users}" method="get" class="form-inline d-flex justify-content-between align-items-center">
+                                <input type="text" name="search" th:value="${search}" placeholder="Поиск пользователей..." class="form-control mr-sm-2">
+                                <button type="submit" class="btn btn-label-info waves-effect">Search</button>
+                            </form>
                             <button id="create-city" type="button" class="btn btn-primary" data-toggle="modal" data-target="#cityEditDialog">Управление городами</button>
                         </div>
                     </div>
@@ -189,7 +213,7 @@
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Invoice List Table -->
                     <div class="card">
                         <div class="card-datatable table-responsive">
@@ -231,6 +255,25 @@
                             </table>
                         </div>
                     </div>
+
+
+                    <div class="pagination" th:if="${totalPages > 1}">
+                        <ul class="pagination justify-content-center">
+                            <li th:if="${currentPage > 0}" class="page-item">
+                                <a th:href="@{/admin/users(page=${currentPage - 1})}" class="page-link">Предыдущая</a>
+                            </li>
+
+                            <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}" class="page-item"
+                                th:classappend="${i == currentPage} ? ' active' : ''">
+                                <a th:href="@{/admin/users(page=${i})}" class="page-link" th:text="${i + 1}"></a>
+                            </li>
+
+                            <li th:if="${currentPage < totalPages - 1}" class="page-item">
+                                <a th:href="@{/admin/users(page=${currentPage + 1})}" class="page-link">Следующая</a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
 
             </div>
@@ -352,9 +395,6 @@
 
         $('#cityEditDialog').modal('hide');
     });
-
 </script>
-
-
 </body>
 </html>

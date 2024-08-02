@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-
 @Controller
 @RequestMapping("/main")
 public class MainController {
@@ -25,8 +24,8 @@ public class MainController {
     }
 
     @GetMapping
-    public String mainPage(Model model){
-        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
+    public String mainPage(Model model) {
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0); // getFirst() was replaced with get(0)
         model.addAttribute("images", bannersAndSliders.getImages());
         model.addAttribute("newsImages", bannersAndSliders.getNewsImages());
 

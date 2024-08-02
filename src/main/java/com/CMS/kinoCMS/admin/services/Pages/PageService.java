@@ -169,4 +169,10 @@ public class PageService {
         }
         return page;
     }
+
+    public void pageDeleteById(Long id){
+        Optional<Page> optionalPage = findById(id);
+        optionalPage.ifPresent(pageRepository::delete);
+        log.info("Page with id '{}' deleted successfully", id);
+    }
 }

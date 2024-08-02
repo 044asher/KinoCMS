@@ -243,4 +243,9 @@ public class PagesController {
             return ResponseEntity.notFound().build();
         }
     }
+    @PostMapping("/delete/{id}")
+    public String deletePage(@PathVariable long id) {
+        pageService.pageDeleteById(id);
+        return "redirect:/admin/pages";
+    }
 }

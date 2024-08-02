@@ -34,7 +34,8 @@
                         <h2>На главной верх</h2>
                         <div class="image-entry-container">
                             <div th:each="image : ${bannerImages}" class="image-entry">
-                                <img th:src="@{${image.url}}" th:alt="${image.caption}"
+                                <img th:src="${#strings.contains(image.url, 'http') ? image.url : '/img/' + image.url}"
+                                     th:alt="${image.caption}"
                                      style="width: 100px; height: 100px">
                                 <form th:action="@{/admin/banners-and-sliders/edit-image}" method="post"
                                       class="edit-image-form">
@@ -52,10 +53,11 @@
                             <!-- Форма для добавления новой фотографии -->
                             <div class="add-image-entry">
                                 <form id="upload-image-form" action="/admin/banners-and-sliders/upload-image"
-                                      method="post"
-                                      class="edit-image-form">
+                                      enctype="multipart/form-data" method="post" class="edit-image-form">
+                                    <input type="file" name="imageFile" class="form-control" accept="image/*"
+                                           id="imageFile">
                                     <input type="text" name="imageUrl" class="form-control" placeholder="Image URL"
-                                           required>
+                                           id="imageUrl">
                                     <input type="text" name="caption" class="form-control" placeholder="Caption"
                                            required>
                                     <button type="submit" class="btn btn-success">Добавить фото</button>
@@ -81,7 +83,8 @@
                         <h2>На главной Новости Акции</h2>
                         <div class="image-entry-container">
                             <div th:each="newsImage : ${newsImages}" class="image-entry">
-                                <img th:src="@{${newsImage.url}}" th:alt="${newsImage.caption}"
+                                <img th:src="${#strings.contains(newsImage.url, 'http') ? newsImage.url : '/img/' + newsImage.url}"
+                                     th:alt="${newsImage.caption}"
                                      style="width: 100px; height: 100px">
                                 <form th:action="@{/admin/banners-and-sliders/edit-news-image}" method="post"
                                       class="edit-image-form">
@@ -100,9 +103,11 @@
                             <!-- Форма для добавления новой фотографии новостей -->
                             <div class="add-image-entry">
                                 <form id="upload-news-image-form" action="/admin/banners-and-sliders/upload-news-image"
-                                      method="post" class="edit-image-form">
+                                      enctype="multipart/form-data" method="post" class="edit-image-form">
+                                    <input type="file" name="newsImageFile" class="form-control" accept="image/*"
+                                           id="newsImageFile">
                                     <input type="text" name="newsImageUrl" class="form-control" placeholder="Image URL"
-                                           required>
+                                           id="newsImageUrl">
                                     <input type="text" name="newsImageCaption" class="form-control"
                                            placeholder="Caption" required>
                                     <button type="submit" class="btn btn-success">Добавить фото</button>
@@ -110,15 +115,43 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="content-backdrop fade"></div>
                 </div>
             </div>
         </div>
         <!-- / Layout page -->
+
     </div>
 
     <script src="/js/banners-and-sliders/drag&drop.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const imageFile = document.getElementById('imageFile');
+            const imageUrl = document.getElementById('imageUrl');
+            const newsImageFile = document.getElementById('newsImageFile');
+            const newsImageUrl = document.getElementById('newsImageUrl');
+
+            function toggleInputs(fileInput, urlInput) {
+                fileInput.addEventListener('change', function () {
+                    if (fileInput.files.length > 0) {
+                        urlInput.disabled = true;
+                    } else {
+                        urlInput.disabled = false;
+                    }
+                });
+
+                urlInput.addEventListener('input', function () {
+                    if (urlInput.value.trim() !== '') {
+                        fileInput.disabled = true;
+                    } else {
+                        fileInput.disabled = false;
+                    }
+                });
+            }
+
+            toggleInputs(imageFile, imageUrl);
+            toggleInputs(newsImageFile, newsImageUrl);
+        });
+    </script>
 </div>
 </body>
 </html>

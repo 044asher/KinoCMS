@@ -32,7 +32,7 @@ public class Cinema {
     private String description;
 
     @NotEmpty(message = "Conditions should not be empty")
-    @Size(max = 2000)
+    @Lob
     @Column(columnDefinition = "TEXT")
     private String conditions;
 

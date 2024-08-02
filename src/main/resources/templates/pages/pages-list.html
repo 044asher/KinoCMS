@@ -109,7 +109,7 @@
                                     <td class="action-buttons">
                                         <a th:href="@{/admin/pages/{id}(id=${page.id})}"
                                            class="btn btn-warning ti ti-edit"></a>
-                                        <form th:action="@{/admin/page/delete/{id}(id=${page.id})}" method="post" style="display:inline-block;">
+                                        <form th:action="@{/admin/pages/delete/{id}(id=${page.id})}" method="post" style="display:inline-block;">
                                             <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                                         </form>
                                     </td>

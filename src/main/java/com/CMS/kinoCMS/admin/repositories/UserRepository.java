@@ -1,6 +1,8 @@
 package com.CMS.kinoCMS.admin.repositories;
 
 import com.CMS.kinoCMS.admin.models.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,4 +15,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAllByRole(String role);
     long countByGender(String gender);
     long countByCityId(long cityId);
+
+    Page<User> findByUsernameContainingOrEmailContainingOrFirstNameContainingOrLastNameContainingOrPhoneNumberContaining(String username, String email, String firstName, String lastName, String phoneNumber, Pageable pageable);
 }

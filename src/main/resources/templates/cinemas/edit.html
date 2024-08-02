@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 
-<html
-        lang="en"
-        class="light-style layout-navbar-fixed layout-menu-fixed"
-        dir="ltr"
-        data-theme="theme-default"
-        data-assets-path="/assets/"
-        data-template="vertical-menu-template-no-customizer"
->
+<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets/" data-template="vertical-menu-template-no-customizer">
 <head>
     <title>Редактирование кинотеатра</title>
-    <link rel="stylesheet" href="/css/films/edit.css"/>
+    <script src="https://cdn.tiny.cloud/1/nm45cenz0abahc9my8nsfqipxqdm9lsmqbnmgcwhac83m0wi/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#conditions',
+            height: 300,
+            menubar: false,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar: 'undo redo | formatselect | bold italic backcolor | \
+                      alignleft aligncenter alignright alignjustify | \
+                      bullist numlist outdent indent | removeformat | help',
+            setup: function (editor) {
+                editor.on('change', function () {
+                    editor.save();
+                });
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -23,11 +36,9 @@
 
         <!-- Layout container -->
         <div class="layout-page">
-
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Content -->
-
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <div class="edit-header">
                         <h4 class="fw-bold">Редактирование кинотеатра</h4>
@@ -38,17 +49,20 @@
                     <section class="content">
                         <form method="post" th:object="${cinema}" th:action="@{/admin/cinemas/edit/{id}(id=${cinema.id})}" enctype="multipart/form-data" class="mt-3">
 
-                            <label for="name" class="form-label">Название:</label>
-                            <input type="text" th:field="*{name}" id="name" placeholder="Введите название" class="form-control">
-                            <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Название кинотеатра:</label>
+                                <input type="text" class="form-control" id="name" name="name" th:value="${cinema.name}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Описание:</label>
+                                <textarea class="form-control" id="description" name="description" required th:text="${cinema.description}"></textarea>
+                            </div>
 
-                            <label for="description" class="form-label mt-2">Описание:</label>
-                            <textarea id="description" placeholder="Введите описание" class="form-control mt-2" th:field="*{description}"></textarea>
-                            <p style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+                            <div class="mb-3">
+                                <label for="conditions" class="form-label">Условия:</label>
+                                <textarea class="form-control" id="conditions" name="conditions" required th:text="${cinema.conditions}"></textarea>
+                            </div>
 
-                            <label for="conditions" class="form-label mt-2">Условия:</label>
-                            <textarea id="conditions" placeholder="Введите условия" class="form-control mt-2" th:field="*{conditions}"></textarea>
-                            <p style="color: red" th:if="${#fields.hasErrors('conditions')}" th:errors="*{conditions}"></p>
 
                             <br>
                             <label for="logo" class="form-label mt-2">Загрузите логотип:</label>
@@ -134,16 +148,13 @@
                         </form>
                     </section>
                 </div>
-
-
+                <!-- / Content -->
+                <script src="/js/cinemas/edit.js"></script>
             </div>
-
-            <!-- / Content -->
-            <script src="/js/cinemas/edit.js"></script>
+            <!-- Content wrapper -->
         </div>
-        <!-- Content wrapper -->
+        <!-- / Layout page -->
     </div>
-    <!-- / Layout page -->
 </div>
 </body>
 </html>

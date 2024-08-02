@@ -44,6 +44,30 @@
         .main-content {
             margin-left: 170px;
         }
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .swiper-slide {
+            object-fit: cover;
+        }
+        #swiper-gallery {
+            width: 100%;
+            height: 700px;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        .swiper-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
     </style>
 </head>
 
@@ -102,7 +126,7 @@
                             <p th:text="${cinema.description}"></p>
                             <h3 class="text-center mb-3">Условия</h3>
                             <div class="conditions-box">
-                                <p th:text="${cinema.conditions}"></p>
+                                <p th:utext="${cinema.conditions}"></p>
                             </div>
                         </div>
                     </div>
@@ -111,6 +135,41 @@
 
             <!-- / Content -->
         </div>
+
+
+        <div th:if="${cinema.images != null and cinema.images.size() > 0}">
+            <h2 class="text-center mt-3">Фотогалерея</h2>
+            <div class="container">
+                <div class="col-12">
+                    <div id="swiper-gallery">
+                        <div class="swiper gallery-top">
+                            <div class="swiper-wrapper">
+                                <div th:each="image, iterStat : ${cinema.images}"
+
+                                     class="swiper-slide">
+                                    <img th:src="@{/img/{image}(image=${image})}"
+                                         alt="Image" class="img-fluid"/>
+                                </div>
+                            </div>
+                            <!-- Add Arrows -->
+                            <div class="swiper-button-next swiper-button-white"></div>
+                            <div class="swiper-button-prev swiper-button-white"></div>
+                        </div>
+                        <div class="swiper gallery-thumbs">
+                            <div class="swiper-wrapper">
+                                <div th:each="image, iterStat : ${cinema.images}"
+                                     class="swiper-slide">
+                                    <img th:src="@{/img/{image}(image=${image})}"
+                                         alt="Image Thumbnail" class="img-fluid"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <div th:insert="~{blocks/footer :: footer}"></div>
         <!--/ Layout container -->
     </div>
