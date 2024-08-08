@@ -24,6 +24,7 @@ public class MailSender {
     }
 
     public void sendHtmlEmail(String emailTo, String subject, String message) {
+        log.info("Start MailSender - sendHtmlEmail. Sending mail to: {}", emailTo);
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
@@ -35,5 +36,6 @@ public class MailSender {
         } catch (MessagingException e) {
             log.error("Error while sending formatted HTML message", e);
         }
+        log.info("End MailSender - sendHtmlEmail. Successfully sent mail to: {}", emailTo);
     }
 }

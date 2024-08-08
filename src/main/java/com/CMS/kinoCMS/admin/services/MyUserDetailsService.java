@@ -20,14 +20,16 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("Attempting to load user by username: {}", username);
+        log.info("Start MyUserDetailsService - loadUserByUsername for username: {}", username);
 
         Optional<User> user = userRepository.findByUsername(username);
 
-        return user.map(MyUserDetails::new)
-                .orElseThrow(() -> {
-                    log.warn("User with username {} not found", username);
-                    return new UsernameNotFoundException(username + " not found");
-                });
+        if (user.isPresent()) {
+            log.info("End MyUserDetailsService - loadUserByUsername. User found: {}", username);
+            return new MyUserDetails(user.get());
+        } else {
+            log.warn("End MyUserDetailsService - loadUserByUsername. User with username {} not found", username);
+            throw new UsernameNotFoundException(username + " not found");
+        }
     }
 }

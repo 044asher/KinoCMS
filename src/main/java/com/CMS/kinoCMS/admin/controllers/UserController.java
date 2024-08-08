@@ -115,11 +115,6 @@ public class UserController {
         }
     }
 
-    @GetMapping("/add-city")
-    public String addCity(){
-        return "/users/user-add-city";
-    }
-
     @PostMapping("/add-city")
     public String userAddCity(@ModelAttribute City city){
         cityRepository.save(city);

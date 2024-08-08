@@ -20,27 +20,35 @@ public class MenuItemService {
     }
 
     public List<MenuItem> findByPage(Page page) {
-        log.info("Finding menu items for page: {}", page);
-        return menuItemRepository.findByPage(page);
+        log.info("Start MenuItemService - findByPage for page: {}", page.getName());
+        List<MenuItem> menuItems = menuItemRepository.findByPage(page);
+        log.info("Successfully executed MenuItemService - findByPage for page: {}", page.getName());
+        return menuItems;
     }
 
     public void save(MenuItem menuItem) {
-        log.info("Saving menu item: {}", menuItem);
+        log.info("Start MenuItemService - save for menu item: {}", menuItem.getItemName());
         menuItemRepository.save(menuItem);
+        log.info("Successfully executed MenuItemService - save for menu item: {}", menuItem.getItemName());
     }
 
     public void deleteById(Long id) {
-        log.info("Deleting menu item with id: {}", id);
+        log.info("Start MenuItemService - deleteById with id: {}", id);
         menuItemRepository.deleteById(id);
+        log.info("Successfully executed MenuItemService - deleteById with id: {}", id);
     }
 
     public MenuItem findById(long itemId) {
-        log.info("Finding menu item with id: {}", itemId);
-        return menuItemRepository.findById(itemId).orElse(null);
+        log.info("Start MenuItemService - findById with id: {}", itemId);
+        MenuItem menuItem = menuItemRepository.findById(itemId).orElse(null);
+        log.info("Successfully executed MenuItemService - findById with id: {}", itemId);
+        return menuItem;
     }
 
     public List<MenuItem> findAll() {
-        log.info("Fetching all menu items");
-        return menuItemRepository.findAll();
+        log.info("Start MenuItemService - findAll");
+        List<MenuItem> menuItems = menuItemRepository.findAll();
+        log.info("Successfully executed MenuItemService - findAll");
+        return menuItems;
     }
 }

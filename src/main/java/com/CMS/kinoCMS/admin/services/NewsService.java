@@ -25,56 +25,79 @@ public class NewsService {
     }
 
     public List<News> findAll() {
-        return newsRepository.findAll();
+        log.info("Start NewsService - findAll");
+        List<News> newsList = newsRepository.findAll();
+        log.info("End NewsService - findAll. Retrieved {} news items", newsList.size());
+        return newsList;
+    }
+
+    public List<News> findByNotActive(boolean notActive) {
+        log.info("Start NewsService - findByNotActive with parameter notActive: {}", notActive);
+        List<News> newsList = newsRepository.findByNotActive(notActive);
+        log.info("End NewsService - findByNotActive. Retrieved {} news items", newsList.size());
+        return newsList;
     }
 
     public Optional<News> findById(Long id) {
-        return newsRepository.findById(id);
+        log.info("Start NewsService - findById with id: {}", id);
+        Optional<News> news = newsRepository.findById(id);
+        if (news.isPresent()) {
+            log.info("End NewsService - findById. Found news with id: {}", id);
+        } else {
+            log.warn("End NewsService - findById. No news found with id: {}", id);
+        }
+        return news;
     }
 
     public void save(News news) {
+        log.info("Start NewsService - save with news: {}", news);
         newsRepository.save(news);
-        log.info("News saved: {}", news);
+        log.info("End NewsService - save. News saved: {}", news);
     }
 
     public void delete(News news) {
+        log.info("Start NewsService - delete with news: {}", news);
         newsRepository.delete(news);
-        log.info("News deleted: {}", news);
+        log.info("End NewsService - delete. News deleted: {}", news);
     }
 
     public void addNews(News news, MultipartFile file, MultipartFile[] additionalFiles) throws IOException {
+        log.info("Start NewsService - addNews with news: {}", news);
+
         if (file != null && !file.isEmpty()) {
             String resultMainImage = fileUploadService.uploadFile(file);
             news.setMainImage(resultMainImage);
-            log.info("Main image uploaded: {}", resultMainImage);
+            log.info("Added main image: {}", resultMainImage);
         }
 
         if (additionalFiles != null && additionalFiles.length > 0) {
             List<String> newImageNames = fileUploadService.uploadAdditionalFiles(additionalFiles);
             news.getImages().addAll(newImageNames.stream().limit(5).toList());
-            log.info("Additional images uploaded: {}", newImageNames);
+            log.info("Added additional images: {}", newImageNames);
         }
 
         news.setDateOfCreation(LocalDate.now());
         save(news);
-        log.info("News added: {}", news);
+        log.info("End NewsService - addNews. News added: {}", news);
     }
 
     public void updateNews(long id, News news, MultipartFile file, MultipartFile[] additionalFiles) throws IOException {
+        log.info("Start NewsService - updateNews with id: {}", id);
+
         News existingNews = findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("News not found with id: " + id));
 
         if (file != null && !file.isEmpty()) {
             String resultMainImage = fileUploadService.uploadFile(file);
             existingNews.setMainImage(resultMainImage);
-            log.info("Main image updated: {}", resultMainImage);
+            log.info("Updated main image: {}", resultMainImage);
         }
 
         if (additionalFiles != null && additionalFiles.length > 0) {
             List<String> newImageNames = fileUploadService.uploadAdditionalFiles(additionalFiles);
             existingNews.getImages().clear();
             existingNews.getImages().addAll(newImageNames.stream().limit(5).toList());
-            log.info("Additional images updated: {}", newImageNames);
+            log.info("Updated additional images: {}", newImageNames);
         }
 
         existingNews.setName(news.getName());
@@ -87,6 +110,6 @@ public class NewsService {
         existingNews.setTitleSEO(news.getTitleSEO());
 
         save(existingNews);
-        log.info("News updated: {}", existingNews);
+        log.info("End NewsService - updateNews. News updated: {}", existingNews);
     }
 }

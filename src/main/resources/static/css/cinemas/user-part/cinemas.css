@@ -1,0 +1,11 @@
+.logo-img {
+    height: 220px;
+}
+
+.ad-container {
+    width: 150px;
+    height: 300px;
+    position: absolute;
+    top: 190px;
+    right: 50px;
+}

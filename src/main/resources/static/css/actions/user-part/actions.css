@@ -1,0 +1,21 @@
+.ad-container {
+    width: 550px !important;
+    height: 600px !important;
+    margin-left: 20px !important;
+    margin-top: 20px !important;
+}
+.ad{
+    height: 240px !important;
+}
+.date {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #be85ee;
+    color: white;
+    border-radius: 15px;
+    font-size: 14px;
+}
+.card{
+    text-decoration: none;
+    color: #212020;
+}

@@ -40,13 +40,13 @@
             color: #9370db;
         }
         #genderChartContainer {
-            width: 50%; /* Adjust this to change the size */
-            max-width: 400px; /* Set a maximum width */
-            margin: 0 auto; /* Center the chart */
+            width: 50%;
+            max-width: 400px;
+            margin: 0 auto;
         }
         canvas {
-            width: 100% !important; /* Make the canvas take full width of its container */
-            height: auto !important; /* Maintain aspect ratio */
+            width: 100% !important;
+            height: auto !important;
         }
     </style>
 </head>
@@ -158,8 +158,6 @@
                 datasets: [{
                     label: 'Gender Distribution',
                     data: [
-                        /* Replace these with server-side data */
-                        /* Example: ${maleCount}, ${femaleCount}, ${nonBinaryCount}, ${otherCount}, ${preferNotToSayCount} */
                         [[${maleCount}]],
                         [[${femaleCount}]],
                         [[${nonBinaryCount}]],
@@ -179,8 +177,8 @@
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, // Allow resizing based on container
-                aspectRatio: 1, // Adjust aspect ratio if needed
+                maintainAspectRatio: false,
+                aspectRatio: 1,
                 plugins: {
                     legend: {
                         position: 'top',

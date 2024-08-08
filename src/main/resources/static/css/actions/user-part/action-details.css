@@ -1,0 +1,14 @@
+.ad-container {
+    width: 650px !important;
+    height: 800px !important;
+    margin-left: 20px !important;
+    margin-top: 20px !important;
+}
+.ad{
+    height: 240px !important;
+}
+
+.logo-img{
+    width: 90%;
+    height: 500px;
+}

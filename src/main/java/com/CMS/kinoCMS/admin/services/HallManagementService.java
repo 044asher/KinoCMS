@@ -26,8 +26,13 @@ public class HallManagementService {
     }
 
     public void updateHall(Long id, Hall hall, MultipartFile logo, MultipartFile banner, MultipartFile[] additionalFiles) throws IOException {
+        log.info("Start HallManagementService - updateHall for hall id: {}", id);
+
         Hall existingHall = hallService.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Hall with id " + id + " not found"));
+                .orElseThrow(() -> {
+                    log.error("Hall with id {} not found", id);
+                    return new IllegalArgumentException("Hall with id " + id + " not found");
+                });
 
         existingHall.setNumber(hall.getNumber());
         existingHall.setDescription(hall.getDescription());
@@ -57,18 +62,24 @@ public class HallManagementService {
         existingHall.setTitleSEO(hall.getTitleSEO());
 
         hallService.save(existingHall);
-        log.info("Updated hall {} successfully", id);
+        log.info("End HallManagementService - updateHall for hall id: {}. Hall updated successfully", id);
     }
 
     public void addHall(Long cinemaId, Hall hall, MultipartFile logo, MultipartFile banner, MultipartFile[] additionalFiles) throws IOException {
+        log.info("Start HallManagementService - addHall for cinema id: {}", cinemaId);
+
         Cinema cinema = cinemaService.findById(cinemaId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid cinema Id:" + cinemaId));
+                .orElseThrow(() -> {
+                    log.error("Cinema with id {} not found", cinemaId);
+                    return new IllegalArgumentException("Invalid cinema Id: " + cinemaId);
+                });
 
         if (logo != null && !logo.isEmpty()) {
             String resultLogoName = fileUploadService.uploadFile(logo);
             hall.setScheme(resultLogoName);
             log.info("Adding new hall: Set logo {}", resultLogoName);
         }
+
         if (banner != null && !banner.isEmpty()) {
             String resultBannerName = fileUploadService.uploadFile(banner);
             hall.setTopBanner(resultBannerName);
@@ -84,6 +95,6 @@ public class HallManagementService {
         hall.setCinema(cinema);
         hall.setCreationDate(LocalDate.now());
         hallService.save(hall);
-        log.info("Added new hall successfully to cinema {}", cinemaId);
+        log.info("End HallManagementService - addHall for cinema id: {}. New hall added successfully", cinemaId);
     }
 }

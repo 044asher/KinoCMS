@@ -12,26 +12,7 @@
     <title>Добавление кинотеатра</title>
     <link rel="stylesheet" href="/css/cinemas/add.css"/>
     <script src="https://cdn.tiny.cloud/1/nm45cenz0abahc9my8nsfqipxqdm9lsmqbnmgcwhac83m0wi/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: '#conditions',
-            height: 300,
-            menubar: false,
-            plugins: [
-                'advlist autolink lists link image charmap print preview anchor',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste code help wordcount'
-            ],
-            toolbar: 'undo redo | formatselect | bold italic backcolor | \
-                      alignleft aligncenter alignright alignjustify | \
-                      bullist numlist outdent indent | removeformat | help',
-            setup: function (editor) {
-                editor.on('change', function () {
-                    editor.save();
-                });
-            }
-        });
-    </script>
+    <script src="/js/cinemas/tinymce.js"></script>
 </head>
 
 <body>

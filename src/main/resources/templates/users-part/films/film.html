@@ -11,16 +11,7 @@
 <head>
     <head th:insert="~{blocks/links :: links}"></head>
     <title th:text="${film.name} + ' | Lincoln Plaza'">Lincoln Plaza</title>
-    <style>
-        .logo-img {
-            width: 100%;
-            height: auto;
-        }
-        .card-text{
-            text-decoration: none;
-            color: #413939;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/films/user-part/film.css">
 </head>
 
 <body>
@@ -55,24 +46,26 @@
                         <div th:each="entry : ${schedulesByCinema.entrySet()}">
                             <h3 th:text="${entry.key.name}">Cinema Name</h3>
                             <div class="row mb-3">
-                                <div th:each="schedule : ${entry.value}" class="col-md-4 mb-3">
+                                <div th:if="${#lists.isEmpty(entry.value)}">
+                                    <p>Расписания пока не добавлены</p>
+                                </div>
+                                <div th:if="${!#lists.isEmpty(entry.value)}" th:each="schedule : ${entry.value}" class="col-md-4 mb-3">
                                     <div class="card">
-                                        <a th:href="'/film-booking/' + ${schedule.id}">
-                                        <div class="card-body">
-                                            <h5 class="card-title"
-                                                th:text="${#temporals.format(schedule.date, 'dd.MM.yyyy')} + '. Зал №: ' + ${schedule.hall.number}">
-                                                Date - Hall</h5>
-                                            <p class="card-text">
-                                                <strong>Время:</strong> <span th:text="${schedule.time}">Time</span><br>
-                                                <strong>Цена:</strong> $<span th:text="${schedule.price}">Price</span>
-                                            </p>
-                                        </div>
+                                        <a th:href="@{/film-booking/{id}(id=${schedule.id})}">
+                                            <div class="card-body">
+                                                <h5 class="card-title"
+                                                    th:text="${#temporals.format(schedule.date, 'dd.MM.yyyy')} + '. Зал №: ' + ${schedule.hall.number}">
+                                                    Date - Hall</h5>
+                                                <p class="card-text">
+                                                    <strong>Время:</strong> <span th:text="${schedule.time}">Time</span><br>
+                                                    <strong>Цена:</strong> $<span th:text="${schedule.price}">Price</span>
+                                                </p>
+                                            </div>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-4">
                                 <img th:src="@{'/img/' + ${film.mainImage}}" alt="Logo" class="logo-img">

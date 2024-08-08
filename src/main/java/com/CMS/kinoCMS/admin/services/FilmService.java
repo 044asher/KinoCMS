@@ -28,36 +28,53 @@ public class FilmService {
     }
 
     public List<Film> getCurrentFilms() {
+        log.info("Start FilmService - getCurrentFilms");
         LocalDate today = LocalDate.now();
-        return filmRepository.findByDateBeforeOrDate(today, today);
+        List<Film> films = filmRepository.findByDateBeforeOrDate(today, today);
+        log.info("Successfully executed FilmService - getCurrentFilms");
+        return films;
     }
 
     public List<Film> getUpcomingFilms() {
+        log.info("Start FilmService - getUpcomingFilms");
         LocalDate today = LocalDate.now();
-        return filmRepository.findByDateAfterOrDateIsNull(today);
+        List<Film> films = filmRepository.findByDateAfterOrDateIsNull(today);
+        log.info("Successfully executed FilmService - getUpcomingFilms");
+        return films;
     }
 
     public List<Film> getPrePremieresFilms(boolean prePremiere) {
-        return filmRepository.findByIsPrePremiere(prePremiere);
+        log.info("Start FilmService - getPrePremieresFilms");
+        List<Film> films = filmRepository.findByIsPrePremiere(prePremiere);
+        log.info("Successfully executed FilmService - getPrePremieresFilms");
+        return films;
     }
 
     public void save(Film film) {
+        log.info("Start FilmService - save");
         filmRepository.save(film);
+        log.info("Successfully executed FilmService - save");
     }
 
     public Optional<Film> findById(Long id) {
-        return filmRepository.findById(id);
+        log.info("Start FilmService - findById with id: {}", id);
+        Optional<Film> film = filmRepository.findById(id);
+        log.info("Successfully executed FilmService - findById with id: {}", id);
+        return film;
     }
 
     public List<Film> findAll() {
-        return filmRepository.findAll();
+        log.info("Start FilmService - findAll");
+        List<Film> all = filmRepository.findAll();
+        log.info("Successfully executed FilmService - findAll");
+        return all;
     }
 
     public void processFilmData(Film film, MultipartFile mainFile, MultipartFile[] additionalFiles,
                                 List<String> filmTypes, Integer year, String country, String musician,
                                 List<String> producer, String director, List<String> writer,
                                 List<String> genre, Integer age, Integer time) throws IOException {
-        log.info("Processing film data for: {}", film.getName());
+        log.info("Start FilmService - processFilmData for film: {}", film.getName());
 
         if (mainFile != null && !mainFile.isEmpty()) {
             String resultFileName = fileUploadService.uploadFile(mainFile);
@@ -84,17 +101,17 @@ public class FilmService {
         if (time != null) film.setTime(time);
 
         save(film);
-        log.info("Film data processed and saved: {}", film.getName());
+        log.info("Successfully executed FilmService - processFilmData for film: {}", film.getName());
     }
 
     public void updateFilm(Long id, Film film, MultipartFile mainFile, MultipartFile[] additionalFiles,
                            List<String> filmTypes, Integer year, String country, String musician,
                            List<String> producer, String director, List<String> writer,
                            List<String> genre, Integer age, Integer time) throws IOException {
+        log.info("Start FilmService - updateFilm with id: {}", id);
+
         Film existingFilm = findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid film Id:" + id));
-
-        log.info("Updating film with id: {}", id);
 
         if (mainFile != null && !mainFile.isEmpty()) {
             String resultFileName = fileUploadService.uploadFile(mainFile);
@@ -144,6 +161,6 @@ public class FilmService {
         }
 
         save(existingFilm);
-        log.info("Film updated and saved: {}", existingFilm.getName());
+        log.info("Successfully executed FilmService - updateFilm with id: {}", id);
     }
 }

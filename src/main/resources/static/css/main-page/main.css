@@ -1,0 +1,27 @@
+.film-img{
+    height: 420px;
+    width: 100%;
+    object-fit: cover;
+}
+.background-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    z-index: -1;
+}
+.ad-banner-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.ad-banner {
+    width: 50%;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    z-index: 1000;
+}

@@ -50,7 +50,7 @@ public class PageUserController {
 
     @GetMapping("/news")
     public String news(Model model) {
-        List<News> news = newsService.findAll();
+        List<News> news = newsService.findByNotActive(false);
         if (!news.isEmpty()) {
             model.addAttribute("news", news);
         }

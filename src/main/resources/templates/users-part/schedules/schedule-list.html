@@ -11,14 +11,7 @@
 <head>
     <head th:insert="~{blocks/links :: links}"></head>
     <title>Расписание | Lincoln Plaza</title>
-    <style>
-        .ad-container {
-            width: 150px;
-            height: 300px;
-            margin-left: 20px;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/schedules/schedule-list.css">
 </head>
 
 <body>
@@ -81,33 +74,39 @@
                         <div class="d-flex">
                             <!-- Расписание -->
                             <div class="flex-grow-1">
-                                <div th:each="entry : ${schedulesByDate}">
-                                    <h4 class="mt-4" th:text="${#temporals.format(entry.key, 'dd.MM.yyyy')}">Дата</h4>
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>Время</th>
-                                            <th>Фильм</th>
-                                            <th>Зал</th>
-                                            <th>Цена</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr th:each="schedule : ${entry.value}">
-                                            <td th:text="${#temporals.format(schedule.time, 'HH:mm')}">Время</td>
-                                            <td>
-                                                <a th:href="'/film/' + ${schedule.film.id}">
-                                                    <span th:text="${schedule.film.name}">Название фильма</span>
-                                                </a>
-                                            </td>
-                                            <td th:text="${schedule.hall.number}">Зал</td>
-                                            <td th:text="${schedule.price}">Цена</td>
-                                            <td>
-                                                <a th:href="'/film-booking/' + ${schedule.id}" class="btn btn-label-success waves-effect">Бронировать</a>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                <div th:if="${schedulesByDate.isEmpty()}">
+                                    <h5 class="text-center">В данном кинотеатре на данный момент ничего не показывают</h5>
+                                </div>
+                                <div th:if="${!schedulesByDate.isEmpty()}">
+                                    <div th:each="entry : ${schedulesByDate}">
+                                        <h4 class="mt-4" th:text="${#temporals.format(entry.key, 'dd.MM.yyyy')}">Дата</h4>
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>Время</th>
+                                                <th>Фильм</th>
+                                                <th>Зал</th>
+                                                <th>Цена</th>
+                                                <th>Действие</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="schedule : ${entry.value}">
+                                                <td th:text="${#temporals.format(schedule.time, 'HH:mm')}">Время</td>
+                                                <td>
+                                                    <a th:href="@{/film/{id}(id=${schedule.film.id})}">
+                                                        <span th:text="${schedule.film.name}">Название фильма</span>
+                                                    </a>
+                                                </td>
+                                                <td th:text="${schedule.hall.number}">Зал</td>
+                                                <td th:text="${schedule.price}">Цена</td>
+                                                <td>
+                                                    <a th:href="@{/film-booking/{id}(id=${schedule.id})}" class="btn btn-label-success waves-effect">Бронировать</a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                             <div class="ad-container ml-4 mt-4">

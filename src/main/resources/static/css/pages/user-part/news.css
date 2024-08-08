@@ -1,0 +1,21 @@
+.ad-container {
+    width: 150px;
+    height: 300px;
+    position: absolute;
+    top: 110px;
+    right: 90px;
+}
+
+.date {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #be85ee;
+    color: white;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.card {
+    text-decoration: none;
+    color: #212020;
+}

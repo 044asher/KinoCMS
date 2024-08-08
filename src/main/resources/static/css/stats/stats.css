@@ -1,0 +1,44 @@
+.stats-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.stats-box, .stats-box-users {
+    flex: 1;
+    border: 2px solid orange;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    background-color: #fff3e0;
+    margin: 10px;
+}
+.stats-box-users {
+    border-color: #6a0dad;
+    background-color: #f3e5f5;
+}
+.stats-box h3, .stats-box-users h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #ff9800;
+}
+.stats-box-users h3 {
+    color: #6a0dad;
+}
+.stats-box .count, .stats-box-users .count {
+    font-size: 2.5em;
+    color: #ff5722;
+    margin-top: 10px;
+}
+.stats-box-users .count {
+    color: #9370db;
+}
+#genderChartContainer {
+    width: 50%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+canvas {
+    width: 100% !important;
+    height: auto !important;
+}

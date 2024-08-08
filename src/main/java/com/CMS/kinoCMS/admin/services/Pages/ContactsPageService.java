@@ -14,8 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-@Service
+
 @Log4j2
+@Service
 public class ContactsPageService {
     private final ContactsPageRepository contactsPageRepository;
     private final CinemaService cinemaService;
@@ -29,32 +30,38 @@ public class ContactsPageService {
     }
 
     public List<Contact> findAll() {
-        log.info("Finding all contacts");
-        return contactsPageRepository.findAll();
+        log.info("Start ContactsPageService - findAll");
+        List<Contact> contacts = contactsPageRepository.findAll();
+        log.info("Successfully executed ContactsPageService - findAll");
+        return contacts;
     }
 
     public Optional<Contact> findById(long id) {
-        log.info("Finding contact by ID: {}", id);
-        return contactsPageRepository.findById(id);
+        log.info("Start ContactsPageService - findById with id: {}", id);
+        Optional<Contact> contact = contactsPageRepository.findById(id);
+        log.info("Successfully executed ContactsPageService - findById with id: {}", id);
+        return contact;
     }
 
     public void save(Contact contactPage) {
-        log.info("Saving contact: {}", contactPage);
+        log.info("Start ContactsPageService - save for contact: {}", contactPage.getName());
         contactsPageRepository.save(contactPage);
+        log.info("Successfully executed ContactsPageService - save for contact: {}", contactPage.getName());
     }
 
     public void updateContactPage(Long id, Contact contact) {
-        log.info("Updating contact with ID: {}", id);
+        log.info("Start ContactsPageService - updateContactPage with id: {}", id);
         Contact existingContact = findById(id).orElseThrow(() -> new RuntimeException("Contact Not Found"));
         existingContact.setTitleSEO(contact.getTitleSEO());
         existingContact.setUrlSEO(contact.getUrlSEO());
         existingContact.setKeywordsSEO(contact.getKeywordsSEO());
         existingContact.setDescriptionSEO(contact.getDescriptionSEO());
         save(existingContact);
+        log.info("Successfully executed ContactsPageService - updateContactPage with id: {}", id);
     }
 
     public void updateCinemaPage(Long id, CinemaUpdateDto cinemaUpdateDto, MultipartFile logoFile) throws IOException {
-        log.info("Updating cinema with ID: {}", id);
+        log.info("Start ContactsPageService - updateCinemaPage with id: {}", id);
         Cinema existingCinema = cinemaService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cinema Not Found"));
 
@@ -68,5 +75,6 @@ public class ContactsPageService {
         existingCinema.setXCoordinate(cinemaUpdateDto.xCoordinate());
         existingCinema.setYCoordinate(cinemaUpdateDto.yCoordinate());
         cinemaService.save(existingCinema);
+        log.info("Successfully executed ContactsPageService - updateCinemaPage with id: {}", id);
     }
 }

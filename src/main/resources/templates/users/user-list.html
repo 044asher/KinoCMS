@@ -60,26 +60,7 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/assets/js/config.js"></script>
     <script src="/js/sidebar-active/sidebar-active-element.js"></script>
-    <style>
-        .pagination {
-            margin: 20px 0;
-        }
-
-        .pagination .page-item.active .page-link {
-            background-color: #007bff;
-            border-color: #007bff;
-            color: #fff;
-        }
-
-        .pagination .page-link {
-            cursor: pointer;
-        }
-
-        .pagination .page-link:hover {
-            background-color: #e9ecef;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/css/users/user-list.css">
 </head>
 
 <body>
@@ -316,85 +297,6 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-<script>
-    $('#cityEditDialog').on('shown.bs.modal', function (event) {
-        $.get({
-            url: '/api/v1/city/all',
-            success: (data) => {
-                let cityList = $('#city-list');
-                cityList.empty(); // Clear the list
-                data.forEach(city => {
-                    $.get({
-                        url: '/api/v1/city/' + city.id + '/user-count',
-                        success: (userCount) => {
-                            let deleteButton = userCount === 0 ? `<button class="btn btn-danger delete-city" data-id="${city.id}">Удалить</button>` : '';
-                            cityList.append(`
-                            <tr>
-                                <td>${city.name}</td>
-                                <td>
-                                    <button class="btn btn-primary edit-city" data-id="${city.id}" data-name="${city.name}">Изменить</button>
-                                    ${deleteButton}
-                                </td>
-                            </tr>
-                        `);
-
-                            $('.edit-city').click(function() {
-                                let id = $(this).data('id');
-                                let name = $(this).data('name');
-                                $('#city-id').val(id);
-                                $('#city-name').val(name);
-                            });
-
-                            $('.delete-city').click(function() {
-                                let id = $(this).data('id');
-                                if (confirm('Are you sure you want to delete this city?')) {
-                                    $.ajax({
-                                        url: '/api/v1/city/' + id,
-                                        type: 'DELETE',
-                                        success: () => {
-                                            location.reload();
-                                        },
-                                        error: (err) => {
-                                            alert('Error deleting city: ' + err);
-                                        }
-                                    });
-                                }
-                            });
-                        },
-                        error: (err) => {
-                            alert('Error loading user count: ' + err);
-                        }
-                    });
-                });
-            },
-            error: (err) => {
-                alert('Error loading cities: ' + err);
-            }
-        });
-    });
-
-    $('#save-city-button').click(function() {
-        let city = {
-            id: $('#city-id').val(),
-            name: $('#city-name').val()
-        };
-
-        $.ajax({
-            url: '/api/v1/city',
-            type: 'POST',
-            data: JSON.stringify(city),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: () => {
-                location.reload();
-            },
-            error: (err) => {
-                alert('Error saving city: ' + err);
-            }
-        });
-
-        $('#cityEditDialog').modal('hide');
-    });
-</script>
+<script src="/js/users/user-list-adding-a-city.js"></script>
 </body>
 </html>

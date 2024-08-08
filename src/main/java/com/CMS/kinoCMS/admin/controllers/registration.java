@@ -43,7 +43,7 @@ public class registration {
         }
         user.setDateOfRegistration(LocalDate.now());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("ROLE_ADMIN");
+        user.setRole("ROLE_USER");
         user.setGender("prefer_not_to_say");
         userRepository.save(user);
 

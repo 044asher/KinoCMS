@@ -1,0 +1,61 @@
+.main-image {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+.film-details {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.cinemaHall {
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+}
+.seat {
+    height: 15px;
+    width: 15px;
+    margin: 2px;
+    background-color: #999999;
+    display: inline-block;
+    cursor: pointer;
+}
+.passageBetween {
+    height: 10px;
+    width: 100%;
+    display: block;
+}
+.bay {
+    background-color: red;
+}
+.result {
+    font-size: 12px;
+    display: inline-block;
+    width: 150px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-right: 10px;
+}
+.row-number {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    vertical-align: top;
+    margin-top: 2px;
+}
+.seat-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.frame {
+    border: 2px solid #333;
+    padding: 10px;
+    display: inline-block;
+}

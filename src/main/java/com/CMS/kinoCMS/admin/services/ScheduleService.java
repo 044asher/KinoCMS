@@ -25,28 +25,41 @@ public class ScheduleService {
     }
 
     public List<Schedule> findByCinemaIdAndDateRange(Long cinemaId, LocalDate startDate, LocalDate endDate) {
-        log.info("Finding schedules for cinemaId: {}, between dates: {} and {}", cinemaId, startDate, endDate);
-        return scheduleRepository.findByCinemaIdAndDateBetween(cinemaId, startDate, endDate);
+        log.info("Start ScheduleService - findByCinemaIdAndDateRange with cinemaId: {}, startDate: {}, endDate: {}", cinemaId, startDate, endDate);
+        List<Schedule> schedules = scheduleRepository.findByCinemaIdAndDateBetween(cinemaId, startDate, endDate);
+        log.info("End ScheduleService - findByCinemaIdAndDateRange. Found {} schedules", schedules.size());
+        return schedules;
     }
 
     public void save(Schedule schedule) {
-        log.info("Saving schedule: {}", schedule);
+        log.info("Start ScheduleService - save with schedule: {}", schedule);
         scheduleRepository.save(schedule);
+        log.info("End ScheduleService - save. Schedule saved: {}", schedule);
     }
 
     public List<Schedule> findByCinemaId(long cinemaId) {
-        log.info("Finding schedules for cinemaId: {}", cinemaId);
-        return scheduleRepository.findByCinemaId(cinemaId);
+        log.info("Start ScheduleService - findByCinemaId with cinemaId: {}", cinemaId);
+        List<Schedule> schedules = scheduleRepository.findByCinemaId(cinemaId);
+        log.info("End ScheduleService - findByCinemaId. Found {} schedules", schedules.size());
+        return schedules;
     }
 
     public Optional<Schedule> findById(Long scheduleId) {
-        log.info("Finding schedule by id: {}", scheduleId);
-        return scheduleRepository.findById(scheduleId);
+        log.info("Start ScheduleService - findById with scheduleId: {}", scheduleId);
+        Optional<Schedule> schedule = scheduleRepository.findById(scheduleId);
+        if (schedule.isPresent()) {
+            log.info("End ScheduleService - findById. Found schedule with id: {}", scheduleId);
+        } else {
+            log.warn("End ScheduleService - findById. No schedule found with id: {}", scheduleId);
+        }
+        return schedule;
     }
 
     public List<Schedule> findByFilmIdAndDateRange(long filmId, LocalDate today, LocalDate endDate) {
-        log.info("Finding schedules for filmId: {}, between dates: {} and {}", filmId, today, endDate);
-        return scheduleRepository.findByFilmIdAndDateBetween(filmId, today, endDate);
+        log.info("Start ScheduleService - findByFilmIdAndDateRange with filmId: {}, startDate: {}, endDate: {}", filmId, today, endDate);
+        List<Schedule> schedules = scheduleRepository.findByFilmIdAndDateBetween(filmId, today, endDate);
+        log.info("End ScheduleService - findByFilmIdAndDateRange. Found {} schedules", schedules.size());
+        return schedules;
     }
 
     public List<Schedule> getFilteredSchedules(Long cinemaId, Long filmId, Long hallId, String filmType) {
@@ -54,22 +67,27 @@ public class ScheduleService {
         LocalDate oneWeekLater = today.plusWeeks(1);
         LocalTime currentTime = LocalTime.now();
 
-        log.info("Filtering schedules for cinemaId: {}, filmId: {}, hallId: {}, filmType: {}", cinemaId, filmId, hallId, filmType);
+        log.info("Start ScheduleService - getFilteredSchedules with cinemaId: {}, filmId: {}, hallId: {}, filmType: {}", cinemaId, filmId, hallId, filmType);
         List<Schedule> schedules = findByCinemaIdAndDateRange(cinemaId, today, oneWeekLater);
 
-        return schedules.stream()
+        List<Schedule> filteredSchedules = schedules.stream()
                 .filter(schedule -> !schedule.getDate().isEqual(today) || schedule.getTime().isAfter(currentTime))
                 .filter(schedule -> filmId == null || (schedule.getFilm() != null && schedule.getFilm().getId().equals(filmId)))
                 .filter(schedule -> hallId == null || (schedule.getHall() != null && schedule.getHall().getId().equals(hallId)))
                 .filter(schedule -> filmType == null || (schedule.getFilm() != null && schedule.getFilm().getTypes().contains(filmType)))
                 .sorted(Comparator.comparing(Schedule::getTime))
                 .toList();
+
+        log.info("End ScheduleService - getFilteredSchedules. Filtered {} schedules", filteredSchedules.size());
+        return filteredSchedules;
     }
 
     public Map<LocalDate, List<Schedule>> groupSchedulesByDate(List<Schedule> schedules) {
-        log.info("Grouping schedules by date");
-        return schedules.stream()
+        log.info("Start ScheduleService - groupSchedulesByDate with {} schedules", schedules.size());
+        Map<LocalDate, List<Schedule>> groupedSchedules = schedules.stream()
                 .collect(Collectors.groupingBy(Schedule::getDate));
+        log.info("End ScheduleService - groupSchedulesByDate. Grouped schedules into {} dates", groupedSchedules.size());
+        return groupedSchedules;
     }
 
     public List<Schedule> getFilteredSchedulesHalls(Long hallId) {
@@ -77,17 +95,22 @@ public class ScheduleService {
         LocalDate oneWeekLater = today.plusWeeks(1);
         LocalTime currentTime = LocalTime.now();
 
-        log.info("Filtering schedules for hallId: {}", hallId);
+        log.info("Start ScheduleService - getFilteredSchedulesHalls with hallId: {}", hallId);
         List<Schedule> schedules = scheduleRepository.findByHallIdAndDateBetween(hallId, today, oneWeekLater);
 
-        return schedules.stream()
+        List<Schedule> filteredSchedules = schedules.stream()
                 .filter(schedule -> !schedule.getDate().isEqual(today) || schedule.getTime().isAfter(currentTime))
                 .filter(schedule -> schedule.getHall().getId().equals(hallId))
                 .sorted(Comparator.comparing(Schedule::getTime))
                 .toList();
+
+        log.info("End ScheduleService - getFilteredSchedulesHalls. Filtered {} schedules", filteredSchedules.size());
+        return filteredSchedules;
     }
 
     public void deleteById(long scheduleId) {
+        log.info("Start ScheduleService - deleteById with scheduleId: {}", scheduleId);
         scheduleRepository.deleteById(scheduleId);
+        log.info("End ScheduleService - deleteById. Deleted schedule with id: {}", scheduleId);
     }
 }

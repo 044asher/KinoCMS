@@ -19,6 +19,8 @@ public class FileUploadService {
     private String uploadPath;
 
     public String uploadFile(MultipartFile file) throws IOException {
+        log.info("Start FileUploadService - uploadFile");
+
         if (file == null || file.isEmpty()) {
             log.error("File is empty or null");
             throw new IllegalArgumentException("File is empty or null");
@@ -44,13 +46,17 @@ public class FileUploadService {
             throw e;
         }
 
+        log.info("End FileUploadService - uploadFile. Uploaded filename: {}", resultFilename);
         return resultFilename;
     }
 
+
     public List<String> uploadAdditionalFiles(MultipartFile[] files) throws IOException {
+        log.info("Start FileUploadService - uploadAdditionalFiles");
+
         if (files == null || files.length == 0) {
             log.error("Files array is empty");
-            throw new IllegalArgumentException("Files is empty");
+            throw new IllegalArgumentException("Files array is empty");
         }
 
         List<String> newImageNames = new ArrayList<>();
@@ -59,11 +65,14 @@ public class FileUploadService {
                 try {
                     String resultFilename = uploadFile(file);
                     newImageNames.add(resultFilename);
+                    log.info("Successfully uploaded additional file: {}. Filename: {}", file.getOriginalFilename(), resultFilename);
                 } catch (IOException e) {
-                    log.error("Failed to upload file: {}", file.getOriginalFilename(), e);
+                    log.error("Failed to upload additional file: {}", file.getOriginalFilename(), e);
                 }
             }
         }
+
+        log.info("End FileUploadService - uploadAdditionalFiles. Uploaded {} files", newImageNames.size());
         return newImageNames;
     }
 }

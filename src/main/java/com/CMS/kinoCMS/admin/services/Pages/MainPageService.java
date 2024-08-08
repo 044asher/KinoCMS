@@ -20,22 +20,27 @@ public class MainPageService {
     }
 
     public List<MainPage> findAll() {
-        log.info("Fetching all main pages");
-        return mainPageRepository.findAll();
+        log.info("Start MainPageService - findAll");
+        List<MainPage> mainPages = mainPageRepository.findAll();
+        log.info("Successfully executed MainPageService - findAll");
+        return mainPages;
     }
 
     public Optional<MainPage> findById(long id) {
-        log.info("Fetching main page with id: {}", id);
-        return mainPageRepository.findById(id);
+        log.info("Start MainPageService - findById with id: {}", id);
+        Optional<MainPage> mainPage = mainPageRepository.findById(id);
+        log.info("Successfully executed MainPageService - findById with id: {}", id);
+        return mainPage;
     }
 
     public void save(MainPage mainPage) {
-        log.info("Saving main page: {}", mainPage);
+        log.info("Start MainPageService - save for main page");
         mainPageRepository.save(mainPage);
+        log.info("Successfully executed MainPageService - save for main page");
     }
 
     public void updateMainPage(long id, MainPage mainPage) {
-        log.info("Updating main page with id: {}", id);
+        log.info("Start MainPageService - updateMainPage with id: {}", id);
         MainPage existingMainPage = findById(id)
                 .orElseThrow(() -> new RuntimeException("Main Page Not Found"));
 
@@ -49,5 +54,6 @@ public class MainPageService {
         existingMainPage.setDescriptionSEO(mainPage.getDescriptionSEO());
 
         save(existingMainPage);
+        log.info("Successfully executed MainPageService - updateMainPage with id: {}", id);
     }
 }
