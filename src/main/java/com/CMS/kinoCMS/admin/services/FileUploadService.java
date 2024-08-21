@@ -32,6 +32,7 @@ public class FileUploadService {
                 log.info("Created upload directory: {}", uploadPath);
             } else {
                 log.error("Failed to create upload directory: {}", uploadPath);
+                throw new IOException("Failed to create upload directory"); // Обратить внимание на эту часть кода. написать тест. Контроллер эдвайс (эксепшн хендлер) почитать
             }
         }
         String uuidFile = UUID.randomUUID().toString();

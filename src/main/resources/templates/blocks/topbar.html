@@ -54,15 +54,13 @@
     <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
         <div class="container-xxl">
             <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
-                <a href="/main" class="app-brand-link gap-2">
+                <a th:href="@{/main}" class="app-brand-link gap-2">
                 <span class="app-brand-logo demo">
-                    <img src="/img/free-icon-audience-3350561.png" style="width: 32px; height: 26px; fill: none">
+                    <img th:src="@{/img/free-icon-audience-3350561.png}" style="width: 32px; height: 26px; fill: none">
                 </span>
                     <span class="app-brand-text demo menu-text fw-bold">Lincoln Plaza</span>
                 </a>
-
             </div>
-
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
                 <ul class="navbar-nav flex-row align-items-center ms-auto">
@@ -81,7 +79,7 @@
                             <a href="javascript:void(0)" class="btn btn-icon btn-sm btn-linkedin me-2">
                                 <i class="ti ti-brand-linkedin"></i>
                             </a>
-                            <a href="/admin/stats" class="btn btn-icon btn-sm btn-github">
+                            <a th:href="@{/admin/stats}" class="btn btn-icon btn-sm btn-github">
                                 <i class="ti ti-brand-github"></i>
                             </a>
                         </div>
@@ -96,7 +94,7 @@
                     </li>
                     <li class="nav-item">
                         <div class="user-buttons" th:if="${userId != null}">
-                            <a class="btn rounded-pill btn-outline-primary waves-effect" th:href="'/user/edit/' + ${userId}" th:text="${firstName} + ' ' + ${lastName}">Редактировать</a>
+                            <a class="btn rounded-pill btn-outline-primary waves-effect" th:href="@{'/user/edit/' + ${userId}}" th:text="${firstName} + ' ' + ${lastName}">Редактировать</a>
                             <form th:action="@{/logout}" method="post">
                                 <button type="submit" class="btn rounded-pill btn-outline-danger waves-effect">
                                     <i class="ti ti-logout me-2 ti-sm"></i>
@@ -105,8 +103,8 @@
                             </form>
                         </div>
                         <div class="user-buttons" th:if="${userId == null}">
-                            <a class="btn btn-outline-success waves-effect" th:href="@{/login}">Войти</a>
-                            <a class="btn btn-outline-primary waves-effect" th:href="@{/registration}">Зарегистрироваться</a>
+                            <a th:href="@{/login}" class="btn btn-outline-success waves-effect">Войти</a>
+                            <a th:href="@{/registration}" class="btn btn-outline-primary waves-effect">Зарегистрироваться</a>
                         </div>
                     </li>
                 </ul>
@@ -131,27 +129,26 @@
         <div class="container-xxl d-flex h-100">
             <ul class="menu-inner py-1">
                 <li class="menu-item">
-                    <a href="/main" class="menu-link">
+                    <a th:href="@{/main}" class="menu-link">
                         <i class="menu-icon tf-icons ti ti-smart-home"></i>
                         <div data-i18n="Page 1">Главная</div>
                     </a>
                 </li>
 
-
                 <li class="menu-item">
-                    <a href="/posters" class="menu-link menu-toggle">
+                    <a href="javascript:void(0)" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons ti ti-camera-plus"></i>
                         <div data-i18n="Page 2">В кино</div>
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="/posters" class="menu-link">
+                            <a th:href="@{/posters}" class="menu-link">
                                 <i class="menu-icon tf-icons ti ti-zoom-in-area"></i>
                                 <div data-i18n="Analytics">Афиша</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="/posters/upcoming" class="menu-link">
+                            <a th:href="@{/posters/upcoming}" class="menu-link">
                                 <i class="menu-icon tf-icons ti ti-file-import"></i>
                                 <div data-i18n="Analytics">Скоро</div>
                             </a>
@@ -160,19 +157,19 @@
                 </li>
 
                 <li class="menu-item">
-                    <a href="/schedule" class="menu-link">
+                    <a th:href="@{/schedule}" class="menu-link">
                         <i class="menu-icon tf-icons ti ti-calendar-event"></i>
                         <div>Расписание</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/cinemas" class="menu-link">
+                    <a th:href="@{/cinemas}" class="menu-link">
                         <i class="menu-icon tf-icons ti ti-movie"></i>
                         <div>Кинотеатры</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="/actions" class="menu-link">
+                    <a th:href="@{/actions}" class="menu-link">
                         <i class="menu-icon tf-icons ti ti-currency-dollar"></i>
                         <div>Акции</div>
                     </a>
@@ -187,49 +184,49 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="/pages/about-cinemas" class="menu-link">
+                            <a th:href="@{/pages/about-cinemas}" class="menu-link">
                                 <i class="menu-icon tf-icons ti ti-file-description"></i>
                                 <div>О кинотеатре</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="/pages/news" class="menu-link">
+                            <a th:href="@{/pages/news}" class="menu-link">
                                 <i class="menu-icon tf-icons ti ti-news"></i>
                                 <div>Новости</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="/pages/cafe-bar" class="menu-link">
+                            <a th:href="@{/pages/cafe-bar}" class="menu-link">
                                 <i class="menu-icon tf-icons ti ti-tools-kitchen-2"></i>
                                 <div>Кафе-Бар</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="/pages/vip-hall" class="menu-link">
+                            <a th:href="@{/pages/vip-hall}" class="menu-link">
                                 <i class="menu-icon tf-icons ti ti-diamond"></i>
                                 <div>Vip зал</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="/pages/children-room" class="menu-link">
+                            <a th:href="@{/pages/children-room}" class="menu-link">
                                 <i class="menu-icon tf-icons ti ti-mood-kid"></i>
                                 <div>Детская комната</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="/pages/advertisement" class="menu-link">
+                            <a th:href="@{/pages/advertisement}" class="menu-link">
                                 <i class="menu-icon tf-icons ti ti-ad"></i>
                                 <div>Реклама</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="/pages/mobile-app" class="menu-link">
+                            <a th:href="@{/pages/mobile-app}" class="menu-link">
                                 <i class="menu-icon tf-icons ti ti-device-mobile"></i>
                                 <div>Мобильное приложение</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="/pages/contacts" class="menu-link">
+                            <a th:href="@{/pages/contacts}" class="menu-link">
                                 <i class="menu-icon tf-icons ti ti-map-2"></i>
                                 <div>Контакты</div>
                             </a>

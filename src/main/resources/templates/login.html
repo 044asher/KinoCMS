@@ -20,7 +20,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/img/favicon/favicon.ico}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,37 +31,37 @@
     />
 
     <!-- Icons -->
-    <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome.css" />
-    <link rel="stylesheet" href="/assets/vendor/fonts/tabler-icons.css" />
-    <link rel="stylesheet" href="/assets/vendor/fonts/flag-icons.css" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/fonts/fontawesome.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/fonts/tabler-icons.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/fonts/flag-icons.css}" />
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="/assets/vendor/css/rtl/core.css" />
-    <link rel="stylesheet" href="/assets/vendor/css/rtl/theme-default.css" />
-    <link rel="stylesheet" href="/assets/css/demo.css" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/css/rtl/core.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/css/rtl/theme-default.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/demo.css}" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/node-waves/node-waves.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/animate-css/animate.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/sweetalert2/sweetalert2.css" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/node-waves/node-waves.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/typeahead-js/typeahead.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/animate-css/animate.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/sweetalert2/sweetalert2.css}" />
 
 
     <!-- Vendor -->
-    <link rel="stylesheet" href="/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css}" />
 
     <!-- Page CSS -->
     <!-- Page -->
-    <link rel="stylesheet" href="/assets/vendor/css/pages/page-auth.css" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/css/pages/page-auth.css}" />
     <!-- Helpers -->
-    <script src="/assets/vendor/js/helpers.js"></script>
+    <script th:src="@{/assets/vendor/js/helpers.js}"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="/assets/js/config.js"></script>
+    <script th:src="@{/assets/js/config.js}"></script>
 
-   <link rel="stylesheet" href="/css/login/login.css">
+   <link rel="stylesheet" th:href="@{/css/login/login.css}">
   </head>
 
   <body>
@@ -73,7 +73,7 @@
         <div class="d-none d-lg-flex col-lg-7 p-0">
           <div class="auth-cover-bg auth-cover-bg-color d-flex justify-content-center align-items-center">
             <img
-              src="/assets/img/illustrations/auth-login-illustration-light.png"
+              th:src="@{/assets/img/illustrations/auth-login-illustration-light.png}"
               alt="auth-login-cover"
               class="img-fluid my-5 auth-illustration"
               data-app-light-img="illustrations/auth-login-illustration-light.png"
@@ -81,7 +81,7 @@
             />
 
             <img
-              src="/assets/img/illustrations/bg-shape-image-light.png"
+              th:src="@{/assets/img/illustrations/bg-shape-image-light.png}"
               alt="auth-login-cover"
               class="platform-bg"
               data-app-light-img="illustrations/bg-shape-image-light.png"
@@ -96,8 +96,8 @@
           <div class="w-px-400 mx-auto">
             <!-- Logo -->
             <div class="app-brand mb-4">
-              <a href="/main" class="app-brand-link">
-                <img src="/img/free-icon-audience-3350561.png" alt="Audience Icon">
+              <a th:href="@{/main}" class="app-brand-link">
+                <img th:src="@{/img/free-icon-audience-3350561.png}" alt="Audience Icon">
                 Продолжить без авторизации
               </a>
             </div>
@@ -105,7 +105,7 @@
             <h3 class="mb-1 fw-bold">Приветствуем! 👋</h3>
             <p class="mb-4">Пожалуйста, войдите в свой аккаунт</p>
 
-            <form id="formAuthentication" class="mb-3" action="/login" method="POST">
+            <form id="formAuthentication" class="mb-3" th:action="@{/login}" method="POST">
               <div class="mb-3">
                 <label for="username" class="form-label">Имя пользователя (логин)</label>
                 <input
@@ -153,28 +153,28 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="/assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="/assets/vendor/libs/popper/popper.js"></script>
-    <script src="/assets/vendor/js/bootstrap.js"></script>
-    <script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="/assets/vendor/libs/node-waves/node-waves.js"></script>
+    <script th:src="@{/assets/vendor/libs/jquery/jquery.js}"></script>
+    <script th:src="@{/assets/vendor/libs/popper/popper.js}"></script>
+    <script th:src="@{/assets/vendor/js/bootstrap.js}"></script>
+    <script th:src="@{/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js}"></script>
+    <script th:src="@{/assets/vendor/libs/node-waves/node-waves.js}"></script>
 
-    <script src="/assets/vendor/libs/hammer/hammer.js"></script>
-    <script src="/assets/vendor/libs/i18n/i18n.js"></script>
-    <script src="/assets/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script th:src="@{/assets/vendor/libs/hammer/hammer.js}"></script>
+    <script th:src="@{/assets/vendor/libs/i18n/i18n.js}"></script>
+    <script th:src="@{/assets/vendor/libs/typeahead-js/typeahead.js}"></script>
 
-    <script src="/assets/vendor/js/menu.js"></script>
+    <script th:src="@{/assets/vendor/js/menu.js}"></script>
     <!-- endbuild -->
 
     <!-- Vendors JS -->
 
 
     <!-- Main JS -->
-    <script src="/assets/js/main.js"></script>
-    <script src="/assets/js/extended-ui-sweetalert2.js"></script>
-    <script src="/assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
+    <script th:src="@{/assets/js/main.js}"></script>
+    <script th:src="@{/assets/js/extended-ui-sweetalert2.js}"></script>
+    <script th:src="@{/assets/vendor/libs/sweetalert2/sweetalert2.js}"></script>
 
     <!-- Page JS -->
-    <script src="/assets/js/pages-auth.js"></script>
+    <script th:src="@{/assets/js/pages-auth.js}"></script>
   </body>
 </html>

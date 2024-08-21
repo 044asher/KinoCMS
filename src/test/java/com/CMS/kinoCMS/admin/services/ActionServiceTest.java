@@ -16,7 +16,6 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-
 @ExtendWith(MockitoExtension.class)
 class ActionServiceTest {
 
@@ -89,6 +88,36 @@ class ActionServiceTest {
     }
 
     @Test
+    void testUpdateAction_ActionNotFound() throws IOException {
+        Action updatedAction = new Action();
+        MultipartFile file = mock(MultipartFile.class);
+        MultipartFile[] additionalFiles = {mock(MultipartFile.class)};
+
+        when(actionRepository.findById(1L)).thenReturn(Optional.empty());
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> actionService.updateAction(1L, updatedAction, file, additionalFiles));
+        assertEquals("Action not found with id 1", exception.getMessage());
+
+        verify(fileUploadService, times(0)).uploadFile(file);
+        verify(actionRepository, times(0)).save(any(Action.class));
+    }
+
+
+    @Test
+    void testSaveAction_FileUploadException() throws IOException {
+        Action action = new Action();
+        MultipartFile file = mock(MultipartFile.class);
+        MultipartFile[] additionalFiles = {mock(MultipartFile.class)};
+        when(file.isEmpty()).thenReturn(false);
+        when(fileUploadService.uploadFile(file)).thenThrow(new IOException("Upload failed"));
+
+        IOException exception = assertThrows(IOException.class, () -> actionService.saveAction(action, file, additionalFiles));
+        assertEquals("Upload failed", exception.getMessage());
+        verify(fileUploadService, times(1)).uploadFile(file);
+        verify(actionRepository, times(0)).save(action);
+    }
+
+    @Test
     void testUpdateAction() throws IOException {
         Action existingAction = new Action();
         existingAction.setId(1L);
@@ -122,6 +151,24 @@ class ActionServiceTest {
     }
 
     @Test
+    void testUpdateAction_FileUploadException() throws IOException {
+        Action existingAction = new Action();
+        existingAction.setId(1L);
+        Action updatedAction = new Action();
+        MultipartFile file = mock(MultipartFile.class);
+        MultipartFile[] additionalFiles = {mock(MultipartFile.class)};
+        when(actionRepository.findById(1L)).thenReturn(Optional.of(existingAction));
+        when(file.isEmpty()).thenReturn(false);
+        when(fileUploadService.uploadFile(file)).thenThrow(new IOException("Upload failed"));
+
+        IOException exception = assertThrows(IOException.class, () -> actionService.updateAction(1L, updatedAction, file, additionalFiles));
+        assertEquals("Upload failed", exception.getMessage());
+        verify(actionRepository, times(1)).findById(1L);
+        verify(fileUploadService, times(1)).uploadFile(file);
+        verify(actionRepository, times(0)).save(existingAction);
+    }
+
+    @Test
     void testChangeActionStatus() {
         Action action = new Action();
         action.setNotActive(true);
@@ -132,6 +179,16 @@ class ActionServiceTest {
         assertFalse(action.isNotActive());
         verify(actionRepository, times(1)).findById(1L);
         verify(actionRepository, times(1)).save(action);
+    }
+
+    @Test
+    void testChangeActionStatus_ActionNotFound() {
+        when(actionRepository.findById(1L)).thenReturn(Optional.empty());
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> actionService.changeActionStatus(1L));
+        assertEquals("Action not found with id 1", exception.getMessage());
+        verify(actionRepository, times(1)).findById(1L);
+        verify(actionRepository, times(0)).save(any(Action.class));
     }
 
     @Test

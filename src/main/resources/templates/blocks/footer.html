@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="col-12 col-sm-6 col-md-3 mb-4 mb-sm-0">
                         <h4 class="fw-bolder mb-3">
-                            <a href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/landing-page/"
+                            <a th:href="@{https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/landing-page/}"
                                target="_blank" class="footer-text">Lincoln Plaza</a>
                         </h4>
                         <span>Get ready for better feelings</span>
@@ -68,34 +68,34 @@
                     </div>
                     <div class="col-12 col-sm-6 col-md-3 mb-4 mb-md-0">
                         <div class="app-buttons">
-                            <a href="https://play.google.com/store/books?hl=en" class="btn btn-google-play">
+                            <a th:href="@{https://play.google.com/store/books?hl=en}" class="btn btn-google-play">
                                 <i class="fab fa-google-play"></i> Google Play
                             </a>
-                            <a href="https://apps.apple.com/ru/developer/apple/id284417353?mt=12" class="btn btn-app-store mt-2">
+                            <a th:href="@{https://apps.apple.com/ru/developer/apple/id284417353?mt=12}" class="btn btn-app-store mt-2">
                                 <i class="fab fa-app-store"></i> App Store
                             </a>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-md-3 mb-4 mb-sm-0">
-                        <a href="/posters">
-                        <h5>Афиша</h5>
+                        <a th:href="@{/posters}">
+                            <h5>Афиша</h5>
                         </a>
                         <ul class="list-unstyled">
-                            <li><a href="/schedule" class="footer-link d-block pb-2">Расписание</a></li>
-                            <li><a href="/posters/upcoming" class="footer-link d-block pb-2">Скоро в прокате</a></li>
-                            <li><a href="/cinemas" class="footer-link d-block pb-2">Кинотеатры</a></li>
-                            <li><a href="/actions" class="footer-link d-block pb-2">Акции</a></li>
+                            <li><a th:href="@{/schedule}" class="footer-link d-block pb-2">Расписание</a></li>
+                            <li><a th:href="@{/posters/upcoming}" class="footer-link d-block pb-2">Скоро в прокате</a></li>
+                            <li><a th:href="@{/cinemas}" class="footer-link d-block pb-2">Кинотеатры</a></li>
+                            <li><a th:href="@{/actions}" class="footer-link d-block pb-2">Акции</a></li>
                         </ul>
                     </div>
                     <div class="col-12 col-sm-6 col-md-3">
-                        <a href="/pages/about-cinemas">
+                        <a th:href="@{/pages/about-cinemas}">
                             <h5>О кинотеатре</h5>
                         </a>
                         <ul class="list-unstyled">
-                            <li><a href="/pages/news" class="footer-link d-block pb-2">Новости</a></li>
-                            <li><a href="/pages/advertisement" class="footer-link d-block pb-2">Реклама</a></li>
-                            <li><a href="/pages/cafe-bar" class="footer-link d-block pb-2">Кафе-Бар</a></li>
-                            <li><a href="/pages/contacts" class="footer-link d-block pb-2">Контакты</a></li>
+                            <li><a th:href="@{/pages/news}" class="footer-link d-block pb-2">Новости</a></li>
+                            <li><a th:href="@{/pages/advertisement}" class="footer-link d-block pb-2">Реклама</a></li>
+                            <li><a th:href="@{/pages/cafe-bar}" class="footer-link d-block pb-2">Кафе-Бар</a></li>
+                            <li><a th:href="@{/pages/contacts}" class="footer-link d-block pb-2">Контакты</a></li>
                         </ul>
                     </div>
                 </div>

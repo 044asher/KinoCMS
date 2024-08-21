@@ -11,7 +11,7 @@
 <head>
     <head th:insert="~{blocks/links :: links}"></head>
     <title th:text="${film.name} + ' | Lincoln Plaza'">Lincoln Plaza</title>
-    <link rel="stylesheet" href="/css/films/user-part/film.css">
+    <link rel="stylesheet" th:href="@{/css/films/user-part/film.css}">
 </head>
 
 <body>

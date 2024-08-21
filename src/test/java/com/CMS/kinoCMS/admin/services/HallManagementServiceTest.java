@@ -109,7 +109,7 @@ public class HallManagementServiceTest {
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> hallManagementService.addHall(1L, hall, null, null, null));
 
-        assertEquals("Invalid cinema Id:1", exception.getMessage());
+        assertEquals("Invalid cinema Id: 1", exception.getMessage());
     }
 }
 

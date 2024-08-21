@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.CMS</groupId>
 	<artifactId>kinoCMS</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>H.Nizar</version>
 	<name>kinoCMS</name>
 	<description>Project for SpaceLab</description>
 	<packaging>war</packaging>

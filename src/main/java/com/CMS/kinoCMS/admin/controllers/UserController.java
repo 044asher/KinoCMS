@@ -56,7 +56,7 @@ public class UserController {
             model.addAttribute("search", search);
             return "users/user-list";
         } catch (Exception e) {
-            logger.error("Не удалось получить список пользователей: {}", e.getMessage());
+            logger.error("UserController - userList: Не удалось получить список пользователей: {}", e.getMessage());
             throw e;
         }
     }

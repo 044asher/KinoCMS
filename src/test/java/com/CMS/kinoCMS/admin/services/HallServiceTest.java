@@ -11,8 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -59,6 +58,17 @@ public class HallServiceTest {
     }
 
     @Test
+    public void testFindById_HallNotFound() {
+        when(hallRepository.findById(1L)).thenReturn(Optional.empty());
+
+        Optional<Hall> result = hallService.findById(1L);
+
+        assertFalse(result.isPresent());
+        verify(hallRepository, times(1)).findById(1L);
+    }
+
+
+    @Test
     public void testFindAllByCinemaId() {
         List<Hall> halls = List.of(new Hall(), new Hall());
         when(hallRepository.findAllByCinemaId(1L)).thenReturn(halls);
@@ -89,4 +99,14 @@ public class HallServiceTest {
 
         verify(hallRepository, times(1)).delete(hall);
     }
+
+    @Test
+    public void testDelete_HallNotPresent() {
+        Optional<Hall> hall = Optional.empty();
+
+        hallService.delete(hall);
+
+        verify(hallRepository, times(0)).delete(any(Hall.class));
+    }
+
 }

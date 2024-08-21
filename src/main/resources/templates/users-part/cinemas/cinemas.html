@@ -11,7 +11,7 @@
 <head>
     <head th:insert="~{blocks/links :: links}"></head>
     <title>Кинотеатры | Lincoln Plaza</title>
-    <link rel="stylesheet" href="/css/cinemas/user-part/cinemas.css">
+    <link rel="stylesheet" th:href="@{/css/cinemas/user-part/cinemas.css}">
 </head>
 
 <body>
@@ -58,7 +58,7 @@
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="ad-container ml-4 mt-4">
-                                                    <img src="/assets/img/elements/15.jpg" alt="Ad"
+                                                    <img th:src="@{/assets/img/elements/15.jpg}" alt="Ad"
                                                          class="img-fluid">
                                                 </div>
                                             </div>

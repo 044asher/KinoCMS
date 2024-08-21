@@ -10,7 +10,7 @@
 >
 <head>
     <title>Рассылка пользователям</title>
-    <link rel="stylesheet" href="/css/email/email.css"/>
+    <link rel="stylesheet" th:href="@{/css/email/email.css}"/>
 
 </head>
 
@@ -109,12 +109,12 @@
 
 
     <!-- Vendors JS -->
-    <script src="/assets/vendor/libs/quill/katex.js"></script>
-    <script src="/assets/vendor/libs/quill/quill.js"></script>
+    <script th:src="@{/assets/vendor/libs/quill/katex.js}"></script>
+    <script th:src="@{/assets/vendor/libs/quill/quill.js}"></script>
 
     <!-- Main JS -->
-    <script src="/assets/js/main.js"></script>
-    <script src="/js/email/email.js"></script>
+    <script th:src="@{/assets/js/main.js}"></script>
+    <script th:src="@{/js/email/email.js}"></script>
 
 
 </div>

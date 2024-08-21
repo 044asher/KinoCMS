@@ -11,7 +11,7 @@
 <head>
     <head th:insert="~{blocks/links :: links}"></head>
     <title>Скоро | Lincoln Plaza</title>
-    <link rel="stylesheet" type="text/css" href="/css/user_part/posters.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user_part/posters.css}">
 </head>
 
 <body>
@@ -33,7 +33,7 @@
                     </li>
                 </ul>
                 <!-- Ad Banner -->
-                <img src="/assets/img/elements/15.jpg" alt="Ad Banner" class="ad-banner">
+                <img th:src="@{/assets/img/elements/15.jpg}" alt="Ad Banner" class="ad-banner">
             </div>
 
 

@@ -17,7 +17,6 @@
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
         <!-- Menu -->
-
         <header th:insert="~{blocks/sidebar :: sidebar}"></header>
         <!-- / Menu -->
 
@@ -30,7 +29,7 @@
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <div class="d-flex justify-content-between align-items-center">
                         <h4 class="fw-bold py-3 mb-2">Страницы</h4>
-                        <a href="/admin/pages/add" class="btn btn-label-primary waves-effect">Добавить страницу</a>
+                        <a th:href="@{/admin/pages/add}" class="btn btn-label-primary waves-effect">Добавить страницу</a>
                     </div>
                     <!-- Invoice List Table -->
                     <div class="card">
@@ -126,9 +125,9 @@
     <!-- / Layout page -->
 </div>
 
-<script src="/js/pages/main-page.js"></script>
-<script src="/js/pages/contacts-page.js"></script>
-<script src="/js/pages/pages.js"></script>
+<script th:src="@{/js/pages/main-page.js}"></script>
+<script th:src="@{/js/pages/contacts-page.js}"></script>
+<script th:src="@{/js/pages/pages.js}"></script>
 
 
 </body>

@@ -10,7 +10,7 @@
 >
 <head>
     <title>Редактирование страницы</title>
-    <link rel="stylesheet" href="/css/pages/pages-edit.css"/>
+    <link rel="stylesheet" th:href="@{/css/pages/pages-edit.css}"/>
 </head>
 
 <body>
@@ -169,9 +169,9 @@
     <!-- / Layout page -->
 </div>
 
-<script src="/js/pages/pages.js"></script>
-<script src="/js/films/add.js"></script>
-<script src="/js/pages/pages-edit.js"></script>
+<script th:src="@{/js/pages/pages.js}"></script>
+<script th:src="@{/js/films/add.js}"></script>
+<script th:src="@{/js/pages/pages-edit.js}"></script>
 
 </body>
 </html>

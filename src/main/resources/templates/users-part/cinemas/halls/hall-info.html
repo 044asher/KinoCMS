@@ -11,7 +11,7 @@
 <head>
     <head th:insert="~{blocks/links :: links}"></head>
     <title>Зал | Lincoln Plaza</title>
-    <link rel="stylesheet" href="/css/cinemas/user-part/halls/hall-info.css">
+    <link rel="stylesheet" th:href="@{/css/cinemas/user-part/halls/hall-info.css}">
 </head>
 
 <body>
@@ -29,7 +29,7 @@
                         <img th:src="@{/img/{imageName}(imageName = ${hall.topBanner})}" alt="banner" class="banner">
                         <div class="sidebar">
                             <div class="ad-container ml-4 mt-5">
-                                <img src="/assets/img/elements/15.jpg" alt="Ad" class="img-fluid">
+                                <img th:src="@{/assets/img/elements/15.jpg}" alt="Ad" class="img-fluid">
                             </div>
 
                             <div>

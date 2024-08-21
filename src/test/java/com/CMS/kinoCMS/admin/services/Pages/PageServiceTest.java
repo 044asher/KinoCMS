@@ -1,5 +1,6 @@
 package com.CMS.kinoCMS.admin.services.Pages;
 
+import com.CMS.kinoCMS.admin.models.Cinema;
 import com.CMS.kinoCMS.admin.models.Pages.Contact;
 import com.CMS.kinoCMS.admin.models.Pages.MainPage;
 import com.CMS.kinoCMS.admin.models.Pages.MenuItem;
@@ -7,10 +8,6 @@ import com.CMS.kinoCMS.admin.models.Pages.Page;
 import com.CMS.kinoCMS.admin.repositories.Pages.PageRepository;
 import com.CMS.kinoCMS.admin.services.CinemaService;
 import com.CMS.kinoCMS.admin.services.FileUploadService;
-import com.CMS.kinoCMS.admin.services.Pages.ContactsPageService;
-import com.CMS.kinoCMS.admin.services.Pages.MainPageService;
-import com.CMS.kinoCMS.admin.services.Pages.MenuItemService;
-import com.CMS.kinoCMS.admin.services.Pages.PageService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -160,6 +157,24 @@ class PageServiceTest {
     }
 
     @Test
+    void testUpdatePage_PageNotFound() {
+        Long nonExistentPageId = 999L;
+        Page updatedPage = new Page();
+        updatedPage.setName("Updated Name");
+        updatedPage.setDescription("Updated Description");
+
+        when(pageRepository.findById(nonExistentPageId)).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            pageService.updatePage(nonExistentPageId, updatedPage, null, null);
+        });
+
+        assertEquals("Page Not Found", exception.getMessage());
+        verify(pageRepository, times(1)).findById(nonExistentPageId);
+    }
+
+
+    @Test
     void testAddMenuItemToPage() {
         Page page = new Page();
         page.setName("Кафе-Бар");
@@ -179,6 +194,20 @@ class PageServiceTest {
         assertEquals("Page Not Found", exception.getMessage());
         verify(menuItemService, times(0)).save(any(MenuItem.class));
     }
+
+    @Test
+    void testAddMenuItemToPage_NotCafeBarPage() {
+        Page page = new Page();
+        page.setName("Не Кафе-Бар");
+
+        when(pageRepository.findById(1L)).thenReturn(Optional.of(page));
+
+
+        pageService.addMenuItemToPage(1L, "Item Name", 10.0, "Ingredients");
+
+        verify(menuItemService, times(0)).save(any(MenuItem.class));
+    }
+
 
     @Test
     void testChangeStatus_MainPage() {
@@ -227,4 +256,96 @@ class PageServiceTest {
         verify(model, times(1)).addAttribute("page", page);
         verify(model, times(1)).addAttribute(eq("cinemasForNotActivePage"), anyList());
     }
+
+    @Test
+    void testGetPageWithCheck_ActivePage() {
+        Page page = new Page();
+        page.setName("Test Page");
+        page.setNotActive(false);
+        when(pageRepository.findByName("Test Page")).thenReturn(Optional.of(page));
+        Model model = mock(Model.class);
+
+        Optional<Page> result = pageService.getPageWithCheck("Test Page", model);
+
+        assertTrue(result.isPresent());
+        assertEquals(page, result.get());
+
+        verify(model, times(1)).addAttribute("page", page);
+
+    }
+
+
+    @Test
+    void testAddNewPage_FileUploadException() throws IOException {
+        Page newPage = new Page();
+        MultipartFile file = mock(MultipartFile.class);
+        MultipartFile[] additionalFiles = {mock(MultipartFile.class), mock(MultipartFile.class)};
+        when(file.isEmpty()).thenReturn(false);
+        when(fileUploadService.uploadFile(file)).thenThrow(new IOException("File upload error"));
+
+        IOException exception = assertThrows(IOException.class, () -> pageService.addNewPage(newPage, file, additionalFiles));
+
+        assertEquals("File upload error", exception.getMessage());
+        verify(pageRepository, times(0)).save(newPage);
+    }
+
+    @Test
+    void testUpdatePage_FileUploadException() throws IOException {
+        Page existingPage = new Page();
+        existingPage.setId(1L);
+        Page updatedPage = new Page();
+        MultipartFile file = mock(MultipartFile.class);
+        MultipartFile[] additionalFiles = {mock(MultipartFile.class), mock(MultipartFile.class)};
+        when(pageRepository.findById(1L)).thenReturn(Optional.of(existingPage));
+        when(file.isEmpty()).thenReturn(false);
+        when(fileUploadService.uploadFile(file)).thenThrow(new IOException("File upload error"));
+
+        IOException exception = assertThrows(IOException.class, () -> pageService.updatePage(1L, updatedPage, file, additionalFiles));
+
+        assertEquals("File upload error", exception.getMessage());
+        verify(pageRepository, times(0)).save(existingPage);
+    }
+
+    @Test
+    void testChangeStatus_UnsupportedType() {
+        assertThrows(IllegalArgumentException.class, () -> pageService.changeStatus(new Object()));
+    }
+
+    @Test
+    void testPageDeleteById_PageNotFound() {
+        when(pageRepository.findById(1L)).thenReturn(Optional.empty());
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> pageService.pageDeleteById(1L));
+
+        assertEquals("Page Not Found", exception.getMessage());
+        verify(pageRepository, times(0)).delete(any(Page.class));
+    }
+
+    @Test
+    void testPageDeleteById_Success() {
+        Page page = new Page();
+        when(pageRepository.findById(1L)).thenReturn(Optional.of(page));
+
+        pageService.pageDeleteById(1L);
+
+        verify(pageRepository, times(1)).delete(page);
+    }
+
+
+    @Test
+    void testGetPageWithCheck_PageIsNotActive() {
+        Page page = new Page();
+        page.setName("Test Page");
+        page.setNotActive(true);
+        when(pageRepository.findByName("Test Page")).thenReturn(Optional.of(page));
+        when(cinemaService.findAll()).thenReturn(List.of(new Cinema(), new Cinema(), new Cinema(), new Cinema(), new Cinema(), new Cinema()));
+        Model model = mock(Model.class);
+
+        Optional<Page> result = pageService.getPageWithCheck("Test Page", model);
+
+        assertFalse(result.isPresent());
+        verify(model, times(1)).addAttribute("page", page);
+        verify(model, times(1)).addAttribute(eq("cinemasForNotActivePage"), anyList());
+    }
 }
+

@@ -14,7 +14,6 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-
 @ExtendWith(MockitoExtension.class)
 public class MyUserDetailsServiceTest {
     @Mock
@@ -24,7 +23,7 @@ public class MyUserDetailsServiceTest {
     private MyUserDetailsService myUserDetailsService;
 
     @Test
-    public void testLoadUserByUsername(){
+    public void testLoadUserByUsername_UserFound() {
         User user = new User();
         user.setUsername("User");
 
@@ -37,4 +36,16 @@ public class MyUserDetailsServiceTest {
         verify(userRepository, times(1)).findByUsername("User");
     }
 
+    @Test
+    public void testLoadUserByUsername_UserNotFound() {
+        when(userRepository.findByUsername("NonExistentUser")).thenReturn(Optional.empty());
+
+        UsernameNotFoundException thrown = assertThrows(UsernameNotFoundException.class, () ->
+                myUserDetailsService.loadUserByUsername("NonExistentUser")
+        );
+
+        assertEquals("NonExistentUser not found", thrown.getMessage());
+        verify(userRepository, times(1)).findByUsername("NonExistentUser");
+    }
 }
+

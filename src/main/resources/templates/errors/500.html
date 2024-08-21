@@ -7,7 +7,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/img/favicon/favicon.ico}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,34 +15,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 
     <!-- Icons -->
-    <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome.css" />
-    <link rel="stylesheet" href="/assets/vendor/fonts/tabler-icons.css" />
-    <link rel="stylesheet" href="/assets/vendor/fonts/flag-icons.css" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/fonts/fontawesome.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/fonts/tabler-icons.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/fonts/flag-icons.css}" />
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="/assets/vendor/css/rtl/core.css" />
-    <link rel="stylesheet" href="/assets/vendor/css/rtl/theme-default.css" />
-    <link rel="stylesheet" href="/assets/css/demo.css" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/css/rtl/core.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/css/rtl/theme-default.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/demo.css}" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/node-waves/node-waves.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/animate-css/animate.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/sweetalert2/sweetalert2.css" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/node-waves/node-waves.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/typeahead-js/typeahead.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/animate-css/animate.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/sweetalert2/sweetalert2.css}" />
 
     <!-- Vendor -->
-    <link rel="stylesheet" href="/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css}" />
 
     <!-- Page CSS -->
     <!-- Page -->
-    <link rel="stylesheet" href="/assets/vendor/css/pages/page-auth.css" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/css/pages/page-auth.css}" />
     <!-- Helpers -->
-    <script src="/assets/vendor/js/helpers.js"></script>
+    <script th:src="@{/assets/vendor/js/helpers.js}"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="/assets/js/config.js"></script>
+    <script th:src="@{/assets/js/config.js}"></script>
 </head>
 
 <body>
@@ -52,8 +52,8 @@
         <!-- /Left Text -->
         <div class="d-none d-lg-flex col-lg-7 p-0">
             <div class="auth-cover-bg auth-cover-bg-color d-flex justify-content-center align-items-center">
-                <img src="/assets/img/illustrations/girl-unlock-password-light.png" alt="auth-500-cover" class="img-fluid my-5 auth-illustration" data-app-light-img="illustrations/auth-500-illustration-light.png" data-app-dark-img="illustrations/auth-500-illustration-dark.png" />
-                <img src="/assets/img/illustrations/bg-shape-image-light.png" alt="auth-500-cover" class="platform-bg" data-app-light-img="illustrations/bg-shape-image-light.png" data-app-dark-img="illustrations/bg-shape-image-dark.png" />
+                <img th:src="@{/assets/img/illustrations/girl-unlock-password-light.png}" alt="auth-500-cover" class="img-fluid my-5 auth-illustration" data-app-light-img="illustrations/auth-500-illustration-light.png" data-app-dark-img="illustrations/auth-500-illustration-dark.png" />
+                <img th:src="@{/assets/img/illustrations/bg-shape-image-light.png}" alt="auth-500-cover" class="platform-bg" data-app-light-img="illustrations/bg-shape-image-light.png" data-app-dark-img="illustrations/bg-shape-image-dark.png" />
             </div>
         </div>
         <!-- /Left Text -->
@@ -63,9 +63,9 @@
             <div class="w-px-400 mx-auto text-center">
                 <!-- Logo -->
                 <div class="app-brand mb-4">
-                    <a href="/main" class="app-brand-link gap-2 d-flex justify-content-center align-items-center">
+                    <a th:href="@{/main}" class="app-brand-link gap-2 d-flex justify-content-center align-items-center">
                         <span class="app-brand-logo demo">
-                            <img src="/img/free-icon-audience-3350561.png" style="width: 32px; height: 26px;">
+                            <img th:src="@{/img/free-icon-audience-3350561.png}" style="width: 32px; height: 26px;">
                         </span>
                         <span class="app-brand-text demo text-body fw-bold ms-2">Lincoln Plaza</span>
                     </a>
@@ -73,7 +73,7 @@
                 <!-- /Logo -->
                 <h3 class="mb-1 fw-bold">Упс! Внутренняя ошибка сервера 🛠️</h3>
                 <p class="mb-4">Произошла внутренняя ошибка сервера. Пожалуйста, попробуйте обновить страницу позже.</p>
-                <a href="/main" class="btn btn-primary d-grid w-100">Вернуться на главную</a>
+                <a th:href="@{/main}" class="btn btn-primary d-grid w-100">Вернуться на главную</a>
             </div>
         </div>
         <!-- /Error 500 -->
@@ -84,26 +84,26 @@
 
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
-<script src="/assets/vendor/libs/jquery/jquery.js"></script>
-<script src="/assets/vendor/libs/popper/popper.js"></script>
-<script src="/assets/vendor/js/bootstrap.js"></script>
-<script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-<script src="/assets/vendor/libs/node-waves/node-waves.js"></script>
+<script th:src="@{/assets/vendor/libs/jquery/jquery.js}"></script>
+<script th:src="@{/assets/vendor/libs/popper/popper.js}"></script>
+<script th:src="@{/assets/vendor/js/bootstrap.js}"></script>
+<script th:src="@{/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js}"></script>
+<script th:src="@{/assets/vendor/libs/node-waves/node-waves.js}"></script>
 
-<script src="/assets/vendor/libs/hammer/hammer.js"></script>
-<script src="/assets/vendor/libs/i18n/i18n.js"></script>
-<script src="/assets/vendor/libs/typeahead-js/typeahead.js"></script>
+<script th:src="@{/assets/vendor/libs/hammer/hammer.js}"></script>
+<script th:src="@{/assets/vendor/libs/i18n/i18n.js}"></script>
+<script th:src="@{/assets/vendor/libs/typeahead-js/typeahead.js}"></script>
 
-<script src="/assets/vendor/js/menu.js"></script>
+<script th:src="@{/assets/vendor/js/menu.js}"></script>
 <!-- endbuild -->
 
 <!-- Vendors JS -->
 <!-- Main JS -->
-<script src="/assets/js/main.js"></script>
-<script src="/assets/js/extended-ui-sweetalert2.js"></script>
-<script src="/assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
+<script th:src="@{/assets/js/main.js}"></script>
+<script th:src="@{/assets/js/extended-ui-sweetalert2.js}"></script>
+<script th:src="@{/assets/vendor/libs/sweetalert2/sweetalert2.js}"></script>
 
 <!-- Page JS -->
-<script src="/assets/js/pages-auth.js"></script>
+<script th:src="@{/assets/js/pages-auth.js}"></script>
 </body>
 </html>

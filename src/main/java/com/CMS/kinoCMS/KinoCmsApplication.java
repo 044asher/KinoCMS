@@ -16,5 +16,4 @@ public class KinoCmsApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(KinoCmsApplication.class, args);
 	}
-
 }

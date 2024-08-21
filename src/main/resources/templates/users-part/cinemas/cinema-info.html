@@ -11,7 +11,7 @@
 <head>
     <head th:insert="~{blocks/links :: links}"></head>
     <title>Кинотеатр | Lincoln Plaza</title>
-    <link rel="stylesheet" href="/css/cinemas/user-part/cinema-info.css">
+    <link rel="stylesheet" th:href="@{/css/cinemas/user-part/cinema-info.css}">
 </head>
 
 <body>
@@ -29,7 +29,7 @@
                         <img th:src="@{/img/{imageName}(imageName = ${cinema.bannerName})}" alt="banner" class="banner">
                         <div class="sidebar">
                             <div class="ad-container ml-4 mt-5">
-                                <img src="/assets/img/elements/15.jpg" alt="Ad" class="img-fluid">
+                                <img th:src="@{/assets/img/elements/15.jpg}" alt="Ad" class="img-fluid">
                             </div>
                             <div>
                                 <p th:text="'Количество залов: ' + ${halls.size()}"></p>

@@ -10,7 +10,7 @@
 >
 <head>
     <title>Баннера/слайдеры</title>
-    <link rel="stylesheet" href="/css/banners-and-sliders/drag&drop.css">
+    <link rel="stylesheet" th:href="@{/css/banners-and-sliders/dragdrop.css}">
 </head>
 <body>
 <!-- Layout wrapper -->
@@ -122,8 +122,8 @@
 
     </div>
 
-    <script src="/js/banners-and-sliders/drag&drop.js"></script>
-    <script src="/js/banners-and-sliders/banners.js"></script>
+    <script th:src="@{/js/banners-and-sliders/dragdrop.js}"></script>
+    <script th:src="@{/js/banners-and-sliders/banners.js}"></script>
 </div>
 </body>
 </html>

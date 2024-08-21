@@ -15,8 +15,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -170,4 +169,84 @@ public class FilmServiceTest {
         verify(fileUploadService, times(1)).uploadAdditionalFiles(additionalFiles);
         verify(filmRepository, times(1)).save(film);
     }
+
+    @Test
+    void testUpdateFilm_WithDate() throws IOException {
+        // Arrange
+        Film existingFilm = new Film();
+        existingFilm.setDate(LocalDate.of(2022, 1, 1));
+        Film updatedFilm = new Film();
+        updatedFilm.setDate(LocalDate.of(2023, 1, 1));
+
+        MultipartFile mainFile = mock(MultipartFile.class);
+        MultipartFile[] additionalFiles = {mock(MultipartFile.class)};
+        List<String> filmTypes = List.of("Type1");
+
+        when(filmRepository.findById(1L)).thenReturn(Optional.of(existingFilm));
+        when(mainFile.isEmpty()).thenReturn(false);
+        when(fileUploadService.uploadFile(mainFile)).thenReturn("mainFile.jpg");
+        when(fileUploadService.uploadAdditionalFiles(additionalFiles)).thenReturn(List.of("add1.jpg"));
+
+        // Act
+        filmService.updateFilm(1L, updatedFilm, mainFile, additionalFiles, filmTypes, 2023, "Country", "Musician",
+                List.of("Producer"), "Director", List.of("Writer"), List.of("Genre"), 18, 120);
+
+        // Assert
+        assertEquals(LocalDate.of(2023, 1, 1), existingFilm.getDate());
+        verify(fileUploadService, times(1)).uploadFile(mainFile);
+        verify(fileUploadService, times(1)).uploadAdditionalFiles(additionalFiles);
+        verify(filmRepository, times(1)).save(existingFilm);
+    }
+
+
+    @Test
+    void testUpdateFilm_PrePremiereSetFalse() throws IOException {
+        // Arrange
+        Film existingFilm = new Film();
+        existingFilm.setPrePremiere(true);
+        Film updatedFilm = new Film();
+        updatedFilm.setDate(LocalDate.of(2022, 1, 1)); // Date in the past
+
+        MultipartFile mainFile = mock(MultipartFile.class);
+        MultipartFile[] additionalFiles = {mock(MultipartFile.class)};
+        List<String> filmTypes = List.of("Type1");
+
+        when(filmRepository.findById(1L)).thenReturn(Optional.of(existingFilm));
+        when(mainFile.isEmpty()).thenReturn(false);
+        when(fileUploadService.uploadFile(mainFile)).thenReturn("mainFile.jpg");
+        when(fileUploadService.uploadAdditionalFiles(additionalFiles)).thenReturn(List.of("add1.jpg"));
+
+        // Act
+        filmService.updateFilm(1L, updatedFilm, mainFile, additionalFiles, filmTypes, 2023, "Country", "Musician",
+                List.of("Producer"), "Director", List.of("Writer"), List.of("Genre"), 18, 120);
+
+        // Assert
+        assertFalse(existingFilm.isPrePremiere());
+        verify(fileUploadService, times(1)).uploadFile(mainFile);
+        verify(fileUploadService, times(1)).uploadAdditionalFiles(additionalFiles);
+        verify(filmRepository, times(1)).save(existingFilm);
+    }
+
+    @Test
+    void testUpdateFilm_FilmTypesNull() throws IOException {
+        Film existingFilm = new Film();
+        Film updatedFilm = new Film();
+
+        MultipartFile mainFile = mock(MultipartFile.class);
+        MultipartFile[] additionalFiles = {mock(MultipartFile.class)};
+
+        when(filmRepository.findById(1L)).thenReturn(Optional.of(existingFilm));
+        when(mainFile.isEmpty()).thenReturn(false);
+        when(fileUploadService.uploadFile(mainFile)).thenReturn("mainFile.jpg");
+        when(fileUploadService.uploadAdditionalFiles(additionalFiles)).thenReturn(List.of("add1.jpg"));
+
+        filmService.updateFilm(1L, updatedFilm, mainFile, additionalFiles, null, 2023, "Country", "Musician",
+                List.of("Producer"), "Director", List.of("Writer"), List.of("Genre"), 18, 120);
+
+        assertEquals("", existingFilm.getTypes());
+        verify(fileUploadService, times(1)).uploadFile(mainFile);
+        verify(fileUploadService, times(1)).uploadAdditionalFiles(additionalFiles);
+        verify(filmRepository, times(1)).save(existingFilm);
+    }
+
 }

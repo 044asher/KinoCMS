@@ -49,7 +49,4 @@ public class registration {
 
         return "redirect:/login";
     }
-
-
-
 }

@@ -11,7 +11,7 @@
 <head>
     <head th:insert="~{blocks/links :: links}"></head>
     <title>Новости | Lincoln Plaza</title>
-    <link rel="stylesheet" href="/css/pages/user-part/news.css">
+    <link rel="stylesheet" th:href="@{/css/pages/user-part/news.css}">
 </head>
 
 <body>
@@ -54,9 +54,9 @@
                                 </div>
                             </div>
                             <div class="ad-container ml-4 mt-4">
-                                <img src="/assets/img/elements/13.jpg" alt="Ad" class="img-fluid ad">
-                                <img src="/assets/img/elements/15.jpg" alt="Ad" class="img-fluid mt-3">
-                                <img src="/assets/img/elements/15.jpg" alt="Ad" class="img-fluid mt-3">
+                                <img th:src="@{/assets/img/elements/13.jpg}" alt="Ad" class="img-fluid ad">
+                                <img th:src="@{/assets/img/elements/15.jpg}" alt="Ad" class="img-fluid mt-3">
+                                <img th:src="@{/assets/img/elements/15.jpg}" alt="Ad" class="img-fluid mt-3">
                             </div>
                         </div>
                     </div>

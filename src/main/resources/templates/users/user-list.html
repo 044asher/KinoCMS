@@ -20,7 +20,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/img/favicon/favicon.ico}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,36 +31,37 @@
     />
 
     <!-- Icons -->
-    <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome.css" />
-    <link rel="stylesheet" href="/assets/vendor/fonts/tabler-icons.css" />
-    <link rel="stylesheet" href="/assets/vendor/fonts/flag-icons.css" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/fonts/fontawesome.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/fonts/tabler-icons.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/fonts/flag-icons.css}" />
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="/assets/vendor/css/rtl/core.css" />
-    <link rel="stylesheet" href="/assets/vendor/css/rtl/theme-default.css" />
-    <link rel="stylesheet" href="/assets/css/demo.css" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/css/rtl/core.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/css/rtl/theme-default.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/demo.css}" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/node-waves/node-waves.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/select2/select2.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/flatpickr/flatpickr.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/quill/typography.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/quill/katex.css" />
-    <link rel="stylesheet" href="/assets/vendor/libs/quill/editor.css" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/node-waves/node-waves.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/typeahead-js/typeahead.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/select2/select2.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/flatpickr/flatpickr.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/quill/typography.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/quill/katex.css}" />
+    <link rel="stylesheet" th:href="@{/assets/vendor/libs/quill/editor.css}" />
 
     <!-- Page CSS -->
+    <link rel="stylesheet" th:href="@{/assets/vendor/css/pages/app-kanban.css}" />
 
-    <link rel="stylesheet" href="/assets/vendor/css/pages/app-kanban.css" />
     <!-- Helpers -->
-    <script src="/assets/vendor/js/helpers.js"></script>
+    <script th:src="@{/assets/vendor/js/helpers.js}"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="/assets/js/config.js"></script>
-    <script src="/js/sidebar-active/sidebar-active-element.js"></script>
-    <link rel="stylesheet" href="/css/users/user-list.css">
+    <script th:src="@{/assets/js/config.js}"></script>
+    <script th:src="@{/js/sidebar-active/sidebar-active-element.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/users/user-list.css}">
+
 </head>
 
 <body>
@@ -74,73 +75,71 @@
 
         <!-- Layout container -->
         <div class="layout-page">
-            <!-- Navbar -->
-
-            <nav
-                    class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-                    id="layout-navbar"
-            >
-                <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-                    <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-                        <i class="ti ti-menu-2 ti-sm"></i>
-                    </a>
-                </div>
-
-                <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-
-                    <div class="navbar-nav align-items-center">
-                        <div class="nav-item navbar-search-wrapper mb-0">
-                            <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
-                                <span class="d-none d-md-inline-block text-muted">Панель администрирования</span>
-                            </a>
-                        </div>
+                <!-- Navbar -->
+                <nav
+                        class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+                        id="layout-navbar"
+                >
+                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                            <i class="ti ti-menu-2 ti-sm"></i>
+                        </a>
                     </div>
 
-                    <ul class="navbar-nav flex-row align-items-center ms-auto">
-                        <!-- User -->
-                        <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                                <div class="avatar avatar-online">
-                                    <img src="/assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
-                                </div>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li>
-                                    <a class="dropdown-item" th:href="'/admin/users/edit/' + ${userId}">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0 me-3">
-                                                <div class="avatar avatar-online">
-                                                    <img src="/assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+                        <div class="navbar-nav align-items-center">
+                            <div class="nav-item navbar-search-wrapper mb-0">
+                                <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
+                                    <span class="d-none d-md-inline-block text-muted">Панель администрирования</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <ul class="navbar-nav flex-row align-items-center ms-auto">
+                            <!-- User -->
+                            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                    <div class="avatar avatar-online">
+                                        <img th:src="@{/assets/img/avatars/1.png}" alt class="h-auto rounded-circle" />
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <a class="dropdown-item" th:href="'/admin/users/edit/' + ${userId}">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <div class="avatar avatar-online">
+                                                        <img th:src="@{/assets/img/avatars/1.png}" alt class="h-auto rounded-circle" />
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <span class="fw-semibold d-block" th:text="${firstName} + ' ' + ${lastName}">John Doe</span>
+                                                    <small class="text-muted" th:text="${role}">Admin</small>
                                                 </div>
                                             </div>
-                                            <div class="flex-grow-1">
-                                                <span class="fw-semibold d-block" th:text="${firstName} + ' ' + ${lastName}">John Doe</span>
-                                                <small class="text-muted" th:text="${role}">Admin</small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="dropdown-divider"></div>
-                                </li>
-                                <li>
-                                    <form th:action="@{/logout}" method="post">
-                                        <button type="submit" class="dropdown-item">
-                                            <i class="ti ti-logout me-2 ti-sm"></i>
-                                            <span class="align-middle">Log Out</span>
-                                        </button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                        <!--/ User -->
-                    </ul>
-                </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
+                                        <form th:action="@{/logout}" method="post">
+                                            <button type="submit" class="dropdown-item">
+                                                <i class="ti ti-logout me-2 ti-sm"></i>
+                                                <span class="align-middle">Log Out</span>
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!--/ User -->
+                        </ul>
+                    </div>
 
 
-            </nav>
-
-            <!-- / Navbar -->
+                </nav>
+                <!-- / Navbar -->
 
             <!-- Content wrapper -->
             <div class="content-wrapper">
@@ -175,14 +174,15 @@
                                         </tr>
                                         </thead>
                                         <tbody id="city-list">
-                                        <!-- Cities will be loaded here dynamically -->
+                                        <!--Города тут загрузит автоматом-->
                                         </tbody>
                                     </table>
-                                    <hr>
+
+
                                     <form id="city-form">
                                         <input type="hidden" id="city-id">
                                         <div class="form-group">
-                                            <label for="city-name" class="col-form-label">Название города</label>
+                                            <label for="city-name" class="col-form-label mt-2">Название города</label>
                                             <input type="text" class="form-control" id="city-name">
                                         </div>
                                     </form>
@@ -268,24 +268,22 @@
     </div>
 
 <!-- / Layout wrapper -->
-
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
-<script src="/assets/vendor/libs/jquery/jquery.js"></script>
-<script src="/assets/vendor/libs/popper/popper.js"></script>
-<script src="/assets/vendor/js/bootstrap.js"></script>
-<script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-<script src="/assets/vendor/libs/node-waves/node-waves.js"></script>
+<script th:src="@{/assets/vendor/libs/jquery/jquery.js}"></script>
+<script th:src="@{/assets/vendor/libs/popper/popper.js}"></script>
+<script th:src="@{/assets/vendor/js/bootstrap.js}"></script>
+<script th:src="@{/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js}"></script>
+<script th:src="@{/assets/vendor/libs/node-waves/node-waves.js}"></script>
 
-<script src="/assets/vendor/libs/hammer/hammer.js"></script>
-<script src="/assets/vendor/libs/typeahead-js/typeahead.js"></script>
+<script th:src="@{/assets/vendor/libs/hammer/hammer.js}"></script>
+<script th:src="@{/assets/vendor/libs/typeahead-js/typeahead.js}"></script>
 
-<script src="/assets/vendor/js/menu.js"></script>
-
+<script th:src="@{/assets/vendor/js/menu.js}"></script>
 <!-- endbuild -->
 
 <!-- Main JS -->
-<script src="/assets/js/main.js"></script>
+<script th:src="@{/assets/js/main.js}"></script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
@@ -297,6 +295,6 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-<script src="/js/users/user-list-adding-a-city.js"></script>
+<script th:src="@{/js/users/user-list-adding-a-city.js}"></script>
 </body>
 </html>

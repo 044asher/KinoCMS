@@ -15,8 +15,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -62,6 +61,17 @@ public class UserServiceTest {
         Optional<User> result = userService.findUserById(userId);
         assertTrue(result.isPresent());
         assertEquals(user, result.get());
+        verify(userRepository, times(1)).findById(userId);
+    }
+
+    @Test
+    public void testFindUserById_UserNotFound() {
+        Long userId = 1L;
+        when(userRepository.findById(userId)).thenReturn(Optional.empty());
+
+        Optional<User> result = userService.findUserById(userId);
+
+        assertFalse(result.isPresent());
         verify(userRepository, times(1)).findById(userId);
     }
 

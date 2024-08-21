@@ -10,7 +10,7 @@
 >
 <head>
     <title>Добавление зала</title>
-    <link rel="stylesheet" href="/css/cinemas/add.css"/>
+    <link rel="stylesheet" th:href="@{/css/cinemas/add.css}"/>
 </head>
 
 <body>
@@ -97,8 +97,8 @@
                     </section>
                 </div>
 
-                <script src="/js/cinemas/halls/edit.js"></script>
-                <script src="/js/cinemas/add.js"></script>
+                <script th:src="@{/js/cinemas/halls/edit.js}"></script>
+                <script th:src="@{/js/cinemas/add.js}"></script>
 
                 <div class="content-backdrop fade"></div>
             </div>

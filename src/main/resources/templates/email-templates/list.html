@@ -3,8 +3,8 @@
 <head>
     <title>Рассылка пользователям</title>
 
-    <link rel="stylesheet" href="/css/email/email-templates/list.css"/>
-    <script src="/js/sidebar-active/sidebar-active-element.js"></script>
+    <link rel="stylesheet" th:href="@{/css/email/email-templates/list.css}"/>
+    <script th:src="@{/js/sidebar-active/sidebar-active-element.js}"></script>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
             <div class="container-xxl flex-grow-1 container-p-y">
                 <h2 class="fw-bold py-3 mb-4 text-center">Список шаблонов электронных писем</h2>
                 <div class="mb-4 text-end">
-                    <a href="/admin/email-sending/email-templates/add" class="btn btn-primary">Добавить шаблон</a>
+                    <a th:href="@{/admin/email-sending/email-templates/add}" class="btn btn-primary">Добавить шаблон</a>
                 </div>
                 <div class="card">
                     <div class="card-body">

@@ -3,12 +3,10 @@ package com.CMS.kinoCMS.admin.services;
 import com.CMS.kinoCMS.admin.models.Cinema;
 import com.CMS.kinoCMS.admin.models.Hall;
 import com.CMS.kinoCMS.admin.repositories.CinemaRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -142,6 +140,75 @@ class CinemaServiceTest {
         assertEquals("updatedKeywordsSEO", existingCinema.getKeywordsSEO());
         assertEquals("updatedDescriptionSEO", existingCinema.getDescriptionSEO());
         verify(cinemaRepository, times(1)).findById(1L);
+        verify(cinemaRepository, times(1)).save(existingCinema);
+    }
+
+    @Test
+    void testSaveCinemaThrowsIOException() throws IOException {
+        Cinema cinema = new Cinema();
+        MultipartFile logo = mock(MultipartFile.class);
+        MultipartFile banner = mock(MultipartFile.class);
+
+        when(logo.isEmpty()).thenReturn(false);
+        when(fileUploadService.uploadFile(logo)).thenThrow(new IOException("Failed to upload file"));
+
+        assertThrows(IOException.class, () -> cinemaService.saveCinema(cinema, logo, banner, null, null, null, null, null, null, null, null, null));
+
+        verify(cinemaRepository, never()).save(cinema);
+    }
+
+    @Test
+    void testUpdateCinemaThrowsIOException() throws IOException {
+        Cinema existingCinema = new Cinema();
+        when(cinemaRepository.findById(1L)).thenReturn(Optional.of(existingCinema));
+
+        MultipartFile logo = mock(MultipartFile.class);
+        when(logo.isEmpty()).thenReturn(false);
+        when(fileUploadService.uploadFile(logo)).thenThrow(new IOException("Failed to upload file"));
+
+        Cinema updatedCinema = new Cinema();
+        assertThrows(IOException.class, () -> cinemaService.updateCinema(1L, updatedCinema, logo, null, null));
+
+        verify(cinemaRepository, never()).save(existingCinema);
+    }
+
+    @Test
+    void testUpdateCinemaThrowsIllegalArgumentException() {
+        when(cinemaRepository.findById(1L)).thenReturn(Optional.empty());
+
+        Cinema updatedCinema = new Cinema();
+        assertThrows(IllegalArgumentException.class, () -> cinemaService.updateCinema(1L, updatedCinema, null, null, null));
+
+        verify(cinemaRepository, never()).save(any(Cinema.class));
+    }
+
+    @Test
+    void testSaveCinemaWithNoHalls() throws IOException {
+        Cinema cinema = new Cinema();
+        MultipartFile logo = mock(MultipartFile.class);
+        MultipartFile banner = mock(MultipartFile.class);
+
+        when(logo.isEmpty()).thenReturn(false);
+        when(fileUploadService.uploadFile(logo)).thenReturn("logo.jpg");
+        when(fileUploadService.uploadFile(banner)).thenReturn("banner.jpg");
+
+        cinemaService.saveCinema(cinema, logo, banner, null, null, null, null, null, null, null, null, null);
+
+        verify(cinemaRepository, times(1)).save(cinema);
+        verify(hallService, never()).save(any(Hall.class));
+    }
+
+    @Test
+    void testUpdateCinemaWithEmptyFiles() throws IOException {
+        Cinema existingCinema = new Cinema();
+        when(cinemaRepository.findById(1L)).thenReturn(Optional.of(existingCinema));
+
+        Cinema updatedCinema = new Cinema();
+        MultipartFile emptyFile = mock(MultipartFile.class);
+        when(emptyFile.isEmpty()).thenReturn(true);
+
+        cinemaService.updateCinema(1L, updatedCinema, emptyFile, emptyFile, new MultipartFile[]{});
+
         verify(cinemaRepository, times(1)).save(existingCinema);
     }
 }

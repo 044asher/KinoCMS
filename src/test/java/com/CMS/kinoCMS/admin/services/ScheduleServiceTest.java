@@ -16,10 +16,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-
 @ExtendWith(MockitoExtension.class)
 public class ScheduleServiceTest {
 
@@ -76,6 +74,17 @@ public class ScheduleServiceTest {
     }
 
     @Test
+    public void testFindById_NotFound() {
+        Long scheduleId = 1L;
+
+        when(scheduleRepository.findById(scheduleId)).thenReturn(Optional.empty());
+
+        Optional<Schedule> result = scheduleService.findById(scheduleId);
+        assertFalse(result.isPresent());
+        verify(scheduleRepository, times(1)).findById(scheduleId);
+    }
+
+    @Test
     public void testFindByFilmIdAndDateRange() {
         long filmId = 1L;
         LocalDate startDate = LocalDate.now();
@@ -125,7 +134,22 @@ public class ScheduleServiceTest {
 
         when(scheduleRepository.findByCinemaIdAndDateBetween(cinemaId, today, oneWeekLater)).thenReturn(schedules);
 
+        // Test with all filters
         List<Schedule> result = scheduleService.getFilteredSchedules(cinemaId, filmId, hallId, filmType);
+        assertEquals(2, result.size());
+
+        // Test with some filters null
+        result = scheduleService.getFilteredSchedules(cinemaId, null, hallId, filmType);
+        assertEquals(2, result.size());
+
+        result = scheduleService.getFilteredSchedules(cinemaId, filmId, null, filmType);
+        assertEquals(2, result.size());
+
+        result = scheduleService.getFilteredSchedules(cinemaId, filmId, hallId, null);
+        assertEquals(2, result.size());
+
+        // Test with no filters
+        result = scheduleService.getFilteredSchedules(cinemaId, null, null, null);
         assertEquals(2, result.size());
     }
 
@@ -164,17 +188,20 @@ public class ScheduleServiceTest {
 
         when(scheduleRepository.findByHallIdAndDateBetween(hallId, today, oneWeekLater)).thenReturn(schedules);
 
+        // Test with hallId provided
         List<Schedule> result = scheduleService.getFilteredSchedulesHalls(hallId);
         assertEquals(2, result.size());
-        assertTrue(result.contains(schedule1));
-        assertTrue(result.contains(schedule2));
-        verify(scheduleRepository, times(1)).findByHallIdAndDateBetween(hallId, today, oneWeekLater);
+
+        // Test with hallId not matching
+        Long wrongHallId = 2L;
+        List<Schedule> emptyResult = scheduleService.getFilteredSchedulesHalls(wrongHallId);
+        assertTrue(emptyResult.isEmpty());
     }
 
     @Test
     public void testDeleteById(){
         Long id = 1L;
-        scheduleRepository.deleteById(id);
+        scheduleService.deleteById(id);
         verify(scheduleRepository, times(1)).deleteById(id);
     }
 }

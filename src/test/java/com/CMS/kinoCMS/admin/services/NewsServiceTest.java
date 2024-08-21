@@ -15,10 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-
 @ExtendWith(MockitoExtension.class)
 public class NewsServiceTest {
 
@@ -53,6 +51,15 @@ public class NewsServiceTest {
     }
 
     @Test
+    public void testFindById_NotFound() {
+        when(newsRepository.findById(1L)).thenReturn(Optional.empty());
+
+        Optional<News> result = newsService.findById(1L);
+        assertFalse(result.isPresent());
+        verify(newsRepository, times(1)).findById(1L);
+    }
+
+    @Test
     public void testSave() {
         News news = new News();
         newsService.save(news);
@@ -82,6 +89,39 @@ public class NewsServiceTest {
         assertEquals(2, news.getImages().size());
         assertEquals("image1.jpg", news.getImages().get(0));
         assertEquals("image2.jpg", news.getImages().get(1));
+        assertEquals(LocalDate.now(), news.getDateOfCreation());
+        verify(newsRepository, times(1)).save(news);
+    }
+
+    @Test
+    public void testAddNews_WithNullFile() throws IOException {
+        News news = new News();
+        MultipartFile[] additionalFiles = new MultipartFile[]{mock(MultipartFile.class), mock(MultipartFile.class)};
+
+        when(fileUploadService.uploadAdditionalFiles(additionalFiles)).thenReturn(List.of("image1.jpg", "image2.jpg"));
+
+        newsService.addNews(news, null, additionalFiles);
+
+        assertNull(news.getMainImage());
+        assertEquals(2, news.getImages().size());
+        assertEquals("image1.jpg", news.getImages().get(0));
+        assertEquals("image2.jpg", news.getImages().get(1));
+        assertEquals(LocalDate.now(), news.getDateOfCreation());
+        verify(newsRepository, times(1)).save(news);
+    }
+
+    @Test
+    public void testAddNews_WithEmptyFiles() throws IOException {
+        News news = new News();
+        MultipartFile file = mock(MultipartFile.class);
+        MultipartFile[] additionalFiles = new MultipartFile[]{};
+
+        when(file.isEmpty()).thenReturn(true);
+
+        newsService.addNews(news, file, additionalFiles);
+
+        assertNull(news.getMainImage());
+        assertTrue(news.getImages().isEmpty());
         assertEquals(LocalDate.now(), news.getDateOfCreation());
         verify(newsRepository, times(1)).save(news);
     }
@@ -123,5 +163,66 @@ public class NewsServiceTest {
         assertEquals("updated-description-seo", existingNews.getDescriptionSEO());
         assertEquals("updated-title-seo", existingNews.getTitleSEO());
         verify(newsRepository, times(1)).save(existingNews);
+    }
+
+    @Test
+    public void testUpdateNews_WithNullFile() throws IOException {
+        News existingNews = new News();
+        existingNews.setImages(new ArrayList<>());
+        when(newsRepository.findById(1L)).thenReturn(Optional.of(existingNews));
+
+        News updatedNews = new News();
+        updatedNews.setName("Updated Name");
+        updatedNews.setDescription("Updated Description");
+
+        MultipartFile file = mock(MultipartFile.class);
+        MultipartFile[] additionalFiles = new MultipartFile[]{mock(MultipartFile.class), mock(MultipartFile.class)};
+
+        when(file.isEmpty()).thenReturn(true);
+        when(fileUploadService.uploadAdditionalFiles(additionalFiles)).thenReturn(List.of("updatedImage1.jpg", "updatedImage2.jpg"));
+
+        newsService.updateNews(1L, updatedNews, file, additionalFiles);
+
+        assertEquals("Updated Name", existingNews.getName());
+        assertEquals("Updated Description", existingNews.getDescription());
+        assertNull(existingNews.getMainImage());
+        assertEquals(2, existingNews.getImages().size());
+        assertEquals("updatedImage1.jpg", existingNews.getImages().get(0));
+        assertEquals("updatedImage2.jpg", existingNews.getImages().get(1));
+        verify(newsRepository, times(1)).save(existingNews);
+    }
+
+    @Test
+    public void testUpdateNews_WithEmptyFiles() throws IOException {
+        News existingNews = new News();
+        existingNews.setImages(new ArrayList<>());
+        when(newsRepository.findById(1L)).thenReturn(Optional.of(existingNews));
+
+        News updatedNews = new News();
+        updatedNews.setName("Updated Name");
+        updatedNews.setDescription("Updated Description");
+
+        MultipartFile file = mock(MultipartFile.class);
+        MultipartFile[] additionalFiles = new MultipartFile[]{};
+
+        when(file.isEmpty()).thenReturn(true);
+
+        newsService.updateNews(1L, updatedNews, file, additionalFiles);
+
+        assertEquals("Updated Name", existingNews.getName());
+        assertEquals("Updated Description", existingNews.getDescription());
+        assertNull(existingNews.getMainImage());
+        assertTrue(existingNews.getImages().isEmpty());
+        verify(newsRepository, times(1)).save(existingNews);
+    }
+
+    @Test
+    public void testFindByNotActive() {
+        List<News> newsList = new ArrayList<>();
+        when(newsRepository.findByNotActive(true)).thenReturn(newsList);
+
+        List<News> result = newsService.findByNotActive(true);
+        assertEquals(newsList, result);
+        verify(newsRepository, times(1)).findByNotActive(true);
     }
 }
