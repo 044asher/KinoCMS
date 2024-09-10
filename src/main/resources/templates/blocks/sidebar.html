@@ -3,7 +3,7 @@
         <meta name="description" content=""/>
 
         <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" th:href="@{/assets/img/favicon/favicon.ico}" />
+        <link rel="icon" type="image/x-icon" th:href="@{/assets/images/favicon/favicon.ico}" />
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -80,7 +80,7 @@
                                             </div>
                                         </div>
                                         <div class="flex-grow-1">
-                                            <span class="fw-semibold d-block" th:text="${firstName} + ' ' + ${lastName}">John Doe</span>
+                                            <span class="fw-semibold d-block" th:text="${username}">John Doe</span>
                                             <small class="text-muted" th:text="${role}">Admin</small>
                                         </div>
                                     </div>
@@ -112,7 +112,7 @@
             <div class="app-brand demo">
                 <a th:href="@{/main}" class="app-brand-link">
                 <span class="app-brand-logo demo">
-                    <img th:src="@{/img/free-icon-audience-3350561.png}" style="width: 32px; height: 26px; fill: none">
+                    <img th:src="@{/assets/images/free-icon-audience-3350561.png}" style="width: 32px; height: 26px; fill: none">
                 </span>
                     <span class="app-brand-text demo menu-text fw-bold">Lincoln Plaza</span>
                 </a>

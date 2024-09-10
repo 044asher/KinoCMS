@@ -1,0 +1,143 @@
+[33mcommit f0017f9ab44337c9893650174d907c1c6e29773d[m[33m ([m[1;36mHEAD -> [m[1;32mdev[m[33m)[m
+Author: Asher <alzugair@gmail.com>
+Date:   Wed Aug 21 19:00:51 2024 +0300
+
+    final for deploy
+
+[33mcommit f113e2c214b0a0ed7a1bd44dd4b456ea0559eb86[m
+Author: Asher <alzugair@gmail.com>
+Date:   Thu Aug 8 12:43:06 2024 +0300
+
+    final
+
+[33mcommit b65e561a530917ee2c905996c0d193d81ff3d75e[m[33m ([m[1;32mmaster[m[33m)[m
+Author: Asher <alzugair@gmail.com>
+Date:   Sat Aug 3 10:44:35 2024 +0300
+
+    Credentials safe
+
+[33mcommit cae42eb8bcd29a743484c04ad46ae640354844b1[m
+Author: Asher <alzugair@gmail.com>
+Date:   Fri Aug 2 22:31:04 2024 +0300
+
+    Commit before merge
+
+[33mcommit f3d6e377c194626e30781a63b852f2f0387a1dc8[m
+Author: Asher <alzugair@gmail.com>
+Date:   Tue Jul 30 16:31:46 2024 +0300
+
+    Commit before booking
+
+[33mcommit 1cd79546a2641a42f1845643d5160ae705794c32[m[33m ([m[1;31morigin/dev[m[33m)[m
+Author: Asher <alzugair@gmail.com>
+Date:   Sat Jul 27 10:28:36 2024 +0300
+
+    First push
+
+[33mcommit 306f09649c08fd41ea24d145ff95b407b9ae415f[m
+Author: Asher <alzugair@gmail.com>
+Date:   Fri Jul 26 19:44:45 2024 +0300
+
+    Tests and logs added v2
+
+[33mcommit e7a9398398637b163d0662acc2b35836971f1eb6[m
+Author: Asher <alzugair@gmail.com>
+Date:   Fri Jul 26 19:44:21 2024 +0300
+
+    Tests and logs added
+
+[33mcommit 0d9401e20c7afbd75927ee07fd8a8b2400a29a51[m
+Author: Asher <alzugair@gmail.com>
+Date:   Sat Jul 20 12:48:15 2024 +0300
+
+    Comment added
+
+[33mcommit a92d86ecee146ed0237d7596a9894c290dc657c1[m
+Author: Asher <alzugair@gmail.com>
+Date:   Wed Jul 17 23:52:07 2024 +0300
+
+    Code Refactoring (Business logic moved from Controllers to Services) (Duplicate codes in HTML files moved to thymeleaf fragments)
+
+[33mcommit 8614e6cac2377e48bba373725d212f47841c3cb5[m
+Author: Asher <alzugair@gmail.com>
+Date:   Wed Jul 10 17:42:25 2024 +0300
+
+    pages finished
+
+[33mcommit 1797654483c252032dd738c06201de002d0c914b[m
+Author: Asher <alzugair@gmail.com>
+Date:   Tue Jun 25 23:05:32 2024 +0300
+
+    admin part finished 3.0
+
+[33mcommit 80a710b2cd8ae3b343507f07d812444ccc286115[m
+Author: Asher <alzugair@gmail.com>
+Date:   Tue Jun 25 22:47:53 2024 +0300
+
+    admin part finished 2.0
+
+[33mcommit e48bb9d04c1e423801aa7e228a6c8a66d183ff2d[m
+Author: Asher <alzugair@gmail.com>
+Date:   Mon Jun 24 17:48:30 2024 +0300
+
+    admin part finished
+
+[33mcommit 8826d452f2db640a94e29630b6fa955feb013d3b[m
+Author: Asher <alzugair@gmail.com>
+Date:   Thu Jun 20 20:56:45 2024 +0300
+
+    helping commit v2
+
+[33mcommit ab660e9da57642bf3213f0fe0e0adcd3e10836af[m
+Author: Asher <alzugair@gmail.com>
+Date:   Thu Jun 20 18:05:18 2024 +0300
+
+    helping commit
+
+[33mcommit 2d61c1842a65705c8b1c878e0d5c69e15553af57[m
+Author: Asher <alzugair@gmail.com>
+Date:   Thu Jun 20 17:41:15 2024 +0300
+
+    Infinite image adding in progress for Banner and Sliders page
+
+[33mcommit 5b08d02b57da29f29044c7746ccead1a3718a394[m
+Author: Asher <alzugair@gmail.com>
+Date:   Thu Jun 13 17:32:47 2024 +0300
+
+    pages in progress
+
+[33mcommit 6982c8c0b9bb07dbaa69759d3a3691a7537451f0[m
+Author: Asher <alzugair@gmail.com>
+Date:   Tue Jun 11 17:26:55 2024 +0300
+
+    pages in progress
+
+[33mcommit 423bb05138f3cfef2dcf5322bcee675db861305b[m
+Author: Asher <alzugair@gmail.com>
+Date:   Tue May 28 00:21:57 2024 +0300
+
+    email progress finished
+
+[33mcommit 9a44727106814447868b553b603f70f05c8ea64f[m
+Author: Asher <alzugair@gmail.com>
+Date:   Tue May 28 00:04:21 2024 +0300
+
+    email templates finished
+
+[33mcommit 77a0471defc34a80c32364522d25bda8840ebf08[m
+Author: Asher <alzugair@gmail.com>
+Date:   Mon May 27 16:55:50 2024 +0300
+
+    commit before email templates
+
+[33mcommit a54a7c4147ee853952bc92c6630a08ad3e1cb6ac[m
+Author: Asher <alzugair@gmail.com>
+Date:   Wed May 22 19:46:20 2024 +0300
+
+    films list and film adding finished
+
+[33mcommit ef993aee025cdd1695b5c5a2b75ee3fb1093d0cd[m
+Author: Asher <alzugair@gmail.com>
+Date:   Tue May 21 15:22:16 2024 +0300
+
+    initial commit

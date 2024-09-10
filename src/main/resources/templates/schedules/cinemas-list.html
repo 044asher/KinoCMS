@@ -30,7 +30,8 @@
 
                 <div class="container mt-2">
                     <div th:if="${cinemaList.isEmpty()}">
-                        <p>Нет кинотеатров.</p>
+                        <h4 class="mt-4">Нет кинотеатров. Добавьте их: </h4>
+                        <a class="btn btn-outline-primary" th:href="@{/admin/cinemas/add}">Добавить</a>
                     </div>
                     <div th:if="${!cinemaList.isEmpty()}">
                         <div class="row">

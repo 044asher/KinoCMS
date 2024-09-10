@@ -1,12 +1,10 @@
 package com.CMS.kinoCMS.admin.services.Pages;
 
-import com.CMS.kinoCMS.admin.models.Cinema;
 import com.CMS.kinoCMS.admin.models.Pages.Contact;
 import com.CMS.kinoCMS.admin.models.Pages.MainPage;
 import com.CMS.kinoCMS.admin.models.Pages.MenuItem;
 import com.CMS.kinoCMS.admin.models.Pages.Page;
 import com.CMS.kinoCMS.admin.repositories.Pages.PageRepository;
-import com.CMS.kinoCMS.admin.services.CinemaService;
 import com.CMS.kinoCMS.admin.services.FileUploadService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class PageServiceTest {
+public class PageServiceTest {
 
     @Mock
     private PageRepository pageRepository;
@@ -35,9 +33,6 @@ class PageServiceTest {
 
     @Mock
     private MenuItemService menuItemService;
-
-    @Mock
-    private CinemaService cinemaService;
 
     @Mock
     private MainPageService mainPageService;
@@ -51,9 +46,7 @@ class PageServiceTest {
     @Test
     void testSave() {
         Page page = new Page();
-
         pageService.save(page);
-
         verify(pageRepository, times(1)).save(page);
     }
 
@@ -165,9 +158,7 @@ class PageServiceTest {
 
         when(pageRepository.findById(nonExistentPageId)).thenReturn(Optional.empty());
 
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            pageService.updatePage(nonExistentPageId, updatedPage, null, null);
-        });
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> pageService.updatePage(nonExistentPageId, updatedPage, null, null));
 
         assertEquals("Page Not Found", exception.getMessage());
         verify(pageRepository, times(1)).findById(nonExistentPageId);
@@ -245,33 +236,34 @@ class PageServiceTest {
     @Test
     void testGetPageWithCheck() {
         Page page = new Page();
-        page.setName("Test Page");
-        page.setNotActive(true);
-        when(pageRepository.findByName("Test Page")).thenReturn(Optional.of(page));
+        page.setId(1L);
+        page.setName("Test page");
+
         Model model = mock(Model.class);
+        when(pageRepository.findByName("Test Page")).thenReturn(Optional.of(page));
 
         Optional<Page> result = pageService.getPageWithCheck("Test Page", model);
 
-        assertFalse(result.isPresent());
+        assertTrue(result.isPresent());
         verify(model, times(1)).addAttribute("page", page);
-        verify(model, times(1)).addAttribute(eq("cinemasForNotActivePage"), anyList());
     }
 
     @Test
     void testGetPageWithCheck_ActivePage() {
         Page page = new Page();
+        page.setId(1L);
         page.setName("Test Page");
         page.setNotActive(false);
-        when(pageRepository.findByName("Test Page")).thenReturn(Optional.of(page));
+
         Model model = mock(Model.class);
+        when(pageRepository.findByName("Test Page")).thenReturn(Optional.of(page));
 
         Optional<Page> result = pageService.getPageWithCheck("Test Page", model);
 
         assertTrue(result.isPresent());
         assertEquals(page, result.get());
-
         verify(model, times(1)).addAttribute("page", page);
-
+        verifyNoMoreInteractions(model);
     }
 
 
@@ -335,17 +327,41 @@ class PageServiceTest {
     @Test
     void testGetPageWithCheck_PageIsNotActive() {
         Page page = new Page();
+        page.setId(1L);
         page.setName("Test Page");
         page.setNotActive(true);
-        when(pageRepository.findByName("Test Page")).thenReturn(Optional.of(page));
-        when(cinemaService.findAll()).thenReturn(List.of(new Cinema(), new Cinema(), new Cinema(), new Cinema(), new Cinema(), new Cinema()));
+
         Model model = mock(Model.class);
+        when(pageRepository.findByName("Test Page")).thenReturn(Optional.of(page));
 
         Optional<Page> result = pageService.getPageWithCheck("Test Page", model);
 
-        assertFalse(result.isPresent());
+        assertTrue(result.isPresent());
         verify(model, times(1)).addAttribute("page", page);
-        verify(model, times(1)).addAttribute(eq("cinemasForNotActivePage"), anyList());
+        verifyNoMoreInteractions(model);
+    }
+
+    @Test
+    void testExistsByName() {
+        when(pageRepository.existsByName("Test Page")).thenReturn(true);
+
+        boolean result = pageService.existsByName("Test Page");
+
+        assertTrue(result);
+        verify(pageRepository, times(1)).existsByName("Test Page");
+    }
+
+    @Test
+    void testPopulateDefaultSEOFields() {
+        Page page = new Page();
+
+        pageService.populateDefaultSEOFields(page);
+
+        assertEquals("default-url", page.getUrlSEO());
+        assertEquals("Default Title", page.getTitleSEO());
+        assertEquals("Default Description", page.getDescriptionSEO());
+        assertEquals("default, keywords", page.getKeywordsSEO());
+        assertEquals("Default Page Description", page.getDescription());
     }
 }
 

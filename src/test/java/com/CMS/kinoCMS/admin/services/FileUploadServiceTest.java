@@ -18,7 +18,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class FileUploadServiceTest {
-
     @InjectMocks
     private FileUploadService fileUploadService;
 
@@ -79,17 +78,14 @@ public class FileUploadServiceTest {
 
     @Test
     void testUploadFile_FailedToCreateUploadDirectory() throws IOException {
-        // Устанавливаем путь, который будет вызывать ошибку создания директории
         String invalidPath = "invalid\\path";
         ReflectionTestUtils.setField(fileUploadService, "uploadPath", invalidPath);
 
-        // Создаем мок MultipartFile
         MultipartFile file = new MockMultipartFile("file", "test.txt", "text/plain", "some content".getBytes());
 
-        // Ожидаем IOException при вызове метода
         IOException exception = assertThrows(IOException.class, () -> fileUploadService.uploadFile(file));
 
-        // Проверяем сообщение об ошибке
+
         assertEquals("Failed to create upload directory", exception.getMessage());
     }
 
@@ -143,7 +139,6 @@ public class FileUploadServiceTest {
         when(file.isEmpty()).thenReturn(false);
         when(file.getOriginalFilename()).thenReturn("test.txt");
 
-        // Mock file transfer failure
         FileUploadService spyService = spy(fileUploadService);
         doThrow(new IOException("File transfer failed")).when(file).transferTo(any(File.class));
 
@@ -151,4 +146,29 @@ public class FileUploadServiceTest {
 
         assertTrue(resultFilenames.isEmpty());
     }
+
+    @Test
+    public void testUploadFile_DirectoryCreated() throws IOException {
+        // Создаем временную директорию, а затем удаляем её, чтобы можно было проверить создание новой
+        File tempDir = new File(uploadPath);
+        tempDir.delete(); // Удаляем директорию
+
+        assertFalse(tempDir.exists());
+
+        MultipartFile file = new MockMultipartFile("file", "test.txt", "text/plain", "some content".getBytes());
+
+        String resultFilename = fileUploadService.uploadFile(file);
+
+        // Проверяем, что файл был успешно загружен
+        assertNotNull(resultFilename);
+        assertTrue(resultFilename.contains("test.txt"));
+
+        File uploadedFile = new File(uploadPath + "/" + resultFilename);
+        assertTrue(uploadedFile.exists());
+
+        // Удаляем созданные файлы после теста
+        uploadedFile.delete();
+        tempDir.delete();
+    }
+
 }

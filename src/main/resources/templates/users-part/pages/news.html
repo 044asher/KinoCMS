@@ -30,8 +30,9 @@
                             <div class="flex-grow-1">
                                 <div class="col-md-9">
                                     <h2 class="text-center">Новости</h2>
-                                    <div th:if="${!news.isEmpty()}">
-                                        <div class="row">
+                                    <h6 class="text-center" th:if="${news == null}" th:text="'Похоже, никаких новостей здесь нет😶'"></h6>
+                                    <div th:if="${news != null and !news.isEmpty()}">
+                                    <div class="row">
                                             <div class="col-md-4" th:each="newss : ${news}">
                                                 <a th:href="'/pages/news/' + ${newss.id}">
                                                     <div class="card mb-4">
@@ -53,7 +54,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="ad-container ml-4 mt-4">
+                            <div th:if="${news != null && !news.isEmpty()}" class="ad-container ml-4 mt-4">
                                 <img th:src="@{/assets/img/elements/13.jpg}" alt="Ad" class="img-fluid ad">
                                 <img th:src="@{/assets/img/elements/15.jpg}" alt="Ad" class="img-fluid mt-3">
                                 <img th:src="@{/assets/img/elements/15.jpg}" alt="Ad" class="img-fluid mt-3">

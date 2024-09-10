@@ -49,7 +49,8 @@ $('#cityEditDialog').on('shown.bs.modal', function (event) {
             });
         },
         error: (err) => {
-            alert('Error loading cities: ' + err);
+            console.error('Error loading cities:', err);
+            alert('Error loading cities: ' + err.responseText || err.statusText);
         }
     });
 });

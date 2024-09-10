@@ -27,21 +27,25 @@
                     <div class="mb-3">
                         <label for="username" class="form-label">Логин (псевдоним):</label>
                         <input type="text" id="username" class="form-control" th:field="*{username}"/>
+                        <p style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
                     </div>
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Эл. почта:</label>
                         <input type="email" id="email" class="form-control" th:field="*{email}"/>
+                        <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
                     </div>
 
                     <div class="mb-3">
                         <label for="address" class="form-label">Адрес:</label>
                         <input type="text" id="address" class="form-control" th:field="*{address}"/>
+                        <p style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
                     </div>
 
                     <div class="mb-3">
                         <label for="phoneNumber" class="form-label">Номер телефона</label>
                         <input type="text" id="phoneNumber" class="form-control" th:field="*{phoneNumber}"/>
+                        <p style="color: red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>
                     </div>
 
                     <div class="mb-3">
@@ -68,30 +72,37 @@
                     <div class="mb-3">
                         <label for="firstName" class="form-label">Имя:</label>
                         <input type="text" id="firstName" class="form-control" th:field="*{firstName}"/>
+                        <p style="color: red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
                     </div>
 
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Фамилия:</label>
                         <input type="text" id="lastName" class="form-control" th:field="*{lastName}"/>
+                        <p style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
                     </div>
 
                     <div class="mb-3">
                         <label for="city" class="form-label">Город:</label>
-                        <select id="city" class="form-select" th:field="*{city.id}">
-                            <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
+
+                        <select id="city" class="form-select" th:field="*{city.id}" th:disabled="${cities.isEmpty()}">
+                            <option th:if="${cities.isEmpty()}" value="" disabled="disabled" selected="selected">Еще не добавлен ни один город</option>
+                            <option th:if="${!cities.isEmpty()}" th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
                         </select>
                     </div>
+
 
                     <div class="card p-3">
                         <p class="text-center">Смена пароля</p>
                         <div class="mb-3">
                             <label for="password" class="form-label">Введите пароль:</label>
                             <input type="password" id="password" class="form-control" th:field="*{password}"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
                         </div>
 
                         <div class="mb-3">
                             <label for="passwordConfirm" class="form-label">Подтвердите пароль:</label>
                             <input type="password" id="passwordConfirm" class="form-control" th:field="*{passwordConfirm}"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></p>
                         </div>
                     </div>
                 </div>

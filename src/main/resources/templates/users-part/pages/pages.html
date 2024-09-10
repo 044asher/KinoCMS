@@ -26,88 +26,104 @@
             <div class="content-wrapper ml-200">
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <div class="container mt-2">
-                        <img th:src="@{/img/{imageName}(imageName = ${page.mainImage})}" alt="banner" class="banner">
-                        <div class="d-flex">
-                            <div class="flex-grow-1">
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <h2 class="text-center mt-4 mb-4" th:text="${page.name}">name</h2>
-                                        <p th:text="${page.description}" class="mt-3"></p>
+                        <div th:if="${page.notActive or page.description == 'Default Page Description'}">
+                            <h2 class="text-center mt-4 mb-4" th:text="${page.name}">name</h2>
+                            <h6 class="text-center" th:text="${page.name} + ' пока не работает😕'"></h6>
+                        </div>
 
-                                        <div th:if="${page.name} != 'Мобильное приложение'">
+                        <div th:if="${page.notActive == false and page.description != 'Default Page Description'}">
 
-                                            <img th:if="${page.images != null and page.images.size() > 0}"
-                                                 th:src="@{/img/{imageName}(imageName = ${page.images[0]})}"
-                                                 class="card-img-top logo-img"
-                                                 alt="Action Image">
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <img th:if="${page.mainImage != null}"
+                                                 th:src="@{/img/{imageName}(imageName = ${page.mainImage})}" alt="banner"
+                                                 class="card-img-top logo-img">
+                                            <h2 class="text-center mt-4 mb-4" th:text="${page.name}">name</h2>
+                                            <p th:if="${page.description != 'Default Page Description'}"
+                                               th:text="${page.description}" class="mt-3"></p>
+                                            <h6 class="text-center"
+                                                th:if="${page.description == 'Default Page Description'}"
+                                                th:text="${page.name} + ' пока не работает😕'"></h6>
 
-                                            <div th:if="${page.images != null and page.images.size() > 1}">
-                                                <h2 class="text-center mt-3">Фотогалерея</h2>
-                                                <div class="container">
-                                                    <div class="col-12">
-                                                        <div id="swiper-gallery">
-                                                            <div class="swiper gallery-top">
-                                                                <div class="swiper-wrapper">
-                                                                    <div th:each="image, iterStat : ${page.images}"
-                                                                         th:if="${iterStat.index > 0}"
-                                                                         class="swiper-slide">
-                                                                        <img th:src="@{/img/{image}(image=${image})}"
-                                                                             alt="Image" class="img-fluid"/>
+                                            <div th:if="${page.name} != 'Мобильное приложение'">
+
+                                                <img th:if="${page.images != null and page.images.size() > 0}"
+                                                     th:src="@{/img/{imageName}(imageName = ${page.images[0]})}"
+                                                     class="card-img-top logo-img"
+                                                     alt="Action Image">
+
+                                                <div th:if="${page.images != null and page.images.size() > 1}">
+                                                    <h2 class="text-center mt-3">Фотогалерея</h2>
+                                                    <div class="container">
+                                                        <div class="col-12">
+                                                            <div id="swiper-gallery">
+                                                                <div class="swiper gallery-top">
+                                                                    <div class="swiper-wrapper">
+                                                                        <div th:each="image, iterStat : ${page.images}"
+                                                                             th:if="${iterStat.index > 0}"
+                                                                             class="swiper-slide">
+                                                                            <img th:src="@{/img/{image}(image=${image})}"
+                                                                                 alt="Image" class="img-fluid"/>
+                                                                        </div>
                                                                     </div>
+                                                                    <!-- Add Arrows -->
+                                                                    <div class="swiper-button-next swiper-button-white"></div>
+                                                                    <div class="swiper-button-prev swiper-button-white"></div>
                                                                 </div>
-                                                                <!-- Add Arrows -->
-                                                                <div class="swiper-button-next swiper-button-white"></div>
-                                                                <div class="swiper-button-prev swiper-button-white"></div>
-                                                            </div>
-                                                            <div class="swiper gallery-thumbs">
-                                                                <div class="swiper-wrapper">
-                                                                    <div th:each="image, iterStat : ${page.images}"
-                                                                         th:if="${iterStat.index > 0}"
-                                                                         class="swiper-slide">
-                                                                        <img th:src="@{/img/{image}(image=${image})}"
-                                                                             alt="Image Thumbnail" class="img-fluid"/>
+                                                                <div class="swiper gallery-thumbs">
+                                                                    <div class="swiper-wrapper">
+                                                                        <div th:each="image, iterStat : ${page.images}"
+                                                                             th:if="${iterStat.index > 0}"
+                                                                             class="swiper-slide">
+                                                                            <img th:src="@{/img/{image}(image=${image})}"
+                                                                                 alt="Image Thumbnail"
+                                                                                 class="img-fluid"/>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div th:if="${page.name == 'Кафе-Бар' and !menuItems.isEmpty()}">
+                                                    <h3 class="mt-3 text-center">Меню</h3>
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Позиция меню</th>
+                                                            <th>Цена</th>
+                                                            <th>Ингредиенты</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr th:each="menuItem : ${menuItems}">
+                                                            <td th:text="${menuItem.itemName}">Позиция меню</td>
+                                                            <td th:text="${menuItem.price}">Цена</td>
+                                                            <td th:text="${#strings.abbreviate(menuItem.ingredients, 40)}">
+                                                                Ингридиенты
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
 
-                                            <div th:if="${page.name == 'Кафе-Бар'}">
-                                                <h3 class="mt-3 text-center">Меню</h3>
-                                                <table class="table">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>Позиция меню</th>
-                                                        <th>Цена</th>
-                                                        <th>Ингредиенты</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr th:each="menuItem : ${menuItems}">
-                                                        <td th:text="${menuItem.itemName}">Позиция меню</td>
-                                                        <td th:text="${menuItem.price}">Цена</td>
-                                                        <td th:text="${#strings.abbreviate(menuItem.ingredients, 40)}">
-                                                            Ингридиенты
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
+
+                                            <div th:if="${page.name} == 'Мобильное приложение'">
+                                                <div th:if="${page.images != null and page.images.size() > 0}"
+                                                     class="screenshot-row">
+                                                    <img th:each="image, iterStat : ${page.images}"
+                                                         th:if="${iterStat.index < 5}"
+                                                         th:src="@{/img/{imageName}(imageName=${image})}"
+                                                         alt="Screenshot"
+                                                         class="screenshot">
+                                                </div>
                                             </div>
+
                                         </div>
-
-
-                                        <div th:if="${page.name} == 'Мобильное приложение'">
-                                            <div th:if="${page.images != null and page.images.size() > 0}" class="screenshot-row">
-                                                <img th:each="image, iterStat : ${page.images}"
-                                                     th:if="${iterStat.index < 5}"
-                                                     th:src="@{/img/{imageName}(imageName=${image})}"
-                                                     alt="Screenshot"
-                                                     class="screenshot">
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
                             </div>

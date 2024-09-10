@@ -1,6 +1,5 @@
 package com.CMS.kinoCMS.admin.services.Pages;
 
-import com.CMS.kinoCMS.admin.models.Cinema;
 import com.CMS.kinoCMS.admin.models.Pages.Contact;
 import com.CMS.kinoCMS.admin.models.Pages.MainPage;
 import com.CMS.kinoCMS.admin.models.Pages.MenuItem;
@@ -27,22 +26,20 @@ public class PageService {
     private final MenuItemService menuItemService;
     private final MainPageService mainPageService;
     private final ContactsPageService contactsPageService;
-    private final CinemaService cinemaService;
 
     @Autowired
-    public PageService(PageRepository pageRepository, FileUploadService fileUploadService, MenuItemService menuItemService, MainPageService mainPageService, ContactsPageService contactsPageService, CinemaService cinemaService) {
+    public PageService(PageRepository pageRepository, FileUploadService fileUploadService, MenuItemService menuItemService, MainPageService mainPageService, ContactsPageService contactsPageService) {
         this.pageRepository = pageRepository;
         this.fileUploadService = fileUploadService;
         this.menuItemService = menuItemService;
         this.mainPageService = mainPageService;
         this.contactsPageService = contactsPageService;
-        this.cinemaService = cinemaService;
     }
 
     public void save(Page page) {
-        log.info("Start PageService - save for page: {}", page);
+        log.info("Start PageService - save for page: {}", page.getName());
         pageRepository.save(page);
-        log.info("Successfully executed PageService - save for page: {}", page);
+        log.info("Successfully executed PageService - save for page: {}", page.getName());
     }
 
     public List<Page> findAll() {
@@ -193,15 +190,7 @@ public class PageService {
     public Optional<Page> getPageWithCheck(String pageName, Model model) {
         log.info("Start PageService - getPageWithCheck for pageName: {}", pageName);
         Optional<Page> page = findByName(pageName);
-        if (page.isPresent()) {
-            model.addAttribute("page", page.get());
-            if (page.get().isNotActive()) {
-                List<Cinema> cinemasForNotActivePage = cinemaService.findAll().stream().limit(6).toList();
-                model.addAttribute("cinemasForNotActivePage", cinemasForNotActivePage);
-                log.info("Page '{}' is not active, adding cinemas for display", pageName);
-                return Optional.empty();
-            }
-        }
+        page.ifPresent(value -> model.addAttribute("page", value));
         log.info("Successfully executed PageService - getPageWithCheck for pageName: {}", pageName);
         return page;
     }
@@ -215,6 +204,28 @@ public class PageService {
         } else {
             log.error("Page not found for id: {}", id);
             throw new RuntimeException("Page Not Found");
+        }
+    }
+
+    public boolean existsByName(String name) {
+        return pageRepository.existsByName(name);
+    }
+
+    public void populateDefaultSEOFields(Page page) {
+        if (page.getUrlSEO() == null || page.getUrlSEO().isEmpty()) {
+            page.setUrlSEO("default-url");
+        }
+        if (page.getTitleSEO() == null || page.getTitleSEO().isEmpty()) {
+            page.setTitleSEO("Default Title");
+        }
+        if (page.getDescriptionSEO() == null || page.getDescriptionSEO().isEmpty()) {
+            page.setDescriptionSEO("Default Description");
+        }
+        if (page.getKeywordsSEO() == null || page.getKeywordsSEO().isEmpty()) {
+            page.setKeywordsSEO("default, keywords");
+        }
+        if (page.getDescription() == null || page.getDescription().isEmpty()) {
+            page.setDescription("Default Page Description");
         }
     }
 }

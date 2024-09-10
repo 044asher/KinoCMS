@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Collections;
 import java.util.List;
 @Controller
 @RequestMapping("/main")
@@ -25,16 +26,25 @@ public class MainController {
 
     @GetMapping
     public String mainPage(Model model) {
-        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0); // getFirst() was replaced with get(0)
-        model.addAttribute("images", bannersAndSliders.getImages());
-        model.addAttribute("newsImages", bannersAndSliders.getNewsImages());
+        List<BannersAndSliders> bannersAndSlidersList = bannersAndSlidersRepository.findAll();
+
+        if (!bannersAndSlidersList.isEmpty()) {
+            BannersAndSliders bannersAndSliders = bannersAndSlidersList.getFirst();
+            model.addAttribute("images", bannersAndSliders.getImages());
+            model.addAttribute("newsImages", bannersAndSliders.getNewsImages());
+            model.addAttribute("banner", bannersAndSliders.getBackground());
+        } else {
+            model.addAttribute("images", Collections.emptyList());
+            model.addAttribute("newsImages", Collections.emptyList());
+            model.addAttribute("banner", null);
+        }
 
         List<Film> currentFilms = filmService.getCurrentFilms();
         List<Film> upcomingFilms = filmService.getUpcomingFilms();
         model.addAttribute("currentFilms", currentFilms);
         model.addAttribute("upcomingFilms", upcomingFilms);
 
-        model.addAttribute("banner", bannersAndSliders.getBackground());
         return "users-part/main-page/main";
     }
+
 }

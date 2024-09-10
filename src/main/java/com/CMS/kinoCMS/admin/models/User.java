@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,7 +32,9 @@ public class User {
     @NotEmpty(message = "Username should not be empty")
     @Size(min = 2, max = 30, message = "Username should be between 2 and 30 characters")
     private String username;
+
     private String password;
+
 
     @Transient
     @JsonIgnore
@@ -40,7 +43,14 @@ public class User {
     @NotEmpty(message = "Email should not be empty")
     @Email(message = "Email must be valid")
     private String email;
+
+    @Size(min = 10, max = 50, message = "Address should be between 10 and 50 symbols")
     private String address;
+
+    @Pattern(
+            regexp = "^\\+?[0-9. ()-]{7,25}$",
+            message = "Not Valid phone number"
+    )
     private String phoneNumber;
 
     private String role;

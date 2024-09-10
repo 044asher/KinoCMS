@@ -17,7 +17,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
-class ActionServiceTest {
+public class ActionServiceTest {
 
     @Mock
     private ActionRepository actionRepository;

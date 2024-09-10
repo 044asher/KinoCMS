@@ -29,6 +29,9 @@
                         <div class="d-flex">
                             <div class="flex-grow-1">
                                 <h2 class="text-center">Акции и скидки</h2>
+                                <div th:if="${actions.isEmpty()}">
+                                    <h5 class="text-center">На данный момент не проходит никаких акций</h5>
+                                </div>
                                 <div th:if="${!actions.isEmpty()}">
                                     <div class="row">
                                         <div class="col-md-4" th:each="action : ${actions}">
@@ -49,7 +52,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="ad-container ml-4 mt-4">
+                            <div th:if="${!actions.isEmpty()}" class="ad-container ml-4 mt-4">
                                 <img th:src="@{/assets/img/elements/13.jpg}" alt="Ad" class="img-fluid ad">
                                 <img th:src="@{/assets/img/elements/15.jpg}" alt="Ad" class="img-fluid mt-3">
                                 <img th:src="@{/assets/img/elements/15.jpg}" alt="Ad" class="img-fluid mt-3">

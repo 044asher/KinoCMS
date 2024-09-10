@@ -42,10 +42,11 @@ public class PageUserController {
     @GetMapping("/about-cinemas")
     public String aboutCinemas(Model model) {
         Optional<Page> aboutCinemaPage = pageService.findByName("О кинотеатре");
-        if (aboutCinemaPage.isPresent() && !aboutCinemaPage.get().isNotActive()) {
+        if (aboutCinemaPage.isPresent() //&& !aboutCinemaPage.get().isNotActive()
+        ) {
             model.addAttribute("page", aboutCinemaPage.get());
         }
-        return "users-part/pages/about-cinemas";
+        return "users-part/pages/about-cinemasё";
     }
 
     @GetMapping("/news")
@@ -114,8 +115,14 @@ public class PageUserController {
 
     @GetMapping("/contacts")
     public String contacts(Model model) {
-        Contact contacts = contactsPageService.findAll().getFirst();
+        List<Contact> contactsList = contactsPageService.findAll();
+
+        if (contactsList.isEmpty()) {
+            return "users-part/pages/contacts";
+        }
+        Contact contacts = contactsList.getFirst();
         model.addAttribute("page", contacts);
+
         if (contacts.isNotActive()) {
             List<Cinema> cinemasForNotActivePage = cinemaService.findAll().stream().limit(6).toList();
             model.addAttribute("cinemasForNotActivePage", cinemasForNotActivePage);
@@ -134,6 +141,7 @@ public class PageUserController {
         model.addAttribute("cinemas", cinemasWithCoordinatesAndAddress);
         return "users-part/pages/contacts";
     }
+
 
     @GetMapping("/{id}")
     public String getPage(@PathVariable long id, Model model) {

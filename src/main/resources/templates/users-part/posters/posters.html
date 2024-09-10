@@ -29,11 +29,12 @@
                         <a class="nav-link active" href="javascript:void(0)">Афиша</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/posters/upcoming">Скоро</a>
+                        <a class="nav-link" th:href="@{/posters/upcoming}">Скоро</a>
                     </li>
                 </ul>
                 <!-- Ad Banner -->
-                <img th:src="@{/assets/img/elements/15.jpg}" alt="Ad Banner" class="ad-banner">
+
+                <img th:if="${!prePremiereFilms.isEmpty()}" th:src="@{/assets/img/elements/15.jpg}" alt="Ad Banner" class="ad-banner mb-5">
             </div>
 
             <!-- Content -->
@@ -73,7 +74,7 @@
                             </div>
 
                             <div th:if="${currentFilms.isEmpty()}" class="col-md-12">
-                                <p>Нет текущих фильмов.</p>
+                                <h3>Нет текущих фильмов.</h3>
                             </div>
                         </div>
                     </div>

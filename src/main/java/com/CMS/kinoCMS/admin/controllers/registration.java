@@ -41,9 +41,13 @@ public class registration {
             redirectAttributes.addFlashAttribute("message", "Пользователь уже существует!");
             return "redirect:/registration";
         }
+        if(user.getUsername().equals("admin")){
+            user.setRole("ROLE_ADMIN");
+        } else{
+            user.setRole("ROLE_USER");
+        }
         user.setDateOfRegistration(LocalDate.now());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("ROLE_USER");
         user.setGender("prefer_not_to_say");
         userRepository.save(user);
 

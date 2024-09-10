@@ -4,7 +4,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{2} - %msg%n"/>
         </Console>
-        <File name="File" fileName="logs/app.log">
+        <File name="File" fileName="home/slj/projects/KinoCMS-H.Nizar/logs/kino_cms.log">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{2} - %msg%n"/>
         </File>
     </Appenders>

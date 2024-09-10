@@ -56,7 +56,7 @@
             <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
                 <a th:href="@{/main}" class="app-brand-link gap-2">
                 <span class="app-brand-logo demo">
-                    <img th:src="@{/img/free-icon-audience-3350561.png}" style="width: 32px; height: 26px; fill: none">
+                    <img th:src="@{/assets/images/free-icon-audience-3350561.png}" style="width: 32px; height: 26px; fill: none">
                 </span>
                     <span class="app-brand-text demo menu-text fw-bold">Lincoln Plaza</span>
                 </a>
@@ -94,7 +94,13 @@
                     </li>
                     <li class="nav-item">
                         <div class="user-buttons" th:if="${userId != null}">
-                            <a class="btn rounded-pill btn-outline-primary waves-effect" th:href="@{'/user/edit/' + ${userId}}" th:text="${firstName} + ' ' + ${lastName}">Редактировать</a>
+                            <a class="btn rounded-pill btn-outline-primary waves-effect"
+                               th:href="@{'/user/edit/' + ${userId}}"
+                               th:text="${firstName != null && !firstName.trim().isEmpty() ?
+             (lastName != null && !lastName.trim().isEmpty() ? firstName + ' ' + lastName : firstName) :
+             (lastName != null && !lastName.trim().isEmpty() ? lastName : username)}">
+                                Редактировать
+                            </a>
                             <form th:action="@{/logout}" method="post">
                                 <button type="submit" class="btn rounded-pill btn-outline-danger waves-effect">
                                     <i class="ti ti-logout me-2 ti-sm"></i>

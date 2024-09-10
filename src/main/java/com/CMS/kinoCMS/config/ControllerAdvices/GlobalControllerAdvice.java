@@ -29,8 +29,15 @@ public class GlobalControllerAdvice {
     public void addUserAttributes(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof MyUserDetails userDetails) {
-            model.addAttribute("firstName", userDetails.getFirstName());
-            model.addAttribute("lastName", userDetails.getLastName());
+            if(userDetails.getFirstName() != null) {
+                model.addAttribute("firstName", userDetails.getFirstName());
+            }
+            if(userDetails.getLastName() != null) {
+                model.addAttribute("lastName", userDetails.getLastName());
+            }
+            if(userDetails.getUsername() != null) {
+                model.addAttribute("username", userDetails.getUsername());
+            }
             model.addAttribute("role", userDetails.getRole());
             model.addAttribute("userId", userDetails.getId());
         }
@@ -48,11 +55,16 @@ public class GlobalControllerAdvice {
 
     @ModelAttribute
     public void getNumbersForNavbar(Model model) {
-        MainPage mainPage = mainPageService.findAll().getFirst();
-        if(mainPage != null && !mainPage.isNotActive()) {
-            model.addAttribute("firstNumber", mainPage.getFirsNumber());
-            model.addAttribute("secondNumber", mainPage.getSecondNumber());
+        List<MainPage> mainPages = mainPageService.findAll();
+
+        if (!mainPages.isEmpty()) {
+            MainPage mainPage = mainPages.getFirst();
+            if(mainPage != null && !mainPage.isNotActive()) {
+                model.addAttribute("firstNumber", mainPage.getFirsNumber());
+                model.addAttribute("secondNumber", mainPage.getSecondNumber());
+            }
         }
     }
+
 
 }

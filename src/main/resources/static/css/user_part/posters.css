@@ -5,11 +5,11 @@
 }
 
 .sidebar {
-    position: relative; /* Use fixed positioning */
+    position: relative;
     top: 90px;
     left: 20px;
     width: 200px;
-    height: calc(100% - 90px); /* Adjust height to fit within the viewport */
+    height: calc(100% - 90px);
     background-color: #f8f9fa;
     padding-top: 20px;
     overflow-y: auto; /* Allow scrolling if content exceeds height */

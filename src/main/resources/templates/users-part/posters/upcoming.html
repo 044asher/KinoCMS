@@ -26,14 +26,14 @@
             <div class="sidebar">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="/posters">Афиша</a>
+                        <a class="nav-link" th:href="@{/posters}">Афиша</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="javascript:0">Скоро</a>
                     </li>
                 </ul>
                 <!-- Ad Banner -->
-                <img th:src="@{/assets/img/elements/15.jpg}" alt="Ad Banner" class="ad-banner">
+                <img th:if="${!upcomingFilms.isEmpty()}" th:src="@{/assets/img/elements/15.jpg}" alt="Ad Banner" class="ad-banner">
             </div>
 
 
@@ -44,7 +44,7 @@
                         <div class="row">
                             <!-- Upcoming Films -->
                             <div th:if="${upcomingFilms.isEmpty()}">
-                                <p>Нет предстоящих фильмов.</p>
+                                <h3>Нет предстоящих фильмов.</h3>
                             </div>
                             <div th:if="${!upcomingFilms.isEmpty()}">
                                 <div class="row">
