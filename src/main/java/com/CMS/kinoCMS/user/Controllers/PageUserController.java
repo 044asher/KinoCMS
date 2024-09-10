@@ -120,7 +120,7 @@ public class PageUserController {
         if (contactsList.isEmpty()) {
             return "users-part/pages/contacts";
         }
-        Contact contacts = contactsList.getFirst();
+        Contact contacts = contactsList.get(0);
         model.addAttribute("page", contacts);
 
         if (contacts.isNotActive()) {

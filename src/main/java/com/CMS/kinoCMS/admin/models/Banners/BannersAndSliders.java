@@ -1,5 +1,6 @@
 package com.CMS.kinoCMS.admin.models.Banners;
 
+import com.CMS.kinoCMS.admin.models.Pages.Contact;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -45,6 +46,9 @@ public class BannersAndSliders {
         newsImage.setBannersAndSliders(this);
     }
 
+    public Contact getFirst() {
+        return null;
+    }
 
     public void removeImage(BannerNewsActions newsImage) {
         newsImages.remove(newsImage);

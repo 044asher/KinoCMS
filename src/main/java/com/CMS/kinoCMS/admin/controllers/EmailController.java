@@ -42,6 +42,7 @@ public class EmailController {
         return "emails/email";
     }
 
+
     @PostMapping("/all")
     public @ResponseBody CompletableFuture<ResponseEntity<Map<String, Object>>> mailSendingToAll(@RequestParam String subject, @RequestParam String message) {
         List<User> users = userService.findAllUsers();
@@ -54,7 +55,7 @@ public class EmailController {
                 emailStatisticsService.incrementEmailsSent();
                 counter.incrementAndGet();
             }
-        }).thenApply(_ -> {
+        }).thenApply(s ->{
             Map<String, Object> response = new HashMap<>();
             response.put("emailsSent", counter.get());
             response.put("totalUsers", users.size());

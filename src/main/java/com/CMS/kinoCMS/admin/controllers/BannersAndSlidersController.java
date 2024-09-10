@@ -40,7 +40,7 @@ public class BannersAndSlidersController {
         model.addAttribute("bannersAndSliders", bannersAndSlidersList);
 
         if (!bannersAndSlidersList.isEmpty()) {
-            BannersAndSliders bannersAndSliders = bannersAndSlidersList.getFirst();
+            BannersAndSliders bannersAndSliders = bannersAndSlidersList.get(0);
             model.addAttribute("bannerImages", bannersAndSliders.getImages());
             model.addAttribute("newsImages", bannersAndSliders.getNewsImages());
         }
@@ -49,7 +49,7 @@ public class BannersAndSlidersController {
 
     @PostMapping("/upload-background")
     public String uploadBackground(@RequestParam MultipartFile background) throws IOException {
-        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
         if (background != null && !background.isEmpty()) {
             try {
                 String resultFilename = fileUploadService.uploadFile(background);
@@ -69,7 +69,7 @@ public class BannersAndSlidersController {
     public String uploadImage(@RequestParam(required = false) MultipartFile imageFile,
                               @RequestParam(required = false) String imageUrl,
                               @RequestParam String caption) throws IOException {
-        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
         BannerImage image = new BannerImage();
         image.setCaption(caption);
 
@@ -88,7 +88,7 @@ public class BannersAndSlidersController {
 
     @PostMapping("/delete-image")
     public String deleteImage(@RequestParam Long imageId) {
-        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
         BannerImage image = bannersAndSliders.getImages().stream()
                 .filter(img -> img.getId().equals(imageId))
                 .findFirst()
@@ -105,7 +105,7 @@ public class BannersAndSlidersController {
 
     @PostMapping("/edit-image")
     public String editImage(@RequestParam Long imageId, @RequestParam String imageUrl, @RequestParam String caption) {
-        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
         BannerImage image = bannersAndSliders.getImages().stream()
                 .filter(img -> img.getId().equals(imageId))
                 .findFirst()
@@ -125,7 +125,7 @@ public class BannersAndSlidersController {
     public String uploadNewsImage(@RequestParam(required = false) MultipartFile newsImageFile,
                                   @RequestParam(required = false) String newsImageUrl,
                                   @RequestParam String newsImageCaption) throws IOException {
-        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
         BannerNewsActions image = new BannerNewsActions();
         image.setCaption(newsImageCaption);
 
@@ -144,7 +144,7 @@ public class BannersAndSlidersController {
 
     @PostMapping("/delete-news-image")
     public String deleteNewsImage(@RequestParam Long imageId) {
-        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
         BannerNewsActions image = bannersAndSliders.getNewsImages().stream()
                 .filter(img -> img.getId().equals(imageId))
                 .findFirst()
@@ -161,7 +161,7 @@ public class BannersAndSlidersController {
 
     @PostMapping("/edit-news-image")
     public String editNewsImage(@RequestParam Long imageId, @RequestParam String imageUrl, @RequestParam String caption) {
-        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().getFirst();
+        BannersAndSliders bannersAndSliders = bannersAndSlidersRepository.findAll().get(0);
         BannerNewsActions image = bannersAndSliders.getNewsImages().stream()
                 .filter(img -> img.getId().equals(imageId))
                 .findFirst()

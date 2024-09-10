@@ -1,17 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
-    <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{2} - %msg%n"/>
-        </Console>
-        <File name="File" fileName="home/slj/projects/KinoCMS-H.Nizar/logs/kino_cms.log">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %c{2} - %msg%n"/>
-        </File>
-    </Appenders>
-    <Loggers>
-        <Root level="info">
-            <AppenderRef ref="Console"/>
-            <AppenderRef ref="File"/>
-        </Root>
-    </Loggers>
-</Configuration>
+<configuration status="INFO">
+<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+    <target>SYSTEM_OUT</target>
+    <encoder>
+        <pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+</appender>
+
+<appender name="File" class="ch.qos.logback.core.FileAppender">
+    <file>${logging.file.name}</file>
+    <append>true</append>
+    <encoder>
+        <pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+</appender>
+
+<root level="INFO">
+    <appender-ref ref="Console" />
+    <appender-ref ref="File" />
+</root>
+
+<logger name="org.hibernate" level="OFF" />
+
+</configuration>

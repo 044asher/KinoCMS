@@ -5,7 +5,6 @@ import com.CMS.kinoCMS.admin.models.Pages.MainPage;
 import com.CMS.kinoCMS.admin.models.Pages.MenuItem;
 import com.CMS.kinoCMS.admin.models.Pages.Page;
 import com.CMS.kinoCMS.admin.repositories.Pages.PageRepository;
-import com.CMS.kinoCMS.admin.services.CinemaService;
 import com.CMS.kinoCMS.admin.services.FileUploadService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,24 +153,7 @@ public class PageService {
 
     public void changeStatus(Object pageObject) {
         log.info("Start PageService - changeStatus for pageObject: {}", pageObject);
-        switch (pageObject) {
-            case MainPage mainPage -> {
-                mainPage.setNotActive(!mainPage.isNotActive());
-                saveMainPage(mainPage);
-            }
-            case Contact contactPage -> {
-                contactPage.setNotActive(!contactPage.isNotActive());
-                saveContact(contactPage);
-            }
-            case Page page -> {
-                page.setNotActive(!page.isNotActive());
-                save(page);
-            }
-            case null, default -> {
-                log.error("Unsupported page type: {}", pageObject);
-                throw new IllegalArgumentException("Unsupported page type");
-            }
-        }
+
         log.info("Successfully executed PageService - changeStatus for pageObject: {}", pageObject);
     }
 

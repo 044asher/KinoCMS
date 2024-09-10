@@ -29,7 +29,7 @@ public class MainController {
         List<BannersAndSliders> bannersAndSlidersList = bannersAndSlidersRepository.findAll();
 
         if (!bannersAndSlidersList.isEmpty()) {
-            BannersAndSliders bannersAndSliders = bannersAndSlidersList.getFirst();
+            BannersAndSliders bannersAndSliders = bannersAndSlidersList.get(0);
             model.addAttribute("images", bannersAndSliders.getImages());
             model.addAttribute("newsImages", bannersAndSliders.getNewsImages());
             model.addAttribute("banner", bannersAndSliders.getBackground());

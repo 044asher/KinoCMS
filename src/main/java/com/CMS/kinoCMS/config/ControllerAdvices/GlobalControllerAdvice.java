@@ -58,7 +58,7 @@ public class GlobalControllerAdvice {
         List<MainPage> mainPages = mainPageService.findAll();
 
         if (!mainPages.isEmpty()) {
-            MainPage mainPage = mainPages.getFirst();
+            MainPage mainPage = mainPages.get(0);
             if(mainPage != null && !mainPage.isNotActive()) {
                 model.addAttribute("firstNumber", mainPage.getFirsNumber());
                 model.addAttribute("secondNumber", mainPage.getSecondNumber());
