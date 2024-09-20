@@ -1,12 +1,12 @@
 $('#cityEditDialog').on('shown.bs.modal', function (event) {
     $.get({
-        url: '/api/v1/city/all',
+        url: '/KinoCMS-Nizar/api/v1/city/all',
         success: (data) => {
             let cityList = $('#city-list');
             cityList.empty(); // Clear the list
             data.forEach(city => {
                 $.get({
-                    url: '/api/v1/city/' + city.id + '/user-count',
+                    url: '/KinoCMS-Nizar/api/v1/city/' + city.id + '/user-count',
                     success: (userCount) => {
                         let deleteButton = userCount === 0 ? `<button class="btn btn-danger delete-city" data-id="${city.id}">Удалить</button>` : '';
                         cityList.append(`
@@ -62,7 +62,7 @@ $('#save-city-button').click(function() {
     };
 
     $.ajax({
-        url: '/api/v1/city',
+        url: '/KinoCMS-Nizar/api/v1/city',
         type: 'POST',
         data: JSON.stringify(city),
         contentType: "application/json; charset=utf-8",

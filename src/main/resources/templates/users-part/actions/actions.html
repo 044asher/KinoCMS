@@ -35,7 +35,7 @@
                                 <div th:if="${!actions.isEmpty()}">
                                     <div class="row">
                                         <div class="col-md-4" th:each="action : ${actions}">
-                                            <a th:href="'/actions/' + ${action.id}">
+                                            <a th:href="@{'/actions/' + ${action.id}}">
                                                 <div class="card mb-4">
                                                     <img th:src="@{/img/{imageName}(imageName = ${action.mainImage})}"
                                                          class="card-img-top logo-img"

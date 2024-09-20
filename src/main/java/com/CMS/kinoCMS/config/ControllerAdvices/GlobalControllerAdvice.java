@@ -1,9 +1,9 @@
 package com.CMS.kinoCMS.config.ControllerAdvices;
 
-import com.CMS.kinoCMS.admin.models.Pages.MainPage;
-import com.CMS.kinoCMS.admin.models.Pages.Page;
-import com.CMS.kinoCMS.admin.services.Pages.MainPageService;
-import com.CMS.kinoCMS.admin.services.Pages.PageService;
+import com.CMS.kinoCMS.models.Pages.MainPage;
+import com.CMS.kinoCMS.models.Pages.Page;
+import com.CMS.kinoCMS.services.Pages.MainPageService;
+import com.CMS.kinoCMS.services.Pages.PageService;
 import com.CMS.kinoCMS.config.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

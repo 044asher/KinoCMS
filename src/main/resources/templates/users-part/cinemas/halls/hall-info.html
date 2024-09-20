@@ -40,7 +40,7 @@
                                         <tr th:each="schedule : ${entry.value}">
                                             <td th:text="${#temporals.format(schedule.time, 'HH:mm')}" class="mb-2">Время</td>
                                             <td>
-                                                <a th:href="'/film/' + ${schedule.film.id}">
+                                                <a th:href="@{'/film/' + ${schedule.film.id}}">
                                                     <span th:text="${schedule.film.name}">Название фильма</span>
                                                 </a>
                                             </td>
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="main-content">
-                            <a th:href="'/schedule/' + ${hall.getCinema().id} + '?filmId=&hallId=' + ${hall.id} + '&filmType='"
+                            <a th:href="@{'/schedule/' + ${hall.getCinema().id} + '?filmId=&hallId=' + ${hall.id} + '&filmType='}"
                                class="schedule-button mt-5 mb-1">Посмотреть расписания</a>
                             <div class="flex-container mt-3">
 

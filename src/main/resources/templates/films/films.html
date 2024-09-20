@@ -46,7 +46,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title" th:text="${film.name}">Название фильма</h5>
                                             <p class="card-text" th:text="${#strings.abbreviate(film.description, 40)}">Описание фильма</p>
-                                            <a th:href="'/admin/films/edit/' + ${film.id}" class="btn btn-primary">Редактировать</a>
+                                            <a th:href="@{'/admin/films/edit/' + ${film.id}}" class="btn btn-primary">Редактировать</a>
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
                                             <h5 class="card-title" th:text="${film.name}">Название фильма</h5>
                                             <p class="card-text" th:text="'Дата релиза: ' + ${#temporals.format(film.date, 'dd.MM.yyyy')}">Дата релиза</p>
                                             <p class="card-text" th:text="'Описание: ' + ${#strings.abbreviate(film.description, 40)}">Описание</p>
-                                            <a th:href="'/admin/films/edit/' + ${film.id}" class="btn btn-primary">Редактировать</a>
+                                            <a th:href="@{'/admin/films/edit/' + ${film.id}}" class="btn btn-primary">Редактировать</a>
                                         </div>
                                     </div>
                                 </div>

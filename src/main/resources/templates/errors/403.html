@@ -63,7 +63,7 @@
             <div class="w-px-400 mx-auto text-center">
                 <!-- Logo -->
                 <div class="app-brand mb-4">
-                    <a th:href="/main" class="app-brand-link gap-2 d-flex justify-content-center align-items-center">
+                    <a th:href="@{/}" class="app-brand-link gap-2 d-flex justify-content-center align-items-center">
                         <span class="app-brand-logo demo">
                             <img th:src="@{/assets/images/free-icon-audience-3350561.png}" style="width: 32px; height: 26px;">
                         </span>
@@ -73,7 +73,7 @@
                 <!-- /Logo -->
                 <h3 class="mb-1 fw-bold">Упс! Доступ запрещен 🚫</h3>
                 <p class="mb-4">Извините, у вас нет разрешения на доступ к этой странице.</p>
-                <a th:href="@{/main}" class="btn btn-primary d-grid w-100">Вернуться на главную</a>
+                <a th:href="@{/}" class="btn btn-primary d-grid w-100">Вернуться на главную</a>
             </div>
         </div>
         <!-- /Error 403 -->

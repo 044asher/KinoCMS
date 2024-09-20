@@ -1,0 +1,94 @@
+package com.CMS.kinoCMS.models;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Film {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Size(max = 4000, message = "Description should not be bigger than 4000 symbols")
+    @NotEmpty(message = "Description should not be empty")
+    private String description;
+
+    private String mainImage;
+
+    @Size(max = 255, message = "Link should be less than 255 symbols")
+    @NotEmpty(message = "Insert the link, it should not be empty")
+    private String link;
+
+    @Size(max = 255, message = "Name should be less than 255 characters")
+    @NotEmpty(message = "Name shouldn't be empty")
+    private String name;
+
+    private LocalDate date;
+
+    private String types;
+
+    private boolean isPrePremiere;
+
+    @ElementCollection
+    @CollectionTable(name = "film_images", joinColumns = @JoinColumn(name = "film_id"))
+    @Column(name = "image_name")
+    @Size(max = 5)
+    private List<String> images = new ArrayList<>();
+
+    // ------------- SEO Block
+    @Size(max=255, message = "Url should be less than 255 characters")
+    @NotEmpty(message = "Url shouldn't be empty")
+    private String urlSEO;
+
+    @Size(max=255, message = "Title should be less than 255 characters")
+    @NotEmpty(message = "Title shouldn't be empty")
+    private String titleSEO;
+
+    @Size(max=255, message = "Keywords should be less than 255 characters")
+    @NotEmpty(message = "Keywords shouldn't be empty")
+    private String keywordsSEO;
+
+    @Size(max=4000, message = "Description should be less than 4000 characters")
+    @NotEmpty(message = "Description shouldn't be empty")
+    private String descriptionSEO;
+
+    //---------------Info-------------------
+
+    private Integer year;
+    private String country;
+    private String musician;
+
+    @ElementCollection
+    @CollectionTable(name = "film_producers", joinColumns = @JoinColumn(name = "film_id"))
+    @Column(name = "producer")
+    private List<String> producer = new ArrayList<>();
+
+    private String director;
+
+    @ElementCollection
+    @CollectionTable(name = "film_writers", joinColumns = @JoinColumn(name = "film_id"))
+    @Column(name = "writer")
+    private List<String> writer = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(name = "film_genres", joinColumns = @JoinColumn(name = "film_id"))
+    @Column(name = "genre")
+    private List<String> genre = new ArrayList<>();
+
+    private Integer age;
+    private Integer time;
+}

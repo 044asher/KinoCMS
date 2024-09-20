@@ -1,5 +1,5 @@
 function changeStatusMain(id) {
-    fetch('/admin/pages/main-page/' + id + '/change-status', {
+    fetch('/KinoCMS-Nizar/admin/pages/main-page/' + id + '/change-status', {
         method: 'POST'
     }).then(function(response) {
         if (response.ok) {

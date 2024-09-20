@@ -27,7 +27,7 @@
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <div th:each="el : ${bannersAndSliders}">
                         <div class="background-banner"
-                             th:style="'background-image: url(/img/' + ${el.background} + ');'"></div>
+                             th:style="@{'background-image: url(/img/' + ${el.background} + ');'}"></div>
                     </div>
 
                     <div class="col-12">
@@ -52,7 +52,7 @@
 
                             <!-- Форма для добавления новой фотографии -->
                             <div class="add-image-entry">
-                                <form id="upload-image-form" action="/admin/banners-and-sliders/upload-image"
+                                <form id="upload-image-form" th:action="@{/admin/banners-and-sliders/upload-image}"
                                       enctype="multipart/form-data" method="post" class="edit-image-form">
                                     <input type="file" name="imageFile" class="form-control" accept="image/*"
                                            id="imageFile">
@@ -68,7 +68,7 @@
 
                     <div class="col-12">
                         <h2>Сквозной баннер на фоне</h2>
-                        <form id="upload-background-form" action="/admin/banners-and-sliders/upload-background"
+                        <form id="upload-background-form" th:action="@{/admin/banners-and-sliders/upload-background}"
                               enctype="multipart/form-data" method="post">
                             <div class="drag-area" id="drag-area">
                                 <p>Перетащите файл сюда или нажмите для выбора файла</p>
@@ -102,7 +102,7 @@
 
                             <!-- Форма для добавления новой фотографии новостей -->
                             <div class="add-image-entry">
-                                <form id="upload-news-image-form" action="/admin/banners-and-sliders/upload-news-image"
+                                <form id="upload-news-image-form" th:action="@{/admin/banners-and-sliders/upload-news-image}"
                                       enctype="multipart/form-data" method="post" class="edit-image-form">
                                     <input type="file" name="newsImageFile" class="form-control" accept="image/*"
                                            id="newsImageFile">

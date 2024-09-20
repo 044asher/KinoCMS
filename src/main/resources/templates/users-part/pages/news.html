@@ -34,7 +34,7 @@
                                     <div th:if="${news != null and !news.isEmpty()}">
                                     <div class="row">
                                             <div class="col-md-4" th:each="newss : ${news}">
-                                                <a th:href="'/pages/news/' + ${newss.id}">
+                                                <a th:href="@{'/pages/news/' + ${newss.id}}">
                                                     <div class="card mb-4">
                                                         <img th:src="@{/img/{imageName}(imageName = ${newss.mainImage})}"
                                                              class="card-img-top logo-img"

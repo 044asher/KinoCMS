@@ -53,7 +53,7 @@
                                                 <h5 class="card-title" th:text="${cinema.name}">Название</h5>
 
                                                 <div class="btn-group" role="group">
-                                                    <a th:href="'/admin/pages/contacts/cinema/edit/' + ${cinema.id}"
+                                                    <a th:href="@{'/admin/pages/contacts/cinema/edit/' + ${cinema.id}}"
                                                        class="btn btn-primary btn-rounded-left">Редактировать</a>
                                                 </div>
 

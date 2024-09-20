@@ -48,13 +48,19 @@
         .phone-number {
             margin: 0;
         }
+        @media (max-width: 768px) {
+            .social-icon, .input-group {
+                display: none;
+            }
+        }
+
     </style>
 
     <!-- Navbar -->
     <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
         <div class="container-xxl">
             <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
-                <a th:href="@{/main}" class="app-brand-link gap-2">
+                <a th:href="@{/}" class="app-brand-link gap-2">
                 <span class="app-brand-logo demo">
                     <img th:src="@{/assets/images/free-icon-audience-3350561.png}" style="width: 32px; height: 26px; fill: none">
                 </span>
@@ -135,7 +141,7 @@
         <div class="container-xxl d-flex h-100">
             <ul class="menu-inner py-1">
                 <li class="menu-item">
-                    <a th:href="@{/main}" class="menu-link">
+                    <a th:href="@{/}" class="menu-link">
                         <i class="menu-icon tf-icons ti ti-smart-home"></i>
                         <div data-i18n="Page 1">Главная</div>
                     </a>

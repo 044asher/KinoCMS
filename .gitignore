@@ -31,5 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
-/src/main/resources/static/assets/
-/src/main/resources/application.properties
+
+/src/main/resources/GeoLite2-City.mmdb

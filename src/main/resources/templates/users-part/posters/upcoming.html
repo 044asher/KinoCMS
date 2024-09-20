@@ -52,7 +52,7 @@
                                         <div th:if="${!film.isPrePremiere}" class="card mb-4">
                                             <img th:src="@{/img/{imageName}(imageName = ${film.mainImage})}" class="card-img-top film-img" alt="Film Image">
                                             <div class="card-body">
-                                                <a th:href="'/film/' + ${film.id}">
+                                                <a th:href="@{'/film/' + ${film.id}}">
                                                     <h5 class="card-title" th:text="${film.name}">Название фильма</h5>
                                                 </a>
                                                 <p class="card-text" th:text="'Смотрите с ' + ${#temporals.format(film.date, 'dd.MM.yyyy')}">Дата релиза</p>

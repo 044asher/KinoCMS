@@ -41,7 +41,7 @@
                                                 <div th:if="${!cinemas.isEmpty()}">
                                                     <div class="row">
                                                         <div class="col-md-4" th:each="cinema : ${cinemas}">
-                                                            <a th:href="'/cinemas/' + ${cinema.id}">
+                                                            <a th:href="@{'/cinemas/' + ${cinema.id}}">
                                                                 <div class="card mb-4">
                                                                     <img th:src="@{/img/{imageName}(imageName = ${cinema.logoName})}"
                                                                          class="card-img-top logo-img"

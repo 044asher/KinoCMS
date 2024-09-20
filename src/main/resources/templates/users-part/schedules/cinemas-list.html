@@ -42,7 +42,7 @@
                                                 <p th:if="${cinema.address} != null">Адрес: <span
                                                         th:text="${cinema.address}">Cinema Address</span></p>
                                                 <div class="btn-group" role="group">
-                                                    <a th:href="'/schedule/' + ${cinema.id}"
+                                                    <a th:href="@{'/schedule/' + ${cinema.id}}"
                                                        class="btn btn-success btn-rounded-left">Посмотреть
                                                         расписания</a>
                                                 </div>

@@ -63,9 +63,9 @@
             <div class="w-px-400 mx-auto text-center">
                 <!-- Logo -->
                 <div class="app-brand mb-4">
-                    <a th:href="@{/main}" class="app-brand-link gap-2 d-flex justify-content-center align-items-center">
+                    <a th:href="@{/}" class="app-brand-link gap-2 d-flex justify-content-center align-items-center">
                         <span class="app-brand-logo demo">
-                            <img src="/assets/images/free-icon-audience-3350561.png" style="width: 32px; height: 26px;">
+                            <img th:src="@{/assets/images/free-icon-audience-3350561.png}" style="width: 32px; height: 26px;">
                         </span>
                         <span class="app-brand-text demo text-body fw-bold ms-2">Lincoln Plaza</span>
                     </a>
@@ -73,7 +73,7 @@
                 <!-- /Logo -->
                 <h3 class="mb-1 fw-bold">Упс! Страница не найдена 🕵️‍♀️</h3>
                 <p class="mb-4">К сожалению, мы не смогли найти страницу, которую вы искали.</p>
-                <a th:href="@{/main}" class="btn btn-primary d-grid w-100">Вернуться на главную</a>
+                <a th:href="@{/}" class="btn btn-primary d-grid w-100">Вернуться на главную</a>
             </div>
         </div>
         <!-- /Error 404 -->

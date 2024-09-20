@@ -67,12 +67,12 @@
                     <li class="nav-item navbar-dropdown dropdown-user dropdown">
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                             <div class="avatar avatar-online">
-                                <img src="/assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                                <img th:src="@{/assets/img/avatars/1.png}" alt class="h-auto rounded-circle" />
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a class="dropdown-item" th:href="'/admin/users/edit/' + ${userId}">
+                                <a class="dropdown-item" th:href="@{'/admin/users/edit/' + ${userId}}">
                                     <div class="d-flex">
                                         <div class="flex-shrink-0 me-3">
                                             <div class="avatar avatar-online">
@@ -110,7 +110,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
             <div class="app-brand demo">
-                <a th:href="@{/main}" class="app-brand-link">
+                <a th:href="@{/}" class="app-brand-link">
                 <span class="app-brand-logo demo">
                     <img th:src="@{/assets/images/free-icon-audience-3350561.png}" style="width: 32px; height: 26px; fill: none">
                 </span>
