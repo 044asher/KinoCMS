@@ -1,6 +1,8 @@
 package com.CMS.kinoCMS.config;
 
+import com.CMS.kinoCMS.config.IpAddreses.GeoIpFilter;
 import com.CMS.kinoCMS.services.MyUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -15,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @Configuration
@@ -27,9 +30,17 @@ public class SecurityConfig {
         return new MyUserDetailsService();
     }
 
+    @Autowired
+    private GeoIpFilter geoIPFilter;
+
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, GeoIpFilter geoIpFilter) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
+                .sessionManagement(session -> session
+                        .maximumSessions(5)
+                        .sessionRegistry(sessionRegistry())
+                )
+                .addFilterBefore(geoIPFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/assets/**", "/login", "/registration", "/js/**", "/css/**", "/static/**,", "/img/**").permitAll()
                         .requestMatchers("/admin/**").authenticated()
                         .requestMatchers("/user/edit/**").authenticated()
@@ -40,7 +51,7 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/")
                 )
             .exceptionHandling(exception -> exception.accessDeniedPage("/errors/403.html"))
- .build();
+            .build();
     }
 
 
@@ -61,6 +72,8 @@ public class SecurityConfig {
     public HttpSessionEventPublisher httpSessionEventPublisher() {
         return new HttpSessionEventPublisher();
     }
+
+
     @Bean
     public SessionRegistry sessionRegistry() {
         return new SessionRegistryImpl();

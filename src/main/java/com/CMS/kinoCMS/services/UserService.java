@@ -79,4 +79,8 @@ public class UserService {
         log.info("End UserService - searchUsers. Found {} users matching '{}'", usersPage.getTotalElements(), search);
         return usersPage;
     }
+
+    public Optional<User> findByUsername(String username) {
+       return userRepository.findByUsername(username);
+    }
 }
